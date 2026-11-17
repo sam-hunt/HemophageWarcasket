@@ -40,5 +40,4 @@
 - **Full review of player-facing text**
   - The three descriptions, `About.xml`, the README's features and the Workshop page are first cuts written to the design ahead of the code, so today they promise what no def grants. Correct them to what is built as each mechanic lands. No release, candidates included, before the two agree.
 - **Initial translation pass** of all 9 planned languages
-- **Create the GitHub repo** (`sam-hunt/HemophageWarcasket`; the `origin` remote already points there) and push. The `l10n` submodule's relative URL resolves against it, and the release workflow runs there.
 - **First Workshop publish.** Commit `About/PublishedFileId.txt`, add the Workshop link and the Steam badges to the README
