@@ -90,6 +90,8 @@ For development setup, see [CLAUDE.md](CLAUDE.md).
 
 **Author**: Sam Hunt ([@sam-hunt](https://github.com/sam-hunt))
 
+**Art**: [IcingWithCheeseCake](https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100)
+
 **Built With**:
 
 - [Harmony](https://github.com/pardeike/Harmony) by Andreas Pardeike - Runtime patching library
