@@ -1,0 +1,36 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{BB18077D-728D-4415-9266-153CB5C6C8F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemophageWarcasket", "Source\1.6\HemophageWarcasket.csproj", "{25E88F6A-80AD-4060-AA33-40A950B61F36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4AC08A25-CE57-4EDB-A8AF-3682A22DAC35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemophageWarcasket.Tests", "Tests\1.6\HemophageWarcasket.Tests.csproj", "{5450FDBB-AAFF-4460-A485-3233594F781E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25E88F6A-80AD-4060-AA33-40A950B61F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E88F6A-80AD-4060-AA33-40A950B61F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E88F6A-80AD-4060-AA33-40A950B61F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E88F6A-80AD-4060-AA33-40A950B61F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5450FDBB-AAFF-4460-A485-3233594F781E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5450FDBB-AAFF-4460-A485-3233594F781E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5450FDBB-AAFF-4460-A485-3233594F781E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5450FDBB-AAFF-4460-A485-3233594F781E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{25E88F6A-80AD-4060-AA33-40A950B61F36} = {BB18077D-728D-4415-9266-153CB5C6C8F6}
+		{5450FDBB-AAFF-4460-A485-3233594F781E} = {4AC08A25-CE57-4EDB-A8AF-3682A22DAC35}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    The Hemophage's shell, on VFEP's armor base (VFEP v4.03,
+    1.6/Defs/ThingDefs_Misc/Apparel_Various.xml). Docs/Research/VFEP_WARCASKET_STATS.md
+    tabulates the tier.
+
+    Tuning: the 10th generation's baseline and nothing else yet. Each field is the value
+    most of VFEP's five spacer sets (Siegebreaker, Guardian, Controller, Sarcophagus, Brute)
+    share, which is the Sarcophagus's row less its glitterworld medicine and its bionics.
+    With the bionics go its capacity floors of 1 and its guards against downing and death:
+    the 0.7 floors on Moving and Manipulation below are the other four sets'. The set's own
+    numbers arrive with its mechanics (TODOs.md) and are argued here when they do.
+    - Sharp 2 / Blunt 1 / Heat 1 on all three pieces. Blunt 1.5 is the Guardian's and the
+      Brute's specialty.
+    - EnergyShieldEnergyMax 1.5 at EnergyShieldRechargeRate 0.01 (Guardian, Controller,
+      Sarcophagus). Siegebreaker's 2.5 and the Brute's 5.0 are their specialties. The bubble
+      is the tier's plain one, blocking ranged attacks only.
+    - PsychicSensitivity -0.5, ToxicResistance 0.5, SlaveSuppressionOffset 0.3 and
+      VacuumResistance 0.2, the same on all five.
+    - costList ComponentSpacer 6 / Plasteel 145 / Uranium 50, the Siegebreaker's and the
+      Sarcophagus's. The components are VFEP's tech-complexity dial (Brute 4, Controller 12),
+      the plasteel runs 145 to 200 across the tier.
+    - researchPrerequisites VFEP_SpacerWarcaskets, the tier's. Whether the set belongs behind
+      something sanguophage-specific as well is an open question in TODOs.md; the foundry
+      lists a part by BuildableDef.IsResearchFinished, which wants every entry, so a second
+      prerequisite goes on all three pieces.
+
+    apparel tags: WarcasketVeteran (VFEP's 10th-generation tag) puts the set on the veteran
+    raid pawnkinds of both VFEP factions and Odyssey's VFEP_Salvager_Warcasket; WarcasketAll
+    is VFEP_General. The tier's, kept for the baseline: a generated wearer is rarely
+    hemogenic, so the tags are to be weighed again once the pieces do something only a
+    hemogenic pilot can use.
+
+    Not here yet: the armor's share of the design, a toggled ability that spends the pilot's
+    hemogen for a short burst of speed and strength, and a work trait of its own that leaves
+    the pilot intellectual work. The description already speaks of the first. TODOs.md has
+    both.
+
+    Text: a first cut written to the design ahead of the code, so it names modules no def
+    grants yet; correct it to what is built when they land. The shape is
+    l10n/languages/English.md's VFE Pirates recipe: a first line that is also the
+    shortDescription and names the piece's module, a generation paragraph, then the series
+    paragraph. The second and third paragraphs are identical in all three defs. The second is
+    ours, where the recipe pastes VFEP's verbatim: VFEP's paragraph gives the generation to a
+    government program for its veterans, and this set's fiction is that sanguophages inside
+    that program had it built in secret for themselves, told as rumor the way Biotech tells
+    its sanguophage lore.
+
+    Art: Textures/Things/Pawn/Warcasketlike/WarcasketHemophage/, laid out as VFEP's sets are.
+    The worn graphic is Graphic_Multi (the _north/_east/_south facings); the item icon is the
+    parent's Graphic_Single, read from the bare-named file, a copy of the _south facing.
+
+    Masked tint, all three pieces (of VFEP's sets only the helmets are masked; vanilla's
+    prestige armors are the pattern): CutoutComplex on both graphics of each piece, the worn one through
+    apparel.useWornGraphicMask, so the CompColorable colour paints the mask's red areas and
+    the black-masked parts keep their painted red (apparel graphics pass white as colorTwo).
+    Mask names differ by graphic class: Graphic_Multi reads <path>_northm, Graphic_Single
+    <path>_m.
+
+    Glow sprites: WarcasketHemophageGlow_north/_east/_south beside the art (and the helmet's
+    and shoulders' under their own names) are white shapes over the red details that are to
+    light up, for a render node to tint and draw while the armor's ability runs. They are
+    drawn to the art, not to the masks: on the shell and the helmet they cover the
+    black-masked parts with a margin, on the pads only the vials' contents. No def references
+    them until that node lands; 1.6/CLAUDE.md has the rule it must follow.
+
+    Traits: traitsOnEquip grants VFEP_WarcasketTrait and traitsOnUnequip VFEP_Shellcasket,
+    the "cut out of a warcasket" state every set shares, so removal surgery and re-entombing
+    behave as for VFEP's own sets.
+
+    ApparelExtension priority 1: VFEP_WarcasketArmorBase carries its own ApparelExtension and
+    inheritance appends list items, so this def resolves with two. VEF merges duplicates in a
+    Def.ResolveReferences prefix, the highest priority surviving, and ApparelExtension.Merge
+    does not copy every field; at equal priority the parent's copy would win. At priority 1
+    every field of ours, from any load root, is kept. Any new ApparelExtension field for this
+    piece goes on this entry.
+
+    Patched by 1.6/Patches/SOS2Patch.xml (EVA tag, cold insulation),
+    1.6/Mods/VanillaGravshipExpanded/Patches/VacuumResistance.xml and the
+    1.6/Mods/CombatExtended/Patches/ root (plating on CE's scale, bulk, carry capacity,
+    shield, costs); see their headers.
+  -->
+  <VFEPirates.WarcasketDef ParentName="VFEP_WarcasketArmorBase">
+    <defName>HPWC_Warcasket_Hemophage</defName>
+    <label>hemophage warcasket</label>
+    <shortDescription>Specialized spacer-tech warcasket shell with standard protection, equipped with hemogen injectors that can push the pilot's body far past its limits while quickly using up their hemogen.</shortDescription>
+    <description>Specialized spacer-tech warcasket shell with standard protection, equipped with hemogen injectors that can push the pilot's body far past its limits while quickly using up their hemogen.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
+    <graphicData>
+      <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophage</texPath>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <statBases>
+      <Mass>50</Mass>
+      <ArmorRating_Sharp>2</ArmorRating_Sharp>
+      <ArmorRating_Blunt>1</ArmorRating_Blunt>
+      <ArmorRating_Heat>1</ArmorRating_Heat>
+      <Insulation_Cold>80</Insulation_Cold>
+      <Insulation_Heat>80</Insulation_Heat>
+      <EquipDelay>1</EquipDelay>
+      <EnergyShieldRechargeRate>0.01</EnergyShieldRechargeRate>
+      <EnergyShieldEnergyMax>1.5</EnergyShieldEnergyMax>
+    </statBases>
+    <equippedStatOffsets>
+      <PsychicSensitivity>-0.5</PsychicSensitivity>
+      <ToxicResistance>0.5</ToxicResistance>
+      <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.3</SlaveSuppressionOffset>
+      <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.2</VacuumResistance>
+    </equippedStatOffsets>
+    <costList>
+      <ComponentSpacer>6</ComponentSpacer>
+      <Plasteel>145</Plasteel>
+      <Uranium>50</Uranium>
+    </costList>
+    <researchPrerequisites>
+      <li>VFEP_SpacerWarcaskets</li>
+    </researchPrerequisites>
+    <apparel>
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Legs</li>
+        <li>Feet</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophage</wornGraphicPath>
+      <useWornGraphicMask>true</useWornGraphicMask>
+      <layers>
+        <li>OnSkin</li>
+        <li>Middle</li>
+        <li>Shell</li>
+      </layers>
+      <tags>
+        <li>WarcasketVeteran</li>
+        <li>WarcasketAll</li>
+      </tags>
+    </apparel>
+    <comps>
+      <li Class="VEF.Apparels.CompProperties_ShieldBubble">
+        <compClass>VEF.Apparels.CompShieldBubble</compClass>
+        <blockRangedAttack>true</blockRangedAttack>
+        <blockMeleeAttack>false</blockMeleeAttack>
+        <showWhenDrafted>true</showWhenDrafted>
+        <showOnHostiles>true</showOnHostiles>
+        <showOnNeutralInCombat>true</showOnNeutralInCombat>
+        <shieldTexPath>Other/ShieldBubble</shieldTexPath>
+        <chargeFullyWhenMade>true</chargeFullyWhenMade>
+        <minShieldSize>2.1</minShieldSize>
+        <maxShieldSize>2.7</maxShieldSize>
+        <disableRotation>true</disableRotation>
+      </li>
+    </comps>
+    <modExtensions>
+      <li Class="VEF.Apparels.ApparelExtension">
+        <priority>1</priority>
+        <traitsOnEquip>
+          <li>VFEP_WarcasketTrait</li>
+        </traitsOnEquip>
+        <traitsOnUnequip>
+          <li>VFEP_Shellcasket</li>
+        </traitsOnUnequip>
+        <pawnCapacityMinLevels>
+          <li>
+            <capacity>Moving</capacity>
+            <minLevel>0.7</minLevel>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <minLevel>0.7</minLevel>
+          </li>
+        </pawnCapacityMinLevels>
+      </li>
+    </modExtensions>
+  </VFEPirates.WarcasketDef>
+</Defs>

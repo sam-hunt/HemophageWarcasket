@@ -1,0 +1,44 @@
+Hemophage Warcasket
+
+A new spacer-tier warcasket for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url], made for sanguophages.
+
+[h1]About[/h1]
+
+The Hemophage is a 10th-generation warcasket that runs on the hemogen in its pilot's blood. It appears in no government record, and some believe sanguophages had it built in secret for themselves.
+
+It works for any pilot with the hemogenic gene. A pilot without it gets an ordinary spacer warcasket.
+
+[hr][/hr]
+[h2]The Hemophage[/h2]
+Armor, shoulder pads and helmet, welded at the warcasket foundry and unlocked by spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets as you please.
+[list]
+[*][b]Armor:[/b] Spends the pilot's hemogen quickly to make them much faster and stronger for a short time
+[*][b]Shoulders:[/b] Destroys an enemy's limb and drains hemogen from the wound
+[*][b]Helmet:[/b] Shields a pilot who is sensitive to sunlight
+[/list]
+
+[hr][/hr]
+[h1]Mod Compatibility[/h1]
+[list]
+[*]Safe to add to existing saves.
+[*]Not safe to remove while a pawn is welded into the set.
+[*]Biotech: required.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]: required.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2[/url]: EVA rated under the same rules as VFE Pirates' own sets.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609835606]Vanilla Gravship Expanded[/url]: follows its vacuum-resistance rules for warcaskets.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730151836]Warcaskets can work![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730543694]Warcaskets can haul![/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535194807]VFE Pirates - Hardworking Warcaskets[/url]: Yes.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044]Combat Extended[/url]: built-in patch, with armor, bulk, carry capacity and shield in line with VFE Pirates' spacer sets.
+[/list]
+
+[hr][/hr]
+[h1]FAQ[/h1]
+
+[b]Q: How do I get it?[/b]
+A: Research spacer warcaskets, then weld it on at the warcasket foundry like any other set.
+
+[b]Q: Does the pilot have to be a sanguophage?[/b]
+A: No. Any pilot can wear it, and any pilot with the hemogenic gene can use everything it does.
+
+[hr][/hr]
+[h1]Links[/h1]
+Source code, manual downloads and issue tracker: [url=https://github.com/sam-hunt/HemophageWarcasket]GitHub[/url]

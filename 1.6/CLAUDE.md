@@ -1,0 +1,90 @@
+# 1.6/: defs, patches, languages and compat roots
+
+Loaded when work touches the game content. Each def's header carries its values and their
+rationale; this file holds the rules that cross defs. The one `1.6/` tree serves 1.6 and 1.7
+(`LoadFolders.xml` lists it under both and says why). Defs load recursively and the deploy
+manifest globs, so new files and subfolders need no build change.
+
+## Defs
+
+- **Warcasket parts are `VFEPirates.WarcasketDef`s** on VFEP's abstract bases
+  (`VFEP_WarcasketArmorBase`, `VFEP_WarcasketShoulderPadBase`, `VFEP_WarcasketHelmetBase`), so
+  the foundry, entombing and removal surgery pick them up without C#. Check VFEP's XML before
+  reimplementing anything a base provides. The three defs are the 10th generation's baseline,
+  field by field the value most of VFEP's five spacer sets share; a field a def header does not
+  discuss is that baseline's, so diff against VFEP's Sarcophagus before changing one.
+- **Every `ApparelExtension` we declare carries `priority` 1.** The VFEP bases carry their own,
+  and VEF merges duplicates at resolve time, keeping the highest priority and dropping fields its
+  `Merge` does not copy; any new `ApparelExtension` field, from any load root, goes on our entry.
+  The armor def's header has the mechanics.
+- **The two abilities, when they land, are VEF abilities** (`VEF.Abilities.AbilityDef`, each
+  granted by a `CompProperties_AbilitiesApparel` on the piece that carries it: the armor's
+  hemogen burst, the shoulder pads' limb strike), never vanilla `AbilityDef`s: vanilla has no
+  apparel grant, and the family's abilities are all VEF's. The Toxin repo's vent is the
+  precedent for a toggled one, the Medic repo's shoulder pads for a grant off the armor;
+  `Docs/Research/WARCASKET_ABILITIES.md` surveys VFEP's own.
+- **Worn graphics go through the pawn render tree** (`apparel.renderNodeProperties`), never draw
+  hooks. The Shipcracker repo's thruster glow is the precedent, including the zoomed-out pawn
+  cache and draw-order traps; read its CLAUDE.md bullet before adding one here. The set's glow
+  is wider than that one: the art ships a glow sprite for each piece
+  (`WarcasketHemophageGlow`, `...ShouldersGlow`, `...HelmetGlow`), white over the red details
+  that are to light up, and the design lights all of them from the armor's ability,
+  whichever of the three pieces the pilot wears. Each piece's node therefore goes on that
+  piece's own def and reads the ability's state off the pawn, never off the apparel that
+  declares it; the helmet's header has its missing north facing.
+- **Art is `Textures/Things/Pawn/Warcasketlike/WarcasketHemophage/`**, VFEP's layout and file
+  naming: `WarcasketHemophage`, `...Shoulders`, `...Helmet`, each with `_north`, `_east`,
+  `_south`, a mask beside every one of those (`_northm`) and a bare-named copy of the south
+  facing and its mask (`_m`) for the item icon. A new sprite keeps the facing suffix last
+  (`<Name>_south.png`), or `Graphic_Multi` cannot resolve it. `Tests/1.6/SetShapeTests.cs`
+  fails on a declared graphic with a missing file.
+- **Tunables, when settings arrive, are def fields** the mod settings write at startup
+  (`Source/1.6/CLAUDE.md`); the XML value is the default and the header stays the record.
+
+## Languages
+
+- There is no `Languages/` folder yet: every string is def text, which translators reach as
+  DefInjected, and nothing is printed from code. The first code-printed string creates
+  `Languages/English/Keyed/HemophageWarcasket.xml`, the one home for every such string, under
+  the `HPWC_` prefix, and flips the two Keyed settings in `Scripts/check-translations.py`.
+  Biotech's own Keyed strings may be printed directly: the DLC is a hard dependency, so its
+  keys always exist.
+- `WarcasketDef` has no def database of its own: the game injects it under `ThingDef`. A
+  `DefInjected/WarcasketDef/` folder would never load.
+- Translation passes, the checker and the sidecar are described in `Scripts/CLAUDE.md`.
+
+## Optional content and gating
+
+- **Gate by load root, not by attribute.** `MayRequire` works on def roots and list items, but the
+  DefInjected loader ignores attributes, so a gated def's injection in the main tree errors
+  ("found no def named ...") whenever the gate is closed. Gated content ships from a compat root
+  listed with `IfModActive` in `LoadFolders.xml` (`Mods/VanillaGravshipExpanded` is the model):
+  `1.6/Mods/<Mod>/` for version-specific content, root-level `Mods/<Mod>/` for art. The def's own
+  `MayRequire` is then redundant and dropped. `MayRequire` stays right for a stat leaf whose
+  stat a DLC defines (`SlaveSuppressionOffset`, `VacuumResistance`): it drops a number, never a
+  def or a key. Biotech needs neither: it is a hard dependency.
+- **A patch in a gated root, or behind a `PatchOperationFindMod` gate, fails silently for
+  everyone but that mod's players**, so `Tests/1.6/CompatPatchTests.cs` resolves every patch's
+  xpaths against the main tree; keep every xpath to one node per `defName` it names, or zero
+  for a `PatchOperationConditional` probe. A root that patches another mod's or a DLC's def
+  needs that def's XML merged into the test (the Overlord repo's `DlcRoots`).
+- **A patch that branches on a mod setting**, once there are settings, wraps its operations in
+  a `PatchOperationSetting` (the Overlord and Toxin repos' `Source/1.6/PatchOperations/`); a
+  change then takes a restart, and the smoke test, which boots on default settings, never runs
+  its `match` branch.
+- **Compat roots sit beside the well-known folders, never inside them.** Anything under
+  `1.6/Defs/**` or `1.6/Languages/**` loads unconditionally at any depth.
+- **An injection is gated by the root that contains it, never by the def it targets.** A main-tree
+  def's translation placed in a compat root silently vanishes when the gate closes.
+- **A compat root's language files never reuse a main-tree language-relative path**
+  (`DefInjected/<Type>/<File>.xml`, `Keyed/<File>.xml`): the game dedups per mod by that path and
+  silently skips one whole file. Suffix the filename with the gate's name
+  (`Apparel_VanillaGravshipExpanded.xml`).
+- **A compat art variant goes at the main tree's exact texture path** inside the gated root, not
+  under a new name behind a patch. A later-listed load folder wins a shared path, so the gated
+  root stays below `/` in `LoadFolders.xml`.
+- **Gate on the package id** (`vanillaexpanded.gravship`), never `PatchOperationFindMod` (display
+  names), unless the patch mirrors an upstream patch and copies its gate so both fire together
+  (`Patches/SOS2Patch.xml`).
+- **A compat root that adds a def or a translatable field gets a world in the sidecar**
+  (`Scripts/CLAUDE.md`). The two roots today move numbers only, so the sidecar is one boot.

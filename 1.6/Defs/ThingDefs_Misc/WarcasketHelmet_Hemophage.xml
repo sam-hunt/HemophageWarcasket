@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    The Hemophage's helmet, on VFEP's helmet base (VFEP v4.03,
+    1.6/Defs/ThingDefs_Misc/Apparel_Headgear.xml). Plating, the research gate, the apparel
+    tags, the text's shape and the masked tint follow the armor's header
+    (Warcasket_Hemophage.xml).
+
+    Tuning: the tier's baseline, as on the armor. Mass 8, PsychicSensitivity -0.5,
+    ToxicResistance 0.5, SlaveSuppressionOffset 0.1, VacuumResistance 0.7 and uiIconScale
+    1.25 are the same on all five of VFEP's spacer helmets. Insulation 10 / 10 is three of
+    the five's (Controller, Sarcophagus, Brute; the Siegebreaker's and the Guardian's are
+    5 / 2), and ComponentSpacer 2 / Plasteel 60 is the Sarcophagus's price, each number
+    three of the five's.
+
+    Not here yet: the helmet's share of the design, which is to protect a pilot with a
+    sunlight sensitivity gene from sunlight and to carry the set's heaviest plating. The
+    description already speaks of the first and still says standard protection. TODOs.md has
+    both.
+
+    Art: the back of the helmet has no black-masked part, so the helmet ships glow sprites
+    for the _south and _east facings only. Graphic_Multi fills a missing north facing from
+    the south one, which would light the eyes on the back of the head: the render node that
+    draws the glow has to skip the helmet's north facing or be given an empty sprite for it.
+
+    ApparelExtension priority 1, for the reason in the armor's header; Merge still ORs the
+    base's isUnifiedApparel and hideHead in. Any new ApparelExtension field for the helmet
+    goes on this entry.
+
+    Patched by 1.6/Patches/SOS2Patch.xml (EVA tag, Insulation_Cold 100), the VGE vacuum patch
+    (VGE1's warcasket-helmet VacuumResistance) and the 1.6/Mods/CombatExtended/Patches/ root
+    (plating on CE's scale, bulk, smoke sealing, costs); see their headers.
+  -->
+  <VFEPirates.WarcasketDef ParentName="VFEP_WarcasketHelmetBase">
+    <defName>HPWC_WarcasketHelmet_Hemophage</defName>
+    <label>hemophage warcasket helmet</label>
+    <shortDescription>Specialized spacer-tech warcasket helmet with standard protection, equipped with a sealed visor that shields the pilot from sunlight.</shortDescription>
+    <description>Specialized spacer-tech warcasket helmet with standard protection, equipped with a sealed visor that shields the pilot from sunlight.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
+    <graphicData>
+      <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageHelmet</texPath>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <uiIconScale>1.25</uiIconScale>
+    <statBases>
+      <Mass>8</Mass>
+      <ArmorRating_Sharp>2</ArmorRating_Sharp>
+      <ArmorRating_Blunt>1</ArmorRating_Blunt>
+      <ArmorRating_Heat>1</ArmorRating_Heat>
+      <Insulation_Cold>10</Insulation_Cold>
+      <Insulation_Heat>10</Insulation_Heat>
+      <EquipDelay>1</EquipDelay>
+    </statBases>
+    <equippedStatOffsets>
+      <PsychicSensitivity>-0.5</PsychicSensitivity>
+      <ToxicResistance>0.5</ToxicResistance>
+      <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.1</SlaveSuppressionOffset>
+      <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.7</VacuumResistance>
+    </equippedStatOffsets>
+    <costList>
+      <ComponentSpacer>2</ComponentSpacer>
+      <Plasteel>60</Plasteel>
+    </costList>
+    <researchPrerequisites>
+      <li>VFEP_SpacerWarcaskets</li>
+    </researchPrerequisites>
+    <apparel>
+      <bodyPartGroups>
+        <li>FullHead</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageHelmet</wornGraphicPath>
+      <useWornGraphicMask>true</useWornGraphicMask>
+      <layers>
+        <li>Overhead</li>
+      </layers>
+      <tags>
+        <li>WarcasketVeteran</li>
+        <li>WarcasketAll</li>
+      </tags>
+    </apparel>
+    <modExtensions>
+      <li Class="VEF.Apparels.ApparelExtension">
+        <priority>1</priority>
+      </li>
+    </modExtensions>
+  </VFEPirates.WarcasketDef>
+</Defs>
