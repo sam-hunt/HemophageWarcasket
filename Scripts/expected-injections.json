@@ -20,7 +20,20 @@
     ]
   },
   "defInjections": {
+    "HediffDef": {
+      "HPWC_HemogenRush.description": {
+        "english": "This person's warcasket is pumping hemogen through their body, allowing them to move faster, hit harder and ignore most pain. Their hemogen will run down quickly while this lasts.",
+        "required": true
+      },
+      "HPWC_HemogenRush.label": {
+        "english": "hemogen rush",
+        "required": true
+      }
+    },
     "ThingDef": {
+      "HPWC_WarcasketHelmet_Hemophage.apparel.renderNodeProperties.0.debugLabel": {
+        "english": "HPWC_HemogenGlow"
+      },
       "HPWC_WarcasketHelmet_Hemophage.description": {
         "english": "Specialized spacer-tech warcasket helmet with standard protection, equipped with a sealed visor that shields the pilot from sunlight.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.",
         "required": true
@@ -33,6 +46,9 @@
         "english": "Specialized spacer-tech warcasket helmet with standard protection, equipped with a sealed visor that shields the pilot from sunlight.",
         "required": true
       },
+      "HPWC_WarcasketShoulders_Hemophage.apparel.renderNodeProperties.0.debugLabel": {
+        "english": "HPWC_HemogenGlow"
+      },
       "HPWC_WarcasketShoulders_Hemophage.description": {
         "english": "Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that collect hemogen from an enemy whose limb the pilot has torn away.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.",
         "required": true
@@ -44,6 +60,9 @@
       "HPWC_WarcasketShoulders_Hemophage.shortDescription": {
         "english": "Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that collect hemogen from an enemy whose limb the pilot has torn away.",
         "required": true
+      },
+      "HPWC_Warcasket_Hemophage.apparel.renderNodeProperties.0.debugLabel": {
+        "english": "HPWC_HemogenGlow"
       },
       "HPWC_Warcasket_Hemophage.comps.CompShieldBubble.shieldTexPath": {
         "english": "Other/ShieldBubble",
@@ -59,6 +78,27 @@
       },
       "HPWC_Warcasket_Hemophage.shortDescription": {
         "english": "Specialized spacer-tech warcasket shell with standard protection, equipped with hemogen injectors that can push the pilot's body far past its limits while quickly using up their hemogen.",
+        "required": true
+      }
+    },
+    "VEF.Abilities.AbilityDef": {
+      "HPWC_HemogenRush.description": {
+        "english": "Run the warcasket's injectors, which pump the pilot's own hemogen through their body far faster than it would normally be used. The pilot will move faster, hit harder and ignore most pain while their hemogen drains quickly. Toggle again to stop. The injectors will also stop when the pilot runs out of hemogen.",
+        "required": true
+      },
+      "HPWC_HemogenRush.iconPath": {
+        "english": "UI/Abilities/WarcasketHemophage/HemogenRush"
+      },
+      "HPWC_HemogenRush.jobReportString": {
+        "english": "Using ability: {0}",
+        "required": true
+      },
+      "HPWC_HemogenRush.label": {
+        "english": "hemogen rush",
+        "required": true
+      },
+      "HPWC_HemogenRush.verbProperties.label": {
+        "english": "hemogen rush",
         "required": true
       }
     }

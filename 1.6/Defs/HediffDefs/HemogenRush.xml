@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    The hemogen rush: on the pilot while the armor's toggle is on (AbilityDefs/HemogenRush.xml).
+
+    Buff, each number a vanilla one for the same effect:
+    - painFactor 0.1 and Consciousness +0.2, go-juice's.
+    - MeleeDamageFactor 1.5, juggernaut serum's.
+    - MoveSpeed 1.5, under rage speed's 1.75. A factor rather than an offset so the gain
+      scales with what the warcasket's own move speed penalties leave.
+    Melee cooldown is left alone: with the damage factor it would about double melee output.
+
+    Drain: hemogenPerSecond 0.02 is 2 hemogen a second on the scale the game shows, so a full
+    100 lasts 50 seconds and one hemogen pack buys 10. hemogenReserve 0 runs the pilot dry,
+    which starts hemogen craving as any other way of reaching zero does.
+
+    Ends when toggled off, at the reserve, when the pilot is downed, undrafted (player pawns),
+    no longer hemogenic or out of the armor (HediffComp_HemogenRush), on death and at the start
+    of a deathrest.
+
+    Glow: every worn piece of the set draws its glow sprite while the pilot has this hediff
+    (the pieces' renderNodeProperties). forceRenderTreeRecache makes the game rebuild the
+    pilot's graphics when it is added or removed. glowPulse is a heartbeat, two peaks a beat
+    over a floor of 0.4 so the glow never goes out, one beat a second at normal speed.
+
+    defaultLabelColor is the drug highs'.
+  -->
+  <HediffDef>
+    <defName>HPWC_HemogenRush</defName>
+    <label>hemogen rush</label>
+    <description>This person's warcasket is pumping hemogen through their body, allowing them to move faster, hit harder and ignore most pain. Their hemogen will run down quickly while this lasts.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(1, 0, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <removeOnDeathrestStart>true</removeOnDeathrestStart>
+    <forceRenderTreeRecache>true</forceRenderTreeRecache>
+    <comps>
+      <li Class="HemophageWarcasket.HediffCompProperties_HemogenRush">
+        <hemogenPerSecond>0.02</hemogenPerSecond>
+        <hemogenReserve>0</hemogenReserve>
+        <armor>HPWC_Warcasket_Hemophage</armor>
+        <glowPulseTicks>60</glowPulseTicks>
+        <glowPulse>
+          <points>
+            <li>(0, 0.4)</li>
+            <li>(0.08, 1)</li>
+            <li>(0.2, 0.5)</li>
+            <li>(0.3, 0.85)</li>
+            <li>(0.5, 0.4)</li>
+            <li>(1, 0.4)</li>
+          </points>
+        </glowPulse>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath" />
+    </comps>
+    <stages>
+      <li>
+        <painFactor>0.1</painFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.2</offset>
+          </li>
+        </capMods>
+        <statFactors>
+          <MoveSpeed>1.5</MoveSpeed>
+          <MeleeDamageFactor>1.5</MeleeDamageFactor>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

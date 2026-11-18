@@ -65,6 +65,17 @@
       </bodyPartGroups>
       <wornGraphicPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageShoulders</wornGraphicPath>
       <useWornGraphicMask>true</useWornGraphicMask>
+      <renderNodeProperties>
+        <li>
+          <debugLabel>HPWC_HemogenGlow</debugLabel>
+          <nodeClass>HemophageWarcasket.PawnRenderNode_HemogenGlow</nodeClass>
+          <workerClass>HemophageWarcasket.PawnRenderNodeWorker_HemogenGlow</workerClass>
+          <parentTagDef>ApparelBody</parentTagDef>
+          <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageShouldersGlow</texPath>
+          <shaderTypeDef>TransparentPostLight</shaderTypeDef>
+          <color>(1, 0.2, 0.15)</color>
+        </li>
+      </renderNodeProperties>
       <layers>
         <li>OnSkin</li>
         <li>Middle</li>

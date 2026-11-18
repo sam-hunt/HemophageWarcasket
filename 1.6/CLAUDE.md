@@ -17,21 +17,22 @@ manifest globs, so new files and subfolders need no build change.
   and VEF merges duplicates at resolve time, keeping the highest priority and dropping fields its
   `Merge` does not copy; any new `ApparelExtension` field, from any load root, goes on our entry.
   The armor def's header has the mechanics.
-- **The two abilities, when they land, are VEF abilities** (`VEF.Abilities.AbilityDef`, each
-  granted by a `CompProperties_AbilitiesApparel` on the piece that carries it: the armor's
-  hemogen burst, the shoulder pads' limb strike), never vanilla `AbilityDef`s: vanilla has no
-  apparel grant, and the family's abilities are all VEF's. The Toxin repo's vent is the
-  precedent for a toggled one, the Medic repo's shoulder pads for a grant off the armor;
-  `Docs/Research/WARCASKET_ABILITIES.md` surveys VFEP's own.
+- **The set's abilities are VEF abilities** (`VEF.Abilities.AbilityDef`, each granted by a
+  `CompProperties_AbilitiesApparel` on the piece that carries it: the armor's hemogen rush,
+  and the shoulder pads' limb strike when it lands), never vanilla `AbilityDef`s: vanilla has
+  no apparel grant, and the family's abilities are all VEF's. The Medic repo's shoulder pads
+  are the precedent for a grant off the armor; `Docs/Research/WARCASKET_ABILITIES.md` surveys
+  VFEP's own.
+- **A state the pilot carries is a hediff.** The hemogen rush is on while the pilot has
+  `HPWC_HemogenRush`: the toggle adds and removes it, its stage is the buff, its comp spends
+  the hemogen and ends it, and the game saves it. Anything that reacts to the rush reads the
+  hediff off the pawn.
 - **Worn graphics go through the pawn render tree** (`apparel.renderNodeProperties`), never draw
-  hooks. The Shipcracker repo's thruster glow is the precedent, including the zoomed-out pawn
-  cache and draw-order traps; read its CLAUDE.md bullet before adding one here. The set's glow
-  is wider than that one: the art ships a glow sprite for each piece
-  (`WarcasketHemophageGlow`, `...ShouldersGlow`, `...HelmetGlow`), white over the red details
-  that are to light up, and the design lights all of them from the armor's ability,
-  whichever of the three pieces the pilot wears. Each piece's node therefore goes on that
-  piece's own def and reads the ability's state off the pawn, never off the apparel that
-  declares it; the helmet's header has its missing north facing.
+  hooks. The hemogen glow is the model: each piece's def declares a node for its own glow
+  sprite, which draws while the pilot has the rush hediff, whichever pieces they wear. A new
+  node keeps to what `Source/1.6/Rendering/` records: portraits and the zoomed-out pawn cache
+  bake the tree in child order and ignore per-frame property blocks, so an overlay sits after
+  the sprite it covers and anything animated bakes as one fixed state.
 - **Art is `Textures/Things/Pawn/Warcasketlike/WarcasketHemophage/`**, VFEP's layout and file
   naming: `WarcasketHemophage`, `...Shoulders`, `...Helmet`, each with `_north`, `_east`,
   `_south`, a mask beside every one of those (`_northm`) and a bare-named copy of the south

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    The armor's hemogen rush toggle, granted by its CompAbilitiesApparel. Ability_HemogenRush
+    adds and removes the HPWC_HemogenRush hediff, which is the rush itself: its header has the
+    buff, the drain and what ends it. Drafted only, instant and no cooldown: the pilot's
+    hemogen is the limiter.
+  -->
+  <VEF.Abilities.AbilityDef>
+    <defName>HPWC_HemogenRush</defName>
+    <label>hemogen rush</label>
+    <description>Run the warcasket's injectors, which pump the pilot's own hemogen through their body far faster than it would normally be used. The pilot will move faster, hit harder and ignore most pain while their hemogen drains quickly. Toggle again to stop. The injectors will also stop when the pilot runs out of hemogen.</description>
+    <abilityClass>HemophageWarcasket.Ability_HemogenRush</abilityClass>
+    <targetMode>Self</targetMode>
+    <iconPath>UI/Abilities/WarcasketHemophage/HemogenRush</iconPath>
+  </VEF.Abilities.AbilityDef>
+</Defs>

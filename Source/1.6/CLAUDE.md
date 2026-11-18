@@ -5,9 +5,10 @@ and the rationale for its numbers; this file holds only the rules that cross fil
 comments cover install-path detection, the compile-only VFEP/VEF references (`VFEP_PATH` and
 `VEF_PATH` override the Workshop copy) and the deploy manifest.
 
-The code is the Harmony bootstrap (`ModInit.cs`) and nothing else: the set is XML on VFEP's and
-VEF's classes. The rules below are the family's, written down before the code they govern so
-the first ability, comp or setting lands in the right shape; each names the sibling file to copy
+The code so far is the armor's hemogen rush: its toggle (`Abilities/`), the hediff comp that
+runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
+one patch). Several rules below are the family's, written down before the code they govern so
+the next ability, comp or setting lands in the right shape; each names the sibling file to copy
 from rather than restating it.
 
 - **Patch classes live in `Patches/`** under the `.Patches` namespace suffix, to avoid RimWorld
@@ -34,11 +35,13 @@ from rather than restating it.
 - **A switch an XML patch reads is a restart-time setting**, read through a
   `PatchOperationSetting` (the Overlord repo's `Source/1.6/PatchOperations/`) while the patches
   apply; its row carries the restart suffix and the settings code writes nothing for it.
-- **Hemogen goes through Biotech's own entry points.** Spend and gain with
-  `GeneUtility.OffsetHemogen` (it applies `HemogenGainFactor` to a gain and routes through a
-  hemogen drain gene when the pawn has one), and test for the gene with
-  `pawn.genes?.GetFirstGeneOfType<Gene_Hemogen>()`, never by xenotype (`CLAUDE.md`,
-  "Cross-cutting rules"). `Gene_Hemogen.CanOffset` is false for an inactive gene and for a
+- **Hemogen goes through Biotech's own entry points.** Gain with `GeneUtility.OffsetHemogen`,
+  which applies `HemogenGainFactor`. Spend with
+  `GeneResourceDrainUtility.OffsetResource(hemogenGene, -amount)`: `OffsetHemogen` sets the
+  value directly for a pawn without a hemogen drain gene and so skips the check that starts
+  hemogen craving at zero. Test for the gene with
+  `pawn.genes?.GetFirstGeneOfType<Gene_Hemogen>()`, which skips an inactive one, never by
+  xenotype (`CLAUDE.md`, "Cross-cutting rules"). `Gene_Hemogen.CanOffset` is false for a
   deathresting pawn; an ability that spends hemogen respects it. All verified on 1.6.
 - **An own work trait is mirrored from VFEP's at startup**, when the pilot's intellectual work
   lands: a child `ApparelExtension` can only add to what a granted trait blocks, so the set

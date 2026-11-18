@@ -3,8 +3,7 @@ using Verse;
 
 namespace HemophageWarcasket;
 
-// Mod entry point. Applies every [HarmonyPatch] class in this assembly; there are none yet, so
-// today it only proves the assembly loads and Harmony binds on both game versions.
+// Mod entry point. Applies every [HarmonyPatch] class in this assembly (Patches/).
 //
 // Deliberately a [StaticConstructorOnStartup] rather than a Mod-subclass constructor:
 // Mod constructors run BEFORE any defs are loaded, and applying a Harmony patch

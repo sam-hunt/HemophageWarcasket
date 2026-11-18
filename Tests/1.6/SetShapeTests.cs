@@ -16,7 +16,8 @@ namespace HemophageWarcasket.Tests;
 // a pink box, and the deploy manifest copies whatever is there. Each piece must have the file
 // every graphic it declares will load: the item's Graphic_Single reads the bare path (and
 // <path>_m under CutoutComplex), the worn Graphic_Multi reads <path>_north, _east and _south
-// (and each one's <facing>m under useWornGraphicMask; west is the east facing mirrored).
+// (and each one's <facing>m under useWornGraphicMask; west is the east facing mirrored), and so
+// does the Graphic_Multi of each apparel.renderNodeProperties entry (the hemogen glow).
 //
 // Text: the rules translators are told to keep (CONTRIBUTING.md). A piece's shortDescription is
 // its description's first paragraph, and the three pieces share their second and third.
@@ -79,6 +80,11 @@ public class SetShapeTests
             if (masked)
                 expected.Add($"{worn}_{facing}m");
         }
+
+        var nodes = apparel.Element("renderNodeProperties")!.Elements("li").ToList();
+        Assert.NotEmpty(nodes);
+        foreach (var node in nodes)
+            expected.AddRange(Facings.Select(facing => $"{(string)node.Element("texPath")!}_{facing}"));
 
         var missing = expected.Where(p => !File.Exists(Path.Combine(RepoRoot, "Textures", p + ".png"))).ToList();
         Assert.True(missing.Count == 0, $"{piece}_Hemophage names art that is not under Textures/: {string.Join(", ", missing)}");

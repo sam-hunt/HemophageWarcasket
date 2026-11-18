@@ -32,13 +32,14 @@
     hemogenic, so the tags are to be weighed again once the pieces do something only a
     hemogenic pilot can use.
 
-    Not here yet: the armor's share of the design, a toggled ability that spends the pilot's
-    hemogen for a short burst of speed and strength, and a work trait of its own that leaves
-    the pilot intellectual work. The description already speaks of the first. TODOs.md has
-    both.
+    Hemogen rush: the armor's module, a toggled ability granted by the CompAbilitiesApparel
+    below. AbilityDefs/HemogenRush.xml and HediffDefs/HemogenRush.xml have it.
 
-    Text: a first cut written to the design ahead of the code, so it names modules no def
-    grants yet; correct it to what is built when they land. The shape is
+    Not here yet: a work trait of its own that leaves the pilot intellectual work (TODOs.md).
+
+    Text: the series paragraph is a first cut written to the design ahead of the code, so it
+    names the pads' and the helmet's modules, which no def grants yet; correct it to what is
+    built when they land. The shape is
     l10n/languages/English.md's VFE Pirates recipe: a first line that is also the
     shortDescription and names the piece's module, a generation paragraph, then the series
     paragraph. The second and third paragraphs are identical in all three defs. The second is
@@ -58,12 +59,15 @@
     Mask names differ by graphic class: Graphic_Multi reads <path>_northm, Graphic_Single
     <path>_m.
 
-    Glow sprites: WarcasketHemophageGlow_north/_east/_south beside the art (and the helmet's
-    and shoulders' under their own names) are white shapes over the red details that are to
-    light up, for a render node to tint and draw while the armor's ability runs. They are
-    drawn to the art, not to the masks: on the shell and the helmet they cover the
-    black-masked parts with a margin, on the pads only the vials' contents. No def references
-    them until that node lands; 1.6/CLAUDE.md has the rule it must follow.
+    Glow: WarcasketHemophageGlow_north/_east/_south beside the art (and the helmet's and
+    shoulders' under their own names) are white shapes over the red details that light up.
+    They are drawn to the art, not to the masks: on the shell and the helmet they cover the
+    black-masked parts with a margin, on the pads only the vials' contents. Each piece's
+    renderNodeProperties entry draws its own sprite, tinted by color, while the pilot has
+    the hemogen rush hediff (PawnRenderNode_HemogenGlow). parentTagDef is the tag the game
+    parents that piece's worn sprite to, ApparelBody here and on the pads, ApparelHead on
+    the helmet; the node finds the sprite among that parent's children. TransparentPostLight
+    so the glow reads at night.
 
     Traits: traitsOnEquip grants VFEP_WarcasketTrait and traitsOnUnequip VFEP_Shellcasket,
     the "cut out of a warcasket" state every set shares, so removal surgery and re-entombing
@@ -123,6 +127,17 @@
       </bodyPartGroups>
       <wornGraphicPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophage</wornGraphicPath>
       <useWornGraphicMask>true</useWornGraphicMask>
+      <renderNodeProperties>
+        <li>
+          <debugLabel>HPWC_HemogenGlow</debugLabel>
+          <nodeClass>HemophageWarcasket.PawnRenderNode_HemogenGlow</nodeClass>
+          <workerClass>HemophageWarcasket.PawnRenderNodeWorker_HemogenGlow</workerClass>
+          <parentTagDef>ApparelBody</parentTagDef>
+          <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageGlow</texPath>
+          <shaderTypeDef>TransparentPostLight</shaderTypeDef>
+          <color>(1, 0.2, 0.15)</color>
+        </li>
+      </renderNodeProperties>
       <layers>
         <li>OnSkin</li>
         <li>Middle</li>
@@ -146,6 +161,11 @@
         <minShieldSize>2.1</minShieldSize>
         <maxShieldSize>2.7</maxShieldSize>
         <disableRotation>true</disableRotation>
+      </li>
+      <li Class="VEF.Abilities.CompProperties_AbilitiesApparel">
+        <abilities>
+          <li>HPWC_HemogenRush</li>
+        </abilities>
       </li>
     </comps>
     <modExtensions>

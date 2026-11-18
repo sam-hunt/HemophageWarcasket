@@ -18,10 +18,10 @@
     description already speaks of the first and still says standard protection. TODOs.md has
     both.
 
-    Art: the back of the helmet has no black-masked part, so the helmet ships glow sprites
-    for the _south and _east facings only. Graphic_Multi fills a missing north facing from
-    the south one, which would light the eyes on the back of the head: the render node that
-    draws the glow has to skip the helmet's north facing or be given an empty sprite for it.
+    Art: the back of the helmet has no black-masked part, so its glow sprite for the _north
+    facing is an empty image. Graphic_Multi fills a missing north facing from the south one,
+    which would light the eyes on the back of the head. The glow node follows the armor's
+    header.
 
     ApparelExtension priority 1, for the reason in the armor's header; Merge still ORs the
     base's isUnifiedApparel and hideHead in. Any new ApparelExtension field for the helmet
@@ -69,6 +69,17 @@
       </bodyPartGroups>
       <wornGraphicPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageHelmet</wornGraphicPath>
       <useWornGraphicMask>true</useWornGraphicMask>
+      <renderNodeProperties>
+        <li>
+          <debugLabel>HPWC_HemogenGlow</debugLabel>
+          <nodeClass>HemophageWarcasket.PawnRenderNode_HemogenGlow</nodeClass>
+          <workerClass>HemophageWarcasket.PawnRenderNodeWorker_HemogenGlow</workerClass>
+          <parentTagDef>ApparelHead</parentTagDef>
+          <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageHelmetGlow</texPath>
+          <shaderTypeDef>TransparentPostLight</shaderTypeDef>
+          <color>(1, 0.2, 0.15)</color>
+        </li>
+      </renderNodeProperties>
       <layers>
         <li>Overhead</li>
       </layers>

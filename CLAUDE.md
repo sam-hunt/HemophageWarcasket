@@ -28,12 +28,12 @@ had worked their way into that program had the pattern built in secret, for them
 the nearly deathless harder still to destroy. Player-facing text tells it as rumor ("Some
 believe ..."), the way Biotech tells its own sanguophage lore, and never as settled history.
 
-**State: scaffolded, not yet released.** The three pieces are in on the tier's baseline stats
-and costs with their commissioned art, and the SOS2, VGE and CE patches mirror that baseline.
-None of the mechanics is built: there is no ability, comp, setting or any C# beyond the Harmony
-bootstrap, and the glow sprites that shipped with the art are referenced by no def. The
-descriptions and the player-facing pages are first cuts written to the design direction, ahead
-of the code. `TODOs.md` is the ledger. The sibling repos (same author, same VFEP base) are the
+**State: first mechanic in, not yet released.** The three pieces are in on the tier's baseline
+stats and costs with their commissioned art, and the SOS2, VGE and CE patches mirror that
+baseline. The armor's hemogen rush is built, with its glow on all three pieces. The pads' and
+the helmet's mechanics, the work trait and the settings are not, and the descriptions and the
+player-facing pages still speak of them as first cuts written to the design direction, ahead of
+the code. `TODOs.md` is the ledger. The sibling repos (same author, same VFEP base) are the
 worked precedents for everything not here yet: `../ToxinWarcasket/` for a toggled ability, a
 gauge and the Biotech dependency, `../ShipcrackerWarcasket/` for render-tree graphics and a
 gated art root, `../MedicWarcasket/` and `../OverlordWarcasket/` for the settings idiom, the
@@ -101,8 +101,8 @@ LoadFolders.xml   Load roots per game version, compat roots gated by package id
 
 Not here yet, with the place each takes when it lands:
 `1.6/Languages/English/Keyed/HemophageWarcasket.xml` (every code-printed string), `Docs/Specs/`,
-`Textures/UI/Abilities/WarcasketHemophage/` (ability icons; two candidates sit there untracked
-until the abilities are named), `.steamworkshop/Preview.gif` with its `Scripts/preview-gif.py`,
+the pads' ability icon (a candidate, `Dismember.png`, sits untracked beside the armor's in
+`Textures/UI/Abilities/WarcasketHemophage/` until that ability is named), `.steamworkshop/Preview.gif` with its `Scripts/preview-gif.py`,
 and a `1.6/Mods/CombatExtended/CLAUDE.md` once Combat Extended has been scanned for what it
 changes about hemogen (the Overlord repo's is the model).
 
