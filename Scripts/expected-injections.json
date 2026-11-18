@@ -32,7 +32,7 @@
     },
     "HediffDef": {
       "HPWC_HemogenRush.description": {
-        "english": "This person's warcasket is pumping hemogen through their body, allowing them to move faster, hit harder and ignore most pain. Their hemogen will run down quickly while this lasts.",
+        "english": "This person's warcasket is pumping hemogen through their body, allowing them to move faster and hit harder. Their hemogen will run down quickly while this lasts.",
         "required": true
       },
       "HPWC_HemogenRush.label": {
@@ -143,7 +143,7 @@
         "required": true
       },
       "HPWC_HemogenRush.description": {
-        "english": "Run the warcasket's injectors, which pump the pilot's own hemogen through their body far faster than it would normally be used. The pilot will move faster, hit harder and ignore most pain while their hemogen drains quickly. Toggle again to stop. The injectors will also stop when the pilot runs out of hemogen.",
+        "english": "Run the warcasket's injectors, which pump the pilot's own hemogen through their body far faster than it would normally be used. The pilot will move faster and hit harder while their hemogen drains quickly. Toggle again to stop. The injectors will also stop when the pilot runs out of hemogen.",
         "required": true
       },
       "HPWC_HemogenRush.iconPath": {

@@ -10,7 +10,7 @@
   <VEF.Abilities.AbilityDef>
     <defName>HPWC_HemogenRush</defName>
     <label>hemogen rush</label>
-    <description>Run the warcasket's injectors, which pump the pilot's own hemogen through their body far faster than it would normally be used. The pilot will move faster, hit harder and ignore most pain while their hemogen drains quickly. Toggle again to stop. The injectors will also stop when the pilot runs out of hemogen.</description>
+    <description>Run the warcasket's injectors, which pump the pilot's own hemogen through their body far faster than it would normally be used. The pilot will move faster and hit harder while their hemogen drains quickly. Toggle again to stop. The injectors will also stop when the pilot runs out of hemogen.</description>
     <abilityClass>HemophageWarcasket.Ability_HemogenRush</abilityClass>
     <targetMode>Self</targetMode>
     <showUndrafted>true</showUndrafted>

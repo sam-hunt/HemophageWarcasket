@@ -4,7 +4,8 @@
     The hemogen rush: on the pilot while the armor's toggle is on (AbilityDefs/HemogenRush.xml).
 
     Buff, each number a vanilla one for the same effect:
-    - painFactor 0.1 and Consciousness +0.2, go-juice's.
+    - Consciousness +0.2, go-juice's. Not its painFactor: the pilot's trait already takes all
+      pain away (TraitDefs/WarcasketTrait_Hemophage.xml), and the rush ends with the armor off.
     - MeleeDamageFactor 1.5, juggernaut serum's.
     - MoveSpeed 1.5, under rage speed's 1.75. A factor rather than an offset so the gain
       scales with what the warcasket's own move speed penalties leave.
@@ -31,7 +32,7 @@
   <HediffDef>
     <defName>HPWC_HemogenRush</defName>
     <label>hemogen rush</label>
-    <description>This person's warcasket is pumping hemogen through their body, allowing them to move faster, hit harder and ignore most pain. Their hemogen will run down quickly while this lasts.</description>
+    <description>This person's warcasket is pumping hemogen through their body, allowing them to move faster and hit harder. Their hemogen will run down quickly while this lasts.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(1, 0, 0.5)</defaultLabelColor>
     <isBad>false</isBad>
@@ -58,7 +59,6 @@
     </comps>
     <stages>
       <li>
-        <painFactor>0.1</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
