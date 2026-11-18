@@ -73,7 +73,7 @@ public class HediffComp_HemogenRush : HediffComp
         // must not outlast that: it would drain through a mental break or a caravan trip with
         // no way to switch it off. Undrafting is not among them.
         bool uncontrolled = pawn.Faction?.IsPlayer == true && !pawn.IsColonistPlayerControlled;
-        if (hemogen?.CanOffset != true || pawn.Downed || uncontrolled || !WearsArmor(pawn))
+        if (hemogen?.CanOffset != true || pawn.Downed || !pawn.Awake() || uncontrolled || !WearsArmor(pawn))
         {
             ended = true;
             return;

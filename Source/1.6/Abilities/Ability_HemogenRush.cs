@@ -16,6 +16,7 @@ public class Ability_HemogenRush : Ability
     private string description;
     private string notHemogenic;
     private string noHemogen;
+    private string asleep;
 
     private bool Running => pawn.health.hediffSet.HasHediff(HPWC_DefOf.HPWC_HemogenRush);
 
@@ -34,6 +35,7 @@ public class Ability_HemogenRush : Ability
         description = null;
         notHemogenic = null;
         noHemogen = null;
+        asleep = null;
     }
 
     public override Gizmo GetGizmo()
@@ -53,7 +55,8 @@ public class Ability_HemogenRush : Ability
         return gizmo;
     }
 
-    // The reasons are Biotech's own, as its hemogen abilities give them.
+    // The reasons are the game's own: Biotech's, as its hemogen abilities give them, and
+    // Core's for a sleeper, whose rush the comp would end at once.
     private bool CanStart(out string reason)
     {
         Gene_Hemogen hemogen = pawn.genes?.GetFirstGeneOfType<Gene_Hemogen>();
@@ -65,6 +68,11 @@ public class Ability_HemogenRush : Ability
         if (hemogen.Value <= HPWC_DefOf.HPWC_HemogenRush.CompProps<HediffCompProperties_HemogenRush>().hemogenReserve)
         {
             reason = noHemogen ??= "AbilityDisabledNoHemogen".Translate(pawn);
+            return false;
+        }
+        if (!pawn.Awake())
+        {
+            reason = asleep ??= "AbilityCantApplyAsleep".Translate(pawn);
             return false;
         }
         return IsEnabledForPawn(out reason);
