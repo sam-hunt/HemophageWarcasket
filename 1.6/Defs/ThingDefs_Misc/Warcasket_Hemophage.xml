@@ -35,8 +35,6 @@
     Hemogen rush: the armor's module, a toggled ability granted by the CompAbilitiesApparel
     below. AbilityDefs/HemogenRush.xml and HediffDefs/HemogenRush.xml have it.
 
-    Not here yet: a work trait of its own that leaves the pilot intellectual work (TODOs.md).
-
     Text: the series paragraph is a first cut written to the design ahead of the code, so it
     names the pads' and the helmet's modules, which no def grants yet; correct it to what is
     built when they land. The shape is
@@ -69,9 +67,12 @@
     the helmet; the node finds the sprite among that parent's children. TransparentPostLight
     so the glow reads at night.
 
-    Traits: traitsOnEquip grants VFEP_WarcasketTrait and traitsOnUnequip VFEP_Shellcasket,
-    the "cut out of a warcasket" state every set shares, so removal surgery and re-entombing
-    behave as for VFEP's own sets.
+    Traits: traitsOnEquip grants HPWC_WarcasketTrait_Hemophage in place of
+    VFEP_WarcasketTrait, since a child ApparelExtension can only add to what a granted trait
+    blocks and the suit leaves its pilot intellectual work (TraitDefs/
+    WarcasketTrait_Hemophage.xml). traitsOnUnequip keeps VFEP_Shellcasket, the "cut out of a
+    warcasket" state every set shares, so removal surgery and re-entombing behave as for
+    VFEP's own sets.
 
     ApparelExtension priority 1: VFEP_WarcasketArmorBase carries its own ApparelExtension and
     inheritance appends list items, so this def resolves with two. VEF merges duplicates in a
@@ -172,7 +173,7 @@
       <li Class="VEF.Apparels.ApparelExtension">
         <priority>1</priority>
         <traitsOnEquip>
-          <li>VFEP_WarcasketTrait</li>
+          <li>HPWC_WarcasketTrait_Hemophage</li>
         </traitsOnEquip>
         <traitsOnUnequip>
           <li>VFEP_Shellcasket</li>

@@ -17,6 +17,9 @@ Armor, shoulder pads and helmet, welded at the warcasket foundry and unlocked by
 [*][b]Helmet:[/b] Shields a pilot who is sensitive to sunlight
 [/list]
 
+[h2]Enabled work types[/h2]
+VFE Pirates' warcaskets block all skilled and intellectual labor. The Hemophage's pilot keeps intellectual work, so they can still research and hack. The mod settings can block it again, or enable any of the other work a warcasket blocks.
+
 [hr][/hr]
 [h1]Mod Compatibility[/h1]
 [list]

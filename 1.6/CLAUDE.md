@@ -39,17 +39,17 @@ manifest globs, so new files and subfolders need no build change.
   facing and its mask (`_m`) for the item icon. A new sprite keeps the facing suffix last
   (`<Name>_south.png`), or `Graphic_Multi` cannot resolve it. `Tests/1.6/SetShapeTests.cs`
   fails on a declared graphic with a missing file.
-- **Tunables, when settings arrive, are def fields** the mod settings write at startup
-  (`Source/1.6/CLAUDE.md`); the XML value is the default and the header stays the record.
+- **Tunables are def fields** the mod settings write at startup (`Source/1.6/CLAUDE.md`); the
+  XML value is the default and the header stays the record. The pilot's trait
+  (`TraitDefs/WarcasketTrait_Hemophage.xml`) is the exception its header explains: its work
+  fields are written from VFEP's trait at startup, so its XML is a readable copy, not a dial.
 
 ## Languages
 
-- There is no `Languages/` folder yet: every string is def text, which translators reach as
-  DefInjected, and nothing is printed from code. The first code-printed string creates
-  `Languages/English/Keyed/HemophageWarcasket.xml`, the one home for every such string, under
-  the `HPWC_` prefix, and flips the two Keyed settings in `Scripts/check-translations.py`.
-  Biotech's own Keyed strings may be printed directly: the DLC is a hard dependency, so its
-  keys always exist.
+- `Languages/English/Keyed/HemophageWarcasket.xml` is the one home for every string printed
+  from code, under the `HPWC_` prefix; def text reaches translators as DefInjected. Biotech's
+  own Keyed strings may be printed directly: the DLC is a hard dependency, so its keys always
+  exist.
 - `WarcasketDef` has no def database of its own: the game injects it under `ThingDef`. A
   `DefInjected/WarcasketDef/` folder would never load.
 - Translation passes, the checker and the sidecar are described in `Scripts/CLAUDE.md`.
@@ -69,7 +69,7 @@ manifest globs, so new files and subfolders need no build change.
   xpaths against the main tree; keep every xpath to one node per `defName` it names, or zero
   for a `PatchOperationConditional` probe. A root that patches another mod's or a DLC's def
   needs that def's XML merged into the test (the Overlord repo's `DlcRoots`).
-- **A patch that branches on a mod setting**, once there are settings, wraps its operations in
+- **A patch that branches on a mod setting** wraps its operations in
   a `PatchOperationSetting` (the Overlord and Toxin repos' `Source/1.6/PatchOperations/`); a
   change then takes a restart, and the smoke test, which boots on default settings, never runs
   its `match` branch.

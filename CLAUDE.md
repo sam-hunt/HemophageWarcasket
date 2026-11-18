@@ -20,7 +20,8 @@ spends hemogen quickly for a burst of speed and strength, with glowing parts on 
 of the set while it runs; the shoulder pads an ability that destroys a target's limb and, for a
 hemogenic pilot on a humanlike target, drains hemogen from it; the helmet protection from
 sunlight for a pilot with a sunlight sensitivity gene, and the set's heaviest plating. A pilot
-without the gene gets a plain spacer warcasket.
+without the gene gets a plain spacer warcasket. Any pilot keeps intellectual work, which VFEP's
+warcaskets block.
 
 **Fiction: nobody's official program.** The siblings' sets come from pirates welding themselves
 in or from a government program entombing its veterans. This one is quieter: sanguophages who
@@ -30,14 +31,15 @@ believe ..."), the way Biotech tells its own sanguophage lore, and never as sett
 
 **State: first mechanic in, not yet released.** The three pieces are in on the tier's baseline
 stats and costs with their commissioned art, and the SOS2, VGE and CE patches mirror that
-baseline. The armor's hemogen rush is built, with its glow on all three pieces. The pads' and
-the helmet's mechanics, the work trait and the settings are not, and the descriptions and the
+baseline. The armor's hemogen rush is built, with its glow on all three pieces, and so are the
+pilot's own work trait and the settings window, whose one section is the pilot's work. The pads'
+and the helmet's mechanics and the abilities' settings are not, and the descriptions and the
 player-facing pages still speak of them as first cuts written to the design direction, ahead of
 the code. `TODOs.md` is the ledger. The sibling repos (same author, same VFEP base) are the
 worked precedents for everything not here yet: `../ToxinWarcasket/` for a toggled ability, a
 gauge and the Biotech dependency, `../ShipcrackerWarcasket/` for render-tree graphics and a
-gated art root, `../MedicWarcasket/` and `../OverlordWarcasket/` for the settings idiom, the
-idempotent startup and an own work trait, `../LegionWarcasket/` for a multi-world sidecar.
+gated art root, `../MedicWarcasket/` and `../OverlordWarcasket/` for the settings' sliders and
+switches, `../LegionWarcasket/` for a multi-world sidecar.
 
 ## Documentation rules
 
@@ -74,11 +76,13 @@ failing build back to the agent. **Warnings are build errors** (`TreatWarningsAs
 severities pinned in `.editorconfig`): fix the code, not the severity.
 
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
-Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Both
-files read only the repo's XML and art today, so they run anywhere; the csproj documents where
-the game's real 1.6 runtime DLLs come from (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen
-copy at `~/.local/share/RimWorld-1.6/Managed`) for the first test that touches a game type,
-which fails without them while the build stays green. `CompatPatchTests` resolves every xpath in
+Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Two
+files read only the repo's XML and art, so they run anywhere; `WorkProfileTests` builds bare
+game defs and so needs the game's real 1.6 runtime DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install,
+or the frozen copy at `~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup),
+failing without them while the build stays green. It holds the work trait's rule: which work
+types the settings may open, their defaults, and the tags and types a choice writes.
+`CompatPatchTests` resolves every xpath in
 `1.6/Mods/*/Patches/` and the SOS2 patch against the main-tree defs, the only check a gated root
 gets short of a boot with that mod active; `SetShapeTests` holds each piece's declared graphics
 to files that exist under `Textures/` (a missing one is a pink box in game and an error
@@ -99,8 +103,7 @@ Docs/Research/    VFEP warcasket stat tables and ability mechanics (copied from 
 LoadFolders.xml   Load roots per game version, compat roots gated by package id
 ```
 
-Not here yet, with the place each takes when it lands:
-`1.6/Languages/English/Keyed/HemophageWarcasket.xml` (every code-printed string), `Docs/Specs/`,
+Not here yet, with the place each takes when it lands: `Docs/Specs/`,
 the pads' ability icon (a candidate, `Dismember.png`, sits untracked beside the armor's in
 `Textures/UI/Abilities/WarcasketHemophage/` until that ability is named), `.steamworkshop/Preview.gif` with its `Scripts/preview-gif.py`,
 and a `1.6/Mods/CombatExtended/CLAUDE.md` once Combat Extended has been scanned for what it
@@ -130,9 +133,9 @@ changes about hemogen (the Overlord repo's is the model).
   into release errors. Code comments, def comments and these guides are unaffected. American
   spelling, as vanilla uses. Biotech's own words for its mechanics are the vocabulary: hemogen,
   hemogenic, sanguophage, deathrest, all lowercase in running text as Biotech writes them.
-- **Settings, when they arrive, override def fields, never code paths**, written onto the defs
-  at startup and on window close, so defaults come from the XML and the def header stays the
-  record. `Source/1.6/CLAUDE.md` names the sibling files to copy the idiom from.
+- **Settings override def fields, never code paths**, written onto the defs at startup and on
+  window close, so defaults come from the XML and the def header stays the record.
+  `Source/1.6/CLAUDE.md` has the shape and the sibling files the sliders come from.
 - **English is the source of truth for text.** Translations come from the `/translate` skill,
   one language at a time, shortly before a release and never earlier.
 - **`.claude/` is partly tracked** (`skills/`, `hooks/`, `settings.json`; the rest is personal).

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gameBuild": "1.7.5011 rev24",
+    "gameBuild": "1.7.5013 rev95",
     "activeDlcs": [
       "Core",
       "Biotech",
@@ -79,6 +79,18 @@
       "HPWC_Warcasket_Hemophage.shortDescription": {
         "english": "Specialized spacer-tech warcasket shell with standard protection, equipped with hemogen injectors that can push the pilot's body far past its limits while quickly using up their hemogen.",
         "required": true
+      }
+    },
+    "TraitDef": {
+      "HPWC_WarcasketTrait_Hemophage.degreeDatas.warcasket.description": {
+        "english": "{PAWN_nameDef} is entombed in a warcasket. No amount of pain will have an effect on {PAWN_objective}, and {PAWN_pronoun} can never go into a pain shock or drop unconscious due to pain. Because of how bulky the armor is and how much energy it takes to use it, {PAWN_nameDef} is not capable of most work, but can still do intellectual work.",
+        "required": true,
+        "normalized": "HPWC_WarcasketTrait_Hemophage.degreeDatas.0.description"
+      },
+      "HPWC_WarcasketTrait_Hemophage.degreeDatas.warcasket.label": {
+        "english": "warcasket",
+        "required": true,
+        "normalized": "HPWC_WarcasketTrait_Hemophage.degreeDatas.0.label"
       }
     },
     "VEF.Abilities.AbilityDef": {

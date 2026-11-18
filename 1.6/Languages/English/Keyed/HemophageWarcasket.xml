@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Mod settings (Source/1.6/Settings/) -->
+  <HPWC_SettingsCategory>Hemophage Warcasket</HPWC_SettingsCategory>
+
+  <!-- A checkbox's default in its tooltip -->
+  <HPWC_Enabled>enabled</HPWC_Enabled>
+  <HPWC_Disabled>disabled</HPWC_Disabled>
+
+  <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The rows are the game's own work types -->
+  <HPWC_SectionWork>Enabled work types</HPWC_SectionWork>
+  <HPWC_SectionWorkDesc>The work a hemophage pilot can do, out of the work types that warcasket pilots normally cannot. If another mod opens a work type for all warcaskets, it will be open here too.</HPWC_SectionWorkDesc>
+  <!-- {0} is HPWC_Enabled or HPWC_Disabled -->
+  <HPWC_WorkDesc>When enabled, hemophage pilots can do this work, though you will need to assign it in the work tab. When disabled, they cannot. Default: {0}.</HPWC_WorkDesc>
+  <!-- {0} is a list of work types as the work tab names them -->
+  <HPWC_WorkSummary>The pilot can do {0} work, as well as the work that all warcasket pilots can do.</HPWC_WorkSummary>
+  <HPWC_WorkSummaryNone>The pilot can only do the work that all warcasket pilots can do.</HPWC_WorkSummaryNone>
+  <HPWC_WorkSummaryNothingBlocked>No work is blocked for warcasket pilots, so there is nothing to enable here.</HPWC_WorkSummaryNothingBlocked>
+
+</LanguageData>

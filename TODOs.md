@@ -10,7 +10,11 @@
     - The glow on all three pieces from each facing, with the back of the helmet dark and nothing drawn over by the next piece.
     - The look: the tint and shader (`TransparentPostLight`, `(1, 0.2, 0.15)`), the heartbeat at speeds 1 to 3, and the steady glow zoomed out and in the colonist bar portrait.
     - The buff's numbers in play, and whether melee cooldown should join them (the hediff def's header).
-  - **Allows Intellectual work** default enabled, Medic/Overlord precedent (mod settings for other work types but disabled default)
+  - **Work trait and its settings: first look in game** Built, and so far compiled, unit tested and booted to the menu without errors. Check:
+    - An entombed pilot's Bio tab shows the warcasket trait once, with VFEP's pain and rest effects, and the work tab leaves research (and dark study with Anomaly) assignable beside what every warcasket pilot can do.
+    - The pilot can hack and gains Intellectual skill, and removal surgery leaves VFEP's shellcasket trait as on any other set.
+    - The settings window: the "Enabled work types" rows, their tooltips and the summary line, and that ticking a row (smithing, say) opens it for a pilot already entombed while the other skilled labor stays blocked.
+    - With "Warcaskets can work!" or Hardworking Warcaskets active, the section reads that nothing is blocked.
 - **Shoulders**
   - **grants Dismember ability** Destroy a target's limb (could follow CE's melee height target preference? not sure if there's a vanilla equivalent?), if the caster has the hemogenic gene and the target is a humanlike, drain hemogen (over 4 seconds?). Maybe scale on target's bleed rate instead?
   - Rewrite the About.xml/workshop descriptions on implementation; "collect hemogen" reads strangely, it's more like a custom follow-up job, though I don't know if the code should reflect that yet
@@ -19,7 +23,7 @@
   - has maxed out sharp/blunt/heat armor (2.0?)
   - maybe speeds up deathrest a little bit?
 - **Mod settings for each ability**
-  - The first Keyed string brings `1.6/Languages/English/Keyed/HemophageWarcasket.xml`, `HPWC_SettingsCategory` as the Workshop title key and the two flips in `Scripts/check-translations.py`.
+  - The settings window is in with its work section; each ability gets a section of its own (`Source/1.6/CLAUDE.md` has the shape and where the slider class comes from).
   - **Hemogen rush drain rate** A slider over the hemogen spent per second: 0.25 steps from 0 to 5, then 0.5 steps from 5 to 10. Default is the def's 2 per second.
   - **Hemogen rush reserve** A slider over the hemogen level at which the rush stops on its own, so a pilot can keep some back and avoid hemogen craving. Default 0, where the rush runs the pilot dry.
 - **Tuning** The three pieces are the 10th generation's baseline (VFEP's Sarcophagus row less its medicine and bionics; the def headers argue each number). Settle the set's own stats and costs as the mechanics land, then mirror them into the CE patch.

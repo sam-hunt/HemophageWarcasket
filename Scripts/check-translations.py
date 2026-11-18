@@ -41,18 +41,14 @@ engine.DEF_TYPE_ALIASES = {
     "VFEPirates.WarcasketDef": "ThingDef",
 }
 
-# No Keyed surface yet: the mod has no settings window and prints no string
-# from code, so there is no Languages/ tree at all and the translatable
-# surface is DefInjected only. Flip this to False, and add
-# 1.6/Languages/English/Keyed/HemophageWarcasket.xml, with the first HPWC_
-# key.
-engine.ALLOW_NO_KEYED_SURFACE = True
+# Every code-printed string lives in the one Keyed file,
+# 1.6/Languages/English/Keyed/HemophageWarcasket.xml, so a language without
+# a Keyed folder is missing text.
+engine.ALLOW_NO_KEYED_SURFACE = False
 
-# The Workshop title is coupled to the settings window's header key in the
-# sibling repos (<PREFIX>_SettingsCategory). There is no settings window
-# yet, so there is no key to couple to; the format and coverage checks on
-# .steamworkshop/Description/ still run. Set this to
-# "HPWC_SettingsCategory" when that key lands.
-engine.WORKSHOP_TITLE_KEY = None
+# The Workshop title is coupled to the settings window's header key, as in
+# the sibling repos: a language's Workshop page titles the mod as its
+# settings window does.
+engine.WORKSHOP_TITLE_KEY = "HPWC_SettingsCategory"
 
 raise SystemExit(engine.main())

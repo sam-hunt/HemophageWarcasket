@@ -25,7 +25,8 @@ with Biotech's hemogenic gene. It runs on the hemogen in its pilot's blood. A pi
 gene gets an ordinary spacer warcasket.
 
 The mod is in development: the three pieces are in with their art and the standard stats and
-costs of a spacer warcasket. The features below are the design and are not built yet.
+costs of a spacer warcasket. The armor's ability and the pilot's work types are built. The
+shoulders' and the helmet's features below are the design and are not built yet.
 
 ## Features
 
@@ -41,6 +42,12 @@ spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets 
 - **Spacer-tier plating and a ranged shield** on VFE Pirates' 10th-generation chassis
 - **Built on VFE Pirates** rather than beside it: the foundry, entombing, customization and
   removal surgery all apply unchanged
+
+### Enabled work types
+
+VFE Pirates' warcaskets block all skilled and intellectual labor. The Hemophage's pilot keeps
+intellectual work, so they can still research and hack. The mod settings can block it again, or
+enable any of the other work a warcasket blocks.
 
 ## Requirements
 
@@ -74,9 +81,8 @@ Coming with the first release.
   other VGE integration.
 - **Combat Extended**: built-in patch. CE armor values, bulk, carry capacity and shield in line
   with VFE Pirates' spacer sets and a helmet sealed against CE smoke.
-- **Warcaskets can work!, Warcaskets can haul!, Hardworking Warcaskets**: the set uses VFE
-  Pirates' own warcasket trait, so whatever these open for VFE Pirates' warcaskets they open
-  here too.
+- **Warcaskets can work!, Warcaskets can haul!, Hardworking Warcaskets**: compatible. Whatever
+  these open for VFE Pirates' warcaskets they open here too.
 
 ## Contributing
 

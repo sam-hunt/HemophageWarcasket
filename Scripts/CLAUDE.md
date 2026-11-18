@@ -13,8 +13,8 @@ the smoke list); the engines live in the `l10n/` submodule. Nothing here ships.
   gate. Its expected set is the checked-in `expected-injections.json`, a dump of every injection
   point the live game sees for this mod, taken in one boot on the pinned list. The checker
   refuses stale expectations, so new content (a new def, a changed English def string) forces a
-  regen. It runs with no Keyed surface allowed and no Workshop title key until the first `HPWC_`
-  key exists; the shim says what to flip then.
+  regen. A trait's text sits under `degreeDatas`, which that check does not read, so a change
+  there needs the regen run by hand.
 - **`refresh-translation-expectations.py`** (game closed) regenerates that sidecar by driving the
   L10nProbe dev mod through the game's own walker (source at `l10n/probe/`, built and deployed
   only from the canonical checkout; this mod is ticked in its settings,
