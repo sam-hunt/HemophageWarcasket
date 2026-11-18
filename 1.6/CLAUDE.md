@@ -25,7 +25,9 @@ manifest globs, so new files and subfolders need no build change.
 - **Harm goes through `TakeDamage` with the pilot as instigator**, on a `DamageDef` with
   `externalViolence`, never by adding or removing hediffs directly: that one call is what makes
   the target's faction, guilt, kill blame and the damage records treat it as an attack.
-  Dismember's strike is the model (`DamageDefs/Dismember.xml`, `Ability_Dismember`).
+  It writes no combat log line, so the caller adds one, on a rule pack of ours under vanilla's
+  own log entry class. Dismember's strike is the model (`DamageDefs/Dismember.xml`,
+  `RulePackDefs/Combat_Dismember.xml`, `Ability_Dismember`).
 - **A state the pilot carries is a hediff.** The hemogen rush is on while the pilot has
   `HPWC_HemogenRush`: the toggle adds and removes it, its stage is the buff, its comp spends
   the hemogen and ends it, and the game saves it. Anything that reacts to the rush reads the

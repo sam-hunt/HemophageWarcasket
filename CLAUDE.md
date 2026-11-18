@@ -76,7 +76,7 @@ failing build back to the agent. **Warnings are build errors** (`TreatWarningsAs
 severities pinned in `.editorconfig`): fix the code, not the severity.
 
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
-Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Two
+Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Three
 files read only the repo's XML and art, so they run anywhere; `WorkProfileTests` and
 `DismemberTargetTests` build bare game defs and so need the game's real 1.6 runtime DLLs
 (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
@@ -88,7 +88,9 @@ which part a Dismember strike destroys.
 `1.6/Mods/*/Patches/` and the SOS2 patch against the main-tree defs, the only check a gated root
 gets short of a boot with that mod active; `SetShapeTests` holds each piece's declared graphics
 to files that exist under `Textures/` (a missing one is a pink box in game and an error
-nowhere) and the descriptions to their shared paragraphs.
+nowhere) and the descriptions to their shared paragraphs; `RulePackTests` holds each combat log
+rule pack to the symbols its log entry supplies (an unknown one is an error only when the line
+is first written in game).
 
 ## Layout
 

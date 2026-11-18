@@ -30,6 +30,14 @@ namespace HemophageWarcasket;
 // The amount is vanilla's surgery idiom (Recipe_RemoveBodyPart), since genes, hediffs and
 // IncomingDamageFactor scale it first; instant kill protection would otherwise spare a
 // colonist's head.
+//
+// TakeDamage writes no combat log line, so the strike writes its own the way
+// Verb_MeleeAttack.TryCastShot does (1.6; the entry's constructor and BattleLog.Add are the same
+// on 1.7): a BattleLogEntry_MeleeCombat on our rule pack goes into the battle log before the
+// damage, so the downed or death line the damage causes follows it, and takes the destroyed
+// part from the damage result afterward. The log entry def is required, since the entry reads
+// its icons from it. A strike that destroyed nothing takes its entry back out, as the rule pack
+// has no line without a part.
 public class Ability_Dismember : Ability
 {
     // "Unlimited" as a finite number so VEF's range arithmetic and ring drawing stay sane.
@@ -182,8 +190,16 @@ public class Ability_Dismember : Ability
         dinfo.SetIgnoreArmor(true);
         dinfo.SetAllowDamagePropagation(false);
         dinfo.SetIgnoreInstantKillProtection(true);
-        target.TakeDamage(dinfo);
-        return target.Dead || target.health.hediffSet.PartIsMissing(part);
+        var log = new BattleLogEntry_MeleeCombat(HPWC_DefOf.HPWC_Combat_Dismember, alwaysShowInCompact: true,
+            pawn, target, implementType: null, toolLabel: null, def: LogEntryDefOf.MeleeAttack);
+        Find.BattleLog.Add(log);
+        DamageWorker.DamageResult result = target.TakeDamage(dinfo);
+        bool landed = target.Dead || target.health.hediffSet.PartIsMissing(part);
+        if (landed && !result.parts.NullOrEmpty())
+            result.AssociateWithLog(log);
+        else
+            Find.BattleLog.RemoveEntry(log);
+        return landed;
     }
 
     // Whether a drain can run or go on: the def sets one, the pilot has an active hemogen gene

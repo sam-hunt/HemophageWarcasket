@@ -20,11 +20,11 @@
     - The gizmo shows on a pilot drafted or not, a click on a far target walks the pilot over, Shift-click queues, and the cursor shows the cross over an invalid target and "Will kill" over one the strike would behead.
     - The strike: a random arm or leg reads "Torn off" in the health tab whatever the target wears (a mechanoid's "Shattered"), the target is held for the 1 second windup, the pilot's weapon is holstered, being hit does not interrupt, and the cooldown is one hour.
     - A target with no limbs left is beheaded with the "torn apart" death message, and a body built without limbs (a centipede) is refused with "has no limbs to tear off".
+    - The combat log: one line per strike naming the pilot, the target and the part ("tore off ... left arm"), logged before the downed or death line it caused, with the blood icon, on both pawns' Log tabs, and a click that jumps to the other pawn.
     - The drain, for a hemogenic pilot on a human: the 4 second bar with Bloodfeed's sound and splash, the target held throughout, about 20 hemogen gained and 0.45 blood loss on the target, and an early end when the pilot is full. A pilot without the gene, an animal or a mechanoid gets the strike alone.
     - A non-hostile target: the goodwill cost on a visitor's faction (vanilla's maximum for one hit, 130), guilt for a prisoner or colonist.
     - The numbers in play: the cooldown, the windup, and about 5 seconds of holding one enemy still.
   - **Beheading a body built without limbs** Off (`decapitateBodiesWithoutLimbs` on the ability def), so centipedes, diaboli, war queens and most Anomaly entities are invalid targets; on, one use kills them outright. Decide whether that is wanted at all.
-  - **Combat log** The strike writes no line: `TakeDamage` logs nothing by itself, and vanilla's `BattleLogEntry_DamageTaken` cannot name the attacker. Wants a log entry and a rule pack of its own.
   - **Raiders never use it** VEF fires no apparel ability for a non-player pawn. The Medic repo's `CompMedicAI` is the model if raider pilots should, though the Tuning item may drop the raider tags first.
   - **Combat Extended aim height** CE keeps a per-pawn melee aim height (`CompMeleeTargettingGizmo.heightInt`, public). With CE active the strike could take a leg for low and an arm for middle instead of a random limb. Belongs with the CE compat scan.
 - **Helmet**

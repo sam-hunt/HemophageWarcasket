@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    The combat log line for Dismember's strike (Ability_Dismember has the call), resolved by
+    vanilla's BattleLogEntry_MeleeCombat with no tool or weapon. That entry supplies the
+    INITIATOR and RECIPIENT pawn symbols and recipient_part0_label, the one part the strike
+    destroyed: a limb, or the head of a target with none left, so no line may assume which.
+
+    Every line is a whole sentence with no include and no sub-rule, so a translation can
+    reorder each freely. Tests/1.6/RulePackTests.cs holds the symbols to the ones that entry
+    supplies; an unknown one is a red error only when a strike lands.
+  -->
+  <RulePackDef>
+    <defName>HPWC_Combat_Dismember</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+        <li>r_logentry->[INITIATOR_definite] tore [RECIPIENT_definite]'s [recipient_part0_label] off.</li>
+        <li>r_logentry->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+        <li>r_logentry(p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+</Defs>

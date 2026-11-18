@@ -10,6 +10,8 @@ public static class HPWC_DefOf
 
     public static DamageDef HPWC_Dismember;
 
+    public static RulePackDef HPWC_Combat_Dismember;
+
     // Biotech's bloodfeed effecter, which the drain borrows.
     public static EffecterDef Bloodfeed_Warmup;
 

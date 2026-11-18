@@ -4,7 +4,7 @@
     The shoulder pads' ability, granted by their CompAbilitiesApparel. The rules are in
     HemophageWarcasket.Ability_Dismember, the walk, warmup, strike and drain in
     JobDriver_Dismember (JobDefs/Dismember.xml), the strike's damage in
-    DamageDefs/Dismember.xml.
+    DamageDefs/Dismember.xml and its combat log line in RulePackDefs/Combat_Dismember.xml.
 
     The strike destroys one whole arm or leg the target still has, at random, whatever its
     armor. A target that has lost them all loses its head. Any pawn with a limb can be
