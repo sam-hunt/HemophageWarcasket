@@ -12,7 +12,7 @@
 [![Views](https://img.shields.io/steam/views/WORKSHOP_ID?logo=steam&label=views)](https://steamcommunity.com/sharedfiles/filedetails/?id=WORKSHOP_ID)
 -->
 
-![Preview](About/Preview.png)
+![Preview](.steamworkshop/Preview.gif)
 
 ## About
 
