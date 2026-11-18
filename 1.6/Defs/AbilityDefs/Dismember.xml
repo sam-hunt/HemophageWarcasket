@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    The shoulder pads' ability, granted by their CompAbilitiesApparel. The rules are in
+    HemophageWarcasket.Ability_Dismember, the walk, warmup, strike and drain in
+    JobDriver_Dismember (JobDefs/Dismember.xml), the strike's damage in
+    DamageDefs/Dismember.xml.
+
+    The strike destroys one whole arm or leg the target still has, at random, whatever its
+    armor. A target that has lost them all loses its head. Any pawn with a limb can be
+    targeted, hostile or not, downed or not, mechanoids and animals included.
+
+    Targeting: range is unset and requireLineOfSight off because the click is not range
+    limited; the pilot walks to the target and the job enforces reach and sight at
+    distanceToTarget 1.9, touching with diagonals. Who is a valid target is decided in
+    ValidateTarget, not here.
+
+    castTime 60 (1 s) is the windup, half of Bloodfeed's, since this is used mid-fight; the
+    target is held for it, as vanilla's touch abilities hold theirs. cooldownTime 2500 is one
+    game hour: the strike cannot fail, so the cooldown is its only limit, at about one use a
+    fight.
+
+    DismemberExtension is the drain, which follows the strike when the pilot is hemogenic and
+    the target is humanlike and can bleed, with the target held throughout. It is Bloodfeed
+    spread over drainTicks 240 (4 s): hemogenGain 0.2 is Bloodfeed's 20 hemogen, scaled by
+    the target's body size as a bite is, and targetBloodLoss 0.4499 is the blood loss a bite
+    causes, on top of the stump's own bleeding. A drain cut short keeps what it collected.
+    decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a
+    centipede, a diabolus) an invalid target: beheading it would kill it outright on first
+    use.
+
+    showUndrafted as on the hemogen rush. No castSound: the damage plays its own impact, and
+    the drain plays Bloodfeed's.
+  -->
+  <VEF.Abilities.AbilityDef>
+    <defName>HPWC_Dismember</defName>
+    <label>dismember</label>
+    <description>Tear an arm or a leg off a nearby target, whatever armor it wears. A target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on for a few seconds and drain hemogen from the wound, which will also cause the target to lose blood.</description>
+    <abilityClass>HemophageWarcasket.Ability_Dismember</abilityClass>
+    <iconPath>UI/Abilities/WarcasketHemophage/Dismember</iconPath>
+    <jobDef>HPWC_Dismember</jobDef>
+    <jobReportString>Tearing off a limb.</jobReportString>
+    <targetMode>Pawn</targetMode>
+    <targetingParametersList>
+      <li>
+        <canTargetPawns>true</canTargetPawns>
+        <canTargetHumans>true</canTargetHumans>
+        <canTargetAnimals>true</canTargetAnimals>
+        <canTargetMechs>true</canTargetMechs>
+        <canTargetSelf>false</canTargetSelf>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetLocations>false</canTargetLocations>
+      </li>
+    </targetingParametersList>
+    <distanceToTarget>1.9</distanceToTarget>
+    <requireLineOfSight>false</requireLineOfSight>
+    <castTime>60</castTime>
+    <cooldownTime>2500</cooldownTime>
+    <showUndrafted>true</showUndrafted>
+    <modExtensions>
+      <li Class="HemophageWarcasket.DismemberExtension">
+        <drainTicks>240</drainTicks>
+        <hemogenGain>0.2</hemogenGain>
+        <targetBloodLoss>0.4499</targetBloodLoss>
+        <decapitateBodiesWithoutLimbs>false</decapitateBodiesWithoutLimbs>
+      </li>
+    </modExtensions>
+  </VEF.Abilities.AbilityDef>
+</Defs>

@@ -36,8 +36,8 @@
     below. AbilityDefs/HemogenRush.xml and HediffDefs/HemogenRush.xml have it.
 
     Text: the series paragraph is a first cut written to the design ahead of the code, so it
-    names the pads' and the helmet's modules, which no def grants yet; correct it to what is
-    built when they land. The shape is
+    names the helmet's module, which no def grants yet; correct it to what is built when
+    that lands. The shape is
     l10n/languages/English.md's VFE Pirates recipe: a first line that is also the
     shortDescription and names the piece's module, a generation paragraph, then the series
     paragraph. The second and third paragraphs are identical in all three defs. The second is

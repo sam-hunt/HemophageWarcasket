@@ -13,7 +13,7 @@ It works for any pilot with the hemogenic gene. A pilot without it gets an ordin
 Armor, shoulder pads and helmet, welded at the warcasket foundry and unlocked by spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets as you please.
 [list]
 [*][b]Armor:[/b] Spends the pilot's hemogen quickly to make them much faster and stronger for a short time
-[*][b]Shoulders:[/b] Destroys an enemy's limb and drains hemogen from the wound
+[*][b]Shoulders:[/b] Tears a limb off an enemy, then drains hemogen from the wound
 [*][b]Helmet:[/b] Shields a pilot who is sensitive to sunlight
 [/list]
 

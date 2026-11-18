@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    Dismember's cast job (HemophageWarcasket.JobDriver_Dismember): the walk to the target,
+    the windup, the strike and the drain, under a JobDef of its own because the driver finds
+    its ability as the one whose def names this job. reportString is never shown, the driver
+    reports the ability's jobReportString, but it is a translatable field.
+
+    checkOverrideOnDamage Never: being hit never interrupts the pilot, who uses this in
+    melee. Vanilla considers an override only for a job that is not player-forced, which a
+    queued order is not, so the def says it outright.
+
+    neverShowWeapon: the pilot's hands do the work, so the weapon is holstered for the whole
+    job, as for vanilla's touch abilities.
+  -->
+  <JobDef>
+    <defName>HPWC_Dismember</defName>
+    <driverClass>HemophageWarcasket.JobDriver_Dismember</driverClass>
+    <reportString>tearing a limb off TargetA.</reportString>
+    <checkOverrideOnDamage>Never</checkOverrideOnDamage>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+</Defs>

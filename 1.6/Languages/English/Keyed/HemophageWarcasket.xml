@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
+  <!-- Dismember (Source/1.6/Abilities/Ability_Dismember.cs). {0} is the target -->
+  <HPWC_DismemberNoLimbs>{0} has no limbs to tear off.</HPWC_DismemberNoLimbs>
+
   <!-- Mod settings (Source/1.6/Settings/) -->
   <HPWC_SettingsCategory>Hemophage Warcasket</HPWC_SettingsCategory>
 

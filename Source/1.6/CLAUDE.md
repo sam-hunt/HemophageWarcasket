@@ -7,8 +7,9 @@ comments cover install-path detection, the compile-only VFEP/VEF references (`VF
 
 The code so far is the armor's hemogen rush, its toggle (`Abilities/`), the hediff comp that
 runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
-patch), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it
-(`Startup.cs`) and the settings window (`Settings/`). Several rules below are the family's,
+patch), the pads' Dismember, its ability, part picker and job driver (`Abilities/`), then the
+pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`) and the
+settings window (`Settings/`). Several rules below are the family's,
 written down before the code they govern so the next ability, comp or setting lands in the
 right shape; each names the sibling file to copy from rather than restating it.
 
@@ -50,6 +51,12 @@ right shape; each names the sibling file to copy from rather than restating it.
   from `VFEP_WarcasketTrait` by `WorkProfile.Mirror` in `Startup.Run` so the mods that reshape
   VFEP's work profile reshape ours. Nothing else writes the trait's work fields, and nothing
   tests a pawn for `VFEP_WarcasketTrait`: a hemophage pilot does not carry it.
+- **A walk-up ability is ordered as a vanilla job and bound in its driver.** `Ability_Dismember`
+  and `JobDriver_Dismember` are the model, after the Medic repo's: the job goes through
+  `TryTakeOrderedJob` so it interrupts and queues as an order does, and the driver writes
+  `CompAbilities.currentlyCasting` when the job starts. An apparel ability's `pawn` is null
+  until its first gizmo draw or that binding, and VEF fires no apparel ability's autocast, for
+  the player or for raiders.
 - **Mod-active checks from C#** go through a `ModDetection.IsActive(packageId)` helper
   (`../RimworldModTemplate/Source/1.7/ModDetection.cs` on its `1.7` branch, the Toxin repo's
   `PatchOperationModActive` for the XML side), never `ModsConfig.IsActive(string)`, which misses

@@ -20,6 +20,16 @@
     ]
   },
   "defInjections": {
+    "DamageDef": {
+      "HPWC_Dismember.deathMessage": {
+        "english": "{0} has been torn apart.",
+        "required": true
+      },
+      "HPWC_Dismember.label": {
+        "english": "dismemberment",
+        "required": true
+      }
+    },
     "HediffDef": {
       "HPWC_HemogenRush.description": {
         "english": "This person's warcasket is pumping hemogen through their body, allowing them to move faster, hit harder and ignore most pain. Their hemogen will run down quickly while this lasts.",
@@ -27,6 +37,12 @@
       },
       "HPWC_HemogenRush.label": {
         "english": "hemogen rush",
+        "required": true
+      }
+    },
+    "JobDef": {
+      "HPWC_Dismember.reportString": {
+        "english": "tearing a limb off TargetA.",
         "required": true
       }
     },
@@ -50,7 +66,7 @@
         "english": "HPWC_HemogenGlow"
       },
       "HPWC_WarcasketShoulders_Hemophage.description": {
-        "english": "Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that collect hemogen from an enemy whose limb the pilot has torn away.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.",
+        "english": "Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.",
         "required": true
       },
       "HPWC_WarcasketShoulders_Hemophage.label": {
@@ -58,7 +74,7 @@
         "required": true
       },
       "HPWC_WarcasketShoulders_Hemophage.shortDescription": {
-        "english": "Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that collect hemogen from an enemy whose limb the pilot has torn away.",
+        "english": "Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.",
         "required": true
       },
       "HPWC_Warcasket_Hemophage.apparel.renderNodeProperties.0.debugLabel": {
@@ -94,6 +110,25 @@
       }
     },
     "VEF.Abilities.AbilityDef": {
+      "HPWC_Dismember.description": {
+        "english": "Tear an arm or a leg off a nearby target, whatever armor it wears. A target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on for a few seconds and drain hemogen from the wound, which will also cause the target to lose blood.",
+        "required": true
+      },
+      "HPWC_Dismember.iconPath": {
+        "english": "UI/Abilities/WarcasketHemophage/Dismember"
+      },
+      "HPWC_Dismember.jobReportString": {
+        "english": "Tearing off a limb.",
+        "required": true
+      },
+      "HPWC_Dismember.label": {
+        "english": "dismember",
+        "required": true
+      },
+      "HPWC_Dismember.verbProperties.label": {
+        "english": "dismember",
+        "required": true
+      },
       "HPWC_HemogenRush.description": {
         "english": "Run the warcasket's injectors, which pump the pilot's own hemogen through their body far faster than it would normally be used. The pilot will move faster, hit harder and ignore most pain while their hemogen drains quickly. Toggle again to stop. The injectors will also stop when the pilot runs out of hemogen.",
         "required": true

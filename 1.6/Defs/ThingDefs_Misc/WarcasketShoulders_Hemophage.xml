@@ -9,12 +9,11 @@
     Tuning: the tier's baseline, as on the armor. Mass 20, insulation 22 / 22,
     SlaveSuppressionOffset 0.2 and VacuumResistance 0.1 are the same on all five of VFEP's
     spacer sets; Plasteel 60 is four of the five's price, about 0.4 of the armor's as across
-    the tier. The pads carry no module of their own yet, so no components (the Controller's 2
-    and the Brute's 4 pay for theirs) and no offset beyond those two.
+    the tier. The cost does not pay for the pads' module yet (the Controller's 2 components
+    and the Brute's 4 pay for theirs), and there is no offset beyond those two.
 
-    Not here yet: the pads' share of the design, an ability that destroys a target's limb
-    and, for a hemogenic pilot on a humanlike target, drains hemogen from it. The description
-    already speaks of it. TODOs.md has it.
+    Dismember: the pads' module, an ability granted by the CompAbilitiesApparel below.
+    AbilityDefs/Dismember.xml has it.
 
     Art: the north facing is the south facing's silhouette shaded for the back, so the two
     share one mask and one glow sprite, shipped under both names because Graphic_Multi
@@ -31,8 +30,8 @@
   <VFEPirates.WarcasketDef ParentName="VFEP_WarcasketShoulderPadBase">
     <defName>HPWC_WarcasketShoulders_Hemophage</defName>
     <label>hemophage warcasket shoulders</label>
-    <shortDescription>Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that collect hemogen from an enemy whose limb the pilot has torn away.</shortDescription>
-    <description>Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that collect hemogen from an enemy whose limb the pilot has torn away.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
+    <shortDescription>Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.</shortDescription>
+    <description>Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
     <graphicData>
       <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageShoulders</texPath>
       <shaderType>CutoutComplex</shaderType>
@@ -56,6 +55,13 @@
     <researchPrerequisites>
       <li>VFEP_SpacerWarcaskets</li>
     </researchPrerequisites>
+    <comps>
+      <li Class="VEF.Abilities.CompProperties_AbilitiesApparel">
+        <abilities>
+          <li>HPWC_Dismember</li>
+        </abilities>
+      </li>
+    </comps>
     <apparel>
       <bodyPartGroups>
         <li>Shoulders</li>

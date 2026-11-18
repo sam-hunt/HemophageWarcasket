@@ -18,11 +18,14 @@ manifest globs, so new files and subfolders need no build change.
   `Merge` does not copy; any new `ApparelExtension` field, from any load root, goes on our entry.
   The armor def's header has the mechanics.
 - **The set's abilities are VEF abilities** (`VEF.Abilities.AbilityDef`, each granted by a
-  `CompProperties_AbilitiesApparel` on the piece that carries it: the armor's hemogen rush,
-  and the shoulder pads' limb strike when it lands), never vanilla `AbilityDef`s: vanilla has
-  no apparel grant, and the family's abilities are all VEF's. The Medic repo's shoulder pads
-  are the precedent for a grant off the armor; `Docs/Research/WARCASKET_ABILITIES.md` surveys
-  VFEP's own.
+  `CompProperties_AbilitiesApparel` on the piece that carries it: the armor's hemogen rush
+  and the shoulder pads' Dismember), never vanilla `AbilityDef`s: vanilla has no apparel
+  grant, and the family's abilities are all VEF's. `Docs/Research/WARCASKET_ABILITIES.md`
+  surveys VFEP's own.
+- **Harm goes through `TakeDamage` with the pilot as instigator**, on a `DamageDef` with
+  `externalViolence`, never by adding or removing hediffs directly: that one call is what makes
+  the target's faction, guilt, kill blame and the damage records treat it as an attack.
+  Dismember's strike is the model (`DamageDefs/Dismember.xml`, `Ability_Dismember`).
 - **A state the pilot carries is a hediff.** The hemogen rush is on while the pilot has
   `HPWC_HemogenRush`: the toggle adds and removes it, its stage is the buff, its comp spends
   the hemogen and ends it, and the game saves it. Anything that reacts to the rush reads the

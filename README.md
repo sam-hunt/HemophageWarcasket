@@ -25,8 +25,8 @@ with Biotech's hemogenic gene. It runs on the hemogen in its pilot's blood. A pi
 gene gets an ordinary spacer warcasket.
 
 The mod is in development: the three pieces are in with their art and the standard stats and
-costs of a spacer warcasket. The armor's ability and the pilot's work types are built. The
-shoulders' and the helmet's features below are the design and are not built yet.
+costs of a spacer warcasket. The armor's and the shoulders' abilities and the pilot's work types
+are built. The helmet's feature below is the design and is not built yet.
 
 ## Features
 
@@ -37,7 +37,8 @@ spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets 
 
 - **Armor:** An ability that spends the pilot's hemogen quickly to make them much faster and
   stronger for a short time
-- **Shoulders:** An ability that destroys an enemy's limb and drains hemogen from the wound
+- **Shoulders:** An ability that tears a limb off an enemy, after which a hemogenic pilot
+  drains hemogen from the wound
 - **Helmet:** Shields a pilot who is sensitive to sunlight
 - **Spacer-tier plating and a ranged shield** on VFE Pirates' 10th-generation chassis
 - **Built on VFE Pirates** rather than beside it: the foundry, entombing, customization and

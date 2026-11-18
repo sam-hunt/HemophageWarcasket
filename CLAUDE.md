@@ -29,13 +29,13 @@ had worked their way into that program had the pattern built in secret, for them
 the nearly deathless harder still to destroy. Player-facing text tells it as rumor ("Some
 believe ..."), the way Biotech tells its own sanguophage lore, and never as settled history.
 
-**State: first mechanic in, not yet released.** The three pieces are in on the tier's baseline
+**State: two mechanics in, not yet released.** The three pieces are in on the tier's baseline
 stats and costs with their commissioned art, and the SOS2, VGE and CE patches mirror that
 baseline. The armor's hemogen rush is built, with its glow on all three pieces, and so are the
-pilot's own work trait and the settings window, whose one section is the pilot's work. The pads'
-and the helmet's mechanics and the abilities' settings are not, and the descriptions and the
-player-facing pages still speak of them as first cuts written to the design direction, ahead of
-the code. `TODOs.md` is the ledger. The sibling repos (same author, same VFEP base) are the
+pads' Dismember, the pilot's own work trait and the settings window, whose one section is the
+pilot's work. The helmet's mechanic and the abilities' settings are not, and the descriptions
+and the player-facing pages still speak of the helmet's as a first cut written to the design
+direction, ahead of the code. `TODOs.md` is the ledger. The sibling repos (same author, same VFEP base) are the
 worked precedents for everything not here yet: `../ToxinWarcasket/` for a toggled ability, a
 gauge and the Biotech dependency, `../ShipcrackerWarcasket/` for render-tree graphics and a
 gated art root, `../MedicWarcasket/` and `../OverlordWarcasket/` for the settings' sliders and
@@ -77,11 +77,13 @@ severities pinned in `.editorconfig`): fix the code, not the severity.
 
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
 Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Two
-files read only the repo's XML and art, so they run anywhere; `WorkProfileTests` builds bare
-game defs and so needs the game's real 1.6 runtime DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install,
-or the frozen copy at `~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup),
-failing without them while the build stays green. It holds the work trait's rule: which work
-types the settings may open, their defaults, and the tags and types a choice writes.
+files read only the repo's XML and art, so they run anywhere; `WorkProfileTests` and
+`DismemberTargetTests` build bare game defs and so need the game's real 1.6 runtime DLLs
+(`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
+`~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup), failing without them
+while the build stays green. The first holds the work trait's rule: which work types the
+settings may open, their defaults, and the tags and types a choice writes. The second holds
+which part a Dismember strike destroys.
 `CompatPatchTests` resolves every xpath in
 `1.6/Mods/*/Patches/` and the SOS2 patch against the main-tree defs, the only check a gated root
 gets short of a boot with that mod active; `SetShapeTests` holds each piece's declared graphics
@@ -104,10 +106,9 @@ LoadFolders.xml   Load roots per game version, compat roots gated by package id
 ```
 
 Not here yet, with the place each takes when it lands: `Docs/Specs/`,
-the pads' ability icon (a candidate, `Dismember.png`, sits untracked beside the armor's in
-`Textures/UI/Abilities/WarcasketHemophage/` until that ability is named), `.steamworkshop/Preview.gif` with its `Scripts/preview-gif.py`,
-and a `1.6/Mods/CombatExtended/CLAUDE.md` once Combat Extended has been scanned for what it
-changes about hemogen (the Overlord repo's is the model).
+`.steamworkshop/Preview.gif` with its `Scripts/preview-gif.py`, and a
+`1.6/Mods/CombatExtended/CLAUDE.md` once Combat Extended has been scanned for what it changes
+about hemogen (the Overlord repo's is the model).
 
 ## Cross-cutting rules
 
