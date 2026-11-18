@@ -55,7 +55,6 @@
   - I changed CONTRIBUTING's "Build instructions are in README.md" to point at `CLAUDE.md` here; the siblings still carry the wrong line.
 - **CE compat scan for any relevant changes they make to sanguophage/hemogenic mechanics**
 - **CE/VGE/SOS2 compat** Check each of the family patches are in good order here
-- **Transcode** `Preview.mp4` to `Preview.gif` and < 1MiB
 - **Workshop gallery** Add images, Medic/Overlord as precendent
 - **Optimize images** Run the `../MOD_DOWNLOAD_SIZE_TRIM.md` pass before the first release.
 - **Smoke test on 1.6**

@@ -31,7 +31,11 @@ the smoke list); the engines live in the `l10n/` submodule. Nothing here ships.
 - **Translation passes are deferred until shortly before release**, one language at a time on
   explicit request, through the `/translate` skill, once the English text is final. No language
   exists yet; the public roster is in `CONTRIBUTING.md`.
-- **Not here yet:** a `preview-gif.py`. The artist's MP4 is at `.steamworkshop/Preview.mp4`,
-  untracked, and the transcode to `.steamworkshop/Preview.gif` is a ledgered pass of its own
-  (`TODOs.md`): copy the Overlord or Toxin repo's script, whichever fits the delivery, with
-  `../PREVIEW_GIF_FROM_MP4.md` as the guide and its "Which method" tests run first.
+- **`preview-gif.py`** rebuilds `.steamworkshop/Preview.gif` from the artist's MP4 and
+  `About/Preview.png`, deterministically, and refuses to write a file at or over Steam's 1 MiB.
+  It is run only when the art changes: a new delivery, or a redrawn PNG, whose pixels are the
+  GIF's background. The MP4 is never tracked and must be put back at
+  `.steamworkshop/Preview.mp4` first. The script's asserts encode this delivery's geometry, so
+  a new delivery starts from `../PREVIEW_GIF_FROM_MP4.md`'s tests, and a changed number goes
+  in the header. A version bump is never a rebuild: the `gif-patch` skill edits the badge in
+  place.

@@ -102,15 +102,15 @@ About/            Mod metadata, ModIcon.png, Preview.png
 Source/1.6/       C# (net472)
 Textures/         Art, version-independent: pawn art under VFEP's Warcasketlike/ layout
 Tests/1.6/        xUnit net472 suite                        (not shipped)
-Scripts/          l10n shims, the sidecar and the smoke test (not shipped)
+Scripts/          l10n shims, the sidecar, the smoke test and the preview GIF build (not shipped)
 l10n/             rimworld-l10n toolkit, pinned submodule   (not shipped)
-Docs/Research/    VFEP warcasket stat tables and ability mechanics (copied from the siblings)
+Docs/Research/    VFEP warcasket stat tables and ability mechanics (copied from the siblings),
+                  and the preview GIF transcode's measurements
 .steamworkshop/   Workshop page text and images             (not shipped)
 LoadFolders.xml   Load roots per game version, compat roots gated by package id
 ```
 
-Not here yet, with the place each takes when it lands: `Docs/Specs/`,
-`.steamworkshop/Preview.gif` with its `Scripts/preview-gif.py`, and a
+Not here yet, with the place each takes when it lands: `Docs/Specs/`, and a
 `1.6/Mods/CombatExtended/CLAUDE.md` once Combat Extended has been scanned for what it changes
 about hemogen (the Overlord repo's is the model).
 

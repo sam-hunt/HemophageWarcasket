@@ -55,15 +55,14 @@ repo.
 
 ## Preview.gif
 
-Not here yet. The artist's animated `Preview.mp4` (the hero animated on
-`About/Preview.png`'s art) is in this folder and is not tracked; the MP4
-never is, in any family repo. Its transcode to `Preview.gif`, the page's
-animated thumbnail, is a pass of its own (`TODOs.md`): Steam takes a preview
-below 1 MiB, and fitting the animation under it is a tuning job with the
-author's eye on the result. `../PREVIEW_GIF_FROM_MP4.md` is the family's
-guide, and the Overlord and Toxin repos' `Scripts/preview-gif.py` are the two
-methods it chooses between. Once the GIF exists, the `release` skill's
-preview-only SteamCMD update sets it on the page after each in-game upload;
-the game's mod list decodes only PNG and JPG, so `About/Preview.png` stays a
-static image. The version badge is bumped in place by the `gif-patch` skill,
-on the PNG and the GIF alike, never by re-exporting.
+The page's animated thumbnail: `About/Preview.png` with the artist's animated
+hero composited in, 640x360, 60 frames at 12 fps, just under the 1 MiB Steam
+takes for a preview. `Scripts/preview-gif.py` builds it from the artist's
+`Preview.mp4` and the PNG, and its header records the method; the MP4 is
+never tracked, in any family repo, and is kept with the gameplay recordings.
+Everything outside the hero is the PNG's own pixels, so a redrawn PNG means a
+rebuild from the MP4. The `release` skill's preview-only SteamCMD update sets
+the GIF on the page after each in-game upload; the game's mod list decodes
+only PNG and JPG, so `About/Preview.png` stays a static image. The version
+badge is bumped in place by the `gif-patch` skill, on the PNG and the GIF
+alike, never by re-exporting.
