@@ -34,7 +34,7 @@ public partial class HemophageWarcasketSettings
         SectionHeader(listing, "HPWC_SectionWork", workIcon,
             HeaderTip("HPWC_SectionWork".Translate(), "HPWC_SectionWorkDesc".Translate()), first);
         SummaryRow(listing, WorkSummary);
-        work.DoRows(listing);
+        work.DoGrid(listing);
     }
 
     // What the section's boxes amount to: the work they open, named as the work tab names it,

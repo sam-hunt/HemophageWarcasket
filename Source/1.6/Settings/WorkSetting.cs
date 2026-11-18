@@ -9,7 +9,7 @@ namespace HemophageWarcasket;
 // The pilot's work: one checkbox per work type the trait mirror leaves to the player
 // (WorkProfile.Toggleable, every work type VFEP's trait blocks). Until the player flips one it
 // is WorkProfile.OpenByDefault, the rule the mirror applies on its own (the Intellectual work
-// types open, the rest blocked), read live so the rows follow whatever the loaded mods make of
+// types open, the rest blocked), read live so the boxes follow whatever the loaded mods make of
 // VFEP's trait. Only an override is saved, by the work type's defName, so it outlives the def
 // instances a play-data reload replaces and a work type whose DLC or mod is off keeps its
 // override for when it is back; flipping a box back to its default clears it. Written onto the
@@ -17,6 +17,16 @@ namespace HemophageWarcasket;
 public sealed class WorkSetting
 {
     private const string Key = "Work";
+
+    // The grid: the cells of one row, a cell's height, its box and the padding around the box.
+    private const int GridColumns = 3;
+    private const float CellHeight = 28f;
+    private const float BoxSize = 24f;
+    private const float CellPad = 4f;
+
+    // Mixed into each cell's tooltip id, so it is steady from frame to frame and unlike
+    // another window's.
+    private const int TipIdBase = 0x48505743;
 
     private Dictionary<string, bool> overrides = [];
 
@@ -38,32 +48,54 @@ public sealed class WorkSetting
         overrides ??= [];
     }
 
-    // One checkbox row per toggleable work type: the work tab's name for it on the left and the
-    // box at the row's end; a click anywhere on the row flips it. The whole row's tooltip is the
-    // work type's own description over "HPWC_WorkDesc", which ends on the default with its
-    // state's word in the box's colour.
-    public void DoRows(Listing_Standard listing)
+    // A grid of GridColumns cells per row, filled across then down over WorkProfile.Toggleable.
+    // Each cell is the box with the work tab's name for the work type to its right; a press
+    // anywhere on the cell flips it and a drag paints that first flip's state across the cells
+    // the stroke crosses. A cell's tooltip is the work type's own description over
+    // "HPWC_WorkDesc", which ends on the default with its state's word in the box's colour.
+    public void DoGrid(Listing_Standard listing)
     {
-        foreach (WorkTypeDef work in WorkProfile.Toggleable)
-            DoRow(listing, work);
+        IReadOnlyList<WorkTypeDef> works = WorkProfile.Toggleable;
+        GameFont prevFont = Text.Font;
+        TextAnchor prevAnchor = Text.Anchor;
+        Text.Font = GameFont.Small;
+        Text.Anchor = TextAnchor.MiddleLeft;
+
+        for (int i = 0; i < works.Count; i += GridColumns)
+        {
+            Rect row = listing.GetRect(CellHeight);
+            row.xMin += Tunable.RowIndent;
+            row.xMax -= Tunable.RowEndPad;
+            float cellWidth = row.width / GridColumns;
+            for (int col = 0; col < GridColumns && i + col < works.Count; col++)
+                DoCell(new Rect(row.x + (col * cellWidth), row.y, cellWidth, row.height), works[i + col]);
+        }
+
+        Text.Anchor = prevAnchor;
+        Text.Font = prevFont;
+        listing.Gap(Tunable.RowGap);
     }
 
-    private void DoRow(Listing_Standard listing, WorkTypeDef work)
+    private void DoCell(Rect rect, WorkTypeDef work)
     {
-        Rect row = listing.GetRect(Tunable.RowHeight);
-        row.xMin += Tunable.RowIndent;
-        row.xMax -= Tunable.RowEndPad;
-        Widgets.DrawHighlightIfMouseover(row);
         bool byDefault = WorkProfile.OpenByDefault(work);
-        TooltipHandler.TipRegion(row, Tooltip(work, byDefault));
+        if (Mouse.IsOver(rect))
+        {
+            Widgets.DrawHighlight(rect);
+            TooltipHandler.TipRegion(rect, new TipSignal(() => Tooltip(work, byDefault), TipIdBase ^ work.GetHashCode()));
+        }
 
         bool open = IsOpen(work);
-        Widgets.CheckboxLabeled(row, Name(work).CapitalizeFirst(), ref open);
+        Widgets.ToggleInvisibleDraggable(rect, ref open, doMouseoverSound: true, paintable: true);
         if (open == byDefault)
             overrides.Remove(work.defName);
         else
             overrides[work.defName] = open;
-        listing.Gap(Tunable.RowGap);
+
+        var boxRect = new Rect(rect.x + CellPad, rect.y + ((rect.height - BoxSize) / 2f), BoxSize, BoxSize);
+        Widgets.CheckboxDraw(boxRect.x, boxRect.y, open, disabled: false, BoxSize);
+        var labelRect = new Rect(boxRect.xMax + CellPad, rect.y, rect.xMax - boxRect.xMax - (2f * CellPad), rect.height);
+        Widgets.Label(labelRect, Name(work).CapitalizeFirst().Truncate(labelRect.width));
     }
 
     // Resolved by hand: a TaggedString handed over as a string loses its tags (the implicit
