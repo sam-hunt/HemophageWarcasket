@@ -29,15 +29,15 @@ had worked their way into that program had the pattern built in secret, for them
 the nearly deathless harder still to destroy. Player-facing text tells it as rumor ("Some
 believe ..."), the way Biotech tells its own sanguophage lore, and never as settled history.
 
-**State: two mechanics in, not yet released.** The three pieces are in on the tier's baseline
-stats and costs with their commissioned art, but for the pads' cost, which pays for Dismember,
-and the SOS2, VGE and CE patches mirror that baseline. The armor's hemogen rush is built, with
-its glow on all three pieces, and so are the pads' Dismember, the pilot's own work trait and the
-settings window, with a section for each ability and one for the pilot's work. The helmet's
-mechanic is not, and the descriptions and the player-facing pages still speak of it as a first
-cut written to the design direction, ahead of the code. `TODOs.md` is the ledger. The sibling
-repos (same author, same VFEP base) are the worked precedents for everything not here yet:
-`../ToxinWarcasket/` for a toggled ability, a gauge and the Biotech dependency,
+**State: all three mechanics in, not yet released.** The three pieces are in on the tier's
+baseline stats and costs with their commissioned art, but for the pads' cost, which pays for
+Dismember, and the helmet's plating and cost, and the SOS2, VGE and CE patches mirror them. The
+armor's hemogen rush is built, with its glow on all three pieces, and so are the pads'
+Dismember, the helmet's sunlight protection, the pilot's own work trait and the settings
+window, with a section for each piece's mechanic and one for the pilot's work. The descriptions
+and the player-facing pages are first cuts still owed a full review. `TODOs.md` is the ledger.
+The sibling repos (same author, same VFEP base) are the worked precedents for everything not
+here yet: `../ToxinWarcasket/` for a toggled ability, a gauge and the Biotech dependency,
 `../ShipcrackerWarcasket/` for render-tree graphics and a gated art root, `../MedicWarcasket/`
 and `../OverlordWarcasket/` for the settings' sliders and switches, `../LegionWarcasket/` for a
 multi-world sidecar.
@@ -92,8 +92,9 @@ fails on two load roots sharing a patch or def path;
 missing one is a pink box in game and an error nowhere) and the descriptions to their shared
 paragraphs; `RulePackTests` holds each combat log rule pack to the symbols its log entry
 supplies (an unknown one is an error only when the line is first written in game);
-`SettingsTargetTests` holds the ability defs and the pads' strike pool to the fields the
-settings write (a missing one drops both ability sections from the window with one warning).
+`SettingsTargetTests` holds the ability defs, the pads' strike pool and the helmet's sunlight
+extension to the fields the settings write (a missing one drops those sections from the window
+with one warning).
 
 ## Layout
 

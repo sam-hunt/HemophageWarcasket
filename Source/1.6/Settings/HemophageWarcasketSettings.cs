@@ -9,7 +9,7 @@ namespace HemophageWarcasket;
 // The set's mod settings: the window frame, the ExposeData / LoadDefaultsFromDefs / ApplyToDefs /
 // ResetToDefaults fan-out, the value formats and the shared row helpers. The class is split
 // across Settings_<Section>.cs partials, one per window section (the hemogen rush, Dismember,
-// the pilot's work), each owning its fields, scribe entries, def-backed defaults, apply, reset
+// the helmet, the pilot's work), each owning its fields, scribe entries, def-backed defaults, apply, reset
 // and draw, so a setting is a one-file edit; each partial's header lists the def fields it
 // writes. Each setting overrides a def field, written onto the def by ApplyToDefs (at startup,
 // then whenever the window closes), so every reader of those fields, vanilla's and VEF's
@@ -17,9 +17,9 @@ namespace HemophageWarcasket;
 // are the defs'. Nothing here is saved into a game: a save loads the same with any settings,
 // and with none.
 //
-// The two ability sections write through def handles found by name (TryGetDefs), all or
-// nothing, the pads' strike pool among them; the work section needs none of them and stands
-// when they are missing. Each ability section's header carries the ability's own icon, read off
+// The two ability sections and the helmet's write through def handles found by name
+// (TryGetDefs), all or nothing, the pads' strike pool among them; the work section needs none
+// of them and stands when they are missing. Each ability section's header carries the ability's own icon, read off
 // the def at draw time: VEF resolves def.icon late in loading, and a play-data reload replaces
 // the def and its texture together.
 public partial class HemophageWarcasketSettings : ModSettings
@@ -27,6 +27,7 @@ public partial class HemophageWarcasketSettings : ModSettings
     private const string RushDefName = "HPWC_HemogenRush";
     private const string DismemberDefName = "HPWC_Dismember";
     private const string PadsDefName = "HPWC_WarcasketShoulders_Hemophage";
+    private const string HelmetDefName = "HPWC_WarcasketHelmet_Hemophage";
 
     // The whitespace above every section header but the first, and below the last row.
     private const float SectionGap = 28f;
@@ -83,6 +84,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         base.ExposeData();
         ExposeRushSettings();
         ExposeDismemberSettings();
+        ExposeHelmetSettings();
         ExposeWorkSettings();
     }
 
@@ -96,6 +98,7 @@ public partial class HemophageWarcasketSettings : ModSettings
             return;
         LoadRushDefaults(defs);
         LoadDismemberDefaults(defs);
+        LoadHelmetDefaults(defs);
     }
 
     // The work profile goes first: it needs none of the abilities' defs, so a saved choice
@@ -107,6 +110,7 @@ public partial class HemophageWarcasketSettings : ModSettings
             return;
         ApplyRushToDefs(defs);
         ApplyDismemberToDefs(defs);
+        ApplyHelmetToDefs(defs);
         Generation++;
         TrimWornPads();
     }
@@ -115,6 +119,7 @@ public partial class HemophageWarcasketSettings : ModSettings
     {
         ResetRushSettings();
         ResetDismemberSettings();
+        ResetHelmetSettings();
         ResetWorkSettings();
     }
 
@@ -142,6 +147,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         {
             DrawRushSection(listing, first: true);
             DrawDismemberSection(listing);
+            DrawHelmetSection(listing);
         }
         else
         {
@@ -212,8 +218,8 @@ public partial class HemophageWarcasketSettings : ModSettings
     private static string HeaderTip(string label, string description) =>
         description.NullOrEmpty() ? null : label.Colorize(ColoredText.TipSectionTitleColor) + "\n\n" + description;
 
-    // The def objects the two ability sections read and write, looked up afresh by every load
-    // and apply, since a play-data reload replaces them all.
+    // The def objects the ability sections and the helmet's read and write, looked up afresh by
+    // every load and apply, since a play-data reload replaces them all.
     private struct Defs
     {
         public AbilityDef rushAbility;
@@ -223,10 +229,12 @@ public partial class HemophageWarcasketSettings : ModSettings
         public AbilityDef dismember;
         public DismemberExtension dismemberExtension;
         public CompProperties_ApparelReloadable dismemberPool;
+        public ThingDef helmet;
+        public SunlightShieldExtension helmetShield;
     }
 
     // All or nothing: with any target missing (another mod patched it away) the settings leave
-    // every ability def at its XML values and say so once, as a warning, since the set itself
+    // every def at its XML values and say so once, as a warning, since the set itself
     // still works.
     private static bool warned;
 
@@ -235,6 +243,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         HediffDef rush = DefDatabase<HediffDef>.GetNamedSilentFail(RushDefName);
         HediffStage stage = rush?.stages?.Count == 1 ? rush.stages[0] : null;
         AbilityDef dismember = DefDatabase<AbilityDef>.GetNamedSilentFail(DismemberDefName);
+        ThingDef helmet = DefDatabase<ThingDef>.GetNamedSilentFail(HelmetDefName);
         defs = new Defs
         {
             rushAbility = DefDatabase<AbilityDef>.GetNamedSilentFail(RushDefName),
@@ -244,16 +253,18 @@ public partial class HemophageWarcasketSettings : ModSettings
             dismember = dismember,
             dismemberExtension = dismember?.GetModExtension<DismemberExtension>(),
             dismemberPool = DefDatabase<ThingDef>.GetNamedSilentFail(PadsDefName)?.GetCompProperties<CompProperties_ApparelReloadable>(),
+            helmet = helmet,
+            helmetShield = helmet?.GetModExtension<SunlightShieldExtension>(),
         };
         // The pool must reload per charge with an item, the mode the capacity and cost rows write.
         bool poolFound = defs.dismemberPool is { ammoDef: not null, ammoCountToRefill: 0, ammoCountPerCharge: > 0 };
         if (defs.rushAbility != null && defs.rush != null && defs.rushMoveSpeed != null && defs.rushMeleeDamage != null
-            && defs.dismember != null && defs.dismemberExtension != null && poolFound)
+            && defs.dismember != null && defs.dismemberExtension != null && poolFound && defs.helmetShield != null)
         {
             return true;
         }
         if (!warned)
-            Log.Warning("[Hemophage Warcasket] Settings could not find the hemogen rush ability, its hediff's comp, single stage or move speed and melee damage factors, the Dismember ability, its extension or the shoulders' per-charge reload comp; the abilities keep their XML values.");
+            Log.Warning("[Hemophage Warcasket] Settings could not find the hemogen rush ability, its hediff's comp, single stage or move speed and melee damage factors, the Dismember ability, its extension, the shoulders' per-charge reload comp or the helmet's sunlight extension; the abilities and the helmet keep their XML values.");
         warned = true;
         return false;
     }

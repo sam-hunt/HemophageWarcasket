@@ -11,8 +11,8 @@
     With the bionics go its capacity floors of 1 and its guards against downing and death:
     the 0.7 floors on Moving and Manipulation below are the other four sets'. The set's own
     numbers arrive with its mechanics (TODOs.md) and are argued here when they do.
-    - Sharp 2 / Blunt 1 / Heat 1 on all three pieces. Blunt 1.5 is the Guardian's and the
-      Brute's specialty.
+    - Sharp 2 / Blunt 1 / Heat 1 on the armor and the shoulders. Blunt 1.5 is the Guardian's
+      and the Brute's specialty, which the helmet alone takes, with Heat 2 (its header).
     - EnergyShieldEnergyMax 1.5 at EnergyShieldRechargeRate 0.01 (Guardian, Controller,
       Sarcophagus). Siegebreaker's 2.5 and the Brute's 5.0 are their specialties. The bubble
       is the tier's plain one, blocking ranged attacks only.
@@ -35,16 +35,13 @@
     Hemogen rush: the armor's module, a toggled ability granted by the CompAbilitiesApparel
     below. AbilityDefs/HemogenRush.xml and HediffDefs/HemogenRush.xml have it.
 
-    Text: the series paragraph is a first cut written to the design ahead of the code, so it
-    names the helmet's module, which no def grants yet; correct it to what is built when
-    that lands. The shape is
-    l10n/languages/English.md's VFE Pirates recipe: a first line that is also the
-    shortDescription and names the piece's module, a generation paragraph, then the series
-    paragraph. The second and third paragraphs are identical in all three defs. The second is
-    ours, where the recipe pastes VFEP's verbatim: VFEP's paragraph gives the generation to a
-    government program for its veterans, and this set's fiction is that sanguophages inside
-    that program had it built in secret for themselves, told as rumor the way Biotech tells
-    its sanguophage lore.
+    Text: the shape is l10n/languages/English.md's VFE Pirates recipe: a first line that is
+    also the shortDescription and names the piece's module, a generation paragraph, then the
+    series paragraph. The second and third paragraphs are identical in all three defs. The
+    second is ours, where the recipe pastes VFEP's verbatim: VFEP's paragraph gives the
+    generation to a government program for its veterans, and this set's fiction is that
+    sanguophages inside that program had it built in secret for themselves, told as rumor
+    the way Biotech tells its sanguophage lore.
 
     Art: Textures/Things/Pawn/Warcasketlike/WarcasketHemophage/, laid out as VFEP's sets are.
     The worn graphic is Graphic_Multi (the _north/_east/_south facings); the item icon is the

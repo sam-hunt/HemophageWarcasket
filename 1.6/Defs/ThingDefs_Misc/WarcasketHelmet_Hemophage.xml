@@ -2,21 +2,29 @@
 <Defs>
   <!--
     The Hemophage's helmet, on VFEP's helmet base (VFEP v4.03,
-    1.6/Defs/ThingDefs_Misc/Apparel_Headgear.xml). Plating, the research gate, the apparel
+    1.6/Defs/ThingDefs_Misc/Apparel_Headgear.xml). The research gate, the apparel
     tags, the text's shape and the masked tint follow the armor's header
     (Warcasket_Hemophage.xml).
 
-    Tuning: the tier's baseline, as on the armor. Mass 8, PsychicSensitivity -0.5,
-    ToxicResistance 0.5, SlaveSuppressionOffset 0.1, VacuumResistance 0.7 and uiIconScale
-    1.25 are the same on all five of VFEP's spacer helmets. Insulation 10 / 10 is three of
-    the five's (Controller, Sarcophagus, Brute; the Siegebreaker's and the Guardian's are
-    5 / 2), and ComponentSpacer 2 / Plasteel 60 is the Sarcophagus's price, each number
-    three of the five's.
+    Tuning: the set's heaviest plating, on the tier's baseline. Sharp 2 is the tier's and
+    the stat's maximum. Blunt 1.5 is the Guardian's and the Brute's specialty, the most any
+    VFEP piece carries, and Combat Extended has a row for it. Heat 2 is the stat's maximum and
+    the Hazard's on every piece: flame damage arrives without armor penetration, so none of
+    it gets through to the head. Mass 8, PsychicSensitivity -0.5, ToxicResistance 0.5,
+    SlaveSuppressionOffset 0.1, VacuumResistance 0.7 and uiIconScale 1.25 are the same on
+    all five of VFEP's spacer helmets. Insulation 10 / 10 is three of the five's (Controller,
+    Sarcophagus, Brute; the Siegebreaker's and the Guardian's are 5 / 2).
 
-    Not here yet: the helmet's share of the design, which is to protect a pilot with a
-    sunlight sensitivity gene from sunlight and to carry the set's heaviest plating. The
-    description already speaks of the first and still says standard protection. TODOs.md has
-    both.
+    Cost: ComponentSpacer 2 is three of the five's. Plasteel 70 is the Guardian helmet's,
+    what VFEP charges for Blunt 1.5. DevilstrandCloth 30 pays for the heat plating in the
+    Hazard's currency: its armor takes 100 and its shoulders 50 for the same Heat 2. The
+    Hazard's own helmet takes none, so the 30 is this set's price, a helmet's share at that
+    rate.
+
+    Sunlight: the SunlightShieldExtension keeps a sunlight sensitivity gene's effects off the
+    pilot (Source/1.6/Sunlight/SunlightShield.cs has which, and the patches that do it). It
+    is all or nothing because the genes' effects are: a factor and a thought that are either
+    on or off. blocksSunlight is the settings' switch.
 
     Art: the back of the helmet has no black-masked part, so its glow sprite for the _north
     facing is an empty image. Graphic_Multi fills a missing north facing from the south one,
@@ -34,8 +42,8 @@
   <VFEPirates.WarcasketDef ParentName="VFEP_WarcasketHelmetBase">
     <defName>HPWC_WarcasketHelmet_Hemophage</defName>
     <label>hemophage warcasket helmet</label>
-    <shortDescription>Specialized spacer-tech warcasket helmet with standard protection, equipped with a sealed visor that shields the pilot from sunlight.</shortDescription>
-    <description>Specialized spacer-tech warcasket helmet with standard protection, equipped with a sealed visor that shields the pilot from sunlight.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
+    <shortDescription>Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a sealed visor that shields the pilot from sunlight.</shortDescription>
+    <description>Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a sealed visor that shields the pilot from sunlight.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
     <graphicData>
       <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageHelmet</texPath>
       <shaderType>CutoutComplex</shaderType>
@@ -44,8 +52,8 @@
     <statBases>
       <Mass>8</Mass>
       <ArmorRating_Sharp>2</ArmorRating_Sharp>
-      <ArmorRating_Blunt>1</ArmorRating_Blunt>
-      <ArmorRating_Heat>1</ArmorRating_Heat>
+      <ArmorRating_Blunt>1.5</ArmorRating_Blunt>
+      <ArmorRating_Heat>2</ArmorRating_Heat>
       <Insulation_Cold>10</Insulation_Cold>
       <Insulation_Heat>10</Insulation_Heat>
       <EquipDelay>1</EquipDelay>
@@ -58,7 +66,8 @@
     </equippedStatOffsets>
     <costList>
       <ComponentSpacer>2</ComponentSpacer>
-      <Plasteel>60</Plasteel>
+      <Plasteel>70</Plasteel>
+      <DevilstrandCloth>30</DevilstrandCloth>
     </costList>
     <researchPrerequisites>
       <li>VFEP_SpacerWarcaskets</li>
@@ -91,6 +100,9 @@
     <modExtensions>
       <li Class="VEF.Apparels.ApparelExtension">
         <priority>1</priority>
+      </li>
+      <li Class="HemophageWarcasket.SunlightShieldExtension">
+        <blocksSunlight>true</blocksSunlight>
       </li>
     </modExtensions>
   </VFEPirates.WarcasketDef>

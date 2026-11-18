@@ -8,9 +8,12 @@
   only VFEP's defNames; from its base-class patches ours inherit Flammability 0.25 and the
   helmet and shoulder PartialArmorExt alone. The main tree is the tier's baseline, the
   Sarcophagus's row (the armor def's header), and every number here is the one that file gives
-  the Sarcophagus, so a mixed set stays a mixed set:
-  - Plating 36 / 90 on armor and shoulders, 32 / 72 on the helmet; heat is untouched, as in
-    every CE patch. Bulk / WornBulk 275 / 35, 15 / 5, 20 / 10.
+  the Sarcophagus, but for the helmet's blunt plating and price, so a mixed set stays a mixed
+  set:
+  - Plating 36 / 90 on armor and shoulders, and 32 / 86 on the helmet: its Blunt 1.5 in the
+    main tree is the Guardian helmet's, so it takes that file's Guardian row where the
+    Sarcophagus's has 72. Heat is untouched, as in every CE patch, the helmet's 2 included.
+    Bulk / WornBulk 275 / 35, 15 / 5, 20 / 10.
   - CarryWeight +250 and CarryBulk +225 on the armor: CE charges a worn item's full Mass
     against a 40 kg CarryWeight, so without them the 78 kg set moves at half speed.
     Suppressability -100 is the spacer frames' immunity to suppression.
@@ -22,11 +25,13 @@
     gives every sealed spacer helmet. The tox immunity is added only when absent, CE's own
     guard against a second patch producing a duplicate node.
   - Costs as CE reprices the Sarcophagus's: plasteel and spacer components of 145 / 6 to
-    225 / 8 on the armor and 60 / 2 to 90 / 4 on the helmet, plasteel 60 to 90 on the
-    shoulders. The Sarcophagus's pads have no spacer components and CE has no one rule for
-    a pad's (the Controller's 2 go to 1, the Brute's 4 to 6), so ours take the two more the
-    armor and helmet do, 2 to 4. Uranium is not touched, as CE leaves VFEP's, nor the
-    pads' industrial components, the strike pool's first fill.
+    225 / 8 on the armor, plasteel 60 to 90 on the shoulders. The helmet's 70 / 2 is the
+    Guardian helmet's price and goes where CE takes that, to 105 / 4; its devilstrand is
+    not touched, as CE leaves the Hazard's. The Sarcophagus's pads have no spacer
+    components and CE has no one rule for a pad's (the Controller's 2 go to 1, the Brute's
+    4 to 6), so ours take the two more the armor and helmet do, 2 to 4. Uranium is not
+    touched, as CE leaves VFEP's, nor the pads' industrial components, the strike pool's
+    first fill.
   Nothing here concerns the set's abilities: what CE changes about the rush's buff,
   Dismember's strike and reload and the hemogenic genes is unscanned (TODOs.md), and each
   one's CE answer goes in a file of its own beside this one.
@@ -140,7 +145,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/VFEPirates.WarcasketDef[defName="HPWC_WarcasketHelmet_Hemophage"]/statBases/ArmorRating_Blunt</xpath>
     <value>
-      <ArmorRating_Blunt>72</ArmorRating_Blunt>
+      <ArmorRating_Blunt>86</ArmorRating_Blunt>
     </value>
   </Operation>
   <Operation Class="PatchOperationAdd">
@@ -167,7 +172,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/VFEPirates.WarcasketDef[defName="HPWC_WarcasketHelmet_Hemophage"]/costList/Plasteel</xpath>
     <value>
-      <Plasteel>90</Plasteel>
+      <Plasteel>105</Plasteel>
     </value>
   </Operation>
 

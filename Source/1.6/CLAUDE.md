@@ -8,9 +8,10 @@ comments cover install-path detection, the compile-only VFEP/VEF references (`VF
 The code so far is the armor's hemogen rush, its toggle (`Abilities/`), the hediff comp that
 runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
 patch), the pads' Dismember, its ability, command, part picker and job driver (`Abilities/`) and
-strike pool (`Comps/`), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors
-it (`Startup.cs`) and the settings window (`Settings/`), with a section for each ability and one
-for the work. Several rules below are the family's, written down before the code they govern so
+strike pool (`Comps/`), the helmet's sunlight protection (`Sunlight/`, with its three patches),
+then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`) and
+the settings window (`Settings/`), with a section for each piece's mechanic and one for the
+work. Several rules below are the family's, written down before the code they govern so
 the next ability or comp lands in the right shape; each names the sibling file to copy from
 rather than restating it.
 
@@ -21,6 +22,15 @@ rather than restating it.
   detour on a VFEP method applied before defs load runs that type's static ctor early and breaks
   it for good (the BetterTradersGuild v1.1.0 CWTL incident). `ModInit`'s header has the
   rationale; `HemophageWarcasketMod` owns the settings only.
+- **A postfix on a check the game asks constantly does nothing until the original's answer
+  needs changing.** The stat worker asks a gene's conditional affecter on every stat it computes
+  for a carrier, so the sunlight postfix tests `__result` before it looks at the pawn
+  (`Patches/ConditionalStatAffecter_InSunlight_Applies`), and never patches the stat worker
+  itself. A patch's header says how often its target runs and for which pawns.
+- **A patch on a corner of VEF or VFEP the set does not otherwise depend on finds its target by
+  name and skips itself with a warning when it is missing**
+  (`Patches/HediffComp_StageBySunlight_CompPostTickInterval`): one target that fails to resolve
+  throws out of `PatchAll` and takes every later patch and `Startup.Run` with it.
 - **Startup def-derived state must survive an in-process play-data reload** (a language switch
   reloads every def). Anything that reads or writes a def at startup goes in the idempotent
   `Startup.Run`, called once from `ModInit` and again from the

@@ -44,6 +44,10 @@ manifest globs, so new files and subfolders need no build change.
   facing and its mask (`_m`) for the item icon. A new sprite keeps the facing suffix last
   (`<Name>_south.png`), or `Graphic_Multi` cannot resolve it. `Tests/1.6/SetShapeTests.cs`
   fails on a declared graphic with a missing file.
+- **A protection a piece gives its wearer is a `DefModExtension` flag on the piece**, read off
+  the worn apparel by the patches that answer the game's own checks. The helmet's
+  `SunlightShieldExtension` is the model: it names no gene, so another mod's sunlight gene built
+  on the game's classes is covered without a compat root.
 - **Tunables are def fields** the mod settings write at startup (`Source/1.6/CLAUDE.md`); the
   XML value is the default and the header stays the record. The pilot's trait
   (`TraitDefs/WarcasketTrait_Hemophage.xml`) is the exception its header explains: its work

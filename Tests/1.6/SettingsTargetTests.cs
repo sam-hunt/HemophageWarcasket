@@ -8,10 +8,10 @@ using Xunit;
 
 namespace HemophageWarcasket.Tests;
 
-// The def fields the ability settings read their defaults from and write back onto, read off
-// the XML. The settings find them by name at startup, all or nothing
+// The def fields the ability and helmet settings read their defaults from and write back onto,
+// read off the XML. The settings find them by name at startup, all or nothing
 // (HemophageWarcasketSettings.TryGetDefs): with one missing, the game logs a single warning and
-// the settings window drops both ability sections, which no build or boot fails on. Each field
+// the settings window drops those sections, which no build or boot fails on. Each field
 // is spelled out in the XML rather than left to its C# default so the def stays the record of
 // what a slider's default is.
 public class SettingsTargetTests
@@ -85,5 +85,14 @@ public class SettingsTargetTests
         Assert.Equal("HemophageWarcasket.CompStrikePool", (string?)pool.Element("compClass"));
         XElement ability = Def("AbilityDefs", "Dismember.xml", "HPWC_Dismember");
         Assert.Equal("HemophageWarcasket.Command_Dismember", (string?)ability.Element("gizmoClass"));
+    }
+
+    [Fact]
+    public void Helmet_HasEveryFieldItsSettingsWrite()
+    {
+        XElement helmet = Def("ThingDefs_Misc", "WarcasketHelmet_Hemophage.xml", "HPWC_WarcasketHelmet_Hemophage");
+        XElement shield = helmet.Element("modExtensions")!.Elements("li")
+            .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.SunlightShieldExtension");
+        AssertHas(shield, "blocksSunlight");
     }
 }

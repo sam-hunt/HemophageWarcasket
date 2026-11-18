@@ -10,7 +10,7 @@
   <!-- Mod settings (Source/1.6/Settings/) -->
   <HPWC_SettingsCategory>Hemophage Warcasket</HPWC_SettingsCategory>
   <!-- Shown in place of the two ability sections (HemophageWarcasketSettings.TryGetDefs) -->
-  <HPWC_SettingsUnavailable>The ability settings are unavailable. Another mod has changed the hemophage warcasket, so its abilities will keep their built-in values.</HPWC_SettingsUnavailable>
+  <HPWC_SettingsUnavailable>The ability and helmet settings are unavailable. Another mod has changed the hemophage warcasket, so they will keep their built-in values.</HPWC_SettingsUnavailable>
 
   <!-- After a slider's value while it is unset -->
   <HPWC_DefaultSuffix> (default)</HPWC_DefaultSuffix>
@@ -85,6 +85,12 @@
   <HPWC_DismemberSummaryNoCooldown>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldown>
   <HPWC_DismemberSummaryNoDrain>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}.</HPWC_DismemberSummaryNoDrain>
   <HPWC_DismemberSummaryNoCooldownNoDrain>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldownNoDrain>
+
+  <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in the tooltip is the default -->
+  <HPWC_SectionHelmet>Helmet</HPWC_SectionHelmet>
+  <HPWC_SectionHelmetDesc>The sealed visor of the hemophage warcasket helmet, which keeps sunlight off a pilot who is sensitive to it.</HPWC_SectionHelmetDesc>
+  <HPWC_HelmetSunlight>Sunlight protection</HPWC_HelmetSunlight>
+  <HPWC_HelmetSunlightDesc>When enabled, the helmet will protect a pilot with a UV sensitivity gene from the effects of sunlight. When disabled, sunlight will slow such a pilot and lower their mood as usual. Default: {0}.</HPWC_HelmetSunlightDesc>
 
   <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
   <HPWC_SectionWork>Enabled work types</HPWC_SectionWork>
