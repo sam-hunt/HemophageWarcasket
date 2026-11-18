@@ -17,9 +17,13 @@
     ValidateTarget, not here.
 
     castTime 60 (1 s) is the windup, half of Bloodfeed's, since this is used mid-fight; the
-    target is held for it, as vanilla's touch abilities hold theirs. cooldownTime 2500 is one
-    game hour: the strike cannot fail, so the cooldown is its only limit, at about one use a
-    fight.
+    target is held for it, as vanilla's touch abilities hold theirs.
+
+    The limit is the pads' strikes, not a timer: each cast spends one of the two the pads'
+    CompApparelReloadable holds (WarcasketShoulders_Hemophage.xml has the pool and its
+    price), so cooldownTime 0 lets one strike follow another, as the family's stocked
+    abilities do. gizmoClass adds the "strikes / max" count in the button's top right corner,
+    where vanilla draws a reloadable's.
 
     DismemberExtension is the drain, which follows the strike when the pilot is hemogenic and
     the target is humanlike and can bleed, with the target held throughout. It is Bloodfeed
@@ -34,8 +38,8 @@
     centipede, a diabolus) an invalid target: beheading it would kill it outright on first
     use.
 
-    The mod settings override castTime, cooldownTime and every DismemberExtension field
-    (Source/1.6/Settings/Settings_Dismember.cs).
+    The mod settings override castTime, cooldownTime, every DismemberExtension field and the
+    pads' pool (Source/1.6/Settings/Settings_Dismember.cs).
 
     showUndrafted as on the hemogen rush. No castSound: the damage plays its own impact, and
     the drain plays Bloodfeed's.
@@ -45,6 +49,7 @@
     <label>dismember</label>
     <description>Tear an arm or a leg off a nearby target, whatever armor it wears. A target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on for a few seconds and drain hemogen from the wound, which will also cause the target to lose blood.</description>
     <abilityClass>HemophageWarcasket.Ability_Dismember</abilityClass>
+    <gizmoClass>HemophageWarcasket.Command_Dismember</gizmoClass>
     <iconPath>UI/Abilities/WarcasketHemophage/Dismember</iconPath>
     <jobDef>HPWC_Dismember</jobDef>
     <jobReportString>Tearing off a limb.</jobReportString>
@@ -63,7 +68,7 @@
     <distanceToTarget>1.9</distanceToTarget>
     <requireLineOfSight>false</requireLineOfSight>
     <castTime>60</castTime>
-    <cooldownTime>2500</cooldownTime>
+    <cooldownTime>0</cooldownTime>
     <showUndrafted>true</showUndrafted>
     <modExtensions>
       <li Class="HemophageWarcasket.DismemberExtension">

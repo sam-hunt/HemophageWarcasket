@@ -38,10 +38,11 @@ spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets 
 - **Armor:** An ability that spends the pilot's hemogen quickly to make them much faster and
   stronger for a short time
 - **Shoulders:** An ability that tears a limb off an enemy, after which a hemogenic pilot
-  drains hemogen from the wound
+  drains hemogen from the wound. The shoulders hold two strikes and reload with components
 - **Helmet:** Shields a pilot who is sensitive to sunlight
 - **Mod settings** for how fast the armor spends hemogen and what it gives in return, the
-  shoulders' cooldown, casting time, drain and targets, and a steady glow in place of the pulse
+  shoulders' strike capacity, reload cost, casting time, drain and targets, and a steady glow
+  in place of the pulse
 - **Spacer-tier plating and a ranged shield** on VFE Pirates' 10th-generation chassis
 - **Built on VFE Pirates** rather than beside it: the foundry, entombing, customization and
   removal surgery all apply unchanged

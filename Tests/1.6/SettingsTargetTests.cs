@@ -69,4 +69,21 @@ public class SettingsTargetTests
         AssertHas(extension, "drainTicks", "hemogenGain", "targetBloodLoss", "bloodFilthCount",
             "canTargetNonHostile", "decapitateBodiesWithoutLimbs");
     }
+
+    // The settings write the pool in per-charge mode, so the def must declare that mode, on
+    // the comp that survives a lowered capacity, and the ability must name the command that
+    // shows the count.
+    [Fact]
+    public void DismemberPool_HasEveryFieldItsSettingsWrite()
+    {
+        XElement pads = Def("ThingDefs_Misc", "WarcasketShoulders_Hemophage.xml", "HPWC_WarcasketShoulders_Hemophage");
+        XElement pool = pads.Element("comps")!.Elements("li")
+            .Single(li => (string?)li.Attribute("Class") == "CompProperties_ApparelReloadable");
+        AssertHas(pool, "maxCharges", "ammoDef", "ammoCountPerCharge", "chargeNoun");
+        Assert.True((int)pool.Element("maxCharges")! > 0 && (int)pool.Element("ammoCountPerCharge")! > 0);
+        Assert.Null(pool.Element("ammoCountToRefill"));
+        Assert.Equal("HemophageWarcasket.CompStrikePool", (string?)pool.Element("compClass"));
+        XElement ability = Def("AbilityDefs", "Dismember.xml", "HPWC_Dismember");
+        Assert.Equal("HemophageWarcasket.Command_Dismember", (string?)ability.Element("gizmoClass"));
+    }
 }

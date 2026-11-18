@@ -78,6 +78,16 @@
       "HPWC_WarcasketShoulders_Hemophage.apparel.renderNodeProperties.0.debugLabel": {
         "english": "HPWC_HemogenGlow"
       },
+      "HPWC_WarcasketShoulders_Hemophage.comps.CompStrikePool.chargeNoun": {
+        "english": "strike",
+        "required": true,
+        "normalized": "HPWC_WarcasketShoulders_Hemophage.comps.2.chargeNoun"
+      },
+      "HPWC_WarcasketShoulders_Hemophage.comps.CompStrikePool.cooldownGerund": {
+        "english": "on cooldown",
+        "required": true,
+        "normalized": "HPWC_WarcasketShoulders_Hemophage.comps.2.cooldownGerund"
+      },
       "HPWC_WarcasketShoulders_Hemophage.description": {
         "english": "Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.",
         "required": true

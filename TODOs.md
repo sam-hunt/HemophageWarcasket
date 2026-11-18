@@ -16,12 +16,14 @@
 - **Shoulders**
   - **Dismember: first look in game** Built, and so far only compiled and unit tested. Check:
     - The gizmo shows on a pilot drafted or not, a click on a far target walks the pilot over, Shift-click queues, and the cursor shows the cross over an invalid target and "Will kill" over one the strike would behead.
-    - The strike: a random arm or leg reads "Torn off" in the health tab whatever the target wears (a mechanoid's "Shattered"), the target is held for the 1 second windup, the pilot's weapon is holstered, being hit does not interrupt, and the cooldown is one hour.
+    - The strike: a random arm or leg reads "Torn off" in the health tab whatever the target wears (a mechanoid's "Shattered"), the target is held for the 1 second windup, the pilot's weapon is holstered, being hit does not interrupt, and a second strike can follow at once.
     - A target with no limbs left is beheaded with the "torn apart" death message, and a body built without limbs (a centipede) is refused with "has no limbs to tear off".
     - The combat log: one line per strike naming the pilot, the target and the part ("tore off ... left arm"), logged before the downed or death line it caused, with the blood icon, on both pawns' Log tabs, and a click that jumps to the other pawn.
     - The drain, for a hemogenic pilot on a human: the 4 second bar with Bloodfeed's sound and splash, the target held throughout, about 20 hemogen gained and 0.45 blood loss on the target, and an early end when the pilot is full. A pilot without the gene, an animal or a mechanoid gets the strike alone.
     - A non-hostile target: the goodwill cost on a visitor's faction (vanilla's maximum for one hit, 130), guilt for a prisoner or colonist.
-    - The numbers in play: the cooldown, the windup, and about 5 seconds of holding one enemy still.
+    - The strikes: the button's top right corner reads "2 / 2" and counts down a strike a cast, an empty one is disabled with "No strikes left.", and the tooltip's last line names the reload cost.
+    - The reload: an undrafted pilot fetches a component for each empty slot on their own, a drafted one reloads from the right-click menu on a stack of components, a crafted piece and a raider's both start full, and the foundry asks for 2 advanced components and 2 components beside the plasteel.
+    - The numbers in play: two strikes at a component each, the windup, and about 5 seconds of holding one enemy still. Watch what a stack of components beside the fight allows: with reloads, five or six strikes behead anything with limbs, an apocriton included, which the reload cost and cooldown settings are there to rein in.
   - **Raiders never use it** VEF fires no apparel ability for a non-player pawn. The Medic repo's `CompMedicAI` is the model if raider pilots should, though the Tuning item may drop the raider tags first.
   - **Combat Extended aim height** CE keeps a per-pawn melee aim height (`CompMeleeTargettingGizmo.heightInt`, public). With CE active the strike could take a leg for low and an arm for middle instead of a random limb. Belongs with the CE compat scan.
 - **Helmet**
@@ -29,11 +31,11 @@
   - has maxed out sharp/blunt/heat armor (2.0?)
   - maybe speeds up deathrest a little bit?
 - **Ability settings: first look in game** Both sections are built, and so far only compiled and unit tested. Check:
-  - Each section's header shows its ability's icon and tooltip, every value fits its column with the "(default)" suffix, and the summaries read right at the defaults and with the drain, the cooldown and the hemogen gain at zero.
-  - A change takes hold when the window closes: the drain, reserve and move speed on a rush already running, a cooldown in progress cut to a lowered setting, and "Pulsing glow" off holding the glow steady at full brightness.
+  - Each section's header shows its ability's icon and tooltip, every value fits its column with the "(default)" suffix, and the summaries read right at the defaults, with a cooldown set, with the hemogen gain at zero and with a strike capacity of 1.
+  - A change takes hold when the window closes: the drain, reserve and move speed on a rush already running, a cooldown in progress cut to a lowered setting, the strikes over a lowered capacity gone from a worn piece at once and from a stored one when it is put on or the save is loaded (lower the capacity at the main menu, load, and let the pilot idle near components: no reload error), the new reload cost in the tooltip, and "Pulsing glow" off holding the glow steady at full brightness.
   - "Allow non-hostile targets" off: the cross over a colonist, a prisoner, a visitor and a tame animal, and "is not hostile" on the click. "Behead limbless creatures" on: "Will kill" over a centipede, which dies to one strike.
   - With every setting untouched, the abilities play as before the settings existed.
-- **Tuning** The three pieces are the 10th generation's baseline (VFEP's Sarcophagus row less its medicine and bionics; the def headers argue each number). Settle the set's own stats and costs as the mechanics land, then mirror them into the CE patch.
+- **Tuning** The three pieces are the 10th generation's baseline (VFEP's Sarcophagus row less its medicine and bionics; the def headers argue each number), but for the pads' cost, which pays for Dismember. Settle the set's own stats and costs as the mechanics land, then mirror them into the CE patch.
   - Raider gear: the pieces carry the tier's `WarcasketVeteran` / `WarcasketAll` tags, so VFEP's veteran raiders can roll them. Probably drop them, and patch/finalize VFEP's fill-in, similar to Overlord?
 - **VRE Sanguophage Integration**
   - Dismember hemogen drain gating widens when the caster has AnimalFeeder/CorpseFeeder/Sanguofeeder and the target matches, and any associated buffs are applied

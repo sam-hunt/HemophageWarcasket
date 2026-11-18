@@ -9,11 +9,27 @@
     Tuning: the tier's baseline, as on the armor. Mass 20, insulation 22 / 22,
     SlaveSuppressionOffset 0.2 and VacuumResistance 0.1 are the same on all five of VFEP's
     spacer sets; Plasteel 60 is four of the five's price, about 0.4 of the armor's as across
-    the tier. The cost does not pay for the pads' module yet (the Controller's 2 components
-    and the Brute's 4 pay for theirs), and there is no offset beyond those two.
+    the tier. ComponentSpacer 2 pays for the pads' module, the Controller shoulders' price
+    for theirs, and ComponentIndustrial 2 is the pool's first fill, since a crafted piece
+    starts full. There is no offset beyond those two.
 
-    Dismember: the pads' module, an ability granted by the CompAbilitiesApparel below.
-    AbilityDefs/Dismember.xml has it.
+    Dismember: the pads' module, an ability granted by the CompAbilitiesApparel below
+    (AbilityDefs/Dismember.xml has it), limited by the strikes loaded in the reloadable
+    beside it, which the ability reads off the piece that grants it. compClass CompStrikePool
+    is vanilla's CompApparelReloadable kept within a capacity the settings can lower.
+    - maxCharges 2 is vanilla's count for a strong single-target effect (both psychic
+      lances): two strikes on one human leave 0.75 pain from the stumps alone, and one each
+      cripples two.
+    - ammoDef ComponentIndustrial, ammoCountPerCharge 1: a strike burns out a servo, and a
+      component is 32 silver, inside the 23 to 92 a charge of vanilla's refillable packs
+      costs and far under a lance charge's 275. Per-charge mode, so every empty slot is
+      refilled by one item and a reload never discards any (vanilla's NeedsReload and
+      ReloadFrom, 1.6).
+    - baseReloadTicks 60 and soundReload are the family's. chargeNoun "strike" is what the
+      stat sheet and the empty button count in.
+    No verbs, so the comp draws no gizmo of its own; the ability's command shows the count.
+    A colonist reloads on their own when undrafted, and a drafted pilot when ordered onto the
+    components (vanilla's float menu). maxCharges and ammoCountPerCharge are mod settings.
 
     Art: the north facing is the south facing's silhouette shaded for the back, so the two
     share one mask and one glow sprite, shipped under both names because Graphic_Multi
@@ -60,12 +76,23 @@
       <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.1</VacuumResistance>
     </equippedStatOffsets>
     <costList>
+      <ComponentSpacer>2</ComponentSpacer>
       <Plasteel>60</Plasteel>
+      <ComponentIndustrial>2</ComponentIndustrial>
     </costList>
     <researchPrerequisites>
       <li>VFEP_SpacerWarcaskets</li>
     </researchPrerequisites>
     <comps>
+      <li Class="CompProperties_ApparelReloadable">
+        <compClass>HemophageWarcasket.CompStrikePool</compClass>
+        <maxCharges>2</maxCharges>
+        <ammoDef>ComponentIndustrial</ammoDef>
+        <ammoCountPerCharge>1</ammoCountPerCharge>
+        <baseReloadTicks>60</baseReloadTicks>
+        <soundReload>Standard_Reload</soundReload>
+        <chargeNoun>strike</chargeNoun>
+      </li>
       <li Class="VEF.Abilities.CompProperties_AbilitiesApparel">
         <abilities>
           <li>HPWC_Dismember</li>

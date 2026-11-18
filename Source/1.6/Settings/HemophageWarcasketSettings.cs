@@ -18,13 +18,15 @@ namespace HemophageWarcasket;
 // and with none.
 //
 // The two ability sections write through def handles found by name (TryGetDefs), all or
-// nothing; the work section needs none of them and stands when they are missing. Each ability
-// section's header carries the ability's own icon, read off the def at draw time: VEF resolves
-// def.icon late in loading, and a play-data reload replaces the def and its texture together.
+// nothing, the pads' strike pool among them; the work section needs none of them and stands
+// when they are missing. Each ability section's header carries the ability's own icon, read off
+// the def at draw time: VEF resolves def.icon late in loading, and a play-data reload replaces
+// the def and its texture together.
 public partial class HemophageWarcasketSettings : ModSettings
 {
     private const string RushDefName = "HPWC_HemogenRush";
     private const string DismemberDefName = "HPWC_Dismember";
+    private const string PadsDefName = "HPWC_WarcasketShoulders_Hemophage";
 
     // The whitespace above every section header but the first, and below the last row.
     private const float SectionGap = 28f;
@@ -106,6 +108,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         ApplyRushToDefs(defs);
         ApplyDismemberToDefs(defs);
         Generation++;
+        TrimWornPads();
     }
 
     public void ResetToDefaults()
@@ -219,6 +222,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         public StatModifier rushMeleeDamage;
         public AbilityDef dismember;
         public DismemberExtension dismemberExtension;
+        public CompProperties_ApparelReloadable dismemberPool;
     }
 
     // All or nothing: with any target missing (another mod patched it away) the settings leave
@@ -239,14 +243,17 @@ public partial class HemophageWarcasketSettings : ModSettings
             rushMeleeDamage = stage?.statFactors?.Find(m => m.stat == StatDefOf.MeleeDamageFactor),
             dismember = dismember,
             dismemberExtension = dismember?.GetModExtension<DismemberExtension>(),
+            dismemberPool = DefDatabase<ThingDef>.GetNamedSilentFail(PadsDefName)?.GetCompProperties<CompProperties_ApparelReloadable>(),
         };
+        // The pool must reload per charge with an item, the mode the capacity and cost rows write.
+        bool poolFound = defs.dismemberPool is { ammoDef: not null, ammoCountToRefill: 0, ammoCountPerCharge: > 0 };
         if (defs.rushAbility != null && defs.rush != null && defs.rushMoveSpeed != null && defs.rushMeleeDamage != null
-            && defs.dismember != null && defs.dismemberExtension != null)
+            && defs.dismember != null && defs.dismemberExtension != null && poolFound)
         {
             return true;
         }
         if (!warned)
-            Log.Warning("[Hemophage Warcasket] Settings could not find the hemogen rush ability, its hediff's comp, single stage or move speed and melee damage factors, the Dismember ability or its extension; the abilities keep their XML values.");
+            Log.Warning("[Hemophage Warcasket] Settings could not find the hemogen rush ability, its hediff's comp, single stage or move speed and melee damage factors, the Dismember ability, its extension or the shoulders' per-charge reload comp; the abilities keep their XML values.");
         warned = true;
         return false;
     }

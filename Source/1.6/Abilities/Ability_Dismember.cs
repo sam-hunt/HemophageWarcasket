@@ -40,10 +40,18 @@ namespace HemophageWarcasket;
 // its icons from it. A strike that destroyed nothing takes its entry back out, as the rule pack
 // has no line without a part.
 //
-// The mod settings write onto the def. VEF reads the cast time and cooldown off it per cast,
-// but a running cooldown is stored as an end tick, so it is capped to the new length on the
-// next gizmo request (ReconcileSettings, keyed on the settings generation): VEF's cooldown
-// overlay would otherwise overflow the button.
+// The limit is the strikes loaded in the pads: a vanilla reloadable (CompStrikePool) on the
+// piece that grants the ability (holder), one spent by every cast, landed or not, as a vanilla
+// reloadable's verb spends its own. With none left the button is disabled on vanilla's own
+// line for an empty reloadable, and the tooltip's last line names what a strike costs to
+// reload, which the def's text cannot, the cost being a mod setting. A piece patched to carry
+// no pool has no such limit.
+//
+// The mod settings write onto the defs. VEF reads the cast time and cooldown off the ability's
+// per cast, but a running cooldown is stored as an end tick, so it is capped to the new length
+// on the next gizmo request (ReconcileSettings, keyed on the settings generation): VEF's
+// cooldown overlay would otherwise overflow the button. The same request drops the cached
+// reload line; strikes over a lowered capacity are the pool's own business.
 public class Ability_Dismember : Ability
 {
     // "Unlimited" as a finite number so VEF's range arithmetic and ring drawing stay sane.
@@ -56,11 +64,22 @@ public class Ability_Dismember : Ability
     private int settingsGeneration = -1;
     private string incapableOfViolence;
     private string willKill;
+    private string noStrikes;
+    private string reloadLine;
 
     // Whether this cast's strike took its part off, read by the driver's drain toil.
     public bool StrikeLanded { get; private set; }
 
     private DismemberExtension Extension => extension ??= def.GetModExtension<DismemberExtension>();
+
+    private CompApparelReloadable Pool => holder?.TryGetComp<CompApparelReloadable>();
+
+    // "2 / 2", for the command's corner.
+    public string StrikesLabel => Pool?.LabelRemaining;
+
+    // "1 component", "2 components", "2 strikes": a count of something by its label.
+    internal static string Counted(string label, int count) =>
+        count + " " + Find.ActiveLanguageWorker.Pluralize(label, count);
 
     // Whether the pilot's rejections go to the player's log; a non-player pilot's are not.
     private bool ReportsToPlayer => pawn?.Faction == Faction.OfPlayer;
@@ -82,6 +101,8 @@ public class Ability_Dismember : Ability
         extension = null;
         incapableOfViolence = null;
         willKill = null;
+        noStrikes = null;
+        reloadLine = null;
     }
 
     // VEF asks every frame the pilot is selected, so the reason is cached.
@@ -94,7 +115,22 @@ public class Ability_Dismember : Ability
             reason = incapableOfViolence ??= "IsIncapableOfViolence".Translate(pawn.LabelShort, pawn);
             return false;
         }
+        if (Pool is { RemainingCharges: <= 0 } pool)
+        {
+            reason = noStrikes ??= "CommandReload_NoCharges".Translate(pool.Props.ChargeNounArgument);
+            return false;
+        }
         return true;
+    }
+
+    // VEF's tooltip, then what a strike costs to reload.
+    public override string GetDescriptionForPawn()
+    {
+        string description = base.GetDescriptionForPawn();
+        if (Pool?.Props is not { ammoDef: not null } pool)
+            return description;
+        reloadLine ??= "HPWC_DismemberReload".Translate(Counted(pool.ammoDef.label, pool.ammoCountPerCharge));
+        return description + "\n\n" + reloadLine;
     }
 
     public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
@@ -132,13 +168,14 @@ public class Ability_Dismember : Ability
         if (settingsGeneration == HemophageWarcasketSettings.Generation)
             return;
         settingsGeneration = HemophageWarcasketSettings.Generation;
+        reloadLine = null;
         int ceiling = Find.TickManager.TicksGame + GetCooldownForPawn();
         if (cooldown > ceiling)
             cooldown = ceiling;
     }
 
-    // The job's check toil, with the pilot in reach: still off cooldown and still a valid
-    // target. Nothing has been spent yet.
+    // The job's check toil, with the pilot in reach: still off cooldown, a strike still loaded
+    // and still a valid target. Nothing has been spent yet.
     public bool CheckBeforeWarmup(Pawn target)
     {
         if (!IsEnabledForPawn(out string reason))
@@ -210,7 +247,11 @@ public class Ability_Dismember : Ability
     public override void Cast(params GlobalTargetInfo[] targets)
     {
         base.Cast(targets);
-        StrikeLanded = targets.Length > 0 && targets[0].Thing is Pawn target && Strike(target);
+        StrikeLanded = false;
+        if (targets.Length == 0 || targets[0].Thing is not Pawn target)
+            return;
+        Pool?.UsedOnce();
+        StrikeLanded = Strike(target);
     }
 
     private bool Strike(Pawn target)

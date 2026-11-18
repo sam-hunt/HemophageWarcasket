@@ -5,7 +5,9 @@ using AbilityDef = VEF.Abilities.AbilityDef;
 
 namespace HemophageWarcasket;
 
-// Dismember section: the pads' strike and drain. On the HPWC_Dismember AbilityDef the cooldown
+// Dismember section: the pads' strike pool, strike and drain. On the pads'
+// CompProperties_ApparelReloadable the capacity overrides maxCharges and the reload cost
+// ammoCountPerCharge, vanilla's reload fields. On the HPWC_Dismember AbilityDef the cooldown
 // overrides cooldownTime (stored in game hours, ticks on the def) and the windup castTime (real
 // seconds, ticks on the def). On its DismemberExtension the drain time overrides drainTicks
 // (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the game shows), the blood
@@ -14,9 +16,14 @@ namespace HemophageWarcasket;
 // header carries the ability's icon and tooltip.
 //
 // Every field is read per cast, so a write needs nothing of the live abilities but the running
-// cooldown, which each caps on its next gizmo request (Ability_Dismember.ReconcileSettings).
+// cooldown, which each caps on its next gizmo request (Ability_Dismember.ReconcileSettings),
+// and nothing of the live pads but the strikes over a lowered capacity, trimmed off the worn
+// ones at once (TrimWornPads) and off any other when it is next worn or loaded (CompStrikePool).
 public partial class HemophageWarcasketSettings
 {
+    public readonly Tunable dismemberStrikes = new("DismemberStrikes", 1f, 10f, 1f, Whole);
+    public readonly Tunable dismemberReloadCost = new("DismemberReloadCost", 1f, 10f, 1f, Whole);
+
     public readonly Tunable dismemberCooldown = new("DismemberCooldown", 0f, CooldownMax, 0.25f, Period)
     {
         StepBands = CooldownBands,
@@ -46,8 +53,14 @@ public partial class HemophageWarcasketSettings
     private AbilityDef dismemberDef;
     private string dismemberTip;
 
+    // The reload item and the pool's charge noun, for the summary.
+    private ThingDef dismemberAmmo;
+    private string dismemberNoun;
+
     private void ExposeDismemberSettings()
     {
+        dismemberStrikes.ExposeData();
+        dismemberReloadCost.ExposeData();
         dismemberCooldown.ExposeData();
         dismemberWindup.ExposeData();
         dismemberDrainTime.ExposeData();
@@ -61,6 +74,11 @@ public partial class HemophageWarcasketSettings
     private void LoadDismemberDefaults(Defs defs)
     {
         DismemberExtension ext = defs.dismemberExtension;
+        dismemberAmmo = defs.dismemberPool.ammoDef;
+        dismemberNoun = defs.dismemberPool.chargeNoun;
+        dismemberStrikes.DefaultValue = defs.dismemberPool.maxCharges;
+        dismemberReloadCost.DefaultValue = defs.dismemberPool.ammoCountPerCharge;
+        dismemberReloadCost.DescArgs = [Find.ActiveLanguageWorker.Pluralize(dismemberAmmo.label)];
         dismemberCooldown.DefaultValue = (float)defs.dismember.cooldownTime / GenDate.TicksPerHour;
         dismemberWindup.DefaultValue = (float)defs.dismember.castTime / GenTicks.TicksPerRealSecond;
         dismemberDrainTime.DefaultValue = (float)ext.drainTicks / GenTicks.TicksPerRealSecond;
@@ -76,6 +94,8 @@ public partial class HemophageWarcasketSettings
     private void ApplyDismemberToDefs(Defs defs)
     {
         DismemberExtension ext = defs.dismemberExtension;
+        defs.dismemberPool.maxCharges = Mathf.Max(1, dismemberStrikes.IntValue);
+        defs.dismemberPool.ammoCountPerCharge = Mathf.Max(1, dismemberReloadCost.IntValue);
         defs.dismember.cooldownTime = Mathf.RoundToInt(dismemberCooldown.Value * GenDate.TicksPerHour);
         defs.dismember.castTime = Mathf.RoundToInt(dismemberWindup.Value * GenTicks.TicksPerRealSecond);
         ext.drainTicks = Mathf.Max(1, Mathf.RoundToInt(dismemberDrainTime.Value * GenTicks.TicksPerRealSecond));
@@ -88,6 +108,8 @@ public partial class HemophageWarcasketSettings
 
     private void ResetDismemberSettings()
     {
+        dismemberStrikes.Reset();
+        dismemberReloadCost.Reset();
         dismemberCooldown.Reset();
         dismemberWindup.Reset();
         dismemberDrainTime.Reset();
@@ -102,8 +124,10 @@ public partial class HemophageWarcasketSettings
     {
         SectionHeader(listing, "HPWC_SectionDismember", dismemberDef.icon, dismemberTip);
         SummaryRow(listing, DismemberSummary);
-        dismemberCooldown.DoRow(listing);
+        dismemberStrikes.DoRow(listing);
+        dismemberReloadCost.DoRow(listing);
         dismemberWindup.DoRow(listing);
+        dismemberCooldown.DoRow(listing);
         dismemberDrainTime.DoRow(listing);
         dismemberGain.DoRow(listing);
         dismemberBloodLoss.DoRow(listing);
@@ -112,9 +136,10 @@ public partial class HemophageWarcasketSettings
         dismemberBehead.DoRow(listing);
     }
 
-    // What the section's rows amount to, a sentence for the strike and one for the drain. Each
-    // has a variant for its slider at zero (no cooldown, no drain), and every combination is a
-    // key of its own so no language has to join two sentences. All take the same arguments.
+    // What the section's rows amount to: a sentence for the strikes held and what each costs to
+    // reload, one for the strike and the drain, one for the cooldown. The last two have a
+    // variant for their slider at zero (no drain, no cooldown), and every combination is a key
+    // of its own so no language has to join two sentences. All take the same arguments.
     private string DismemberSummary()
     {
         bool cooldown = dismemberCooldown.Value > 0f;
@@ -123,6 +148,23 @@ public partial class HemophageWarcasketSettings
             ? drain ? "HPWC_DismemberSummary" : "HPWC_DismemberSummaryNoDrain"
             : drain ? "HPWC_DismemberSummaryNoCooldown" : "HPWC_DismemberSummaryNoCooldownNoDrain";
         return key.Translate(RealSeconds(dismemberWindup.Value), Period(dismemberCooldown.Value),
-            RealSeconds(dismemberDrainTime.Value), Whole(dismemberGain.Value), Percent(dismemberBloodLoss.Value));
+            RealSeconds(dismemberDrainTime.Value), Whole(dismemberGain.Value), Percent(dismemberBloodLoss.Value),
+            Ability_Dismember.Counted(dismemberNoun, dismemberStrikes.IntValue),
+            Ability_Dismember.Counted(dismemberAmmo.label, dismemberReloadCost.IntValue));
+    }
+
+    // Strikes over a lowered capacity come off the worn pads at once, before a pilot's next
+    // reload can meet them (CompStrikePool has why).
+    private static void TrimWornPads()
+    {
+        if (Current.ProgramState != ProgramState.Playing)
+            return;
+        foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive)
+        {
+            if (pawn.apparel == null)
+                continue;
+            foreach (Apparel apparel in pawn.apparel.WornApparel)
+                apparel.TryGetComp<CompStrikePool>()?.Trim();
+        }
     }
 }

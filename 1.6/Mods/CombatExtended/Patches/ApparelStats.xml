@@ -23,7 +23,8 @@
     guard against a second patch producing a duplicate node.
   - Costs on CE's spacer rescale: plasteel x1.5 and two more spacer components on the armor
     and helmet (the armor's 145 / 6 to 225 / 8; the helmet's 60 / 2 to 90 / 4; shoulders 60
-    to 90). Uranium is not touched, as CE leaves VFEP's.
+    to 90). Uranium is not touched, as CE leaves VFEP's, nor the shoulders' components,
+    their module's price and its first fill.
   Nothing here concerns hemogen: what CE changes about sanguophages and the hemogenic genes
   is unscanned until the set's mechanics land (TODOs.md), and each one's CE answer goes in a
   file of its own beside this one.

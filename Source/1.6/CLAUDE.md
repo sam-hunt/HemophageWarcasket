@@ -7,11 +7,12 @@ comments cover install-path detection, the compile-only VFEP/VEF references (`VF
 
 The code so far is the armor's hemogen rush, its toggle (`Abilities/`), the hediff comp that
 runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
-patch), the pads' Dismember, its ability, part picker and job driver (`Abilities/`), then the
-pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`) and the
-settings window (`Settings/`), with a section for each ability and one for the work. Several
-rules below are the family's, written down before the code they govern so the next ability or
-comp lands in the right shape; each names the sibling file to copy from rather than restating it.
+patch), the pads' Dismember, its ability, command, part picker and job driver (`Abilities/`) and
+strike pool (`Comps/`), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors
+it (`Startup.cs`) and the settings window (`Settings/`), with a section for each ability and one
+for the work. Several rules below are the family's, written down before the code they govern so
+the next ability or comp lands in the right shape; each names the sibling file to copy from
+rather than restating it.
 
 - **Patch classes live in `Patches/`** under the `.Patches` namespace suffix, to avoid RimWorld
   type-name conflicts. Log with the `[Hemophage Warcasket]` prefix.
@@ -37,7 +38,14 @@ comp lands in the right shape; each names the sibling file to copy from rather t
   that needs a code path gets a def field first (`glowPulses`, `canTargetNonHostile`) and the
   code reads the field. What a write leaves stale on a live ability (a running cooldown) is
   caught up by the instance on its next gizmo request, keyed on
-  `HemophageWarcasketSettings.Generation` (`Ability_Dismember`).
+  `HemophageWarcasketSettings.Generation` (`Ability_Dismember`); what it leaves stale on a
+  worn piece (strikes over a lowered capacity) the settings trim themselves.
+- **A stocked ability's charges are a vanilla `CompApparelReloadable` on the piece that grants
+  it**, in per-charge mode and without verbs, read off the ability's `holder`; the def's
+  `gizmoClass` names a command that returns the count as `TopRightLabel`. The pads' pool,
+  `Ability_Dismember` and `Command_Dismember` are the model, after the Medic repo's shot. A
+  capacity the settings can lower needs the comp subclassed to stay within it
+  (`Comps/CompStrikePool.cs`): vanilla's reload throws on a count over the maximum.
 - **A switch an XML patch reads is a restart-time setting**, read through a
   `PatchOperationSetting` (the Overlord repo's `Source/1.6/PatchOperations/`) while the patches
   apply; its row carries the restart suffix and the settings code writes nothing for it.

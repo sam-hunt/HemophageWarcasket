@@ -4,6 +4,8 @@
   <!-- Dismember (Source/1.6/Abilities/Ability_Dismember.cs). {0} is the target -->
   <HPWC_DismemberNoLimbs>{0} has no limbs to tear off.</HPWC_DismemberNoLimbs>
   <HPWC_DismemberNotHostile>{0} is not hostile.</HPWC_DismemberNotHostile>
+  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
+  <HPWC_DismemberReload>Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}.</HPWC_DismemberReload>
 
   <!-- Mod settings (Source/1.6/Settings/) -->
   <HPWC_SettingsCategory>Hemophage Warcasket</HPWC_SettingsCategory>
@@ -42,11 +44,18 @@
   <!-- Dismember section (Source/1.6/Settings/Settings_Dismember.cs) -->
   <HPWC_SectionDismember>Dismember</HPWC_SectionDismember>
 
-  <HPWC_DismemberCooldown>Cooldown</HPWC_DismemberCooldown>
-  <HPWC_DismemberCooldownDesc>The time the pilot must wait between strikes. Default: {0}.</HPWC_DismemberCooldownDesc>
+  <HPWC_DismemberStrikes>Strike capacity</HPWC_DismemberStrikes>
+  <HPWC_DismemberStrikesDesc>The number of strikes the shoulders hold when full. Default: {0}.</HPWC_DismemberStrikesDesc>
+
+  <!-- {1} is the reload item in the plural, such as "components" -->
+  <HPWC_DismemberReloadCost>Reload cost per strike</HPWC_DismemberReloadCost>
+  <HPWC_DismemberReloadCostDesc>The number of {1} it takes to reload one strike. Default: {0}.</HPWC_DismemberReloadCostDesc>
 
   <HPWC_DismemberWindup>Casting time</HPWC_DismemberWindup>
   <HPWC_DismemberWindupDesc>How long the pilot holds the target still before tearing off an arm or a leg. Default: {0}.</HPWC_DismemberWindupDesc>
+
+  <HPWC_DismemberCooldown>Cooldown</HPWC_DismemberCooldown>
+  <HPWC_DismemberCooldownDesc>The time the pilot must wait between strikes. Default: {0}.</HPWC_DismemberCooldownDesc>
 
   <HPWC_DismemberDrainTime>Drain time</HPWC_DismemberDrainTime>
   <HPWC_DismemberDrainTimeDesc>How long a hemogenic pilot spends draining hemogen from a human target. The pilot will gain the same hemogen however long it takes, and less if the drain is cut short. Default: {0}.</HPWC_DismemberDrainTimeDesc>
@@ -66,11 +75,11 @@
   <HPWC_DismemberBehead>Behead limbless creatures</HPWC_DismemberBehead>
   <HPWC_DismemberBeheadDesc>When enabled, a creature that never had arms or legs, such as a snake or a centipede, will lose its head instead, which kills it. When disabled, such creatures cannot be targeted. Default: {0}.</HPWC_DismemberBeheadDesc>
 
-  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage. One key per combination of a cooldown and a drain -->
-  <HPWC_DismemberSummary>The strike takes {0} to cast. A hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}.</HPWC_DismemberSummary>
-  <HPWC_DismemberSummaryNoCooldown>The strike takes {0} to cast. A hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldown>
-  <HPWC_DismemberSummaryNoDrain>The strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}.</HPWC_DismemberSummaryNoDrain>
-  <HPWC_DismemberSummaryNoCooldownNoDrain>The strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldownNoDrain>
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
+  <HPWC_DismemberSummary>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}.</HPWC_DismemberSummary>
+  <HPWC_DismemberSummaryNoCooldown>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldown>
+  <HPWC_DismemberSummaryNoDrain>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}.</HPWC_DismemberSummaryNoDrain>
+  <HPWC_DismemberSummaryNoCooldownNoDrain>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldownNoDrain>
 
   <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
   <HPWC_SectionWork>Enabled work types</HPWC_SectionWork>
