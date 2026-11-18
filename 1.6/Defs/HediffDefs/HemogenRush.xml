@@ -21,8 +21,10 @@
 
     Glow: every worn piece of the set draws its glow sprite while the pilot has this hediff
     (the pieces' renderNodeProperties). forceRenderTreeRecache makes the game rebuild the
-    pilot's graphics when it is added or removed. glowPulse is a heartbeat, two peaks a beat
-    over a floor of 0.4 so the glow never goes out, one beat a second at normal speed.
+    pilot's graphics when it is added or removed. glowPulse is a heartbeat, two dips a beat
+    from full strength, never below 0.25 so the glow never goes out, one beat a second at
+    normal speed. It rests at full strength, the strength portraits and the zoomed-out pawn
+    cache bake.
 
     defaultLabelColor is the drug highs'.
   -->
@@ -43,12 +45,12 @@
         <glowPulseTicks>60</glowPulseTicks>
         <glowPulse>
           <points>
-            <li>(0, 0.4)</li>
-            <li>(0.08, 1)</li>
-            <li>(0.2, 0.5)</li>
-            <li>(0.3, 0.85)</li>
-            <li>(0.5, 0.4)</li>
-            <li>(1, 0.4)</li>
+            <li>(0, 1)</li>
+            <li>(0.1, 0.25)</li>
+            <li>(0.24, 0.85)</li>
+            <li>(0.36, 0.4)</li>
+            <li>(0.6, 1)</li>
+            <li>(1, 1)</li>
           </points>
         </glowPulse>
       </li>
