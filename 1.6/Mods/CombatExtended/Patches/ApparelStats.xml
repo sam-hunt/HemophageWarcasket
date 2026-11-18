@@ -3,8 +3,8 @@
   Combat Extended parity for the three pieces. CE reads ArmorRating_Sharp as millimetres of
   RHA and ArmorRating_Blunt as megapascals and rescales nothing it has not patched by defName
   (its apparel autopatcher is off by default and matches no multi-layer warcasket preset), so
-  the main tree's 2 / 1 is, under CE, its flak jacket. CE's own VFE Pirates patch
-  (ModPatches/Vanilla Factions Expanded - Pirates/.../Apparel_Warcaskets_Spacer.xml) reaches
+  the main tree's 2 / 1 is, under CE, its flak jacket. CE's own VFE Pirates patch (CE 16.7.4,
+  ModPatches/Vanilla Factions Expanded - Pirates/.../Apparel_Warcaskets_Spacer.xml) reaches
   only VFEP's defNames; from its base-class patches ours inherit Flammability 0.25 and the
   helmet and shoulder PartialArmorExt alone. The main tree is the tier's baseline, the
   Sarcophagus's row (the armor def's header), and every number here is the one that file gives
@@ -21,13 +21,14 @@
     ToxicResistance; immuneToToxGasExposure and NightVisionEfficiency_Apparel 0.75 are what CE
     gives every sealed spacer helmet. The tox immunity is added only when absent, CE's own
     guard against a second patch producing a duplicate node.
-  - Costs on CE's spacer rescale: plasteel x1.5 and two more spacer components on the armor
-    and helmet (the armor's 145 / 6 to 225 / 8; the helmet's 60 / 2 to 90 / 4; shoulders 60
-    to 90). Uranium is not touched, as CE leaves VFEP's, nor the shoulders' components,
-    their module's price and its first fill.
-  Nothing here concerns hemogen: what CE changes about sanguophages and the hemogenic genes
-  is unscanned until the set's mechanics land (TODOs.md), and each one's CE answer goes in a
-  file of its own beside this one.
+  - Costs as CE reprices the Sarcophagus's: plasteel and spacer components of 145 / 6 to
+    225 / 8 on the armor and 60 / 2 to 90 / 4 on the helmet, plasteel 60 to 90 on the
+    shoulders. Uranium is not touched, as CE leaves VFEP's, nor the shoulders' components,
+    their module's price and its first fill: CE has no one rule for a pad's components,
+    taking the Controller's 2 to 1 and the Brute's 4 to 6.
+  Nothing here concerns the set's abilities: what CE changes about the rush's buff,
+  Dismember's strike and reload and the hemogenic genes is unscanned (TODOs.md), and each
+  one's CE answer goes in a file of its own beside this one.
   Patches in this root apply before the main tree's and the VGE root's; none of the three
   touch the same nodes. Tests/1.6/CompatPatchTests.cs checks every xpath here against the
   main tree.

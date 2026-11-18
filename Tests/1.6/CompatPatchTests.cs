@@ -71,4 +71,30 @@ public class CompatPatchTests
             Assert.True(hits == expected, $"{relativePath}: {xpath} resolved {hits} node(s), expected {expected}");
         }
     }
+
+    // The game loads one XML file per load-root-relative path per mod: DirectXmlLoader.
+    // XmlAssetsInModFolder keys every Defs/ and Patches/ file by that path and keeps the
+    // later-listed root's (1.6 and 1.7), so a Patches/<File>.xml of the same name in two roots
+    // silently loses one of them. Checked per game version, over the roots LoadFolders.xml lists.
+    [Fact]
+    public void NoTwoLoadRoots_ShareADefOrPatchPath()
+    {
+        var loadFolders = XDocument.Load(Path.Combine(RepoRoot, "LoadFolders.xml"));
+        foreach (var version in loadFolders.Root!.Elements())
+        {
+            var roots = version.Elements("li").Select(li => li.Value.Trim().Trim('/')).ToList();
+            Assert.NotEmpty(roots);
+            var shared = roots
+                .SelectMany(root => new[] { "Defs", "Patches" }
+                    .Select(folder => Path.Combine(RepoRoot, root, folder))
+                    .Where(Directory.Exists)
+                    .SelectMany(dir => Directory.EnumerateFiles(dir, "*.xml", SearchOption.AllDirectories))
+                    .Select(file => (root, path: file.Substring(Path.Combine(RepoRoot, root).TrimEnd(Path.DirectorySeparatorChar).Length + 1).Replace('\\', '/'))))
+                .GroupBy(f => f.path, StringComparer.Ordinal)
+                .Where(g => g.Count() > 1)
+                .Select(g => $"{g.Key} in {string.Join(" and ", g.Select(f => f.root.Length == 0 ? "/" : f.root))}")
+                .ToList();
+            Assert.True(shared.Count == 0, $"{version.Name.LocalName}: load roots share {string.Join("; ", shared)}");
+        }
+    }
 }

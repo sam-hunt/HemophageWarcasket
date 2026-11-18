@@ -86,6 +86,10 @@ manifest globs, so new files and subfolders need no build change.
   (`DefInjected/<Type>/<File>.xml`, `Keyed/<File>.xml`): the game dedups per mod by that path and
   silently skips one whole file. Suffix the filename with the gate's name
   (`Apparel_VanillaGravshipExpanded.xml`).
+- **No two load roots share a root-relative path under `Patches/` or `Defs/`**
+  (`Patches/ApparelStats.xml` in two compat roots): the game loads one XML file per such path
+  per mod, the later-listed root's, and silently drops the other (`DirectXmlLoader.
+  XmlAssetsInModFolder`, 1.6 and 1.7). `Tests/1.6/CompatPatchTests.cs` fails on a shared path.
 - **A compat art variant goes at the main tree's exact texture path** inside the gated root, not
   under a new name behind a patch. A later-listed load folder wins a shared path, so the gated
   root stays below `/` in `LoadFolders.xml`.

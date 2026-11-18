@@ -86,7 +86,8 @@ while the build stays green. The first holds the work trait's rule: which work t
 settings may open, their defaults, and the tags and types a choice writes. The second holds
 which part a Dismember strike destroys, the third the settings sliders' arithmetic.
 `CompatPatchTests` resolves every xpath in `1.6/Mods/*/Patches/` and the SOS2 patch against the
-main-tree defs, the only check a gated root gets short of a boot with that mod active;
+main-tree defs, the only check a gated root gets short of a boot with that mod active, and
+fails on two load roots sharing a patch or def path;
 `SetShapeTests` holds each piece's declared graphics to files that exist under `Textures/` (a
 missing one is a pink box in game and an error nowhere) and the descriptions to their shared
 paragraphs; `RulePackTests` holds each combat log rule pack to the symbols its log entry

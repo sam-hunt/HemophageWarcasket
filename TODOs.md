@@ -53,8 +53,12 @@
   - `.steamworkshop/CLAUDE.md` is byte-identical across the siblings, still uses Medic examples, and contradicts itself on bolded bullet leads.
   - `Docs/Research/` is the Shipcracker-era copy, pinned to an older VFEP commit than v4.03.
   - I changed CONTRIBUTING's "Build instructions are in README.md" to point at `CLAUDE.md` here; the siblings still carry the wrong line.
-- **CE compat scan for any relevant changes they make to sanguophage/hemogenic mechanics**
-- **CE/VGE/SOS2 compat** Check each of the family patches are in good order here
+  - The load-root path rule in `1.6/CLAUDE.md` (no two roots share a `Patches/` or `Defs/` path) and its test in `CompatPatchTests` are here only; the template and the siblings have neither.
+- **CE compat scan for any relevant changes they make to sanguophage/hemogenic mechanics** The stat patch is checked against CE 16.7.4 and leaves these open:
+  - The pads' strike pool is a `CompApparelReloadable`, which CE's prefix on the reload job and its "Reload worn armor" button both reach (the Overlord repo's `1.6/Mods/CombatExtended/CLAUDE.md` has what each does).
+  - Dismember's armorless damage and the rush's stat factors under CE's melee and armor rules.
+  - CE's own patch folders for Biotech and for Vanilla Races Expanded - Sanguophage.
+  - The pads' spacer components, which CE reprices by no one rule (`ApparelStats.xml`'s header).
 - **Workshop gallery** Add images, Medic/Overlord as precendent
 - **Optimize images** Run the `../MOD_DOWNLOAD_SIZE_TRIM.md` pass before the first release.
 - **Smoke test on 1.6**
