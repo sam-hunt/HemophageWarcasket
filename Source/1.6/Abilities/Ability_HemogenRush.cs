@@ -22,8 +22,9 @@ public class Ability_HemogenRush : Ability
     // A toggle has nothing to autocast; VEF offers it to any one-target ability.
     public override bool CanAutoCast => false;
 
-    // VEF also shows gizmos on caravan members, where a rush could not run.
-    public override bool ShowGizmoOnPawn() => base.ShowGizmoOnPawn() && pawn.Drafted;
+    // Drafted or not (the def's showUndrafted). VEF also shows gizmos on caravan members,
+    // where a rush could not run.
+    public override bool ShowGizmoOnPawn() => base.ShowGizmoOnPawn() && pawn.Spawned;
 
     // VEF runs Init again when the apparel changes wearer.
     public override void Init()

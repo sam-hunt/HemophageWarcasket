@@ -69,9 +69,11 @@ public class HediffComp_HemogenRush : HediffComp
         Pawn pawn = Pawn;
         // GetFirstGeneOfType skips an inactive gene.
         Gene_Hemogen hemogen = pawn.genes?.GetFirstGeneOfType<Gene_Hemogen>();
-        // The toggle only shows on a drafted pilot, so a player's rush must not outlast the draft.
-        bool undrafted = pawn.Faction?.IsPlayer == true && !pawn.Drafted;
-        if (hemogen?.CanOffset != true || pawn.Downed || undrafted || !WearsArmor(pawn))
+        // The toggle shows while VEF counts the pilot as player controlled, so a player's rush
+        // must not outlast that: it would drain through a mental break or a caravan trip with
+        // no way to switch it off. Undrafting is not among them.
+        bool uncontrolled = pawn.Faction?.IsPlayer == true && !pawn.IsColonistPlayerControlled;
+        if (hemogen?.CanOffset != true || pawn.Downed || uncontrolled || !WearsArmor(pawn))
         {
             ended = true;
             return;

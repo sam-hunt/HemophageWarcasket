@@ -5,8 +5,8 @@
 - **A first look at the set in game** Nobody has welded a pawn in yet: check that the foundry lists the three pieces after spacer warcaskets research, that the picked color paints the plating while the red parts stay red, on the worn pieces and the icons alike, and how the pads draw against the helmet's horns from each facing (Overlord's pads needed a south offset under its helmet).
 - **Torso**
   - **Hemogen rush: first look in game** Built, and so far only compiled and unit tested. Check:
-    - The toggle shows on a drafted pilot only, and is disabled with Biotech's reason for a pilot who is not hemogenic or has no hemogen.
-    - The drain (2 per second), hemogen craving at zero, and the rush ending when the pilot is undrafted, downed or starts a deathrest.
+    - The toggle shows on a pilot drafted or not, and is disabled with Biotech's reason for a pilot who is not hemogenic or has no hemogen.
+    - The drain (2 per second), hemogen craving at zero, the rush carrying on through drafting and undrafting, and ending when the pilot is downed, starts a deathrest, has a mental break or leaves the map.
     - The glow on all three pieces from each facing, with the back of the helmet dark and nothing drawn over by the next piece.
     - The look: the tint and shader (`TransparentPostLight`, `(1, 0.2, 0.15)`), the heartbeat at speeds 1 to 3, and the steady glow zoomed out and in the colonist bar portrait.
     - The buff's numbers in play, and whether melee cooldown should join them (the hediff def's header).

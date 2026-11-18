@@ -14,9 +14,10 @@
     100 lasts 50 seconds and one hemogen pack buys 10. hemogenReserve 0 runs the pilot dry,
     which starts hemogen craving as any other way of reaching zero does.
 
-    Ends when toggled off, at the reserve, when the pilot is downed, undrafted (player pawns),
-    no longer hemogenic or out of the armor (HediffComp_HemogenRush), on death and at the start
-    of a deathrest.
+    Ends when toggled off, at the reserve, when the pilot is downed, no longer hemogenic, out
+    of the armor or, for a player's pilot, out of the player's control (a mental break, leaving
+    the map), all in HediffComp_HemogenRush, on death and at the start of a deathrest. Drafting
+    and undrafting leave it running.
 
     Glow: every worn piece of the set draws its glow sprite while the pilot has this hediff
     (the pieces' renderNodeProperties). forceRenderTreeRecache makes the game rebuild the
