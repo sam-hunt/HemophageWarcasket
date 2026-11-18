@@ -11,7 +11,7 @@
   - **Work trait and its settings: first look in game** Built, and so far compiled, unit tested and booted to the menu without errors. Check:
     - An entombed pilot's Bio tab shows the warcasket trait once, with VFEP's pain and rest effects, and the work tab leaves research (and dark study with Anomaly) assignable beside what every warcasket pilot can do.
     - The pilot can hack and gains Intellectual skill, and removal surgery leaves VFEP's shellcasket trait as on any other set.
-    - The settings window: the "Enabled work types" rows, their tooltips and the summary line, and that ticking a row (smithing, say) opens it for a pilot already entombed while the other skilled labor stays blocked.
+    - The settings window: the "Enabled work types" grid in three columns with each box left of its name, the names fitting their cells, a drag painting one state across the cells it crosses, each cell's tooltip and the summary line, and that ticking a cell (smithing, say) opens it for a pilot already entombed while the other skilled labor stays blocked.
     - With "Warcaskets can work!" or Hardworking Warcaskets active, the section reads that nothing is blocked.
 - **Shoulders**
   - **Dismember: first look in game** Built, and so far only compiled and unit tested. Check:
@@ -22,23 +22,17 @@
     - The drain, for a hemogenic pilot on a human: the 4 second bar with Bloodfeed's sound and splash, the target held throughout, about 20 hemogen gained and 0.45 blood loss on the target, and an early end when the pilot is full. A pilot without the gene, an animal or a mechanoid gets the strike alone.
     - A non-hostile target: the goodwill cost on a visitor's faction (vanilla's maximum for one hit, 130), guilt for a prisoner or colonist.
     - The numbers in play: the cooldown, the windup, and about 5 seconds of holding one enemy still.
-  - **Beheading a body built without limbs** Off (`decapitateBodiesWithoutLimbs` on the ability def), so centipedes, diaboli, war queens and most Anomaly entities are invalid targets; on, one use kills them outright. Decide whether that is wanted at all.
   - **Raiders never use it** VEF fires no apparel ability for a non-player pawn. The Medic repo's `CompMedicAI` is the model if raider pilots should, though the Tuning item may drop the raider tags first.
   - **Combat Extended aim height** CE keeps a per-pawn melee aim height (`CompMeleeTargettingGizmo.heightInt`, public). With CE active the strike could take a leg for low and an arm for middle instead of a random limb. Belongs with the CE compat scan.
 - **Helmet**
   - grants resistance/immunity to sunlight sensitivity
   - has maxed out sharp/blunt/heat armor (2.0?)
   - maybe speeds up deathrest a little bit?
-- **Mod settings for each ability**
-  - The settings window is in with its work section; each ability gets a section of its own (`Source/1.6/CLAUDE.md` has the shape and where the slider class comes from).
-  - **Hemogen rush drain rate** A slider over the hemogen spent per second: 0.25 steps from 0 to 5, then 0.5 steps from 5 to 10. Default is the def's 2 per second.
-  - **Hemogen rush reserve** A slider over the hemogen level at which the rush stops on its own, so a pilot can keep some back and avoid hemogen craving. Default 0, where the rush runs the pilot dry.
-  - **Dismember cooldown** A slider over the ability def's `cooldownTime`, in game hours. Default 1 hour. The strongest lever: the strike cannot fail, so this is its only limit.
-  - **Dismember hemogen gain** A slider over `hemogenGain`, the hemogen a full drain gives. Default 20, Bloodfeed's. At 0 there is no drain.
-  - **Dismember drain time** A slider over `drainTicks`, in seconds. Default 4. It is also how long the target is held.
-  - **Dismember blood loss** A slider over `targetBloodLoss`, the blood loss a full drain adds to the target. Default 45%, Bloodfeed's. At 0 a drained prisoner only bleeds from the stump.
-  - **Dismember beheads bodies without limbs** A switch over `decapitateBodiesWithoutLimbs`, if the item under Shoulders decides it should exist. Default off.
-  - Later, if asked for: the windup (`castTime`), and a switch to refuse non-hostile targets.
+- **Ability settings: first look in game** Both sections are built, and so far only compiled and unit tested. Check:
+  - Each section's header shows its ability's icon and tooltip, every value fits its column with the "(default)" suffix, and the summaries read right at the defaults and with the drain, the cooldown and the hemogen gain at zero.
+  - A change takes hold when the window closes: the drain, reserve and move speed on a rush already running, a cooldown in progress cut to a lowered setting, and "Pulsing glow" off holding the glow steady at full brightness.
+  - "Allow non-hostile targets" off: the cross over a colonist, a prisoner, a visitor and a tame animal, and "is not hostile" on the click. "Behead limbless creatures" on: "Will kill" over a centipede, which dies to one strike.
+  - With every setting untouched, the abilities play as before the settings existed.
 - **Tuning** The three pieces are the 10th generation's baseline (VFEP's Sarcophagus row less its medicine and bionics; the def headers argue each number). Settle the set's own stats and costs as the mechanics land, then mirror them into the CE patch.
   - Raider gear: the pieces carry the tier's `WarcasketVeteran` / `WarcasketAll` tags, so VFEP's veteran raiders can roll them. Probably drop them, and patch/finalize VFEP's fill-in, similar to Overlord?
 - **VRE Sanguophage Integration**
