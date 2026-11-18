@@ -21,6 +21,10 @@ public class DismemberExtension : DefModExtension
 
     public float bloodFilthRadius;
 
+    // Whether a pawn that is not hostile to the pilot (a colonist, a prisoner, a visitor, a
+    // tame or wild animal) can be targeted.
+    public bool canTargetNonHostile = true;
+
     // Whether a body that was built without any limbs (a centipede) loses its head. A body
     // that has lost its limbs always does.
     public bool decapitateBodiesWithoutLimbs;

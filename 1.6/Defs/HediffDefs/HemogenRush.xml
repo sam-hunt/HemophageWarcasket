@@ -25,7 +25,10 @@
     pilot's graphics when it is added or removed. glowPulse is a heartbeat, two dips a beat
     from full strength, never below 0.25 so the glow never goes out, one beat a second at
     normal speed. It rests at full strength, the strength portraits and the zoomed-out pawn
-    cache bake.
+    cache bake, and the strength the glow holds with glowPulses off.
+
+    The mod settings override hemogenPerSecond, hemogenReserve, glowPulses and the two
+    statFactors (Source/1.6/Settings/Settings_Rush.cs).
 
     defaultLabelColor is the drug highs'.
   -->
@@ -43,6 +46,7 @@
         <hemogenPerSecond>0.02</hemogenPerSecond>
         <hemogenReserve>0</hemogenReserve>
         <armor>HPWC_Warcasket_Hemophage</armor>
+        <glowPulses>true</glowPulses>
         <glowPulseTicks>60</glowPulseTicks>
         <glowPulse>
           <points>

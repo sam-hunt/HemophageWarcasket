@@ -3,19 +3,80 @@
 
   <!-- Dismember (Source/1.6/Abilities/Ability_Dismember.cs). {0} is the target -->
   <HPWC_DismemberNoLimbs>{0} has no limbs to tear off.</HPWC_DismemberNoLimbs>
+  <HPWC_DismemberNotHostile>{0} is not hostile.</HPWC_DismemberNotHostile>
 
   <!-- Mod settings (Source/1.6/Settings/) -->
   <HPWC_SettingsCategory>Hemophage Warcasket</HPWC_SettingsCategory>
+  <!-- Shown in place of the two ability sections (HemophageWarcasketSettings.TryGetDefs) -->
+  <HPWC_SettingsUnavailable>The ability settings are unavailable. Another mod has changed the hemophage warcasket, so its abilities will keep their built-in values.</HPWC_SettingsUnavailable>
 
+  <!-- After a slider's value while it is unset -->
+  <HPWC_DefaultSuffix> (default)</HPWC_DefaultSuffix>
   <!-- A checkbox's default in its tooltip -->
   <HPWC_Enabled>enabled</HPWC_Enabled>
   <HPWC_Disabled>disabled</HPWC_Disabled>
 
-  <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The rows are the game's own work types -->
+  <!-- Hemogen rush section (Source/1.6/Settings/Settings_Rush.cs). {0} in every tooltip is the default -->
+  <HPWC_SectionRush>Hemogen rush</HPWC_SectionRush>
+
+  <HPWC_RushDrain>Hemogen per second</HPWC_RushDrain>
+  <HPWC_RushDrainDesc>The amount of hemogen the pilot spends each second while the rush is running. Default: {0}.</HPWC_RushDrainDesc>
+
+  <HPWC_RushReserve>Hemogen reserve</HPWC_RushReserve>
+  <HPWC_RushReserveDesc>The hemogen level at which the rush will stop on its own. At zero, it will run until the pilot has no hemogen left and develops a hemogen craving. Default: {0}.</HPWC_RushReserveDesc>
+
+  <HPWC_RushMoveSpeed>Move speed</HPWC_RushMoveSpeed>
+  <HPWC_RushMoveSpeedDesc>The pilot's move speed during a hemogen rush, compared to normal. Default: {0}.</HPWC_RushMoveSpeedDesc>
+
+  <HPWC_RushMeleeDamage>Melee damage</HPWC_RushMeleeDamage>
+  <HPWC_RushMeleeDamageDesc>How much damage the pilot's melee attacks will do during a hemogen rush, compared to normal. Default: {0}.</HPWC_RushMeleeDamageDesc>
+
+  <HPWC_RushGlowPulse>Pulsing glow</HPWC_RushGlowPulse>
+  <HPWC_RushGlowPulseDesc>When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}.</HPWC_RushGlowPulseDesc>
+
+  <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages -->
+  <HPWC_RushSummary>A hemogen rush spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage.</HPWC_RushSummary>
+  <!-- {0} and {1} are the percentages -->
+  <HPWC_RushSummaryFree>A hemogen rush spends no hemogen, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage.</HPWC_RushSummaryFree>
+
+  <!-- Dismember section (Source/1.6/Settings/Settings_Dismember.cs) -->
+  <HPWC_SectionDismember>Dismember</HPWC_SectionDismember>
+
+  <HPWC_DismemberCooldown>Cooldown</HPWC_DismemberCooldown>
+  <HPWC_DismemberCooldownDesc>The time the pilot must wait between strikes. Default: {0}.</HPWC_DismemberCooldownDesc>
+
+  <HPWC_DismemberWindup>Casting time</HPWC_DismemberWindup>
+  <HPWC_DismemberWindupDesc>How long the pilot holds the target still before tearing off an arm or a leg. Default: {0}.</HPWC_DismemberWindupDesc>
+
+  <HPWC_DismemberDrainTime>Drain time</HPWC_DismemberDrainTime>
+  <HPWC_DismemberDrainTimeDesc>How long a hemogenic pilot spends draining hemogen from a human target. The pilot will gain the same hemogen however long it takes, and less if the drain is cut short. Default: {0}.</HPWC_DismemberDrainTimeDesc>
+
+  <HPWC_DismemberGain>Base hemogen gain</HPWC_DismemberGain>
+  <HPWC_DismemberGainDesc>The hemogen the pilot gains from a full drain, more from a larger target and less from a child. At zero, the pilot will not drain the target. Default: {0}.</HPWC_DismemberGainDesc>
+
+  <HPWC_DismemberBloodLoss>Blood loss</HPWC_DismemberBloodLoss>
+  <HPWC_DismemberBloodLossDesc>The blood loss a full drain causes in the target, on top of the bleeding from the lost limb. Default: {0}.</HPWC_DismemberBloodLossDesc>
+
+  <HPWC_DismemberSpatter>Blood spatter</HPWC_DismemberSpatter>
+  <HPWC_DismemberSpatterDesc>The number of blood spatters a strike will leave on the ground around the target. Default: {0}.</HPWC_DismemberSpatterDesc>
+
+  <HPWC_DismemberNonHostile>Allow non-hostile targets</HPWC_DismemberNonHostile>
+  <HPWC_DismemberNonHostileDesc>When enabled, the pilot will be able to dismember targets that are not hostile, such as colonists, prisoners, visitors and wild or tame animals. When disabled, only hostile targets can be dismembered. Default: {0}.</HPWC_DismemberNonHostileDesc>
+
+  <HPWC_DismemberBehead>Behead limbless creatures</HPWC_DismemberBehead>
+  <HPWC_DismemberBeheadDesc>When enabled, a creature that never had arms or legs, such as a snake or a centipede, will lose its head instead, which kills it. When disabled, such creatures cannot be targeted. Default: {0}.</HPWC_DismemberBeheadDesc>
+
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage. One key per combination of a cooldown and a drain -->
+  <HPWC_DismemberSummary>The strike takes {0} to cast. A hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}.</HPWC_DismemberSummary>
+  <HPWC_DismemberSummaryNoCooldown>The strike takes {0} to cast. A hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldown>
+  <HPWC_DismemberSummaryNoDrain>The strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}.</HPWC_DismemberSummaryNoDrain>
+  <HPWC_DismemberSummaryNoCooldownNoDrain>The strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldownNoDrain>
+
+  <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
   <HPWC_SectionWork>Enabled work types</HPWC_SectionWork>
-  <HPWC_SectionWorkDesc>The work a hemophage pilot can do, out of the work types that warcasket pilots normally cannot. If another mod opens a work type for all warcaskets, it will be open here too.</HPWC_SectionWorkDesc>
+  <HPWC_SectionWorkDesc>The work types a pilot of the hemophage warcasket can do, out of those that warcasket pilots normally cannot. Work that another mod opens for all warcasket pilots will stay open.</HPWC_SectionWorkDesc>
   <!-- {0} is HPWC_Enabled or HPWC_Disabled -->
-  <HPWC_WorkDesc>When enabled, hemophage pilots can do this work, though you will need to assign it in the work tab. When disabled, they cannot. Default: {0}.</HPWC_WorkDesc>
+  <HPWC_WorkDesc>When enabled, pilots of the hemophage warcasket can do this work, though you will need to assign it in the work tab. When disabled, they cannot. Default: {0}.</HPWC_WorkDesc>
   <!-- {0} is a list of work types as the work tab names them -->
   <HPWC_WorkSummary>The pilot can do {0} work, as well as the work that all warcasket pilots can do.</HPWC_WorkSummary>
   <HPWC_WorkSummaryNone>The pilot can only do the work that all warcasket pilots can do.</HPWC_WorkSummaryNone>

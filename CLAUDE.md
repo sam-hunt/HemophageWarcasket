@@ -32,9 +32,9 @@ believe ..."), the way Biotech tells its own sanguophage lore, and never as sett
 **State: two mechanics in, not yet released.** The three pieces are in on the tier's baseline
 stats and costs with their commissioned art, and the SOS2, VGE and CE patches mirror that
 baseline. The armor's hemogen rush is built, with its glow on all three pieces, and so are the
-pads' Dismember, the pilot's own work trait and the settings window, whose one section is the
-pilot's work. The helmet's mechanic and the abilities' settings are not, and the descriptions
-and the player-facing pages still speak of the helmet's as a first cut written to the design
+pads' Dismember, the pilot's own work trait and the settings window, with a section for each
+ability and one for the pilot's work. The helmet's mechanic is not, and the descriptions
+and the player-facing pages still speak of it as a first cut written to the design
 direction, ahead of the code. `TODOs.md` is the ledger. The sibling repos (same author, same VFEP base) are the
 worked precedents for everything not here yet: `../ToxinWarcasket/` for a toggled ability, a
 gauge and the Biotech dependency, `../ShipcrackerWarcasket/` for render-tree graphics and a
@@ -76,21 +76,22 @@ failing build back to the agent. **Warnings are build errors** (`TreatWarningsAs
 severities pinned in `.editorconfig`): fix the code, not the severity.
 
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
-Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Three
-files read only the repo's XML and art, so they run anywhere; `WorkProfileTests` and
-`DismemberTargetTests` build bare game defs and so need the game's real 1.6 runtime DLLs
+Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Four
+files read only the repo's XML and art, so they run anywhere; `WorkProfileTests`,
+`DismemberTargetTests` and `TunableTests` run game code and so need the game's real 1.6 runtime DLLs
 (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
 `~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup), failing without them
 while the build stays green. The first holds the work trait's rule: which work types the
 settings may open, their defaults, and the tags and types a choice writes. The second holds
-which part a Dismember strike destroys.
+which part a Dismember strike destroys, the third the settings sliders' arithmetic.
 `CompatPatchTests` resolves every xpath in
 `1.6/Mods/*/Patches/` and the SOS2 patch against the main-tree defs, the only check a gated root
 gets short of a boot with that mod active; `SetShapeTests` holds each piece's declared graphics
 to files that exist under `Textures/` (a missing one is a pink box in game and an error
 nowhere) and the descriptions to their shared paragraphs; `RulePackTests` holds each combat log
 rule pack to the symbols its log entry supplies (an unknown one is an error only when the line
-is first written in game).
+is first written in game); `SettingsTargetTests` holds the ability defs to the fields the
+settings write (a missing one drops both ability sections from the window with one warning).
 
 ## Layout
 

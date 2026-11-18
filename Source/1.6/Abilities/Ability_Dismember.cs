@@ -11,8 +11,8 @@ namespace HemophageWarcasket;
 // The shoulder pads' active: the pilot walks to a target pawn, holds it through the def's
 // warmup, tears off one of its limbs (DismemberTarget decides which) and, for a hemogenic pilot
 // on a humanlike target, holds it a few seconds more and drains hemogen from it
-// (JobDriver_Dismember). Any pawn may be targeted, hostile or not; vanilla's damage bookkeeping
-// carries the consequences.
+// (JobDriver_Dismember). Any pawn may be targeted, hostile or not unless the def's extension
+// refuses the latter; vanilla's damage bookkeeping carries the consequences.
 //
 // The job is ordered through Pawn_JobTracker.TryTakeOrderedJob, not VEF's StartAbilityJob, so a
 // click interrupts like a vanilla order and the queue key appends (1.6); the driver binds
@@ -39,6 +39,11 @@ namespace HemophageWarcasket;
 // part from the damage result afterward. The log entry def is required, since the entry reads
 // its icons from it. A strike that destroyed nothing takes its entry back out, as the rule pack
 // has no line without a part.
+//
+// The mod settings write onto the def. VEF reads the cast time and cooldown off it per cast,
+// but a running cooldown is stored as an end tick, so it is capped to the new length on the
+// next gizmo request (ReconcileSettings, keyed on the settings generation): VEF's cooldown
+// overlay would otherwise overflow the button.
 public class Ability_Dismember : Ability
 {
     // "Unlimited" as a finite number so VEF's range arithmetic and ring drawing stay sane.
@@ -48,6 +53,7 @@ public class Ability_Dismember : Ability
     private const int StunRefreshTicks = 5;
 
     private DismemberExtension extension;
+    private int settingsGeneration = -1;
     private string incapableOfViolence;
     private string willKill;
 
@@ -97,11 +103,38 @@ public class Ability_Dismember : Ability
             return false;
         if (target.Thing is not Pawn victim || victim == pawn || !victim.Spawned || victim.Dead)
             return false;
-        if (DismemberTarget.CanStrike(victim, Extension, out _))
+        string rejection = null;
+        if (RefusedAsNonHostile(victim))
+            rejection = "HPWC_DismemberNotHostile";
+        else if (!DismemberTarget.CanStrike(victim, Extension, out _))
+            rejection = "HPWC_DismemberNoLimbs";
+        if (rejection == null)
             return true;
         if (showMessages)
-            Messages.Message("HPWC_DismemberNoLimbs".Translate(victim.LabelShortCap), victim, MessageTypeDefOf.RejectInput, historical: false);
+            Messages.Message(rejection.Translate(victim.LabelShortCap), victim, MessageTypeDefOf.RejectInput, historical: false);
         return false;
+    }
+
+    // GenHostility counts a manhunter, a prison breaker and a predator hunting the pilot as
+    // hostile (1.6 and 1.7).
+    private bool RefusedAsNonHostile(Pawn victim) =>
+        !Extension.canTargetNonHostile && pawn != null && !victim.HostileTo(pawn);
+
+    public override Gizmo GetGizmo()
+    {
+        ReconcileSettings();
+        return base.GetGizmo();
+    }
+
+    // Once per settings write.
+    private void ReconcileSettings()
+    {
+        if (settingsGeneration == HemophageWarcasketSettings.Generation)
+            return;
+        settingsGeneration = HemophageWarcasketSettings.Generation;
+        int ceiling = Find.TickManager.TicksGame + GetCooldownForPawn();
+        if (cooldown > ceiling)
+            cooldown = ceiling;
     }
 
     // The job's check toil, with the pilot in reach: still off cooldown and still a valid
@@ -142,7 +175,7 @@ public class Ability_Dismember : Ability
     // Biotech's warning, when the strike on the hovered pawn would take its head.
     public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
     {
-        if (target.Thing is not Pawn victim || victim == pawn || !victim.Spawned || victim.Dead)
+        if (target.Thing is not Pawn victim || victim == pawn || !victim.Spawned || victim.Dead || RefusedAsNonHostile(victim))
             return null;
         if (DismemberTarget.CanStrike(victim, Extension, out bool decapitates) && decapitates)
             return willKill ??= "WillKill".Translate();

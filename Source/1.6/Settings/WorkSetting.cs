@@ -18,11 +18,6 @@ public sealed class WorkSetting
 {
     private const string Key = "Work";
 
-    // The default's word in the tooltip, in the colours of the box's states: pure green for
-    // the tick, vanilla's readable red for the cross.
-    private static readonly Color EnabledColor = Color.green;
-    private static readonly Color DisabledColor = ColorLibrary.RedReadable;
-
     private Dictionary<string, bool> overrides = [];
 
     public bool IsOpen(WorkTypeDef work) =>
@@ -55,9 +50,9 @@ public sealed class WorkSetting
 
     private void DoRow(Listing_Standard listing, WorkTypeDef work)
     {
-        Rect row = listing.GetRect(HemophageWarcasketSettings.RowHeight);
-        row.xMin += HemophageWarcasketSettings.RowIndent;
-        row.xMax -= HemophageWarcasketSettings.RowEndPad;
+        Rect row = listing.GetRect(Tunable.RowHeight);
+        row.xMin += Tunable.RowIndent;
+        row.xMax -= Tunable.RowEndPad;
         Widgets.DrawHighlightIfMouseover(row);
         bool byDefault = WorkProfile.OpenByDefault(work);
         TooltipHandler.TipRegion(row, Tooltip(work, byDefault));
@@ -68,17 +63,14 @@ public sealed class WorkSetting
             overrides.Remove(work.defName);
         else
             overrides[work.defName] = open;
-        listing.Gap(HemophageWarcasketSettings.RowGap);
+        listing.Gap(Tunable.RowGap);
     }
 
     // Resolved by hand: a TaggedString handed over as a string loses its tags (the implicit
     // conversion strips them), colour tags included.
     private static string Tooltip(WorkTypeDef work, bool byDefault)
     {
-        string state = byDefault
-            ? "HPWC_Enabled".Translate().Colorize(EnabledColor)
-            : "HPWC_Disabled".Translate().Colorize(DisabledColor);
-        string ours = "HPWC_WorkDesc".Translate(state).Resolve();
+        string ours = "HPWC_WorkDesc".Translate(ToggleSetting.StateWord(byDefault)).Resolve();
         return work.description.NullOrEmpty() ? ours : work.description + "\n\n" + ours;
     }
 }

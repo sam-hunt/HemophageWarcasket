@@ -8,7 +8,8 @@
 
     The strike destroys one whole arm or leg the target still has, at random, whatever its
     armor. A target that has lost them all loses its head. Any pawn with a limb can be
-    targeted, hostile or not, downed or not, mechanoids and animals included.
+    targeted, downed or not, mechanoids and animals included, and hostile or not while
+    canTargetNonHostile is true.
 
     Targeting: range is unset and requireLineOfSight off because the click is not range
     limited; the pilot walks to the target and the job enforces reach and sight at
@@ -32,6 +33,9 @@
     decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a
     centipede, a diabolus) an invalid target: beheading it would kill it outright on first
     use.
+
+    The mod settings override castTime, cooldownTime and every DismemberExtension field
+    (Source/1.6/Settings/Settings_Dismember.cs).
 
     showUndrafted as on the hemogen rush. No castSound: the damage plays its own impact, and
     the drain plays Bloodfeed's.
@@ -68,6 +72,7 @@
         <targetBloodLoss>0.4499</targetBloodLoss>
         <bloodFilthCount>6</bloodFilthCount>
         <bloodFilthRadius>2</bloodFilthRadius>
+        <canTargetNonHostile>true</canTargetNonHostile>
         <decapitateBodiesWithoutLimbs>false</decapitateBodiesWithoutLimbs>
       </li>
     </modExtensions>

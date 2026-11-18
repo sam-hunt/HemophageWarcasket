@@ -17,7 +17,9 @@ public class HediffCompProperties_HemogenRush : HediffCompProperties
     public ThingDef armor;
 
     // The glow's alpha over one beat (0..1 across glowPulseTicks game ticks), drawn by
-    // PawnRenderNodeWorker_HemogenGlow. Without a curve the glow is steady.
+    // PawnRenderNodeWorker_HemogenGlow. With glowPulses off, or without a curve, the glow is
+    // steady at full strength.
+    public bool glowPulses = true;
     public int glowPulseTicks;
     public SimpleCurve glowPulse;
 
@@ -25,7 +27,7 @@ public class HediffCompProperties_HemogenRush : HediffCompProperties
     // its low bits a few game years in.
     public float GlowAlpha(Pawn pawn)
     {
-        if (glowPulse == null || glowPulseTicks <= 0)
+        if (!glowPulses || glowPulse == null || glowPulseTicks <= 0)
             return 1f;
         int phase = pawn.HashOffsetTicks() % glowPulseTicks;
         if (phase < 0)
