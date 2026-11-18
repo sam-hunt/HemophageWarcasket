@@ -19,6 +19,16 @@
     share one mask and one glow sprite, shipped under both names because Graphic_Multi
     resolves each facing by its own file.
 
+    Draw order: drawData's south offset 0.014 puts the pads under the helmet facing south, as
+    the art wants the helmet's sides over the pauldron edges. A worn piece's altitude
+    is its drawData offset y plus 0.000366 per render layer (ApparelBody 20, ApparelHead 70,
+    plus the piece's index under that parent), so the base's 0.02 lands at about 0.028, just
+    over the helmets' 0.027, and 0.014 at about 0.022, under any helmet and still over the
+    shell's 0.018. Only this piece moves, so VFEP's helmets and armors mix with it as with
+    each other. The other facings inherit the base's offsets, since inheritance merges
+    drawData facing by facing, and the glow node takes its offset from the worn sprite, so
+    the vials' glow goes under the helmet with the pads.
+
     ApparelExtension priority 1, for the reason in the armor's header; Merge still ORs the
     base's isUnifiedApparel in. Any new ApparelExtension field for the pads goes on this
     entry.
@@ -71,6 +81,10 @@
       </bodyPartGroups>
       <wornGraphicPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageShoulders</wornGraphicPath>
       <useWornGraphicMask>true</useWornGraphicMask>
+      <!-- Under the helmet facing south; see "Draw order" in the header. -->
+      <drawData>
+        <dataSouth><offset>(0, 0.014, 0)</offset></dataSouth>
+      </drawData>
       <renderNodeProperties>
         <li>
           <debugLabel>HPWC_HemogenGlow</debugLabel>
