@@ -15,6 +15,12 @@ public class DismemberExtension : DefModExtension
     // BloodLoss severity a full drain adds to the target.
     public float targetBloodLoss;
 
+    // Blood filth a landed strike throws: this many pieces, each on a random cell within
+    // bloodFilthRadius of the target that it can see. Zero throws none.
+    public int bloodFilthCount;
+
+    public float bloodFilthRadius;
+
     // Whether a body that was built without any limbs (a centipede) loses its head. A body
     // that has lost its limbs always does.
     public bool decapitateBodiesWithoutLimbs;

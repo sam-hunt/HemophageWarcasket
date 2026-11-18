@@ -25,6 +25,10 @@
     spread over drainTicks 240 (4 s): hemogenGain 0.2 is Bloodfeed's 20 hemogen, scaled by
     the target's body size as a bite is, and targetBloodLoss 0.4499 is the blood loss a bite
     causes, on top of the stump's own bleeding. A drain cut short keeps what it collected.
+    bloodFilthCount 6 within bloodFilthRadius 2 is the spatter a landed strike throws: the
+    13 cells of a radius 2 disc, so about half of them catch some, a repeat on a cell
+    thickening it. The filth is the target's own blood, so a mechanoid throws machine bits
+    and a bloodless race nothing.
     decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a
     centipede, a diabolus) an invalid target: beheading it would kill it outright on first
     use.
@@ -62,6 +66,8 @@
         <drainTicks>240</drainTicks>
         <hemogenGain>0.2</hemogenGain>
         <targetBloodLoss>0.4499</targetBloodLoss>
+        <bloodFilthCount>6</bloodFilthCount>
+        <bloodFilthRadius>2</bloodFilthRadius>
         <decapitateBodiesWithoutLimbs>false</decapitateBodiesWithoutLimbs>
       </li>
     </modExtensions>

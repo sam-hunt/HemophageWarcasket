@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -193,13 +194,45 @@ public class Ability_Dismember : Ability
         var log = new BattleLogEntry_MeleeCombat(HPWC_DefOf.HPWC_Combat_Dismember, alwaysShowInCompact: true,
             pawn, target, implementType: null, toolLabel: null, def: LogEntryDefOf.MeleeAttack);
         Find.BattleLog.Add(log);
+        IntVec3 center = target.Position;
+        Map map = target.Map;
         DamageWorker.DamageResult result = target.TakeDamage(dinfo);
         bool landed = target.Dead || target.health.hediffSet.PartIsMissing(part);
         if (landed && !result.parts.NullOrEmpty())
             result.AssociateWithLog(log);
         else
             Find.BattleLog.RemoveEntry(log);
+        if (landed)
+            Spatter(target, center, map);
         return landed;
+    }
+
+    // Reused across casts; filled and read within one Spatter call.
+    private static readonly List<IntVec3> SpatterCells = [];
+
+    // Throws the extension's blood filth around where the target stood, the target's own blood
+    // as Pawn_HealthTracker.DropBloodFilth picks it (1.6), so a bloodless race throws none.
+    // TryMakeFilth reads its cell before any bounds check, hence the InBounds filter; the line
+    // of sight keeps the spatter off the far side of a wall. FilthMaker and GenSight are the
+    // same on 1.7.
+    private void Spatter(Pawn target, IntVec3 center, Map map)
+    {
+        DismemberExtension ext = Extension;
+        if (ext == null || ext.bloodFilthCount <= 0 || map == null)
+            return;
+        ThingDef blood = target.IsMutant ? target.mutant.Def.bloodDef ?? target.RaceProps.BloodDef : target.RaceProps.BloodDef;
+        if (blood == null)
+            return;
+        SpatterCells.Clear();
+        foreach (IntVec3 cell in GenRadial.RadialCellsAround(center, ext.bloodFilthRadius, useCenter: true))
+        {
+            if (cell.InBounds(map) && GenSight.LineOfSight(center, cell, map))
+                SpatterCells.Add(cell);
+        }
+        string source = target.LabelIndefinite();
+        for (int i = 0; i < ext.bloodFilthCount && SpatterCells.Count > 0; i++)
+            FilthMaker.TryMakeFilth(SpatterCells.RandomElement(), map, blood, source);
+        SpatterCells.Clear();
     }
 
     // Whether a drain can run or go on: the def sets one, the pilot has an active hemogen gene
