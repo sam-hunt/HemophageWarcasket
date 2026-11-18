@@ -11,9 +11,13 @@
       scales with what the warcasket's own move speed penalties leave.
     Melee cooldown is left alone: with the damage factor it would about double melee output.
 
-    Drain: hemogenPerSecond 0.02 is 2 hemogen a second on the scale the game shows, so a full
-    100 lasts 50 seconds and one hemogen pack buys 10. hemogenReserve 0 runs the pilot dry,
-    which starts hemogen craving as any other way of reaching zero does.
+    Drain: hemogenPerSecond 0.02 is 2 hemogen a second on the scale the game shows, and one
+    hemogen pack buys 10 seconds. hemogenStartCost 0.05 is 5 hemogen spent as the rush
+    starts, 2.5 seconds of the drain and about one melee swing, so switching the rush on for
+    each blow costs more than leaving it running. A full 100 lasts 47.5 seconds.
+    hemogenReserve 0 runs the pilot dry, which starts hemogen craving as any other way of
+    reaching zero does. The start cost never takes the pilot below the reserve: the toggle
+    is refused unless more than the cost is spare.
 
     Ends when toggled off, at the reserve, when the pilot is downed, asleep, no longer
     hemogenic, out of the armor or, for a player's pilot, out of the player's control (a mental
@@ -27,8 +31,8 @@
     normal speed. It rests at full strength, the strength portraits and the zoomed-out pawn
     cache bake, and the strength the glow holds with glowPulses off.
 
-    The mod settings override hemogenPerSecond, hemogenReserve, glowPulses and the two
-    statFactors (Source/1.6/Settings/Settings_Rush.cs).
+    The mod settings override hemogenStartCost, hemogenPerSecond, hemogenReserve, glowPulses
+    and the two statFactors (Source/1.6/Settings/Settings_Rush.cs).
 
     defaultLabelColor is the drug highs'.
   -->
@@ -43,6 +47,7 @@
     <forceRenderTreeRecache>true</forceRenderTreeRecache>
     <comps>
       <li Class="HemophageWarcasket.HediffCompProperties_HemogenRush">
+        <hemogenStartCost>0.05</hemogenStartCost>
         <hemogenPerSecond>0.02</hemogenPerSecond>
         <hemogenReserve>0</hemogenReserve>
         <armor>HPWC_Warcasket_Hemophage</armor>

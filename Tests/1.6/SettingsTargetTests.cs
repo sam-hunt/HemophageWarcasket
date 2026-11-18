@@ -47,7 +47,7 @@ public class SettingsTargetTests
         XElement def = Def("HediffDefs", "HemogenRush.xml", "HPWC_HemogenRush");
         XElement comp = def.Element("comps")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.HediffCompProperties_HemogenRush");
-        AssertHas(comp, "hemogenPerSecond", "hemogenReserve", "glowPulses");
+        AssertHas(comp, "hemogenStartCost", "hemogenPerSecond", "hemogenReserve", "glowPulses");
         XElement stage = def.Element("stages")!.Elements("li").Single();
         AssertHas(stage, "statFactors");
         AssertHas(stage.Element("statFactors")!, "MoveSpeed", "MeleeDamageFactor");

@@ -3,9 +3,9 @@
   <!--
     The armor's hemogen rush toggle, granted by its CompAbilitiesApparel. Ability_HemogenRush
     adds and removes the HPWC_HemogenRush hediff, which is the rush itself: its header has the
-    buff, the drain and what ends it. Instant and no cooldown: the pilot's hemogen is the
-    limiter. showUndrafted because a rush is as much use to an undrafted pilot fighting on
-    their own threat response as to a drafted one.
+    buff, the start cost, the drain and what ends it. Instant and no cooldown: the pilot's
+    hemogen is the limiter. showUndrafted because a rush is as much use to an undrafted pilot
+    fighting on their own threat response as to a drafted one.
   -->
   <VEF.Abilities.AbilityDef>
     <defName>HPWC_HemogenRush</defName>

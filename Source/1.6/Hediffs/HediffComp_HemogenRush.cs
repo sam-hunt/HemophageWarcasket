@@ -7,11 +7,18 @@ namespace HemophageWarcasket;
 // Values and their rationale are in the hediff def (1.6/Defs/HediffDefs/HemogenRush.xml).
 public class HediffCompProperties_HemogenRush : HediffCompProperties
 {
-    // Hemogen spent per second, on Biotech's 0..1 scale (the game shows 1 as 100).
+    // Hemogen spent once as the rush starts, on Biotech's 0..1 scale (the game shows 1 as 100).
+    public float hemogenStartCost;
+
+    // Hemogen spent per second, on the same scale.
     public float hemogenPerSecond;
 
     // Hemogen level, on the same scale, at which the rush stops on its own.
     public float hemogenReserve;
+
+    // Whether a pilot at this hemogen level can pay the start cost and have some left to run
+    // on, above the reserve.
+    public bool Affords(float hemogen) => hemogen - hemogenReserve > hemogenStartCost;
 
     // The apparel whose injectors run the rush, which ends once the pawn no longer wears it.
     public ThingDef armor;
@@ -39,8 +46,9 @@ public class HediffCompProperties_HemogenRush : HediffCompProperties
 }
 
 // The hemogen rush while it runs. The hediff's presence is the on state and its stage is the
-// buff; this comp spends the hemogen and ends the rush. Deathrest and death end it through the
-// def (removeOnDeathrestStart, HediffComp_DisappearsOnDeath).
+// buff; this comp spends the hemogen, the start cost as the hediff is added and the drain from
+// then on, and ends the rush. Deathrest and death end it through the def
+// (removeOnDeathrestStart, HediffComp_DisappearsOnDeath).
 //
 // Spending goes through GeneResourceDrainUtility.OffsetResource rather than
 // GeneUtility.OffsetHemogen: for a pawn without a hemogen drain gene the latter sets the value
@@ -64,6 +72,19 @@ public class HediffComp_HemogenRush : HediffComp
             float seconds = Mathf.Max(0f, hemogen.Value - Props.hemogenReserve) / Props.hemogenPerSecond;
             return Mathf.CeilToInt(seconds * GenTicks.TicksPerRealSecond).ToStringSecondsFromTicks("F0");
         }
+    }
+
+    // The start cost, down to the reserve at most. A loaded rush is not added again, so it
+    // pays once.
+    public override void CompPostPostAdd(DamageInfo? dinfo)
+    {
+        base.CompPostPostAdd(dinfo);
+        Gene_Hemogen hemogen = Pawn.genes?.GetFirstGeneOfType<Gene_Hemogen>();
+        if (hemogen?.CanOffset != true)
+            return;
+        float spend = Mathf.Min(Props.hemogenStartCost, hemogen.Value - Props.hemogenReserve);
+        if (spend > 0f)
+            GeneResourceDrainUtility.OffsetResource(hemogen, -spend);
     }
 
     public override void CompPostTickInterval(ref float severityAdjustment, int delta)
