@@ -86,11 +86,13 @@
   <HPWC_DismemberSummaryNoDrain>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}.</HPWC_DismemberSummaryNoDrain>
   <HPWC_DismemberSummaryNoCooldownNoDrain>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldownNoDrain>
 
-  <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in the tooltip is the default -->
+  <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in every tooltip is the default -->
   <HPWC_SectionHelmet>Helmet</HPWC_SectionHelmet>
-  <HPWC_SectionHelmetDesc>The sealed visor of the hemophage warcasket helmet, which keeps sunlight off a pilot who is sensitive to it.</HPWC_SectionHelmetDesc>
+  <HPWC_SectionHelmetDesc>The sealed visor of the hemophage warcasket helmet, which keeps sunlight off a pilot who is sensitive to it and steadies a pilot who is afraid of fire.</HPWC_SectionHelmetDesc>
   <HPWC_HelmetSunlight>Sunlight protection</HPWC_HelmetSunlight>
   <HPWC_HelmetSunlightDesc>When enabled, the helmet will protect a pilot with a UV sensitivity gene from the effects of sunlight. When disabled, sunlight will slow such a pilot and lower their mood as usual. Default: {0}.</HPWC_HelmetSunlightDesc>
+  <HPWC_HelmetPyrophobia>Fire terror chance</HPWC_HelmetPyrophobia>
+  <HPWC_HelmetPyrophobiaDesc>How often a pilot with the pyrophobia gene will flee in terror from a nearby fire, compared to the same pawn without the helmet. At 100%, the helmet will make no difference. At 0%, the pilot will never flee from fire. Default: {0}.</HPWC_HelmetPyrophobiaDesc>
 
   <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
   <HPWC_SectionWork>Enabled work types</HPWC_SectionWork>

@@ -20,7 +20,8 @@ spends hemogen quickly for a burst of speed and strength, with glowing parts on 
 of the set while it runs; the shoulder pads an ability that destroys a target's limb and, for a
 hemogenic pilot on a humanlike target, drains hemogen from it, on a small stock of strikes
 reloaded with components; the helmet protection from sunlight for a pilot with a sunlight
-sensitivity gene, and the set's heaviest plating. A pilot without the gene gets a plain spacer
+sensitivity gene, a steadier nerve near fire for one with the pyrophobia gene, and the set's
+heaviest plating. A pilot without the gene gets a plain spacer
 warcasket. Any pilot keeps intellectual work, which VFEP's warcaskets block.
 
 **Fiction: nobody's official program.** The siblings' sets come from pirates welding themselves
@@ -30,10 +31,11 @@ the nearly deathless harder still to destroy. Player-facing text tells it as rum
 believe ..."), the way Biotech tells its own sanguophage lore, and never as settled history.
 
 **State: all three mechanics in, not yet released.** The three pieces are in on the tier's
-baseline stats and costs with their commissioned art, but for the pads' cost, which pays for
-Dismember, and the helmet's plating and cost, and the SOS2, VGE and CE patches mirror them. The
-armor's hemogen rush is built, with its glow on all three pieces, and so are the pads'
-Dismember, the helmet's sunlight protection, the pilot's own work trait and the settings
+baseline stats and costs with their commissioned art, but for the heat plating and the
+devilstrand that pays for it, the pads' cost, which pays for Dismember, and the helmet's blunt
+plating and cost, and the SOS2, VGE and CE patches mirror them. The armor's hemogen rush is
+built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
+protection and pyrophobia relief, the pilot's own work trait and the settings
 window, with a section for each piece's mechanic and one for the pilot's work. The descriptions
 and the player-facing pages are first cuts still owed a full review. `TODOs.md` is the ledger.
 The sibling repos (same author, same VFEP base) are the worked precedents for everything not
@@ -92,8 +94,8 @@ fails on two load roots sharing a patch or def path;
 missing one is a pink box in game and an error nowhere) and the descriptions to their shared
 paragraphs; `RulePackTests` holds each combat log rule pack to the symbols its log entry
 supplies (an unknown one is an error only when the line is first written in game);
-`SettingsTargetTests` holds the ability defs, the pads' strike pool and the helmet's sunlight
-extension to the fields the settings write (a missing one drops those sections from the window
+`SettingsTargetTests` holds the ability defs, the pads' strike pool and the helmet's two
+extensions to the fields the settings write (a missing one drops those sections from the window
 with one warning).
 
 ## Layout

@@ -6,12 +6,13 @@
     tags, the text's shape and the masked tint follow the armor's header
     (Warcasket_Hemophage.xml).
 
-    Tuning: the tier's baseline, as on the armor. Mass 20, insulation 22 / 22,
-    SlaveSuppressionOffset 0.2 and VacuumResistance 0.1 are the same on all five of VFEP's
-    spacer sets; Plasteel 60 is four of the five's price, about 0.4 of the armor's as across
-    the tier. ComponentSpacer 2 pays for the pads' module, the Controller shoulders' price
-    for theirs, and ComponentIndustrial 2 is the pool's first fill, since a crafted piece
-    starts full. There is no offset beyond those two.
+    Tuning: the tier's baseline with the armor's Heat 1.5, as its header argues. Mass 20,
+    insulation 22 / 22, SlaveSuppressionOffset 0.2 and VacuumResistance 0.1 are the same on
+    all five of VFEP's spacer sets; Plasteel 60 is four of the five's price, about 0.4 of
+    the armor's as across the tier. ComponentSpacer 2 pays for the pads' module, the
+    Controller shoulders' price for theirs, and ComponentIndustrial 2 is the pool's first
+    fill, since a crafted piece starts full. DevilstrandCloth 25 is the heat plating's price
+    (the armor's header). There is no offset beyond those two.
 
     Dismember: the pads' module, an ability granted by the CompAbilitiesApparel below
     (AbilityDefs/Dismember.xml has it), limited by the strikes loaded in the reloadable
@@ -56,8 +57,8 @@
   <VFEPirates.WarcasketDef ParentName="VFEP_WarcasketShoulderPadBase">
     <defName>HPWC_WarcasketShoulders_Hemophage</defName>
     <label>hemophage warcasket shoulders</label>
-    <shortDescription>Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.</shortDescription>
-    <description>Specialized spacer-tech warcasket pauldrons with standard protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
+    <shortDescription>Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.</shortDescription>
+    <description>Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with siphon vials that drain hemogen from the wound after the pilot tears a limb off an enemy.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
     <graphicData>
       <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageShoulders</texPath>
       <shaderType>CutoutComplex</shaderType>
@@ -66,7 +67,7 @@
       <Mass>20</Mass>
       <ArmorRating_Sharp>2</ArmorRating_Sharp>
       <ArmorRating_Blunt>1</ArmorRating_Blunt>
-      <ArmorRating_Heat>1</ArmorRating_Heat>
+      <ArmorRating_Heat>1.5</ArmorRating_Heat>
       <Insulation_Cold>22</Insulation_Cold>
       <Insulation_Heat>22</Insulation_Heat>
       <EquipDelay>1</EquipDelay>
@@ -79,6 +80,7 @@
       <ComponentSpacer>2</ComponentSpacer>
       <Plasteel>60</Plasteel>
       <ComponentIndustrial>2</ComponentIndustrial>
+      <DevilstrandCloth>25</DevilstrandCloth>
     </costList>
     <researchPrerequisites>
       <li>VFEP_SpacerWarcaskets</li>

@@ -8,8 +8,8 @@ comments cover install-path detection, the compile-only VFEP/VEF references (`VF
 The code so far is the armor's hemogen rush, its toggle (`Abilities/`), the hediff comp that
 runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
 patch), the pads' Dismember, its ability, command, part picker and job driver (`Abilities/`) and
-strike pool (`Comps/`), the helmet's sunlight protection (`Sunlight/`, with its three patches),
-then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`) and
+strike pool (`Comps/`), the helmet's sunlight protection (`Sunlight/`, with its three patches)
+and pyrophobia relief (`Fire/`, with its one), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`) and
 the settings window (`Settings/`), with a section for each piece's mechanic and one for the
 work. Several rules below are the family's, written down before the code they govern so
 the next ability or comp lands in the right shape; each names the sibling file to copy from

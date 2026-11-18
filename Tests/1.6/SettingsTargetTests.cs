@@ -94,5 +94,8 @@ public class SettingsTargetTests
         XElement shield = helmet.Element("modExtensions")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.SunlightShieldExtension");
         AssertHas(shield, "blocksSunlight");
+        XElement relief = helmet.Element("modExtensions")!.Elements("li")
+            .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.PyrophobiaReliefExtension");
+        AssertHas(relief, "breakChanceFactor");
     }
 }

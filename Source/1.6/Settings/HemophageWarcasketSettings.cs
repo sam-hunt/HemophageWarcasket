@@ -231,6 +231,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         public CompProperties_ApparelReloadable dismemberPool;
         public ThingDef helmet;
         public SunlightShieldExtension helmetShield;
+        public PyrophobiaReliefExtension helmetPyrophobia;
     }
 
     // All or nothing: with any target missing (another mod patched it away) the settings leave
@@ -255,16 +256,17 @@ public partial class HemophageWarcasketSettings : ModSettings
             dismemberPool = DefDatabase<ThingDef>.GetNamedSilentFail(PadsDefName)?.GetCompProperties<CompProperties_ApparelReloadable>(),
             helmet = helmet,
             helmetShield = helmet?.GetModExtension<SunlightShieldExtension>(),
+            helmetPyrophobia = helmet?.GetModExtension<PyrophobiaReliefExtension>(),
         };
         // The pool must reload per charge with an item, the mode the capacity and cost rows write.
         bool poolFound = defs.dismemberPool is { ammoDef: not null, ammoCountToRefill: 0, ammoCountPerCharge: > 0 };
         if (defs.rushAbility != null && defs.rush != null && defs.rushMoveSpeed != null && defs.rushMeleeDamage != null
-            && defs.dismember != null && defs.dismemberExtension != null && poolFound && defs.helmetShield != null)
+            && defs.dismember != null && defs.dismemberExtension != null && poolFound && defs.helmetShield != null && defs.helmetPyrophobia != null)
         {
             return true;
         }
         if (!warned)
-            Log.Warning("[Hemophage Warcasket] Settings could not find the hemogen rush ability, its hediff's comp, single stage or move speed and melee damage factors, the Dismember ability, its extension, the shoulders' per-charge reload comp or the helmet's sunlight extension; the abilities and the helmet keep their XML values.");
+            Log.Warning("[Hemophage Warcasket] Settings could not find the hemogen rush ability, its hediff's comp, single stage or move speed and melee damage factors, the Dismember ability, its extension, the shoulders' per-charge reload comp or the helmet's sunlight and pyrophobia extensions; the abilities and the helmet keep their XML values.");
         warned = true;
         return false;
     }

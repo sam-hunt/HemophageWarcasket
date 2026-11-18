@@ -12,7 +12,7 @@
   set:
   - Plating 36 / 90 on armor and shoulders, and 32 / 86 on the helmet: its Blunt 1.5 in the
     main tree is the Guardian helmet's, so it takes that file's Guardian row where the
-    Sarcophagus's has 72. Heat is untouched, as in every CE patch, the helmet's 2 included.
+    Sarcophagus's has 72. Heat is untouched, as in every CE patch: 1.5, and the helmet's 2.
     Bulk / WornBulk 275 / 35, 15 / 5, 20 / 10.
   - CarryWeight +250 and CarryBulk +225 on the armor: CE charges a worn item's full Mass
     against a 40 kg CarryWeight, so without them the 78 kg set moves at half speed.
@@ -26,8 +26,8 @@
     guard against a second patch producing a duplicate node.
   - Costs as CE reprices the Sarcophagus's: plasteel and spacer components of 145 / 6 to
     225 / 8 on the armor, plasteel 60 to 90 on the shoulders. The helmet's 70 / 2 is the
-    Guardian helmet's price and goes where CE takes that, to 105 / 4; its devilstrand is
-    not touched, as CE leaves the Hazard's. The Sarcophagus's pads have no spacer
+    Guardian helmet's price and goes where CE takes that, to 105 / 4. No piece's devilstrand
+    is touched, as CE leaves the Hazard's. The Sarcophagus's pads have no spacer
     components and CE has no one rule for a pad's (the Controller's 2 go to 1, the Brute's
     4 to 6), so ours take the two more the armor and helmet do, 2 to 4. Uranium is not
     touched, as CE leaves VFEP's, nor the pads' industrial components, the strike pool's

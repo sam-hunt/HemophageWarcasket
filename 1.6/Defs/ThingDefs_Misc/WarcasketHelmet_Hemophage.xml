@@ -26,6 +26,14 @@
     is all or nothing because the genes' effects are: a factor and a thought that are either
     on or off. blocksSunlight is the settings' switch.
 
+    Pyrophobia: the PyrophobiaReliefExtension lets half of the fire terror breaks of
+    Biotech's FireTerror gene through (Source/1.6/Fire/PyrophobiaRelief.cs has the
+    mechanic), which doubles the gene's mean time near a fire from 0.1 days to 0.2, about
+    100 seconds at normal speed to about 200. The pilot is as afraid as ever and slower to
+    bolt, for being harder to burn. It sits on the helmet as the set's most fireproof piece
+    and beside the visor's other protection. breakChanceFactor is the settings' slider, down
+    to 0 for a pilot who never bolts.
+
     Art: the back of the helmet has no black-masked part, so its glow sprite for the _north
     facing is an empty image. Graphic_Multi fills a missing north facing from the south one,
     which would light the eyes on the back of the head. The glow node follows the armor's
@@ -42,8 +50,8 @@
   <VFEPirates.WarcasketDef ParentName="VFEP_WarcasketHelmetBase">
     <defName>HPWC_WarcasketHelmet_Hemophage</defName>
     <label>hemophage warcasket helmet</label>
-    <shortDescription>Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a sealed visor that shields the pilot from sunlight.</shortDescription>
-    <description>Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a sealed visor that shields the pilot from sunlight.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
+    <shortDescription>Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a sealed visor that shields the pilot from sunlight and calms their fear of fire.</shortDescription>
+    <description>Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a sealed visor that shields the pilot from sunlight and calms their fear of fire.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
     <graphicData>
       <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageHelmet</texPath>
       <shaderType>CutoutComplex</shaderType>
@@ -103,6 +111,9 @@
       </li>
       <li Class="HemophageWarcasket.SunlightShieldExtension">
         <blocksSunlight>true</blocksSunlight>
+      </li>
+      <li Class="HemophageWarcasket.PyrophobiaReliefExtension">
+        <breakChanceFactor>0.5</breakChanceFactor>
       </li>
     </modExtensions>
   </VFEPirates.WarcasketDef>

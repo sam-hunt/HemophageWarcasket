@@ -14,7 +14,7 @@ Armor, shoulder pads and helmet, welded at the warcasket foundry and unlocked by
 [list]
 [*][b]Armor:[/b] Spends the pilot's hemogen quickly to make them much faster and stronger for a short time
 [*][b]Shoulders:[/b] Tears a limb off an enemy, then drains hemogen from the wound. Holds two strikes and reloads with components
-[*][b]Helmet:[/b] Shields a pilot who is sensitive to sunlight, with the heaviest plating of the set against impacts and fire
+[*][b]Helmet:[/b] Shields a pilot who is sensitive to sunlight and steadies one who is afraid of fire, with the heaviest plating of the set
 [/list]
 Mod settings allow tuning both abilities.
 
