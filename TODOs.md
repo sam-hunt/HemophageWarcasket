@@ -58,7 +58,6 @@
   - The pads' strike pool is a `CompApparelReloadable`, which CE's prefix on the reload job and its "Reload worn armor" button both reach (the Overlord repo's `1.6/Mods/CombatExtended/CLAUDE.md` has what each does).
   - Dismember's armorless damage and the rush's stat factors under CE's melee and armor rules.
   - CE's own patch folders for Biotech and for Vanilla Races Expanded - Sanguophage.
-  - The pads' spacer components, which CE reprices by no one rule (`ApparelStats.xml`'s header).
 - **Workshop gallery** Add images, Medic/Overlord as precendent
 - **Optimize images** Run the `../MOD_DOWNLOAD_SIZE_TRIM.md` pass before the first release.
 - **Smoke test on 1.6**

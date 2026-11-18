@@ -23,9 +23,10 @@
     guard against a second patch producing a duplicate node.
   - Costs as CE reprices the Sarcophagus's: plasteel and spacer components of 145 / 6 to
     225 / 8 on the armor and 60 / 2 to 90 / 4 on the helmet, plasteel 60 to 90 on the
-    shoulders. Uranium is not touched, as CE leaves VFEP's, nor the shoulders' components,
-    their module's price and its first fill: CE has no one rule for a pad's components,
-    taking the Controller's 2 to 1 and the Brute's 4 to 6.
+    shoulders. The Sarcophagus's pads have no spacer components and CE has no one rule for
+    a pad's (the Controller's 2 go to 1, the Brute's 4 to 6), so ours take the two more the
+    armor and helmet do, 2 to 4. Uranium is not touched, as CE leaves VFEP's, nor the
+    pads' industrial components, the strike pool's first fill.
   Nothing here concerns the set's abilities: what CE changes about the rush's buff,
   Dismember's strike and reload and the hemogenic genes is unscanned (TODOs.md), and each
   one's CE answer goes in a file of its own beside this one.
@@ -106,6 +107,12 @@
     <xpath>Defs/VFEPirates.WarcasketDef[defName="HPWC_WarcasketShoulders_Hemophage"]/statBases/ArmorRating_Blunt</xpath>
     <value>
       <ArmorRating_Blunt>90</ArmorRating_Blunt>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/VFEPirates.WarcasketDef[defName="HPWC_WarcasketShoulders_Hemophage"]/costList/ComponentSpacer</xpath>
+    <value>
+      <ComponentSpacer>4</ComponentSpacer>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">
