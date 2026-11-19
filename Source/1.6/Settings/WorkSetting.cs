@@ -19,7 +19,7 @@ public sealed class WorkSetting
     private const string Key = "Work";
 
     // The grid: the cells of one row, a cell's height, its box and the padding around the box.
-    private const int GridColumns = 3;
+    private const int GridColumns = 4;
     private const float CellHeight = 28f;
     private const float BoxSize = 24f;
     private const float CellPad = 4f;
