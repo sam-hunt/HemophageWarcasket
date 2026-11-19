@@ -32,6 +32,15 @@ namespace HemophageWarcasket;
 // IncomingDamageFactor scale it first; instant kill protection would otherwise spare a
 // colonist's head.
 //
+// The goodwill is vanilla's price for any attack on a faction that is not hostile:
+// Faction.Notify_MemberTookDamage, reached from Pawn_HealthTracker.PreApplyDamage before armor,
+// takes 1.3 a point of damage up to 100 points, so at this amount every strike costs the most
+// one hit can, 130, and Faction.CalculateAdjustedGoodwillChange adds up to a quarter more
+// while relations stand above the faction's natural goodwill. One strike turns a neutral
+// faction hostile. AngeredFaction repeats that method's exemptions and
+// Faction.CanChangeGoodwillFor to say so beside the cursor before the click, in the words
+// vanilla warns of a harmful operation with (all the same on 1.6 and 1.7).
+//
 // TakeDamage writes no combat log line, so the strike writes its own the way
 // Verb_MeleeAttack.TryCastShot does (1.6; the entry's constructor and BattleLog.Add are the same
 // on 1.7): a BattleLogEntry_MeleeCombat on our rule pack goes into the battle log before the
@@ -63,7 +72,9 @@ public class Ability_Dismember : Ability
     private DismemberExtension extension;
     private int settingsGeneration = -1;
     private string incapableOfViolence;
-    private string willKill;
+    private Faction warnedFaction;
+    private bool warnedKill;
+    private string warning;
     private string noStrikes;
     private string reloadLine;
 
@@ -100,7 +111,9 @@ public class Ability_Dismember : Ability
         base.Init();
         extension = null;
         incapableOfViolence = null;
-        willKill = null;
+        warnedFaction = null;
+        warnedKill = false;
+        warning = null;
         noStrikes = null;
         reloadLine = null;
     }
@@ -209,14 +222,42 @@ public class Ability_Dismember : Ability
         return base.MouseAttachment(target);
     }
 
-    // Biotech's warning, when the strike on the hovered pawn would take its head.
+    // What the strike on the hovered pawn would cost, a line each as Bloodfeed stacks its own:
+    // Biotech's warning when it would take the head, then the faction it would anger. Asked
+    // every frame of the hover, so the text is kept until either answer changes.
     public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
     {
         if (target.Thing is not Pawn victim || victim == pawn || !victim.Spawned || victim.Dead || RefusedAsNonHostile(victim))
             return null;
-        if (DismemberTarget.CanStrike(victim, Extension, out bool decapitates) && decapitates)
-            return willKill ??= "WillKill".Translate();
-        return null;
+        if (!DismemberTarget.CanStrike(victim, Extension, out bool kills))
+            return null;
+        Faction angered = AngeredFaction(victim);
+        if (angered == warnedFaction && kills == warnedKill)
+            return warning;
+        warnedFaction = angered;
+        warnedKill = kills;
+        warning = kills ? "WillKill".Translate() : null;
+        if (angered != null)
+            warning = (warning == null ? "" : warning + "\n") + "HPWC_DismemberWillAnger".Translate(angered.Name);
+        return warning;
+    }
+
+    // The faction a strike on this pawn would cost the player goodwill with, or null (see the
+    // header). A faction set to turn hostile on any harm does so before vanilla looks at the
+    // exemptions.
+    private Faction AngeredFaction(Pawn victim)
+    {
+        Faction home = victim.HomeFaction;
+        if (home == null || home.IsPlayer || pawn?.Faction != Faction.OfPlayer || home.HostileTo(Faction.OfPlayer))
+            return null;
+        if (home.factionHostileOnHarmByPlayer)
+            return home;
+        if (victim.InAggroMentalState || victim.IsSlaveOfColony || victim.IsQuestHelper() || PrisonBreakUtility.IsPrisonBreaking(victim))
+            return null;
+        if (victim.InMentalState && victim.MentalStateDef.IsExtreme && victim.MentalStateDef.category == MentalStateCategory.Malicious
+            && home.PlayerRelationKind == FactionRelationKind.Ally)
+            return null;
+        return Faction.OfPlayer.CanChangeGoodwillFor(home, -1) ? home : null;
     }
 
     // Within the def's distanceToTarget with a clear line, the walk's own stopping rule.

@@ -4,6 +4,8 @@
   <!-- Dismember (Source/1.6/Abilities/Ability_Dismember.cs). {0} is the target -->
   <HPWC_DismemberNoLimbs>{0} has no limbs to tear off.</HPWC_DismemberNoLimbs>
   <HPWC_DismemberNotHostile>{0} is not hostile.</HPWC_DismemberNotHostile>
+  <!-- Beside the cursor over a target from a faction that is not hostile, under the game's own "Will kill" when both apply. {0} is the faction's name -->
+  <HPWC_DismemberWillAnger>Will anger {0}</HPWC_DismemberWillAnger>
   <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
   <HPWC_DismemberReload>Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}.</HPWC_DismemberReload>
 
@@ -75,7 +77,7 @@
   <HPWC_DismemberSpatterDesc>The number of blood spatters a strike will leave on the ground around the target. Default: {0}.</HPWC_DismemberSpatterDesc>
 
   <HPWC_DismemberNonHostile>Allow non-hostile targets</HPWC_DismemberNonHostile>
-  <HPWC_DismemberNonHostileDesc>When enabled, the pilot will be able to dismember targets that are not hostile, such as colonists, prisoners, visitors and wild or tame animals. When disabled, only hostile targets can be dismembered. Default: {0}.</HPWC_DismemberNonHostileDesc>
+  <HPWC_DismemberNonHostileDesc>When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}.</HPWC_DismemberNonHostileDesc>
 
   <HPWC_DismemberBehead>Behead limbless creatures</HPWC_DismemberBehead>
   <HPWC_DismemberBeheadDesc>When enabled, a creature that never had arms or legs, such as a snake or a centipede, will lose its head instead, which kills it. When disabled, such creatures cannot be targeted. Default: {0}.</HPWC_DismemberBeheadDesc>
