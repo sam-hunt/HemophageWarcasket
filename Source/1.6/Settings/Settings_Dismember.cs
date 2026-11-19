@@ -12,8 +12,9 @@ namespace HemophageWarcasket;
 // seconds, ticks on the def). On its DismemberExtension the drain time overrides drainTicks
 // (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the game shows), the blood
 // loss targetBloodLoss (percent), the spatter bloodFilthCount, and the two boxes
-// canTargetNonHostile and decapitateBodiesWithoutLimbs. bloodFilthRadius has no setting. The
-// header carries the ability's icon and tooltip.
+// canTargetNonHostile and decapitateBodiesWithoutLimbs. bloodFilthRadius and
+// decapitateWithoutLimbsMaxBodySize have no setting. The header carries the ability's icon and
+// tooltip.
 //
 // Every field is read per cast, so a write needs nothing of the live abilities but the running
 // cooldown, which each caps on its next gizmo request (Ability_Dismember.ReconcileSettings),

@@ -79,8 +79,8 @@
   <HPWC_DismemberNonHostile>Allow non-hostile targets</HPWC_DismemberNonHostile>
   <HPWC_DismemberNonHostileDesc>When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}.</HPWC_DismemberNonHostileDesc>
 
-  <HPWC_DismemberBehead>Behead limbless creatures</HPWC_DismemberBehead>
-  <HPWC_DismemberBeheadDesc>When enabled, a creature that never had arms or legs, such as a snake or a diabolus, will lose its head instead, which kills it. When disabled, such creatures cannot be targeted. Default: {0}.</HPWC_DismemberBeheadDesc>
+  <HPWC_DismemberBehead>Behead large limbless creatures</HPWC_DismemberBehead>
+  <HPWC_DismemberBeheadDesc>When enabled, a large creature that never had arms or legs, such as a diabolus, will lose its head instead, which kills it. When disabled, such creatures cannot be targeted. A small one, such as a snake, will always lose its head. Default: {0}.</HPWC_DismemberBeheadDesc>
 
   <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
   <HPWC_DismemberSummary>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}.</HPWC_DismemberSummary>

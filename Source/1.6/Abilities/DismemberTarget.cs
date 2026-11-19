@@ -23,9 +23,10 @@ namespace HemophageWarcasket;
 //
 // The strike takes a random limb that is not waiting, equal odds. With no limb left it takes
 // the head, when the body was built with limbs (walked from BodyDef.corePart, not read off the
-// pawn) or when the def says so; otherwise there is nothing to take. The head is the nearest
-// Outside, non-core ancestor-or-self of a not-missing ConsciousnessSource part (human: Brain,
-// Skull, Head); a brain directly in the core part has none.
+// pawn) or when the def says so, for every such body or for one this small (BeheadsWithoutLimbs);
+// otherwise there is nothing to take. The head is the nearest Outside, non-core
+// ancestor-or-self of a not-missing ConsciousnessSource part (human: Brain, Skull, Head); a
+// brain directly in the core part has none.
 //
 // A missing part's children carry missing hediffs of their own (Hediff_MissingPart adds them,
 // 1.6), so a not-missing part never sits under a missing one. CanStrike is asked by the
@@ -50,17 +51,22 @@ public static class DismemberTarget
             if (brain == null && HasTag(part, BodyPartTagDefOf.ConsciousnessSource))
                 brain = part;
         }
-        decapitates = HeadFor(body, brain) != null && (BuiltWithLimbs(body) || ext.decapitateBodiesWithoutLimbs);
+        decapitates = HeadFor(body, brain) != null && (BuiltWithLimbs(body) || BeheadsWithoutLimbs(target.BodySize, ext));
         return decapitates;
     }
 
     public static BodyPartRecord Choose(Pawn target, DismemberExtension ext, out bool decapitates) =>
         Choose(target.RaceProps.body, target.health.hediffSet.GetNotMissingParts(),
-            ext.decapitateBodiesWithoutLimbs, n => Rand.Range(0, n), out decapitates);
+            BeheadsWithoutLimbs(target.BodySize, ext), n => Rand.Range(0, n), out decapitates);
+
+    // Whether a body of this size that was built without limbs loses its head: the def's
+    // switch, or small enough for the def's size limit.
+    public static bool BeheadsWithoutLimbs(float bodySize, DismemberExtension ext) =>
+        ext.decapitateBodiesWithoutLimbs || bodySize <= ext.decapitateWithoutLimbsMaxBodySize;
 
     // pickIndex returns an index in [0, count).
     public static BodyPartRecord Choose(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
-        bool decapitateBodiesWithoutLimbs, Func<int, int> pickIndex, out bool decapitates)
+        bool beheadsWithoutLimbs, Func<int, int> pickIndex, out bool decapitates)
     {
         decapitates = false;
         var limbs = new List<BodyPartRecord>();
@@ -78,7 +84,7 @@ public static class DismemberTarget
             return ready[pickIndex(ready.Count)];
         }
         BodyPartRecord head = HeadFor(body, brain);
-        if (head == null || !(BuiltWithLimbs(body) || decapitateBodiesWithoutLimbs))
+        if (head == null || !(BuiltWithLimbs(body) || beheadsWithoutLimbs))
             return null;
         decapitates = true;
         return head;

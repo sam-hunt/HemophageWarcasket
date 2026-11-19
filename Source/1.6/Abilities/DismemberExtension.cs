@@ -25,7 +25,11 @@ public class DismemberExtension : DefModExtension
     // tame or wild animal) can be targeted.
     public bool canTargetNonHostile = true;
 
-    // Whether a body that was built without any limbs (a cobra, a diabolus) loses its head. A
-    // body that has lost its limbs always does.
+    // Whether a body that was built without any limbs (a diabolus) loses its head. A body that
+    // has lost its limbs always does.
     public bool decapitateBodiesWithoutLimbs;
+
+    // A body built without any limbs loses its head whatever the switch above says when its
+    // Pawn.BodySize is at most this (a cobra). Zero leaves it all to the switch.
+    public float decapitateWithoutLimbsMaxBodySize;
 }

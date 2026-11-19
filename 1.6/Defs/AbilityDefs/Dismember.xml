@@ -35,11 +35,15 @@
     13 cells of a radius 2 disc, so about seven of them catch some, a repeat on a cell
     thickening it. The filth is the target's own blood, so a mechanoid throws machine bits
     and a bloodless race nothing.
-    decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a cobra, a
-    diabolus) an invalid target: beheading it would kill it outright on first use.
+    decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a termite, a
+    diabolus, a war queen, a devourer) an invalid target: beheading it would kill it outright
+    on first use. decapitateWithoutLimbsMaxBodySize 0.5 exempts the small ones, which lose
+    their head whatever the switch says: a cobra (body size 0.25) dies to any one hit, so
+    there is nothing to protect. Limbless bodies fall on either side of a wide gap, the
+    smallest of the large ones being the termite at 1.6, and half a human's size sits in it.
 
-    The mod settings override castTime, cooldownTime, every DismemberExtension field and the
-    pads' pool (Source/1.6/Settings/Settings_Dismember.cs).
+    The mod settings override castTime, cooldownTime, the pads' pool and the
+    DismemberExtension fields that Source/1.6/Settings/Settings_Dismember.cs lists.
 
     showUndrafted as on the hemogen rush. No castSound: the damage plays its own impact, and
     the drain plays Bloodfeed's.
@@ -79,6 +83,7 @@
         <bloodFilthRadius>2</bloodFilthRadius>
         <canTargetNonHostile>true</canTargetNonHostile>
         <decapitateBodiesWithoutLimbs>false</decapitateBodiesWithoutLimbs>
+        <decapitateWithoutLimbsMaxBodySize>0.5</decapitateWithoutLimbsMaxBodySize>
       </li>
     </modExtensions>
   </VEF.Abilities.AbilityDef>

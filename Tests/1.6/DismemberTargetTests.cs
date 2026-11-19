@@ -183,6 +183,21 @@ public class DismemberTargetTests : IDisposable
         Assert.True(decapitates);
     }
 
+    // The size limit is inclusive and the switch overrides it.
+    [Fact]
+    public void BodyBuiltWithoutLimbs_LosesItsHeadWhenSmallEnoughOrWhenTheSwitchIsOn()
+    {
+        var ext = new DismemberExtension { decapitateWithoutLimbsMaxBodySize = 0.5f };
+        Assert.True(DismemberTarget.BeheadsWithoutLimbs(0.25f, ext));
+        Assert.True(DismemberTarget.BeheadsWithoutLimbs(0.5f, ext));
+        Assert.False(DismemberTarget.BeheadsWithoutLimbs(1.6f, ext));
+
+        ext.decapitateBodiesWithoutLimbs = true;
+        Assert.True(DismemberTarget.BeheadsWithoutLimbs(4f, ext));
+
+        Assert.False(DismemberTarget.BeheadsWithoutLimbs(0.25f, new DismemberExtension()));
+    }
+
     [Fact]
     public void BrainInTheCorePart_GivesNothingEvenWithTheFlag()
     {
