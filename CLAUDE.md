@@ -91,8 +91,9 @@ which part a Dismember strike destroys, the third the settings sliders' arithmet
 main-tree defs, the only check a gated root gets short of a boot with that mod active, and
 fails on two load roots sharing a patch or def path;
 `SetShapeTests` holds each piece's declared graphics to files that exist under `Textures/` (a
-missing one is a pink box in game and an error nowhere) and the descriptions to their shared
-paragraphs; `RulePackTests` holds each combat log rule pack to the symbols its log entry
+missing one is a pink box in game and an error nowhere), the descriptions to their shared
+paragraphs and `About.xml` to no `modIconPath` (the helmet's settings header draws the mod icon,
+which only the `About/ModIcon.png` load keeps alive across a play-data reload); `RulePackTests` holds each combat log rule pack to the symbols its log entry
 supplies (an unknown one is an error only when the line is first written in game);
 `SettingsTargetTests` holds the ability defs, the pads' strike pool and the helmet's two
 extensions to the fields the settings write (a missing one drops those sections from the window

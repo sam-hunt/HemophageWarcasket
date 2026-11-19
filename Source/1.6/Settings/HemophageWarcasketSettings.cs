@@ -229,7 +229,6 @@ public partial class HemophageWarcasketSettings : ModSettings
         public AbilityDef dismember;
         public DismemberExtension dismemberExtension;
         public CompProperties_ApparelReloadable dismemberPool;
-        public ThingDef helmet;
         public SunlightShieldExtension helmetShield;
         public PyrophobiaReliefExtension helmetPyrophobia;
     }
@@ -254,7 +253,6 @@ public partial class HemophageWarcasketSettings : ModSettings
             dismember = dismember,
             dismemberExtension = dismember?.GetModExtension<DismemberExtension>(),
             dismemberPool = DefDatabase<ThingDef>.GetNamedSilentFail(PadsDefName)?.GetCompProperties<CompProperties_ApparelReloadable>(),
-            helmet = helmet,
             helmetShield = helmet?.GetModExtension<SunlightShieldExtension>(),
             helmetPyrophobia = helmet?.GetModExtension<PyrophobiaReliefExtension>(),
         };

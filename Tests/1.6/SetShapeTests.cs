@@ -9,8 +9,8 @@ using Xunit;
 
 namespace HemophageWarcasket.Tests;
 
-// Two things about the set's three defs that nothing else fails on, read off the XML and the
-// art on disk.
+// Two things about the set's three defs, and one about the mod icon, that nothing else fails
+// on, read off the XML and the art on disk.
 //
 // Art: a texture path that names no file is not an error anywhere in the build. The game draws
 // a pink box, and the deploy manifest copies whatever is there. Each piece must have the file
@@ -21,6 +21,10 @@ namespace HemophageWarcasket.Tests;
 //
 // Text: the rules translators are told to keep (CONTRIBUTING.md). A piece's shortDescription is
 // its description's first paragraph, and the three pieces share their second and third.
+//
+// Mod icon: the settings window's helmet header draws ModMetaData.Icon, which is safe across a
+// play-data reload only while the game loads it from About/ModIcon.png, that is while About.xml
+// names no modIconPath (Settings_Helmet's header has the mechanism).
 public class SetShapeTests
 {
     private static readonly string RepoRoot = FindRepoRoot();
@@ -116,5 +120,14 @@ public class SetShapeTests
         var series = defs.Select(d => Paragraphs(d)[2]).Distinct().ToList();
         Assert.Single(series);
         Assert.StartsWith("The Hemophage series ", series[0]);
+    }
+
+    [Fact]
+    public void ModIcon_IsTheFileUnderAbout()
+    {
+        var about = XDocument.Load(Path.Combine(RepoRoot, "About/About.xml")).Root!;
+        Assert.True(about.Element("modIconPath") == null,
+            "About.xml sets a modIconPath: the mod icon becomes a content texture, which a play-data reload destroys under the helmet settings header");
+        Assert.True(File.Exists(Path.Combine(RepoRoot, "About/ModIcon.png")), "About/ModIcon.png is missing: the helmet settings header falls back to vanilla's generic mod icon");
     }
 }
