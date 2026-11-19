@@ -297,13 +297,16 @@ public class Ability_Dismember : Ability
         && GenSight.LineOfSight(pawn.Position, target.Position, pawn.Map, skipFirstCell: true);
 
     // The warmup holds a conscious target; one carried out of reach ends the job with no
-    // cooldown (the cast toil never ran).
+    // cooldown (the cast toil never ran). The targets are read off the pilot's own comp, not
+    // VEF's Ability.Comp, which keeps the comp of whoever wore the pads at its first read
+    // while CompAbilitiesApparel hands the same ability to the next wearer.
     public override void WarmupToil(Toil toil)
     {
         base.WarmupToil(toil);
         toil.AddPreTickAction(() =>
         {
-            if (Comp?.currentlyCastingTargets?.Length is not > 0 || Comp.currentlyCastingTargets[0].Thing is not Pawn target)
+            GlobalTargetInfo[] targets = pawn.GetComp<VEF.Abilities.CompAbilities>()?.currentlyCastingTargets;
+            if (targets?.Length is not > 0 || targets[0].Thing is not Pawn target)
                 return;
             if (!InReach(target))
             {
