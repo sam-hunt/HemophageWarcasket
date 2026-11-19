@@ -9,7 +9,8 @@
     The strike destroys one whole arm or leg the target still has, at random, whatever its
     armor. A target that has lost them all loses its head. Any pawn with a limb can be
     targeted, downed or not, mechanoids and animals included, and hostile or not while
-    canTargetNonHostile is true.
+    canTargetNonHostile is true. What counts as a limb is DismemberTarget's rule (its header):
+    a centipede's two last body rings do, taken from the tail in.
 
     Targeting: range is unset and requireLineOfSight off because the click is not range
     limited; the pilot walks to the target and the job enforces reach and sight at
@@ -34,9 +35,8 @@
     13 cells of a radius 2 disc, so about seven of them catch some, a repeat on a cell
     thickening it. The filth is the target's own blood, so a mechanoid throws machine bits
     and a bloodless race nothing.
-    decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a
-    centipede, a diabolus) an invalid target: beheading it would kill it outright on first
-    use.
+    decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a cobra, a
+    diabolus) an invalid target: beheading it would kill it outright on first use.
 
     The mod settings override castTime, cooldownTime, every DismemberExtension field and the
     pads' pool (Source/1.6/Settings/Settings_Dismember.cs).

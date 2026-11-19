@@ -8,18 +8,21 @@ namespace HemophageWarcasket;
 // What the pads' strike takes off a target, as pure part-picking so it runs on hand-built
 // bodies. A limb is a whole arm or leg: a non-core part tagged MovingLimbCore or
 // ManipulationLimbCore (1.6: the limb's root, never its hand, foot or fingers) that is not
-// tagged EatingSource, which vanilla puts on jaws, beaks and insect mouths. A trunk with no
-// eating tag counts. Two kinds of part carry those tags without being a limb, since vanilla
-// and mods also put them on whatever a body with no legs moves on:
-//   - a link in a chain, a part whose parent or child carries the same limb tags it does: the
-//     body rings of a centipede, diabolus, war queen or termite. Read off the BodyDef, not
-//     the pawn, so a ring is no limb once its neighbor is gone. A leg under a tagged thorax
-//     (an apocriton's) carries a different tag from it and stays a limb.
-//   - a part with something vital in it, one that carries a tag with BodyPartTagDef.vital or
-//     has such a part below it: losing it would kill outright, which only the head may.
+// tagged EatingSource, which vanilla puts on jaws, beaks and insect mouths, and that has
+// nothing vital in it: no tag with BodyPartTagDef.vital on it or on any part below it. Losing
+// a limb must not kill outright, which only the head may. A trunk with no eating tag counts.
 //
-// The strike takes a random limb the target still has, equal odds. With none left it takes the
-// head, when the body was built with limbs (walked from BodyDef.corePart, not read off the
+// Vanilla and mods also put the limb tags on what a body with no legs moves on, a centipede's
+// body rings among them, each ring holding the next. Those are limbs by the same rule, taken
+// from the outside in: a limb waits while a limb with the same limb tags is still attached
+// directly under it. A centipede loses its sixth ring, then its fifth; the rings before those
+// hold its fluid reprocessors and reactor (a mechanoid dies without either, 1.6) and never
+// come off. A diabolus, war queen or termite keeps its only reprocessor in its last ring, so
+// none of its rings is a limb. A lost ring costs its share of Moving and Manipulation, as a
+// lost leg or arm does (PawnCapacityUtility.CalculateLimbEfficiency, 1.6).
+//
+// The strike takes a random limb that is not waiting, equal odds. With no limb left it takes
+// the head, when the body was built with limbs (walked from BodyDef.corePart, not read off the
 // pawn) or when the def says so; otherwise there is nothing to take. The head is the nearest
 // Outside, non-core ancestor-or-self of a not-missing ConsciousnessSource part (human: Brain,
 // Skull, Head); a brain directly in the core part has none.
@@ -41,6 +44,7 @@ public static class DismemberTarget
             BodyPartRecord part = all[i];
             if (hediffs.PartIsMissing(part))
                 continue;
+            // A limb that waits has one below it that does not.
             if (IsLimb(body, part))
                 return true;
             if (brain == null && HasTag(part, BodyPartTagDefOf.ConsciousnessSource))
@@ -69,7 +73,10 @@ public static class DismemberTarget
                 brain = part;
         }
         if (limbs.Count > 0)
-            return limbs[pickIndex(limbs.Count)];
+        {
+            List<BodyPartRecord> ready = limbs.FindAll(limb => !Waits(limb, limbs));
+            return ready[pickIndex(ready.Count)];
+        }
         BodyPartRecord head = HeadFor(body, brain);
         if (head == null || !(BuiltWithLimbs(body) || decapitateBodiesWithoutLimbs))
             return null;
@@ -77,18 +84,19 @@ public static class DismemberTarget
         return head;
     }
 
-    public static bool IsLimb(BodyDef body, BodyPartRecord part)
+    public static bool IsLimb(BodyDef body, BodyPartRecord part) =>
+        part != body.corePart && LimbTags(part) != 0
+        && !HasTag(part, BodyPartTagDefOf.EatingSource) && !HoldsVital(part);
+
+    // Whether one of the attached limbs sits directly under this one with the same limb tags.
+    private static bool Waits(BodyPartRecord limb, List<BodyPartRecord> attachedLimbs)
     {
-        int tags = LimbTags(part);
-        if (tags == 0 || part == body.corePart || HasTag(part, BodyPartTagDefOf.EatingSource))
-            return false;
-        if (part.parent != null && LimbTags(part.parent) == tags)
-            return false;
-        List<BodyPartRecord> children = part.parts;
+        int tags = LimbTags(limb);
+        List<BodyPartRecord> children = limb.parts;
         for (int i = 0; i < children.Count; i++)
-            if (LimbTags(children[i]) == tags)
-                return false;
-        return !HoldsVital(part);
+            if (LimbTags(children[i]) == tags && attachedLimbs.Contains(children[i]))
+                return true;
+        return false;
     }
 
     // Which of the two limb tags the part carries, as bits.

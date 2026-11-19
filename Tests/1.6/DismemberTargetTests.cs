@@ -201,64 +201,95 @@ public class DismemberTargetTests : IDisposable
         Assert.Null(Pick(body, noLeg, true, out _));
     }
 
-    // A centipede: six rings in a chain, every one tagged as both kinds of limb, with the
-    // head on the first and the reactor in the second.
+    // Six rings, each holding the next and every one tagged as both kinds of limb, with the
+    // head on the first (or on the part the rings hang off) and an organ in each ring named.
+    // A centipede has them in its second, third and fourth rings, a diabolus in its second
+    // and its last.
     private sealed class Ringed
     {
         public readonly BodyPartRecord head;
         public readonly BodyPartRecord[] rings = new BodyPartRecord[6];
 
-        public Ringed(BodyPartRecord? above = null)
+        public Ringed(BodyPartRecord? above, params int[] ringsWithAnOrgan)
         {
             BodyPartRecord? parent = above;
             for (int i = 0; i < rings.Length; i++)
                 parent = rings[i] = Part("Ring" + (i + 1), parent, BodyPartDepth.Outside, Moving, Manipulation);
             head = Part("Head", above ?? rings[0], BodyPartDepth.Outside);
             Part("Brain", head, BodyPartDepth.Inside, Consciousness);
-            Part("Reactor", rings[1], BodyPartDepth.Inside, Pumping);
+            foreach (int ring in ringsWithAnOrgan)
+                Part("Organ", rings[ring - 1], BodyPartDepth.Inside, Pumping);
+        }
+
+        public BodyPartRecord Core => rings[0].parent ?? rings[0];
+
+        public IEnumerable<BodyPartRecord> Present(params BodyPartRecord[] gone)
+        {
+            HashSet<BodyPartRecord> missing = [.. gone.SelectMany(Flatten)];
+            return Flatten(Core).Where(p => !missing.Contains(p));
         }
     }
 
+    // Whatever index the pick asks for, the only ring on offer is the outermost one left.
     [Fact]
-    public void RingedBody_HasNoLimbsAndLosesItsHeadOnlyWithTheFlag()
+    public void Centipede_LosesItsEmptyRingsFromTheOutsideInThenItsHead()
     {
-        var centipede = new Ringed();
-        BodyDef body = Body(centipede.rings[0]);
-        Assert.All(centipede.rings, ring => Assert.False(DismemberTarget.IsLimb(body, ring)));
+        var centipede = new Ringed(null, 2, 3, 4);
+        BodyDef body = Body(centipede.Core);
+        Assert.True(DismemberTarget.BuiltWithLimbs(body));
+        for (int index = 0; index < 3; index++)
+        {
+            Assert.Same(centipede.rings[5], Pick(body, centipede.Present(), false, out bool decapitates, index));
+            Assert.False(decapitates);
+            Assert.Same(centipede.rings[4], Pick(body, centipede.Present(centipede.rings[5]), false, out decapitates, index));
+            Assert.False(decapitates);
+        }
+        Assert.Same(centipede.head, Pick(body, centipede.Present(centipede.rings[4]), false, out bool beheads));
+        Assert.True(beheads);
+    }
+
+    [Fact]
+    public void RingHoldingSomethingVital_NeverComesOff()
+    {
+        var centipede = new Ringed(null, 2, 3, 4);
+        BodyDef body = Body(centipede.Core);
+        for (int i = 0; i < 4; i++)
+            Assert.False(DismemberTarget.IsLimb(body, centipede.rings[i]));
+    }
+
+    [Fact]
+    public void RingedBodyWithAnOrganInItsLastRing_HasNoLimbsAndLosesItsHeadOnlyWithTheFlag()
+    {
+        var diabolus = new Ringed(null, 2, 6);
+        BodyDef body = Body(diabolus.Core);
+        Assert.All(diabolus.rings, ring => Assert.False(DismemberTarget.IsLimb(body, ring)));
         Assert.False(DismemberTarget.BuiltWithLimbs(body));
 
-        Assert.Null(Pick(body, Flatten(centipede.rings[0]), false, out bool decapitates));
+        Assert.Null(Pick(body, diabolus.Present(), false, out bool decapitates));
         Assert.False(decapitates);
 
-        Assert.Same(centipede.head, Pick(body, Flatten(centipede.rings[0]), true, out decapitates));
+        Assert.Same(diabolus.head, Pick(body, diabolus.Present(), true, out decapitates));
         Assert.True(decapitates);
     }
 
-    // The fifth and sixth rings hold nothing vital, so only the chain rules them out, and the
-    // fifth still has no ring below it once the sixth is gone.
     [Fact]
-    public void RingWithNothingVital_IsNoLimbEvenAfterItsNeighborIsLost()
-    {
-        var centipede = new Ringed();
-        BodyDef body = Body(centipede.rings[0]);
-        IEnumerable<BodyPartRecord> present = Flatten(centipede.rings[0]).Where(p => p != centipede.rings[5]);
-        Assert.Null(Pick(body, present, false, out _));
-    }
-
-    [Fact]
-    public void RingsUnderAnUntaggedCore_AreNoLimbs()
+    public void RingsUnderAnUntaggedCore_ComeOffFromTheOutsideInDownToTheFirst()
     {
         BodyPartRecord core = Part("Body", null, BodyPartDepth.Outside);
         var rings = new Ringed(core);
         BodyDef body = Body(core);
-        Assert.All(rings.rings, ring => Assert.False(DismemberTarget.IsLimb(body, ring)));
-        Assert.False(DismemberTarget.BuiltWithLimbs(body));
+        for (int i = 5; i >= 0; i--)
+        {
+            IEnumerable<BodyPartRecord> present = i == 5 ? rings.Present() : rings.Present(rings.rings[i + 1]);
+            Assert.Same(rings.rings[i], Pick(body, present, false, out bool decapitates, index: 3));
+            Assert.False(decapitates);
+        }
     }
 
-    // An apocriton's legs hang off a thorax tagged for manipulation, and a tank's legs off a
-    // plate in a chain of plates tagged for both.
+    // An apocriton's legs hang off a thorax tagged for manipulation, and a tank's legs and
+    // claws off plates tagged for both, each plate with an organ in it.
     [Fact]
-    public void LegUnderATaggedTrunk_IsStillALimb()
+    public void LegUnderATaggedTrunk_IsALimbThatWaitsOnNothing()
     {
         BodyPartRecord thorax = Part("Thorax", null, BodyPartDepth.Outside, Manipulation);
         BodyPartRecord leg = Part("Leg", thorax, BodyPartDepth.Outside, Moving);
@@ -266,13 +297,31 @@ public class DismemberTargetTests : IDisposable
 
         BodyPartRecord plate = Part("Plate1", null, BodyPartDepth.Outside, Moving, Manipulation);
         BodyPartRecord second = Part("Plate2", plate, BodyPartDepth.Outside, Moving, Manipulation);
+        Part("Organ", second, BodyPartDepth.Inside, Pumping);
         BodyPartRecord front = Part("Leg", plate, BodyPartDepth.Outside, Moving);
         BodyPartRecord rear = Part("Leg", second, BodyPartDepth.Outside, Moving);
         BodyPartRecord claw = Part("Claw", second, BodyPartDepth.Outside, Manipulation);
         BodyDef tank = Body(plate);
         Assert.False(DismemberTarget.IsLimb(tank, second));
-        Assert.All(new[] { front, rear, claw }, p => Assert.True(DismemberTarget.IsLimb(tank, p)));
-        Assert.True(DismemberTarget.BuiltWithLimbs(tank));
+        var offered = new HashSet<BodyPartRecord>();
+        for (int i = 0; i < 3; i++)
+            offered.Add(Pick(tank, Flatten(plate), false, out _, i)!);
+        Assert.Equal(new HashSet<BodyPartRecord>([front, rear, claw]), offered);
+    }
+
+    // A tail ring with a leg on it: the leg carries one limb tag to the ring's two, so
+    // neither waits on the other.
+    [Fact]
+    public void LimbWithADifferentlyTaggedLimbBelow_DoesNotWait()
+    {
+        BodyPartRecord core = Part("Ring1", null, BodyPartDepth.Outside, Moving, Manipulation);
+        Part("Organ", core, BodyPartDepth.Inside, Pumping);
+        BodyPartRecord ring = Part("Ring2", core, BodyPartDepth.Outside, Moving, Manipulation);
+        BodyPartRecord leg = Part("Leg", ring, BodyPartDepth.Outside, Moving);
+        var offered = new HashSet<BodyPartRecord>();
+        for (int i = 0; i < 2; i++)
+            offered.Add(Pick(Body(core), Flatten(core), false, out _, i)!);
+        Assert.Equal(new HashSet<BodyPartRecord>([ring, leg]), offered);
     }
 
     [Fact]

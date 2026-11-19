@@ -25,7 +25,7 @@ public class DismemberExtension : DefModExtension
     // tame or wild animal) can be targeted.
     public bool canTargetNonHostile = true;
 
-    // Whether a body that was built without any limbs (a centipede) loses its head. A body
-    // that has lost its limbs always does.
+    // Whether a body that was built without any limbs (a cobra, a diabolus) loses its head. A
+    // body that has lost its limbs always does.
     public bool decapitateBodiesWithoutLimbs;
 }
