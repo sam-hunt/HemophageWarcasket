@@ -49,6 +49,18 @@ namespace HemophageWarcasket;
 // its icons from it. A strike that destroyed nothing takes its entry back out, as the rule pack
 // has no line without a part.
 //
+// The drain is on the target's blood, alive or dead. A target that dies, to the strike or
+// during the drain, is drained on as a corpse (JobDriver_Dismember follows it there) until its
+// blood runs out: the drain adds its blood loss to the dead pawn as to a living one, and stops
+// at the severity a pawn dies of blood loss at, so a corpse gives what blood it had left and
+// one that bled to death gives none. A corpse is not held to the reach a living target is: it
+// goes nowhere on its own, and Pawn.Kill puts it on the nearest free cell when the target died
+// standing on an item. Pawn.Kill places the corpse before TakeDamage returns and keeps the
+// pawn in it, hediffs and genes included; Pawn_HealthTracker.CanBleed and
+// Pawn.BodySize do not ask whether the pawn lives, and CheckForStateChange returns at once
+// for a dead one, so a severity change on a corpse does nothing but move the number (1.6, the
+// same on 1.7).
+//
 // The limit is the strikes loaded in the pads: a vanilla reloadable (CompStrikePool) on the
 // piece that grants the ability (holder), one spent by every cast, landed or not, as a vanilla
 // reloadable's verb spends its own. With none left the button is disabled on vanilla's own
@@ -351,7 +363,8 @@ public class Ability_Dismember : Ability
     }
 
     // Whether a drain can run or go on: the def sets one, the pilot has an active hemogen gene
-    // with room for more, and the target is a living humanlike that bleeds.
+    // with room for more, and the target is a humanlike that bleeds, alive or a corpse on the
+    // map with blood left in it.
     public bool CanDrain(Pawn target)
     {
         DismemberExtension ext = Extension;
@@ -360,11 +373,16 @@ public class Ability_Dismember : Ability
         Gene_Hemogen hemogen = pawn?.genes?.GetFirstGeneOfType<Gene_Hemogen>();
         if (hemogen == null || !hemogen.CanOffset || hemogen.Value >= hemogen.Max)
             return false;
-        return target.Spawned && !target.Dead && target.RaceProps.Humanlike && target.health.CanBleed;
+        Thing body = target.Dead ? target.Corpse : target;
+        return body is { Spawned: true } && target.RaceProps.Humanlike && target.health.CanBleed && !BledOut(target);
     }
 
-    // One tick's share of a full drain, as SanguophageUtility.DoBite gives its whole one (1.6).
-    // The blood loss goes last because it can kill the target.
+    // Vanilla's own test for a hediff that kills, which only a corpse can pass.
+    private static bool BledOut(Pawn target) =>
+        target.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss)?.CauseDeathNow() == true;
+
+    // One tick's share of a full drain, as SanguophageUtility.DoBite gives its whole one (1.6),
+    // the same from a corpse. The blood loss goes last because it can kill a living target.
     public void DrainTick(Pawn target)
     {
         DismemberExtension ext = Extension;

@@ -31,6 +31,8 @@
     spread over drainTicks 240 (4 s): hemogenGain 0.2 is Bloodfeed's 20 hemogen, scaled by
     the target's body size as a bite is, and targetBloodLoss 0.4499 is the blood loss a bite
     causes, on top of the stump's own bleeding. A drain cut short keeps what it collected.
+    A target that dies, to the strike or during the drain, is drained on as a corpse for the
+    blood it has left, and one that died of blood loss has none (Ability_Dismember's header).
     bloodFilthCount 10 within bloodFilthRadius 2 is the spatter a landed strike throws: the
     13 cells of a radius 2 disc, so about seven of them catch some, a repeat on a cell
     thickening it. The filth is the target's own blood, so a mechanoid throws machine bits

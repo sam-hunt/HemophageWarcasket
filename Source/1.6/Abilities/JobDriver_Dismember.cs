@@ -31,14 +31,26 @@ namespace HemophageWarcasket;
 // The drain toil re-asserts playerForced, which VEF's cast toil drops for a drafted pilot, so the
 // melee-threat and hostility-response constant jobs stand down for it too. It counts its own
 // duration in ticksLeftThisToil, which vanilla scribes and decrements before each tick action,
-// and a drain cut short keeps what it collected. FailOnDespawnedOrNull covers every toil: a
-// target that dies, to the strike or to the blood loss, is despawned before the next tick, and
-// nothing here touches the target after the tick that could kill it.
+// and a drain cut short keeps what it collected.
+//
+// VEF's FailOnDespawnedOrNull on the target covers every toil, and a pawn that dies is
+// despawned on the spot, so a death before the strike ends the job. From the strike on, the
+// drain follows the target onto its corpse instead, whatever killed it: FollowIntoDeath swaps
+// the job's target for the corpse, so VEF's condition, the progress bar and the effect all
+// find it, and Ability_Dismember.CanDrain decides whether a corpse has blood left to give.
+// It runs as the first of the driver's end conditions because JobDriver checks those ahead of
+// everything a toil does, both each tick and between one toil's end and the next one's
+// initAction (DriverTick and TryActuallyStartNextToil, 1.6), which is the only place a death
+// between ticks can be caught before VEF's condition fails the job. The drain toil starts in a
+// busy stance (atomicWithPrevious, as VEF's cast toil does) so that a pilot stunned at the
+// strike is already in it at that first check.
 public class JobDriver_Dismember : JobDriver_CastAbilityOnce
 {
     private AbilityDef abilityDef;
+    private Toil drain;
 
-    private Pawn Target => TargetA.Pawn;
+    // The pawn the job is on, living or in the corpse the drain followed it to.
+    private Pawn Target => TargetA.Thing is Corpse corpse ? corpse.InnerPawn : TargetA.Pawn;
 
     // VEF scribes currentlyCasting as a reference, so the binding survives a save and load.
     private Ability_Dismember Casting => CompAbilities?.currentlyCasting as Ability_Dismember;
@@ -83,11 +95,21 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
+        // Before the base's toils, whose building adds VEF's condition behind this one.
+        AddEndCondition(FollowIntoDeath);
         yield return GotoTarget();
         yield return Check();
         foreach (Toil toil in base.MakeNewToils())
             yield return toil;
-        yield return Drain();
+        yield return drain = Drain();
+    }
+
+    // Never ends the job: see the header for why this is an end condition at all.
+    private JobCondition FollowIntoDeath()
+    {
+        if (CurToil == drain && job.targetA.Thing is Pawn { Dead: true, Corpse: { Spawned: true } corpse })
+            job.targetA = corpse;
+        return JobCondition.Ongoing;
     }
 
     private Toil GotoTarget()
@@ -136,9 +158,9 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
         return toil;
     }
 
-    // Passes straight through unless the strike landed and the pilot can drain the target. The
-    // strike's result is transient, so a save and load mid-drain resumes on the saved
-    // ticksLeftThisToil and the tick's own checks.
+    // Passes straight through unless the strike landed and the pilot can drain the target,
+    // dead or alive. The strike's result is transient, so a save and load mid-drain resumes on
+    // the saved ticksLeftThisToil and the tick's own checks.
     private Toil Drain()
     {
         Toil toil = ToilMaker.MakeToil();
@@ -154,18 +176,18 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
             }
             pawn.pather.StopDead();
             ticksLeftThisToil = ability.DrainTicks;
-            SoundDefOf.Bloodfeed_Cast.PlayOneShot(new TargetInfo(target.Position, target.Map));
+            SoundDefOf.Bloodfeed_Cast.PlayOneShot(new TargetInfo(TargetA.Cell, pawn.Map));
         };
         toil.tickAction = () =>
         {
             Ability_Dismember ability = Casting;
             Pawn target = Target;
-            if (ability == null || target == null || !ability.InReach(target) || !ability.CanDrain(target))
+            if (ability == null || target == null || !ability.CanDrain(target) || (!target.Dead && !ability.InReach(target)))
             {
                 ReadyForNextToil();
                 return;
             }
-            pawn.rotationTracker.FaceTarget(target);
+            pawn.rotationTracker.FaceTarget(TargetA);
             // The blood loss in here can kill the target, so nothing below reads it.
             ability.DrainTick(target);
             if (ticksLeftThisToil <= 0)
@@ -180,6 +202,7 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
         toil.handlingFacing = true;
         toil.socialMode = RandomSocialMode.Off;
         toil.defaultCompleteMode = ToilCompleteMode.Never;
+        toil.atomicWithPrevious = true;
         return toil;
     }
 }

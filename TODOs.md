@@ -7,21 +7,21 @@
 - **Tuning** The three pieces are the 10th generation's baseline (VFEP's Sarcophagus row less its medicine and bionics; the def headers argue each number), but for the pads' cost, which pays for Dismember. Settle the set's own stats and costs as the mechanics land, then mirror them into the CE patch.
 - **VRE Sanguophage Integration**
   - Dismember hemogen drain gating widens when the caster has AnimalFeeder/CorpseFeeder/Sanguofeeder and the target matches, and any associated buffs are applied
-  - Hemohunter could allow autocasting dismember if the pilot has the Aggressive gene? (default sanguophages do, VRE Hussars/Archons have even higher severity variant genes iirc)
+  - Hemohunter could allow autocasting dismember instead of bloodfeed if the pilot has >= the Aggressive gene? (default sanguophages do, VRE Hussars/Archons have even higher severity variant genes iirc)
   - Does VRES add any research our set might be better gated behind? Vanilla's own Deathrest doesn't quite fit, because the genes are orthoganal
   - Blood moon event could trigger hemogenic rush for free? investigate balance/flavor before committing?
   - Add a compatibility note to the workshop description
 - How does hemogen sit in Chinese localizations in vanilla?
 
-## Built, needs testing in game
+## Testing
 
 - **Torso**
   - **Work trait and its settings** With "Warcaskets can work!" or Hardworking Warcaskets active, the section reads that nothing is blocked.
 - **Shoulders**
   - **Dismember**
-    - Beheading/killing should still allow hemogen drain/gain after
     - should behead on a cobra, not a termite, 3 strikes on centipede
     - The drain, for a hemogenic pilot on a human: the 4 second bar with Bloodfeed's sound and splash.
+    - The drain on a kill: a raider who dies to the strike (beheaded, or killed as the lost limb downs them) is drained as a corpse, with the bar over the corpse, the full hemogen gained and "Blood loss" on the corpse's health tab. A target shot dead during the drain is drained on the same way, and one who bleeds to death during it ends the drain there.
     - A non-hostile target: "Will anger" and the faction's name beside the cursor over a visitor or a trader's pack animal, under "Will kill" when both apply, and no such line over a colonist, a wild animal or a berserk visitor. The goodwill cost on a visitor's faction (130 or more, vanilla's maximum for one hit, which turns a neutral faction hostile), guilt for a prisoner or colonist.
 - **Helmet**
   - **Sunlight protection**
