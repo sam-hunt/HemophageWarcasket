@@ -9,11 +9,20 @@ namespace HemophageWarcasket;
 // bodies. A limb is a whole arm or leg: a non-core part tagged MovingLimbCore or
 // ManipulationLimbCore (1.6: the limb's root, never its hand, foot or fingers) that is not
 // tagged EatingSource, which vanilla puts on jaws, beaks and insect mouths. A trunk with no
-// eating tag counts. The strike takes a random limb the target still has, equal odds. With none
-// left it takes the head, when the body was built with limbs (walked from BodyDef.corePart, not
-// read off the pawn) or when the def says so; otherwise there is nothing to take. The head is
-// the nearest Outside, non-core ancestor-or-self of a not-missing ConsciousnessSource part
-// (human: Brain, Skull, Head); a brain directly in the core part has none.
+// eating tag counts. Two kinds of part carry those tags without being a limb, since vanilla
+// and mods also put them on whatever a body with no legs moves on:
+//   - a link in a chain, a part whose parent or child carries the same limb tags it does: the
+//     body rings of a centipede, diabolus, war queen or termite. Read off the BodyDef, not
+//     the pawn, so a ring is no limb once its neighbor is gone. A leg under a tagged thorax
+//     (an apocriton's) carries a different tag from it and stays a limb.
+//   - a part with something vital in it, one that carries a tag with BodyPartTagDef.vital or
+//     has such a part below it: losing it would kill outright, which only the head may.
+//
+// The strike takes a random limb the target still has, equal odds. With none left it takes the
+// head, when the body was built with limbs (walked from BodyDef.corePart, not read off the
+// pawn) or when the def says so; otherwise there is nothing to take. The head is the nearest
+// Outside, non-core ancestor-or-self of a not-missing ConsciousnessSource part (human: Brain,
+// Skull, Head); a brain directly in the core part has none.
 //
 // A missing part's children carry missing hediffs of their own (Hediff_MissingPart adds them,
 // 1.6), so a not-missing part never sits under a missing one. CanStrike is asked by the
@@ -68,10 +77,38 @@ public static class DismemberTarget
         return head;
     }
 
-    public static bool IsLimb(BodyDef body, BodyPartRecord part) =>
-        part != body.corePart
-        && (HasTag(part, BodyPartTagDefOf.MovingLimbCore) || HasTag(part, BodyPartTagDefOf.ManipulationLimbCore))
-        && !HasTag(part, BodyPartTagDefOf.EatingSource);
+    public static bool IsLimb(BodyDef body, BodyPartRecord part)
+    {
+        int tags = LimbTags(part);
+        if (tags == 0 || part == body.corePart || HasTag(part, BodyPartTagDefOf.EatingSource))
+            return false;
+        if (part.parent != null && LimbTags(part.parent) == tags)
+            return false;
+        List<BodyPartRecord> children = part.parts;
+        for (int i = 0; i < children.Count; i++)
+            if (LimbTags(children[i]) == tags)
+                return false;
+        return !HoldsVital(part);
+    }
+
+    // Which of the two limb tags the part carries, as bits.
+    private static int LimbTags(BodyPartRecord part) =>
+        (HasTag(part, BodyPartTagDefOf.MovingLimbCore) ? 1 : 0)
+        | (HasTag(part, BodyPartTagDefOf.ManipulationLimbCore) ? 2 : 0);
+
+    private static bool HoldsVital(BodyPartRecord part)
+    {
+        List<BodyPartTagDef> tags = part.def.tags;
+        if (tags != null)
+            for (int i = 0; i < tags.Count; i++)
+                if (tags[i].vital)
+                    return true;
+        List<BodyPartRecord> children = part.parts;
+        for (int i = 0; i < children.Count; i++)
+            if (HoldsVital(children[i]))
+                return true;
+        return false;
+    }
 
     public static bool BuiltWithLimbs(BodyDef body) => body.corePart != null && HasLimbBelow(body, body.corePart);
 
