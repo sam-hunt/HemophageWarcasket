@@ -5,14 +5,15 @@ using Ability = VEF.Abilities.Ability;
 
 namespace HemophageWarcasket;
 
-// The armor's hemogen rush toggle. It holds no state: the rush is on while the pilot has the
-// HPWC_HemogenRush hediff, which HediffComp_HemogenRush runs and ends. VEF's base gizmo is a
-// cast command whose job would stop a moving pilot, so GetGizmo hands out a plain
-// Command_Toggle (the Toxin repo's vent is the pattern). VEF asks for gizmos every frame a
-// wearer is selected: one command and the strings it shows are kept, and only its disabled
-// state is refreshed. The tooltip's last line is the start cost, as Biotech's abilities show
-// theirs (CompProperties_AbilityHemogenCost.ExtraStatSummary, 1.6), which the def's text
-// cannot carry, the cost being a mod setting: the tooltip is rebuilt after a settings write.
+// The armor's hemogen rush toggle. It holds no state: the rush is the HPWC_HemogenRush hediff,
+// whose HediffComp_HemogenRush runs it, ends it and settles the switch on the next tick, so the
+// toggle shows on for a rush that has not been told to stop. VEF's base gizmo is a cast
+// command whose job would stop a moving pilot, so GetGizmo hands out a plain Command_Toggle
+// (the Toxin repo's vent is the pattern). VEF asks for gizmos every frame a wearer is
+// selected: one command and the strings it shows are kept, and only its disabled state is
+// refreshed. The tooltip's last line is the start cost, as Biotech's abilities show theirs
+// (CompProperties_AbilityHemogenCost.ExtraStatSummary, 1.6), which the def's text cannot
+// carry, the cost being a mod setting: the tooltip is rebuilt after a settings write.
 public class Ability_HemogenRush : Ability
 {
     private Command_Toggle gizmo;
@@ -25,7 +26,7 @@ public class Ability_HemogenRush : Ability
     private static HediffCompProperties_HemogenRush Rush =>
         HPWC_DefOf.HPWC_HemogenRush.CompProps<HediffCompProperties_HemogenRush>();
 
-    private bool Running => pawn.health.hediffSet.HasHediff(HPWC_DefOf.HPWC_HemogenRush);
+    private Hediff RushHediff => pawn.health.hediffSet.GetFirstHediffOfDef(HPWC_DefOf.HPWC_HemogenRush);
 
     // A toggle has nothing to autocast; VEF offers it to any one-target ability.
     public override bool CanAutoCast => false;
@@ -51,7 +52,7 @@ public class Ability_HemogenRush : Ability
         {
             defaultLabel = def.LabelCap,
             icon = def.icon,
-            isActive = () => Running,
+            isActive = () => HediffComp_HemogenRush.ShowsOn(pawn),
             toggleAction = Toggle,
         };
         if (settingsGeneration != HemophageWarcasketSettings.Generation)
@@ -61,8 +62,8 @@ public class Ability_HemogenRush : Ability
         }
         gizmo.defaultDesc = description ??= GetDescriptionForPawn();
         gizmo.Disabled = false;
-        // A running rush can always be switched off.
-        if (!Running && !CanStart(out string reason))
+        // A running rush can always be switched off, and a stopping one back on.
+        if (RushHediff == null && !CanStart(out string reason))
             gizmo.Disable(reason);
         return gizmo;
     }
@@ -100,10 +101,10 @@ public class Ability_HemogenRush : Ability
 
     private void Toggle()
     {
-        Hediff rush = pawn.health.hediffSet.GetFirstHediffOfDef(HPWC_DefOf.HPWC_HemogenRush);
-        if (rush != null)
-            pawn.health.RemoveHediff(rush);
-        else
+        Hediff rush = RushHediff;
+        if (rush == null)
             pawn.health.AddHediff(HPWC_DefOf.HPWC_HemogenRush);
+        else
+            rush.TryGetComp<HediffComp_HemogenRush>()?.Switch();
     }
 }

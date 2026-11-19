@@ -19,17 +19,24 @@
     reaching zero does. The start cost never takes the pilot below the reserve: the toggle
     is refused unless more than the cost is spare.
 
+    The toggle settles on the next tick: the rush shows at the click, the start cost is paid
+    on the rush's first tick and a stop is carried out on the tick after it is asked for.
+    The glow answers the click both ways, on with the rush and off with the stop. Clicks
+    made in a pause therefore net out to the last one, and switching a rush off and on again
+    without letting the game run costs nothing (HediffComp_HemogenRush).
+
     Ends when toggled off, at the reserve, when the pilot is downed, asleep, no longer
     hemogenic, out of the armor or, for a player's pilot, out of the player's control (a mental
     break, leaving the map), all in HediffComp_HemogenRush, on death and at the start of a
     deathrest. Drafting and undrafting leave it running.
 
     Glow: every worn piece of the set draws its glow sprite while the pilot has this hediff
-    (the pieces' renderNodeProperties). forceRenderTreeRecache makes the game rebuild the
-    pilot's graphics when it is added or removed. glowPulse is a heartbeat, two dips a beat
-    from full strength, never below 0.25 so the glow never goes out, one beat a second at
-    normal speed. It rests at full strength, the strength portraits and the zoomed-out pawn
-    cache bake, and the strength the glow holds with glowPulses off.
+    and has not switched it off (the pieces' renderNodeProperties). forceRenderTreeRecache
+    makes the game rebuild the pilot's graphics when it is added or removed. glowPulse is a
+    heartbeat, two dips a beat from full strength, never below 0.25 so the glow never goes
+    out, one beat a second at normal speed. It rests at full strength, the strength
+    portraits and the zoomed-out pawn cache bake, and the strength the glow holds with
+    glowPulses off.
 
     The mod settings override hemogenStartCost, hemogenPerSecond, hemogenReserve, glowPulses
     and the two statFactors (Source/1.6/Settings/Settings_Rush.cs).

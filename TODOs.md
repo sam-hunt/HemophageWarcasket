@@ -16,8 +16,6 @@
 ## Built, needs testing in game
 
 - **Torso**
-  - **Hemogen rush**
-    - The start cost: 5 hemogen gone the moment the rush starts, "Hemogen cost: 5" as the tooltip's last line, and the button disabled with "does not have enough hemogen" at 5 or less. Whether 5 is enough to make switching it on for each blow not worth the clicks.
   - **Work trait and its settings** With "Warcaskets can work!" or Hardworking Warcaskets active, the section reads that nothing is blocked.
 - **Shoulders**
   - **Dismember**
@@ -30,7 +28,6 @@
     - A sanguophage pilot outdoors by day: no "sunlight sensitivity" thought, the Move Speed breakdown has no "in sunlight" line, and both are there on a sanguophage without the helmet standing beside them.
     - With Vanilla Races Expanded - Sanguophage, a pilot with dangerous UV sensitivity: Sight is not capped at 50% in sunlight, within about 8 seconds of stepping out.
     - With "Sunlight protection" off in the settings, the thought and the slowdown come back when the window closes.
-  - **Settings header icon** The "Helmet" section's header now draws the mod icon: check it reads well at 48px beside the two ability icons.
   - **Fire**
     - The foundry asks for 30, 50 and 25 devilstrand (helmet, armor, shoulders) and 70 plasteel for the helmet, and the info cards read Heat 200%, 150%, 150% and the helmet's Blunt 150%.
     - A burning sanguophage pilot takes no burns to the head and visibly fewer elsewhere than one without the set.

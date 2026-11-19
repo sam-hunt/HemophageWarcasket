@@ -4,10 +4,11 @@ using Verse;
 namespace HemophageWarcasket;
 
 // Worker for PawnRenderNode_HemogenGlow.
-//  - Draws only while the pilot has the hemogen rush hediff and the piece's own sprite draws.
-//    The tree caches its draw requests, so this is read when they are rebuilt; the hediff def's
-//    forceRenderTreeRecache rebuilds them, and rebakes portraits and the zoomed-out pawn cache,
-//    whenever the rush starts or ends.
+//  - Draws only while the pilot has a hemogen rush that has not been told to stop and the
+//    piece's own sprite draws. The tree caches its draw requests, so this is read when they
+//    are rebuilt; the hediff def's forceRenderTreeRecache rebuilds them, and rebakes portraits
+//    and the zoomed-out pawn cache, whenever the rush starts or ends, and
+//    HediffComp_HemogenRush.Switch does the same for a stop.
 //  - Takes offset, rotation, scale and layer from the worn-graphic node, plus half a layer so
 //    the glow sits above its piece and below the next apparel item, a whole layer up.
 //  - Multiplies the heartbeat pulse into the _Color the base worker writes per draw. Portraits
@@ -23,7 +24,7 @@ public class PawnRenderNodeWorker_HemogenGlow : PawnRenderNodeWorker
     {
         PawnRenderNode worn = Worn(node);
         return worn != null
-            && node.tree.pawn.health.hediffSet.HasHediff(HPWC_DefOf.HPWC_HemogenRush)
+            && HediffComp_HemogenRush.ShowsOn(node.tree.pawn)
             && worn.Worker.CanDrawNow(worn, parms)
             && base.CanDrawNow(node, parms);
     }

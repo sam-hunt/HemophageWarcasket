@@ -46,9 +46,22 @@ public class HediffCompProperties_HemogenRush : HediffCompProperties
 }
 
 // The hemogen rush while it runs. The hediff's presence is the on state and its stage is the
-// buff; this comp spends the hemogen, the start cost as the hediff is added and the drain from
-// then on, and ends the rush. Deathrest and death end it through the def
-// (removeOnDeathrestStart, HediffComp_DisappearsOnDeath).
+// buff; this comp spends the hemogen, the start cost and then the drain, and ends the rush.
+// Deathrest and death end it through the def (removeOnDeathrestStart,
+// HediffComp_DisappearsOnDeath).
+//
+// The pilot's switch settles on the next tick, so clicks made in a pause net out to the last
+// one and a rush pays its start cost once:
+//  - The hediff is added at the click, which lights the glow at once, and owes the start cost
+//    until its first tick. Switched off before then, it is removed unpaid.
+//  - A rush that has paid is switched off by a stop request, which the next tick carries out
+//    and a second click withdraws. The glow goes out with the request and comes back with
+//    its withdrawal: the hediff def's forceRenderTreeRecache covers only the hediff coming
+//    and going, so Switch rebuilds the pilot's graphics as the game does for those
+//    (Pawn_HealthTracker.RemoveHediff, 1.6 and 1.7).
+// Both settle in CompPostTick, which runs every tick and ahead of that tick's
+// CompPostTickInterval, whose rate follows the camera (Thing.DoTick, 1.6 and 1.7). Both are
+// saved, so a game saved in that pause loads owing the same cost and the same stop.
 //
 // Spending goes through GeneResourceDrainUtility.OffsetResource rather than
 // GeneUtility.OffsetHemogen: for a pawn without a hemogen drain gene the latter sets the value
@@ -56,12 +69,33 @@ public class HediffCompProperties_HemogenRush : HediffCompProperties
 public class HediffComp_HemogenRush : HediffComp
 {
     private bool ended;
+    private bool startCostDue;
+    private bool stopRequested;
 
     public HediffCompProperties_HemogenRush Props => (HediffCompProperties_HemogenRush)props;
 
     public override bool CompShouldRemove => ended;
 
-    // The time the remaining hemogen lasts, as HediffComp_Disappears shows its own.
+    // Whether the pawn has a rush that has not been told to stop: what the toggle and the glow
+    // show.
+    public static bool ShowsOn(Pawn pawn) =>
+        pawn.health.hediffSet.GetFirstHediffOfDef(HPWC_DefOf.HPWC_HemogenRush)?.TryGetComp<HediffComp_HemogenRush>()
+            is { stopRequested: false };
+
+    // The pilot's switch on a rush that exists.
+    public void Switch()
+    {
+        if (startCostDue)
+        {
+            Pawn.health.RemoveHediff(parent);
+            return;
+        }
+        stopRequested = !stopRequested;
+        Pawn.Drawer.renderer.SetAllGraphicsDirty();
+    }
+
+    // The time the remaining hemogen lasts, as HediffComp_Disappears shows its own, less a start
+    // cost still owed.
     public override string CompLabelInBracketsExtra
     {
         get
@@ -69,16 +103,30 @@ public class HediffComp_HemogenRush : HediffComp
             Gene_Hemogen hemogen = Pawn.genes?.GetFirstGeneOfType<Gene_Hemogen>();
             if (hemogen == null || Props.hemogenPerSecond <= 0f)
                 return null;
-            float seconds = Mathf.Max(0f, hemogen.Value - Props.hemogenReserve) / Props.hemogenPerSecond;
+            float spare = hemogen.Value - Props.hemogenReserve - (startCostDue ? Props.hemogenStartCost : 0f);
+            float seconds = Mathf.Max(0f, spare) / Props.hemogenPerSecond;
             return Mathf.CeilToInt(seconds * GenTicks.TicksPerRealSecond).ToStringSecondsFromTicks("F0");
         }
     }
 
-    // The start cost, down to the reserve at most. A loaded rush is not added again, so it
-    // pays once.
+    // A loaded rush is not added again, so it owes the start cost once.
     public override void CompPostPostAdd(DamageInfo? dinfo)
     {
         base.CompPostPostAdd(dinfo);
+        startCostDue = true;
+    }
+
+    // Carries out a stop, or else pays a start cost still owed, down to the reserve at most.
+    public override void CompPostTick(ref float severityAdjustment)
+    {
+        if (stopRequested)
+        {
+            ended = true;
+            return;
+        }
+        if (!startCostDue)
+            return;
+        startCostDue = false;
         Gene_Hemogen hemogen = Pawn.genes?.GetFirstGeneOfType<Gene_Hemogen>();
         if (hemogen?.CanOffset != true)
             return;
@@ -96,7 +144,7 @@ public class HediffComp_HemogenRush : HediffComp
         // must not outlast that: it would drain through a mental break or a caravan trip with
         // no way to switch it off. Undrafting is not among them.
         bool uncontrolled = pawn.Faction?.IsPlayer == true && !pawn.IsColonistPlayerControlled;
-        if (hemogen?.CanOffset != true || pawn.Downed || !pawn.Awake() || uncontrolled || !WearsArmor(pawn))
+        if (stopRequested || hemogen?.CanOffset != true || pawn.Downed || !pawn.Awake() || uncontrolled || !WearsArmor(pawn))
         {
             ended = true;
             return;
@@ -111,6 +159,13 @@ public class HediffComp_HemogenRush : HediffComp
         }
         if (spend > 0f)
             GeneResourceDrainUtility.OffsetResource(hemogen, -spend);
+    }
+
+    public override void CompExposeData()
+    {
+        base.CompExposeData();
+        Scribe_Values.Look(ref startCostDue, "startCostDue");
+        Scribe_Values.Look(ref stopRequested, "stopRequested");
     }
 
     private bool WearsArmor(Pawn pawn)

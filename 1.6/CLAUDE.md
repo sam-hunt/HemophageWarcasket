@@ -29,9 +29,9 @@ manifest globs, so new files and subfolders need no build change.
   own log entry class. Dismember's strike is the model (`DamageDefs/Dismember.xml`,
   `RulePackDefs/Combat_Dismember.xml`, `Ability_Dismember`).
 - **A state the pilot carries is a hediff.** The hemogen rush is on while the pilot has
-  `HPWC_HemogenRush`: the toggle adds and removes it, its stage is the buff, its comp spends
-  the hemogen and ends it, and the game saves it. Anything that reacts to the rush reads the
-  hediff off the pawn.
+  `HPWC_HemogenRush`: the toggle adds it and asks its comp to stop it, its stage is the buff,
+  its comp spends the hemogen and ends it, and the game saves it. Anything that reacts to the
+  rush reads the hediff off the pawn.
 - **Worn graphics go through the pawn render tree** (`apparel.renderNodeProperties`), never draw
   hooks. The hemogen glow is the model: each piece's def declares a node for its own glow
   sprite, which draws while the pilot has the rush hediff, whichever pieces they wear. A new
