@@ -5,7 +5,6 @@
 - **Shoulders**
   - **Combat Extended aim height** CE keeps a per-pawn melee aim height (`CompMeleeTargettingGizmo.heightInt`, public). With CE active the strike could take a leg for low and an arm for middle instead of a random limb. Belongs with the CE compat scan.
 - **Tuning** The three pieces are the 10th generation's baseline (VFEP's Sarcophagus row less its medicine and bionics; the def headers argue each number), but for the pads' cost, which pays for Dismember. Settle the set's own stats and costs as the mechanics land, then mirror them into the CE patch.
-  - Raider gear: the pieces carry the tier's `WarcasketVeteran` / `WarcasketAll` tags, so VFEP's veteran raiders can roll them. Probably drop them, and patch/finalize VFEP's fill-in, similar to Overlord?
 - **VRE Sanguophage Integration**
   - Dismember hemogen drain gating widens when the caster has AnimalFeeder/CorpseFeeder/Sanguofeeder and the target matches, and any associated buffs are applied
   - Hemohunter could allow autocasting dismember if the pilot has the Aggressive gene? (default sanguophages do, VRE Hussars/Archons have even higher severity variant genes iirc)
@@ -36,6 +35,8 @@
     - The foundry asks for 30, 50 and 25 devilstrand (helmet, armor, shoulders) and 70 plasteel for the helmet, and the info cards read Heat 200%, 150%, 150% and the helmet's Blunt 150%.
     - A burning sanguophage pilot takes no burns to the head and visibly fewer elsewhere than one without the set.
     - A pyrophobic pilot near a fire still gets the pyrophobia thought and flees about half as often, and "Fire terror chance" at 0% stops the fleeing while 100% restores vanilla's.
+
+- **Raider gear** VFEP's veteran raiders and hired veterans never arrive in a Hemophage piece (dev mode, a few Junker and Mercenary raids at high points), the log has no `[Hemophage Warcasket]` warning at startup, and the foundry still lists all three pieces.
 
 ## Pre-release polish
 

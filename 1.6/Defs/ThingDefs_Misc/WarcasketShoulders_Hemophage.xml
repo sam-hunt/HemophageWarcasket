@@ -2,8 +2,8 @@
 <Defs>
   <!--
     The Hemophage's shoulder pads, on VFEP's shoulder pad base (VFEP v4.03,
-    1.6/Defs/ThingDefs_Misc/Apparel_Various.xml). Plating, the research gate, the apparel
-    tags, the text's shape and the masked tint follow the armor's header
+    1.6/Defs/ThingDefs_Misc/Apparel_Various.xml). Plating, the research gate, the absent
+    apparel tags, the text's shape and the masked tint follow the armor's header
     (Warcasket_Hemophage.xml).
 
     Tuning: the tier's baseline with the armor's Heat 1.5, as its header argues. Mass 20,
@@ -130,10 +130,6 @@
         <li>Middle</li>
         <li>Shell</li>
       </layers>
-      <tags>
-        <li>WarcasketVeteran</li>
-        <li>WarcasketAll</li>
-      </tags>
     </apparel>
     <modExtensions>
       <li Class="VEF.Apparels.ApparelExtension">

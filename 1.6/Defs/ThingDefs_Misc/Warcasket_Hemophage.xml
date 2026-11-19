@@ -35,11 +35,14 @@
       lists a part by BuildableDef.IsResearchFinished, which wants every entry, so a second
       prerequisite goes on all three pieces.
 
-    apparel tags: WarcasketVeteran (VFEP's 10th-generation tag) puts the set on the veteran
-    raid pawnkinds of both VFEP factions and Odyssey's VFEP_Salvager_Warcasket; WarcasketAll
-    is VFEP_General. The tier's, kept for the baseline: a generated wearer is rarely
-    hemogenic, so the tags are to be weighed again once the pieces do something only a
-    hemogenic pilot can use.
+    No apparel tags, so no pawnkind's gear roll picks the set (PawnApparelGenerator matches a
+    kind's apparelTags against them), where the tier's WarcasketVeteran and WarcasketAll
+    would put it on VFEP's veteran raiders and hired veterans: a generated pilot is rarely
+    hemogenic, and VEF fires no apparel ability's autocast, so a raider casts neither the
+    rush nor Dismember and the set arrives as a plain spacer warcasket. VFEP's slot fill
+    reads no tags; Source/1.6/Patches/PawnGenerator_GeneratePawn_Patch_Postfix.cs keeps the
+    set out of it. Save Our Ship 2's EVA tag (1.6/Patches/SOS2Patch.xml) is then the only one
+    a part has.
 
     Hemogen rush: the armor's module, a toggled ability granted by the CompAbilitiesApparel
     below. AbilityDefs/HemogenRush.xml and HediffDefs/HemogenRush.xml have it.
@@ -151,10 +154,6 @@
         <li>Middle</li>
         <li>Shell</li>
       </layers>
-      <tags>
-        <li>WarcasketVeteran</li>
-        <li>WarcasketAll</li>
-      </tags>
     </apparel>
     <comps>
       <li Class="VEF.Apparels.CompProperties_ShieldBubble">

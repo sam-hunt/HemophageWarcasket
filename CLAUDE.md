@@ -79,8 +79,8 @@ failing build back to the agent. **Warnings are build errors** (`TreatWarningsAs
 severities pinned in `.editorconfig`): fix the code, not the severity.
 
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
-Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Four
-files read only the repo's XML and art, so they run anywhere; `WorkProfileTests`,
+Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Five
+files touch no game type, so they run anywhere; `WorkProfileTests`,
 `DismemberTargetTests` and `TunableTests` run game code and so need the game's real 1.6 runtime
 DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
 `~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup), failing without them
@@ -97,7 +97,8 @@ which only the `About/ModIcon.png` load keeps alive across a play-data reload); 
 supplies (an unknown one is an error only when the line is first written in game);
 `SettingsTargetTests` holds the ability defs, the pads' strike pool and the helmet's two
 extensions to the fields the settings write (a missing one drops those sections from the window
-with one warning).
+with one warning). `ListMaskTests` holds the two halves of keeping the set off generated
+pawns: the mask that hides the parts from VFEP's slot fill, and the parts' absent apparel tags.
 
 ## Layout
 

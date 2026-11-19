@@ -2,8 +2,8 @@
 <Defs>
   <!--
     The Hemophage's helmet, on VFEP's helmet base (VFEP v4.03,
-    1.6/Defs/ThingDefs_Misc/Apparel_Headgear.xml). The research gate, the apparel
-    tags, the text's shape and the masked tint follow the armor's header
+    1.6/Defs/ThingDefs_Misc/Apparel_Headgear.xml). The research gate, the absent
+    apparel tags, the text's shape and the masked tint follow the armor's header
     (Warcasket_Hemophage.xml).
 
     Tuning: the set's heaviest plating, on the tier's baseline. Sharp 2 is the tier's and
@@ -100,10 +100,6 @@
       <layers>
         <li>Overhead</li>
       </layers>
-      <tags>
-        <li>WarcasketVeteran</li>
-        <li>WarcasketAll</li>
-      </tags>
     </apparel>
     <modExtensions>
       <li Class="VEF.Apparels.ApparelExtension">
