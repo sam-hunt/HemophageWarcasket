@@ -88,8 +88,9 @@ while the build stays green. The first holds the work trait's rule: which work t
 settings may open, their defaults, and the tags and types a choice writes. The second holds
 which part a Dismember strike destroys, the third the settings sliders' arithmetic.
 `CompatPatchTests` resolves every xpath in `1.6/Mods/*/Patches/` and the SOS2 patch against the
-main-tree defs, the only check a gated root gets short of a boot with that mod active, and
-fails on two load roots sharing a patch or def path;
+main-tree defs, the only check a gated root gets short of a boot with that mod active, holds
+a patch on Dismember's extension to the fields the C# declares, and fails on two load roots
+sharing a patch or def path;
 `SetShapeTests` holds each piece's declared graphics to files that exist under `Textures/` (a
 missing one is a pink box in game and an error nowhere), the descriptions to their shared
 paragraphs and `About.xml` to no `modIconPath` (the helmet's settings header draws the mod icon,
@@ -136,7 +137,11 @@ about hemogen (the Overlord repo's is the model).
 - **Vanilla Races Expanded - Sanguophage is optional content, gated by load root.** Anything
   that reads its genes, hediffs or research goes in a compat root of its own
   (`1.6/Mods/<Mod>/`, `IfModActive` on its package id), never in the main tree behind
-  `MayRequire`; `1.6/CLAUDE.md` has why.
+  `MayRequire`; `1.6/CLAUDE.md` has why. `1.6/Mods/VanillaRacesExpandedSanguophage/` is that
+  root, and its shape is the one to keep: the main tree declares def fields that stay empty
+  (`DismemberExtension`'s drain sources, feeding hediffs and hemohunter states), the root's
+  patch fills them with that mod's defs, and the C# reads the fields and names no def of
+  another mod.
 - **Player-facing text follows `l10n/languages/English.md`** (def labels and descriptions,
   `Keyed/`, `About.xml`, `.steamworkshop/`): read it before writing or changing any. Its
   mechanical rules (no dashes, semicolons, "Whether" openers or parenthetical asides) are

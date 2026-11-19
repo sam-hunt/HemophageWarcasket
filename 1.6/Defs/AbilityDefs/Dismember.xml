@@ -33,6 +33,12 @@
     causes, on top of the stump's own bleeding. A drain cut short keeps what it collected.
     A target that dies, to the strike or during the drain, is drained on as a corpse for the
     blood it has left, and one that died of blood loss has none (Ability_Dismember's header).
+    A bloodfeeder is not drained, as Bloodfeed refuses one. drainSources, feedingHediffs and
+    hemohunterStates are unset here: they widen the drain for another mod's feeding genes
+    and hand its hunting mental state the strike, so each is added by that mod's compat root
+    (1.6/Mods/VanillaRacesExpandedSanguophage/Patches/DismemberFeeding.xml). hemohunterStrikes
+    true is the switch on the last, on by default because a pilot who goes hunting in this
+    suit is meant to be the worse for it, and off for a player who wants the plain bite back.
     bloodFilthCount 10 within bloodFilthRadius 2 is the spatter a landed strike throws: the
     13 cells of a radius 2 disc, so about seven of them catch some, a repeat on a cell
     thickening it. The filth is the target's own blood, so a mechanoid throws machine bits
@@ -45,7 +51,8 @@
     smallest of the large ones being the termite at 1.6, and half a human's size sits in it.
 
     The mod settings override castTime, cooldownTime, the pads' pool and the
-    DismemberExtension fields that Source/1.6/Settings/Settings_Dismember.cs lists.
+    DismemberExtension fields that Source/1.6/Settings/Settings_Dismember.cs lists,
+    hemohunterStrikes among them.
 
     showUndrafted as on the hemogen rush. No castSound: the damage plays its own impact, and
     the drain plays Bloodfeed's.
@@ -86,6 +93,7 @@
         <canTargetNonHostile>true</canTargetNonHostile>
         <decapitateBodiesWithoutLimbs>false</decapitateBodiesWithoutLimbs>
         <decapitateWithoutLimbsMaxBodySize>0.5</decapitateWithoutLimbsMaxBodySize>
+        <hemohunterStrikes>true</hemohunterStrikes>
       </li>
     </modExtensions>
   </VEF.Abilities.AbilityDef>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Vanilla Races Expanded - Sanguophage: what its feeding genes and its hemohunter mental state
+  mean to the pads' Dismember. The fields are DismemberExtension's, their rules in
+  Ability_Dismember's header; this root only names that mod's defs for them. Its 1.7 folder is
+  its 1.6 one, so this root is listed under both versions.
+
+  drainSources. That mod gives a feeding gene an ability of its own beside Bloodfeed, with the
+  same 20 hemogen scaled by body size, and the drain takes each gene's targets as that ability
+  does:
+  - VRE_AnimalFeeder feeds on any animal. Its AnimalFeed takes blood by the animal's base body
+    size, all of it from one of 0.2 or smaller and a tenth from one of 2 or larger, in a
+    straight line between (CompAbilityEffect_AnimalfeederBite.BiteAmount). The curve is that
+    line as factors of the drain's targetBloodLoss, 0.4499 by default (1 / 0.4499 and
+    0.1 / 0.4499), so the mod setting for the blood loss scales animals with everything else.
+    A rat is drained dry; an elephant hardly notices. A wild animal's revenge needs nothing
+    here: the strike is damage with the pilot as instigator, which vanilla already rolls
+    manhunter for (Pawn_MindState.Notify_DamageTaken, 1.6 and 1.7). AnimalFeed rolls it for a
+    tame animal too, which the strike does not copy.
+  - VRE_SanguoFeeder feeds on any hemogenic human, bloodfeeders included, which the plain
+    drain refuses as Bloodfeed does. Its SanguoFeed also asks the target for 10 hemogen and
+    takes 20 more than the bite; the drain already takes from a hemogenic target what the
+    pilot gains, and asks for nothing.
+  - VRE_CorpseFeeder has no entry. Its CorpseFeed is for a corpse found lying, which it
+    destroys; the drain only follows a target it struck alive, and counts it as what it was.
+
+  feedingHediffs. Each of that mod's feedings leaves its hediff on the feeder and removes the
+  other two, and Bloodfeed and a hemogen pack remove all three (its postfix on
+  CompAbilityEffect_BloodfeederBite.Apply, its HemogenPackIngestionPatch.xml). A drain does the
+  same: a source's hediff stays or is given, the rest come off.
+
+  hemohunterStates. Its blood moon sends every hemogenic human on the map under 45 hemogen
+  into VRE_Hemohunter, in which its JobGiver_Hemohunter walks the pawn to a random human
+  without the hemogen gene and bites. ThinkTreeDefs/HemohunterDismember.xml asks ours first.
+-->
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/VEF.Abilities.AbilityDef[defName="HPWC_Dismember"]/modExtensions/li[@Class="HemophageWarcasket.DismemberExtension"]</xpath>
+    <value>
+      <drainSources>
+        <li>
+          <pilotGene>VRE_AnimalFeeder</pilotGene>
+          <target>Animal</target>
+          <hediff>VRE_ConsumedAnimalHemogen</hediff>
+          <bloodLossFactorByBaseBodySize>
+            <points>
+              <li>(0.2, 2.2227)</li>
+              <li>(2, 0.2223)</li>
+            </points>
+          </bloodLossFactorByBaseBodySize>
+        </li>
+        <li>
+          <pilotGene>VRE_SanguoFeeder</pilotGene>
+          <target>Hemogenic</target>
+          <hediff>VRE_ConsumedSanguophageHemogen</hediff>
+        </li>
+      </drainSources>
+      <feedingHediffs>
+        <li>VRE_ConsumedAnimalHemogen</li>
+        <li>VRE_ConsumedCorpseHemogen</li>
+        <li>VRE_ConsumedSanguophageHemogen</li>
+      </feedingHediffs>
+      <hemohunterStates>
+        <li>VRE_Hemohunter</li>
+      </hemohunterStates>
+    </value>
+  </Operation>
+</Patch>

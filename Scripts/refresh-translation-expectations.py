@@ -31,11 +31,11 @@ engine.PACKAGE_ID = "shunter.hemophagewarcasket"
 #
 # One list, not the engine's WORLDS: no load root is gated on a DLC or a mod
 # that adds a translatable field. The VGE and CE compat roots move numbers
-# and add none. A root that ever patches a [MustTranslate] field onto a def
-# (the Shipcracker's VGE chargeNoun is the family's case), or a gated root
-# that ships defs (optional Vanilla Races Expanded - Sanguophage content
-# would be one), needs a world of its own; the Legion repo's shim is the
-# precedent.
+# and the Vanilla Races Expanded - Sanguophage root fills def fields with
+# that mod's defs, and none adds one. A root that ever patches a
+# [MustTranslate] field onto a def (the Shipcracker's VGE chargeNoun is the
+# family's case), or a gated root that ships defs, needs a world of its own;
+# the Legion repo's shim is the precedent.
 #
 # Plain ids on purpose: when the Workshop copy of a mod and a local Mods/
 # copy coexist, RimWorld suffixes the Workshop one "_steam" and the plain id

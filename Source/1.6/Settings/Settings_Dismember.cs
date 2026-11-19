@@ -11,8 +11,10 @@ namespace HemophageWarcasket;
 // overrides cooldownTime (stored in game hours, ticks on the def) and the windup castTime (real
 // seconds, ticks on the def). On its DismemberExtension the drain time overrides drainTicks
 // (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the game shows), the blood
-// loss targetBloodLoss (percent), the spatter bloodFilthCount, and the two boxes
-// canTargetNonHostile and decapitateBodiesWithoutLimbs. bloodFilthRadius and
+// loss targetBloodLoss (percent), the spatter bloodFilthCount, and the three boxes
+// canTargetNonHostile, decapitateBodiesWithoutLimbs and hemohunterStrikes. The last has a row
+// only while the extension names a hemohunter state, which a compat root's patch does, so the
+// window has no row for a mental state the game does not have. bloodFilthRadius and
 // decapitateWithoutLimbsMaxBodySize have no setting. The header carries the ability's icon and
 // tooltip.
 //
@@ -49,6 +51,7 @@ public partial class HemophageWarcasketSettings
 
     public readonly ToggleSetting dismemberNonHostile = new("DismemberNonHostile");
     public readonly ToggleSetting dismemberBehead = new("DismemberBehead");
+    public readonly ToggleSetting dismemberHemohunter = new("DismemberHemohunter");
 
     // The ability def, for its header icon, and the header's tooltip.
     private AbilityDef dismemberDef;
@@ -57,6 +60,9 @@ public partial class HemophageWarcasketSettings
     // The reload item and the pool's charge noun, for the summary.
     private ThingDef dismemberAmmo;
     private string dismemberNoun;
+
+    // Whether the extension names a hemohunter state, so the box for it has something to do.
+    private bool dismemberHasHemohunters;
 
     private void ExposeDismemberSettings()
     {
@@ -70,6 +76,7 @@ public partial class HemophageWarcasketSettings
         dismemberSpatter.ExposeData();
         dismemberNonHostile.ExposeData();
         dismemberBehead.ExposeData();
+        dismemberHemohunter.ExposeData();
     }
 
     private void LoadDismemberDefaults(Defs defs)
@@ -88,6 +95,8 @@ public partial class HemophageWarcasketSettings
         dismemberSpatter.DefaultValue = ext.bloodFilthCount;
         dismemberNonHostile.DefaultValue = ext.canTargetNonHostile;
         dismemberBehead.DefaultValue = ext.decapitateBodiesWithoutLimbs;
+        dismemberHemohunter.DefaultValue = ext.hemohunterStrikes;
+        dismemberHasHemohunters = !ext.hemohunterStates.NullOrEmpty();
         dismemberDef = defs.dismember;
         dismemberTip = HeaderTip(dismemberDef.LabelCap, dismemberDef.description);
     }
@@ -105,6 +114,7 @@ public partial class HemophageWarcasketSettings
         ext.bloodFilthCount = dismemberSpatter.IntValue;
         ext.canTargetNonHostile = dismemberNonHostile.Value;
         ext.decapitateBodiesWithoutLimbs = dismemberBehead.Value;
+        ext.hemohunterStrikes = dismemberHemohunter.Value;
     }
 
     private void ResetDismemberSettings()
@@ -119,6 +129,7 @@ public partial class HemophageWarcasketSettings
         dismemberSpatter.Reset();
         dismemberNonHostile.Reset();
         dismemberBehead.Reset();
+        dismemberHemohunter.Reset();
     }
 
     private void DrawDismemberSection(Listing_Standard listing)
@@ -135,6 +146,8 @@ public partial class HemophageWarcasketSettings
         dismemberSpatter.DoRow(listing);
         dismemberNonHostile.DoRow(listing);
         dismemberBehead.DoRow(listing);
+        if (dismemberHasHemohunters)
+            dismemberHemohunter.DoRow(listing);
     }
 
     // What the section's rows amount to: a sentence for the strikes held and what each costs to

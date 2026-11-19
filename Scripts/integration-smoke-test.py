@@ -31,8 +31,12 @@ engine.PACKAGE_ID = "shunter.hemophagewarcasket"
 # vacuum-resistance patch only ever runs with it active. Combat Extended:
 # it opens the 1.6/Mods/CombatExtended root, whose patch rescales the set's
 # stats and would fail silently against a renamed node. It loads after
-# VFEP, where its own About.xml puts it. Each sits before our mod, as the
-# mod a compat root complements should. Probe last (auto-quit). Plain ids
+# VFEP, where its own About.xml puts it. Vanilla Races Expanded -
+# Sanguophage: it opens the 1.6/Mods/VanillaRacesExpandedSanguophage root,
+# whose patch names that mod's genes, hediffs and mental state on the
+# Dismember ability's extension, where a renamed def is a load error only
+# its players would see. Its one dependency beyond Biotech is VEF. Each sits
+# before our mod, as the mod a compat root complements should. Probe last (auto-quit). Plain ids
 # on purpose; see the refresh shim's "_steam" note.
 # Save Our Ship 2 is deliberately absent: 1.6/Patches/SOS2Patch.xml is a
 # best-effort mirror of VFEP's own patch (its header), checked statically by
@@ -46,6 +50,7 @@ engine.SMOKE_ACTIVE_MODS = [
     "oskarpotocki.vfe.pirates",
     "vanillaexpanded.gravship",
     "ceteam.combatextended",
+    "vanillaracesexpanded.sanguophage",
     "shunter.hemophagewarcasket",
     "shunter.l10nprobe",
 ]
@@ -58,13 +63,15 @@ engine.OWN_PATTERNS = ["HemophageWarcasket", "[Hemophage Warcasket]", "HPWC_"]
 # walks our WarcasketDefs, VEF's ApparelExtension and CompShieldBubble run
 # on them, VGE1's vacuum rules read the resistance our patch lowers, and
 # CE's armor and inventory code reads the stats the CombatExtended root
-# sets. An error mentioning any of these gates the test even when the
+# sets, and the Dismember drain and the hemohunter's strike read the defs
+# of Vanilla Races Expanded - Sanguophage that its root names. An error mentioning any of these gates the test even when the
 # exception fires inside their code.
 engine.INTEGRATION_PATTERNS = {
     "VFEP": ["VFEPirates"],
     "VEF": ["VEF."],
     "VGE": ["VanillaGravshipExpanded"],
     "CE": ["CombatExtended"],
+    "VRES": ["VanillaRacesExpandedSanguophage"],
 }
 
 raise SystemExit(engine.main())

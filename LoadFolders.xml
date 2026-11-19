@@ -9,6 +9,9 @@
     <!-- Combat Extended: CE's armor scale, bulk, carry capacity, shield and smoke sealing.
          Patches only, so it needs no art root. -->
     <li IfModActive="CETeam.CombatExtended">1.6/Mods/CombatExtended</li>
+    <!-- Vanilla Races Expanded - Sanguophage: its feeding genes and hemohunter mental state
+         for the shoulders' Dismember. Patches only, so it needs no art root. -->
+    <li IfModActive="vanillaracesexpanded.sanguophage">1.6/Mods/VanillaRacesExpandedSanguophage</li>
   </v1.6>
   <v1.7>
     <!-- 1.7 runs the 1.6 tree unchanged: the Waylith CLR maps every UnityEngine
@@ -18,5 +21,6 @@
     <li>1.6</li>
     <li IfModActive="vanillaexpanded.gravship">1.6/Mods/VanillaGravshipExpanded</li>
     <li IfModActive="CETeam.CombatExtended">1.6/Mods/CombatExtended</li>
+    <li IfModActive="vanillaracesexpanded.sanguophage">1.6/Mods/VanillaRacesExpandedSanguophage</li>
   </v1.7>
 </loadFolders>

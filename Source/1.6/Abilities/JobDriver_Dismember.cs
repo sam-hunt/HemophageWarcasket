@@ -73,11 +73,11 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
         return base.TryMakePreToilReservations(errorOnFailed);
     }
 
-    // The pilot's instance of the ability whose def names jobDef, among the worn apparel's
-    // granted abilities.
-    public static Ability_Dismember FindAbility(Pawn pilot, JobDef jobDef)
+    // The pilot's instance of the ability whose def names jobDef, or of any with none given,
+    // among the worn apparel's granted abilities.
+    public static Ability_Dismember FindAbility(Pawn pilot, JobDef jobDef = null)
     {
-        if (pilot?.apparel == null || jobDef == null)
+        if (pilot?.apparel == null)
             return null;
         foreach (Apparel apparel in pilot.apparel.WornApparel)
         {
@@ -85,7 +85,7 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
             if (abilities == null)
                 continue;
             for (int i = 0; i < abilities.Count; i++)
-                if (abilities[i] is Ability_Dismember ability && ability.def.jobDef == jobDef)
+                if (abilities[i] is Ability_Dismember ability && (jobDef == null || ability.def.jobDef == jobDef))
                     return ability;
         }
         return null;
@@ -176,6 +176,7 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
             }
             pawn.pather.StopDead();
             ticksLeftThisToil = ability.DrainTicks;
+            ability.MarkFeeding(target);
             SoundDefOf.Bloodfeed_Cast.PlayOneShot(new TargetInfo(TargetA.Cell, pawn.Map));
         };
         toil.tickAction = () =>

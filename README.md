@@ -85,6 +85,11 @@ Coming with the first release.
 - **Save Our Ship 2 / Universum**: EVA rated under exactly the same rules as VFE Pirates' own sets.
 - **Vanilla Gravship Expanded**: follows its vacuum-resistance rules for warcaskets; there is no
   other VGE integration.
+- **Vanilla Races Expanded - Sanguophage**: built-in support. The helmet covers its dangerous UV
+  sensitivity. An animalfeeder pilot drains hemogen from animals and a sanguofeeder pilot from
+  other sanguophages, each with that mod's own effects on the pilot. An aggressive pilot who
+  becomes a hemohunter dismembers instead of biting while the shoulders have strikes left,
+  which a mod setting can turn off.
 - **Combat Extended**: built-in patch. CE armor values, bulk, carry capacity and shield in line
   with VFE Pirates' spacer sets and a helmet sealed against CE smoke.
 - **Warcaskets can work!, Warcaskets can haul!, Hardworking Warcaskets**: compatible. Whatever

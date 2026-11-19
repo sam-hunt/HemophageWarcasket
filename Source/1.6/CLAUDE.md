@@ -7,8 +7,9 @@ comments cover install-path detection, the compile-only VFEP/VEF references (`VF
 
 The code so far is the armor's hemogen rush, its toggle (`Abilities/`), the hediff comp that
 runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
-patch), the pads' Dismember, its ability, command, part picker and job driver (`Abilities/`) and
-strike pool (`Comps/`), the helmet's sunlight protection (`Sunlight/`, with its three patches)
+patch), the pads' Dismember, its ability, command, part picker, drain sources, job driver and
+the job giver that hands a hemohunter the strike (`Abilities/`) and strike pool (`Comps/`), the
+helmet's sunlight protection (`Sunlight/`, with its three patches)
 and pyrophobia relief (`Fire/`, with its one), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`),
 the settings window (`Settings/`), with a section for each piece's mechanic and one for the
 work, and the mask that keeps the set off generated pawns (`ListMask.cs`, with its patch).
@@ -78,7 +79,9 @@ rather than restating it.
   `TryTakeOrderedJob` so it interrupts and queues as an order does, and the driver writes
   `CompAbilities.currentlyCasting` when the job starts. An apparel ability's `pawn` is null
   until its first gizmo draw or that binding, and VEF fires no apparel ability's autocast, for
-  the player or for raiders.
+  the player or for raiders. A think tree gives the same job by making it directly
+  (`JobGiver_HemohunterDismember`), setting the ability's `pawn` itself before it asks the
+  ability anything.
 - **Mod-active checks from C#** go through a `ModDetection.IsActive(packageId)` helper
   (`../RimworldModTemplate/Source/1.7/ModDetection.cs` on its `1.7` branch, the Toxin repo's
   `PatchOperationModActive` for the XML side), never `ModsConfig.IsActive(string)`, which misses

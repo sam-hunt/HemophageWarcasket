@@ -61,6 +61,24 @@ namespace HemophageWarcasket;
 // for a dead one, so a severity change on a corpse does nothing but move the number (1.6, the
 // same on 1.7).
 //
+// Who is drained is Bloodfeed's rule: a humanlike that bleeds and is no bloodfeeder
+// (GeneUtility.IsBloodfeeder, what the Bloodfeed ability's canTargetBloodfeeders refuses, 1.6).
+// The extension's drainSources widen that for a pilot with the gene each names, to animals or
+// to the hemogenic, bloodfeeders among them, and the first that fits a target is what the drain
+// is: it can scale the blood loss by the target's size and name a hediff the feeding leaves on
+// the pilot. Every drain takes the other feedingHediffs off the pilot as it starts, so the
+// plain drain clears them all, as Bloodfeed does under a mod that keeps such hediffs. A corpse
+// is drained as what it was alive.
+//
+// A pilot in one of the extension's hemohunterStates hunts with the strike instead of the
+// bite that state's own mod gives it (JobGiver_HemohunterDismember), while hemohunterStrikes
+// is on, the button would be enabled, so a strike is loaded and off cooldown and is spent as on
+// any cast, the prey is one the drain feeds from, so never with the drain set to nothing, and
+// the pilot's genes make aggressive mental breaks likelier
+// (Pawn_GeneTracker.AggroMentalBreakSelectionChanceFactor above 1, vanilla's product over the
+// active genes, 1.6 and 1.7: Biotech's aggressive and hyper-aggressive, and any mod's stronger
+// one).
+//
 // The limit is the strikes loaded in the pads: a vanilla reloadable (CompStrikePool) on the
 // piece that grants the ability (holder), one spent by every cast, landed or not, as a vanilla
 // reloadable's verb spends its own. With none left the button is disabled on vanilla's own
@@ -363,8 +381,8 @@ public class Ability_Dismember : Ability
     }
 
     // Whether a drain can run or go on: the def sets one, the pilot has an active hemogen gene
-    // with room for more, and the target is a humanlike that bleeds, alive or a corpse on the
-    // map with blood left in it.
+    // with room for more, and the target is one the pilot feeds on that bleeds, alive or a
+    // corpse on the map with blood left in it.
     public bool CanDrain(Pawn target)
     {
         DismemberExtension ext = Extension;
@@ -374,7 +392,46 @@ public class Ability_Dismember : Ability
         if (hemogen == null || !hemogen.CanOffset || hemogen.Value >= hemogen.Max)
             return false;
         Thing body = target.Dead ? target.Corpse : target;
-        return body is { Spawned: true } && target.RaceProps.Humanlike && target.health.CanBleed && !BledOut(target);
+        return body is { Spawned: true } && FeedsOn(target, out _) && target.health.CanBleed && !BledOut(target);
+    }
+
+    // Whether the pilot drains such a target at all, and through which of the extension's
+    // wider sources: none for the plain drain (see the header).
+    private bool FeedsOn(Pawn target, out DismemberDrainSource source)
+    {
+        source = null;
+        List<DismemberDrainSource> sources = Extension.drainSources;
+        if (sources != null && pawn != null)
+        {
+            for (int i = 0; i < sources.Count; i++)
+            {
+                if (sources[i].Fits(pawn, target))
+                {
+                    source = sources[i];
+                    return true;
+                }
+            }
+        }
+        return target.RaceProps.Humanlike && !target.IsBloodfeeder();
+    }
+
+    // As a drain starts: the pilot now carries the mark of this feeding and of no other.
+    public void MarkFeeding(Pawn target)
+    {
+        FeedsOn(target, out DismemberDrainSource source);
+        HediffDef mark = source?.hediff;
+        HediffSet hediffs = pawn.health.hediffSet;
+        List<HediffDef> marks = Extension.feedingHediffs;
+        if (marks != null)
+        {
+            for (int i = 0; i < marks.Count; i++)
+            {
+                if (marks[i] != mark && hediffs.GetFirstHediffOfDef(marks[i]) is { } other)
+                    pawn.health.RemoveHediff(other);
+            }
+        }
+        if (mark != null && !hediffs.HasHediff(mark))
+            pawn.health.AddHediff(mark);
     }
 
     // Vanilla's own test for a hediff that kills, which only a corpse can pass.
@@ -391,8 +448,23 @@ public class Ability_Dismember : Ability
         GeneUtility.OffsetHemogen(pawn, gain);
         GeneUtility.OffsetHemogen(target, -gain);
         RefreshStun(target);
-        HealthUtility.AdjustSeverity(target, HediffDefOf.BloodLoss, ext.targetBloodLoss * share);
+        FeedsOn(target, out DismemberDrainSource source);
+        float bySize = source?.bloodLossFactorByBaseBodySize?.Evaluate(target.RaceProps.baseBodySize) ?? 1f;
+        HealthUtility.AdjustSeverity(target, HediffDefOf.BloodLoss, ext.targetBloodLoss * bySize * share);
     }
+
+    // Whether the pilot, bound and in a mental state, hunts with the strike (see the header).
+    public bool StrikesAsHemohunter()
+    {
+        DismemberExtension ext = Extension;
+        return ext is { hemohunterStrikes: true, hemohunterStates: not null } && pawn?.MentalStateDef is { } state
+            && ext.hemohunterStates.Contains(state) && pawn.genes?.AggroMentalBreakSelectionChanceFactor > 1f
+            && IsEnabledForPawn(out _);
+    }
+
+    // Whether a hunt may take this pawn: a valid target for the strike that the drain then
+    // feeds on.
+    public bool CanHunt(Pawn target) => ValidateTarget(target, showMessages: false) && CanDrain(target);
 
     public int DrainTicks => Extension.drainTicks;
 

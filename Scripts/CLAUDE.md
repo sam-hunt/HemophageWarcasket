@@ -23,8 +23,8 @@ the smoke list); the engines live in the `l10n/` submodule. Nothing here ships.
   into worlds, one boot each; the shim names the precedent.
 - **`integration-smoke-test.py`** (game closed, pre-release) boots the deployed mod on a pinned
   list (the VFEP chain, Biotech, Odyssey for Vanilla Gravship Expanded, then Vanilla Gravship
-  Expanded and Combat Extended so their compat roots open), then fails on any logged error
-  attributed to this mod or a VFEP/VEF/VGE/CE seam. Save Our Ship 2 is deliberately off the
+  Expanded, Combat Extended and Vanilla Races Expanded - Sanguophage so their compat roots
+  open), then fails on any logged error attributed to this mod or a VFEP/VEF/VGE/CE/VRES seam. Save Our Ship 2 is deliberately off the
   list: its patch is best-effort.
   Sibling-mod "dump WILL fail" warnings at launch are expected: the probe is ticked for every
   family mod but each boot loads only its own list.

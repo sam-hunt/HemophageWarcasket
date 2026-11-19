@@ -21,6 +21,10 @@ namespace HemophageWarcasket.Tests;
 // Every root here patches our own defs. A root that patches a DLC's or another mod's def needs
 // that def's XML merged in as well; the Overlord repo's copy of this file (its DlcRoots table)
 // is the precedent.
+//
+// A patch that adds fields to the Dismember ability's extension is held to the fields the C#
+// declares, read off the source so the test needs no game type: the game reports an unknown
+// field as an error at load, which again only that mod's players would see.
 public class CompatPatchTests
 {
     private static readonly string RepoRoot = FindRepoRoot();
@@ -69,6 +73,39 @@ public class CompatPatchTests
                 ? 0
                 : Regex.Matches(xpath, "defName\\s*=\\s*\"").Count;
             Assert.True(hits == expected, $"{relativePath}: {xpath} resolved {hits} node(s), expected {expected}");
+        }
+    }
+
+    private static string[] PublicFields(string sourceFile) =>
+        Regex.Matches(File.ReadAllText(Path.Combine(RepoRoot, "Source/1.6/Abilities", sourceFile)),
+                @"^\s*public\s+[\w<>\[\], ]+?\s+(\w+)\s*(?:=[^;]*)?;", RegexOptions.Multiline)
+            .Cast<Match>().Select(m => m.Groups[1].Value).ToArray();
+
+    [Fact]
+    public void DismemberExtensionPatches_NameOnlyDeclaredFields()
+    {
+        const string extensionXPath = "li[@Class=\"HemophageWarcasket.DismemberExtension\"]";
+        var extensionFields = PublicFields("DismemberExtension.cs");
+        var sourceFile = File.ReadAllText(Path.Combine(RepoRoot, "Source/1.6/Abilities/DismemberDrainSource.cs"));
+        var sourceFields = PublicFields("DismemberDrainSource.cs");
+        var targetKinds = Regex.Matches(Regex.Match(sourceFile, @"enum DrainTargetKind\s*\{(.*?)\}", RegexOptions.Singleline).Groups[1].Value,
+            @"^\s*(\w+),", RegexOptions.Multiline).Cast<Match>().Select(m => m.Groups[1].Value).ToArray();
+        Assert.Contains("drainSources", extensionFields);
+        Assert.Contains("pilotGene", sourceFields);
+        Assert.NotEmpty(targetKinds);
+
+        var values = PatchFiles().Select(row => XDocument.Load(Path.Combine(RepoRoot, (string)row[0])))
+            .SelectMany(patch => patch.Descendants().Where(e => e.Element("xpath")?.Value.EndsWith(extensionXPath, StringComparison.Ordinal) == true))
+            .Select(op => op.Element("value")!)
+            .ToList();
+        Assert.NotEmpty(values);
+        foreach (var field in values.Elements())
+            Assert.True(extensionFields.Contains(field.Name.LocalName), $"DismemberExtension has no field {field.Name.LocalName}");
+        foreach (var source in values.Elements("drainSources").Elements("li"))
+        {
+            foreach (var field in source.Elements())
+                Assert.True(sourceFields.Contains(field.Name.LocalName), $"DismemberDrainSource has no field {field.Name.LocalName}");
+            Assert.Contains((string?)source.Element("target"), targetKinds);
         }
     }
 
