@@ -24,16 +24,20 @@ public sealed class Tunable
     // section header (Listing.Indent only moves the cursor and would push the row off the right)
     // and padded on the right so it does not run up against the scrollbar.
     // The value column is sized to the widest value a row can show, so the slider runs out to
-    // it and the row ends near the window's edge; every format here is at most four digits and
-    // a point, or fewer digits and a unit letter or "x" narrower than a digit ("2.75s", "x2.5"),
-    // so "00.00" with the default suffix (as translated) bounds it.
+    // it and the row ends near the window's edge. Every format here has one of two shapes: at
+    // most four digits and a point, or fewer digits and a unit letter or "x" narrower than a
+    // digit ("2.75s", "x2.5"), which "00.00" bounds, or at most three digits and a percent
+    // sign ("150%"), which "000%" bounds. Which of the two is wider is the font's to say (in
+    // Arial a percent sign is a little wider than a digit and a point), so the column takes the
+    // wider as measured, each with the default suffix (as translated). A value even a pixel
+    // over its column wraps the suffix onto a second line.
     // The settings' summary and checkbox rows lay out with these constants too.
     internal const float RowHeight = 30f;
     internal const float RowGap = 6f;
     internal const float RowIndent = Listing.DefaultIndent;
     internal const float RowEndPad = Listing.DefaultIndent;
     private const float LabelShare = 0.4f;
-    private const string WidestValue = "00.00";
+    private static readonly string[] WidestValues = { "00.00", "000%" };
     private const float SliderPad = 10f;
 
     private readonly string key;
@@ -148,7 +152,7 @@ public sealed class Tunable
         row.xMin += RowIndent;
         row.xMax -= RowEndPad;
         Rect labelRect = row.LeftPart(LabelShare);
-        float valueWidth = Text.CalcSize(WidestValue + "HPWC_DefaultSuffix".Translate()).x;
+        float valueWidth = ValueWidth();
         var valueRect = new Rect(row.xMax - valueWidth, row.y, valueWidth, row.height);
         var sliderRect = new Rect(labelRect.xMax + SliderPad, row.y,
             valueRect.x - labelRect.xMax - 2f * SliderPad, row.height);
@@ -190,6 +194,15 @@ public sealed class Tunable
             isDefault = index == Nearest(stops, DefaultValue);
         }
         value = isDefault ? Unset : snapped;
+    }
+
+    private static float ValueWidth()
+    {
+        string suffix = "HPWC_DefaultSuffix".Translate();
+        float width = 0f;
+        foreach (string widest in WidestValues)
+            width = Mathf.Max(width, Text.CalcSize(widest + suffix).x);
+        return width;
     }
 
     private string Format(float stored) => format(stored / DisplayScale);
