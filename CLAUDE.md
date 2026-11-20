@@ -89,7 +89,8 @@ settings may open, their defaults, and the tags and types a choice writes. The s
 which part a Dismember strike destroys, the third the settings sliders' arithmetic.
 `CompatPatchTests` resolves every xpath in `1.6/Mods/*/Patches/` and the SOS2 patch against the
 main-tree defs, the only check a gated root gets short of a boot with that mod active, holds
-a patch on Dismember's extension to the fields the C# declares, and fails on two load roots
+a patch on Dismember's extension to the fields the C# declares and a drain source on the
+hemogenic to a floor on its target's hemogen, and fails on two load roots
 sharing a patch or def path;
 `SetShapeTests` holds each piece's declared graphics to files that exist under `Textures/` (a
 missing one is a pink box in game and an error nowhere), the descriptions to their shared

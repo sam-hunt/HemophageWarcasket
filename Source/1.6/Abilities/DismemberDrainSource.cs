@@ -31,6 +31,10 @@ public class DismemberDrainSource
     // leaves it as it is.
     public SimpleCurve bloodLossFactorByBaseBodySize;
 
+    // The drain stops at a hemogenic target with less hemogen than this, on Biotech's 0..1
+    // scale, and never starts on one. Zero asks for nothing.
+    public float minTargetHemogen;
+
     public bool Fits(Pawn pilot, Pawn victim)
     {
         if (pilotGene == null || pilot.genes?.HasActiveGene(pilotGene) != true)
@@ -39,4 +43,8 @@ public class DismemberDrainSource
             ? victim.RaceProps.Animal
             : victim.RaceProps.Humanlike && victim.genes?.GetFirstGeneOfType<Gene_Hemogen>() != null;
     }
+
+    public bool BelowFloor(Pawn victim) =>
+        minTargetHemogen > 0f && victim.genes?.GetFirstGeneOfType<Gene_Hemogen>() is { } hemogen
+        && hemogen.Value < minTargetHemogen;
 }

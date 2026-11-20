@@ -1,6 +1,8 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -24,7 +26,9 @@ namespace HemophageWarcasket.Tests;
 //
 // A patch that adds fields to the Dismember ability's extension is held to the fields the C#
 // declares, read off the source so the test needs no game type: the game reports an unknown
-// field as an error at load, which again only that mod's players would see.
+// field as an error at load, which again only that mod's players would see. A drain source on
+// the hemogenic is also held to a floor on its target's hemogen, without which an empty target
+// fills the pilot all the same.
 public class CompatPatchTests
 {
     private static readonly string RepoRoot = FindRepoRoot();
@@ -81,10 +85,19 @@ public class CompatPatchTests
                 @"^\s*public\s+[\w<>\[\], ]+?\s+(\w+)\s*(?:=[^;]*)?;", RegexOptions.Multiline)
             .Cast<Match>().Select(m => m.Groups[1].Value).ToArray();
 
+    // The <value> of every operation that patches the Dismember ability's extension.
+    private static List<XElement> DismemberExtensionPatchValues()
+    {
+        const string extensionXPath = "li[@Class=\"HemophageWarcasket.DismemberExtension\"]";
+        return PatchFiles().Select(row => XDocument.Load(Path.Combine(RepoRoot, (string)row[0])))
+            .SelectMany(patch => patch.Descendants().Where(e => e.Element("xpath")?.Value.EndsWith(extensionXPath, StringComparison.Ordinal) == true))
+            .Select(op => op.Element("value")!)
+            .ToList();
+    }
+
     [Fact]
     public void DismemberExtensionPatches_NameOnlyDeclaredFields()
     {
-        const string extensionXPath = "li[@Class=\"HemophageWarcasket.DismemberExtension\"]";
         var extensionFields = PublicFields("DismemberExtension.cs");
         var sourceFile = File.ReadAllText(Path.Combine(RepoRoot, "Source/1.6/Abilities/DismemberDrainSource.cs"));
         var sourceFields = PublicFields("DismemberDrainSource.cs");
@@ -94,10 +107,7 @@ public class CompatPatchTests
         Assert.Contains("pilotGene", sourceFields);
         Assert.NotEmpty(targetKinds);
 
-        var values = PatchFiles().Select(row => XDocument.Load(Path.Combine(RepoRoot, (string)row[0])))
-            .SelectMany(patch => patch.Descendants().Where(e => e.Element("xpath")?.Value.EndsWith(extensionXPath, StringComparison.Ordinal) == true))
-            .Select(op => op.Element("value")!)
-            .ToList();
+        var values = DismemberExtensionPatchValues();
         Assert.NotEmpty(values);
         foreach (var field in values.Elements())
             Assert.True(extensionFields.Contains(field.Name.LocalName), $"DismemberExtension has no field {field.Name.LocalName}");
@@ -106,6 +116,19 @@ public class CompatPatchTests
             foreach (var field in source.Elements())
                 Assert.True(sourceFields.Contains(field.Name.LocalName), $"DismemberDrainSource has no field {field.Name.LocalName}");
             Assert.Contains((string?)source.Element("target"), targetKinds);
+        }
+    }
+
+    [Fact]
+    public void HemogenicDrainSources_SetAFloorOnTheTargetsHemogen()
+    {
+        var sources = DismemberExtensionPatchValues().Elements("drainSources").Elements("li")
+            .Where(source => (string?)source.Element("target") == "Hemogenic").ToList();
+        Assert.NotEmpty(sources);
+        foreach (var source in sources)
+        {
+            var floor = float.Parse(source.Element("minTargetHemogen")?.Value ?? "0", CultureInfo.InvariantCulture);
+            Assert.True(floor > 0f, $"the drain source for {(string?)source.Element("pilotGene")} sets no minTargetHemogen");
         }
     }
 

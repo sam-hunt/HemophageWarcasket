@@ -16,11 +16,11 @@
     A rat is drained dry; an elephant hardly notices. A wild animal's revenge needs nothing
     here: the strike is damage with the pilot as instigator, which vanilla already rolls
     manhunter for (Pawn_MindState.Notify_DamageTaken, 1.6 and 1.7). AnimalFeed rolls it for a
-    tame animal too, which the strike does not copy.
+    tame animal too; the strike keeps to vanilla, which rolls it for no animal with a faction.
   - VRE_SanguoFeeder feeds on any hemogenic human, bloodfeeders included, which the plain
-    drain refuses as Bloodfeed does. Its SanguoFeed also asks the target for 10 hemogen and
-    takes 20 more than the bite; the drain already takes from a hemogenic target what the
-    pilot gains, and asks for nothing.
+    drain refuses as Bloodfeed does. Its SanguoFeed refuses a target under 10 hemogen, as
+    minTargetHemogen 0.1 does: an empty target would fill the pilot all the same. The 20 it
+    takes beyond the bite prices a bite on the unresisting, which a torn limb has paid.
   - VRE_CorpseFeeder has no entry. Its CorpseFeed is for a corpse found lying, which it
     destroys; the drain only follows a target it struck alive, and counts it as what it was.
 
@@ -53,6 +53,7 @@
           <pilotGene>VRE_SanguoFeeder</pilotGene>
           <target>Hemogenic</target>
           <hediff>VRE_ConsumedSanguophageHemogen</hediff>
+          <minTargetHemogen>0.1</minTargetHemogen>
         </li>
       </drainSources>
       <feedingHediffs>

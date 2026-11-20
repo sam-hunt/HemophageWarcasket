@@ -65,10 +65,10 @@ namespace HemophageWarcasket;
 // (GeneUtility.IsBloodfeeder, what the Bloodfeed ability's canTargetBloodfeeders refuses, 1.6).
 // The extension's drainSources widen that for a pilot with the gene each names, to animals or
 // to the hemogenic, bloodfeeders among them, and the first that fits a target is what the drain
-// is: it can scale the blood loss by the target's size and name a hediff the feeding leaves on
-// the pilot. Every drain takes the other feedingHediffs off the pilot as it starts, so the
-// plain drain clears them all, as Bloodfeed does under a mod that keeps such hediffs. A corpse
-// is drained as what it was alive.
+// is: it can scale the blood loss by the target's size, stop at a floor on the target's hemogen
+// and name a hediff the feeding leaves on the pilot. Every drain takes the other feedingHediffs
+// off the pilot as it starts, so the plain drain clears them all, as Bloodfeed does under a mod
+// that keeps such hediffs. A corpse is drained as what it was alive.
 //
 // A pilot in one of the extension's hemohunterStates hunts with the strike instead of the
 // bite that state's own mod gives it (JobGiver_HemohunterDismember), while hemohunterStrikes
@@ -385,7 +385,7 @@ public class Ability_Dismember : Ability
 
     // Whether a drain can run or go on: the def sets one, the pilot has an active hemogen gene
     // with room for more, and the target is one the pilot feeds on that bleeds, alive or a
-    // corpse on the map with blood left in it.
+    // corpse on the map with blood left in it, and holds the hemogen its source asks for.
     public bool CanDrain(Pawn target)
     {
         DismemberExtension ext = Extension;
@@ -395,7 +395,8 @@ public class Ability_Dismember : Ability
         if (hemogen == null || !hemogen.CanOffset || hemogen.Value >= hemogen.Max)
             return false;
         Thing body = target.Dead ? target.Corpse : target;
-        return body is { Spawned: true } && FeedsOn(target, out _) && target.health.CanBleed && !BledOut(target);
+        return body is { Spawned: true } && FeedsOn(target, out DismemberDrainSource source)
+            && source?.BelowFloor(target) != true && target.health.CanBleed && !BledOut(target);
     }
 
     // Whether the pilot drains such a target at all, and through which of the extension's
