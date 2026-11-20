@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    Core's MicroSparks drawn behind the pilot, for the hemogen rush's steady sparks
+    (EffecterDefs/HemogenRush.xml has what they are for). Everything but the layer is the
+    parent's.
+
+    altitudeLayer Projectile is the layer directly under a standing pawn's, so the pilot and
+    the warcasket cover a spark until it has risen clear of them, while it still draws over
+    buildings and items. The game puts its jump pack's glow, on the same shader, on this layer
+    (Royalty's JumpFlameGlow, Biotech's JumpFlameGlowMech).
+  -->
+  <FleckDef ParentName="MicroSparks">
+    <defName>HPWC_HemogenSparkBehind</defName>
+    <altitudeLayer>Projectile</altitudeLayer>
+  </FleckDef>
+</Defs>

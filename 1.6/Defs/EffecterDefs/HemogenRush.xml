@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--
+    What rises off a pilot while the hemogen rush runs, beside the glow on the set's pieces.
+    The rush hediff's HediffCompProperties_Effecter names it (HediffDefs/HemogenRush.xml), and
+    the pawn's own tick then creates it, ticks it and cleans it up with the hediff
+    (PawnStatusEffecters, 1.6 and 1.7), so nothing here is driven or saved by our code.
+
+    Built from flecks that mark no state of a pawn anywhere in the game. Core's Berserk
+    effecter, the nearest ready-made look, marks a pawn out of its owner's control wherever it
+    appears, and a rushing pilot is under control.
+
+    offsetMode Free: the default measures the pilot's draw position against its cell once, as
+    the effecter is created, and keeps that offset for the effecter's life, which misplaces
+    every fleck by up to half a cell on a pilot who was walking at that moment. The sprayer
+    reads the pilot's draw position each time it spawns (OnSource).
+
+    Sparks: Core's MicroSparks, the embers off a fire, a lightning strike and lava, tinted red,
+    from two sprayers. Some come at random in front of the pilot and more on a fixed beat
+    behind, where the pilot's own sprite and the random ones in front hide the beat.
+
+    Both:
+    - scale 0.5~0.8 is under the 0.8~1.2 the game throws them at off a fire
+      (FleckMaker.ThrowMicroSparks), and speed 0.35~0.6 well under its 1.2, so they drift
+      about a cell up and do not fly.
+    - angle -25~25 with absoluteAngle is up the screen whichever way the pilot faces.
+      fleckUsesAngleForVelocity makes the fleck move along it.
+    - positionRadius 0.35 scatters them across the warcasket's width.
+    - The flecks do not follow the pilot, so a running pilot leaves them behind as a short
+      trail.
+    - color multiplies the fleck's own, and its shader adds the result to the scene: the
+      tint keeps the red and takes out most of the green and blue.
+
+    In front, at random:
+    - chancePerTick 0.03 is a roll every tick, 1.8 a second on average with uneven gaps. One
+      lasts 1.9 seconds, so three or four show at once.
+    - positionOffset raises the origin 0.3 cells from the pilot's center, to the chest of the
+      warcasket.
+
+    Behind, on a beat:
+    - HPWC_HemogenSparkBehind is the same fleck on the layer under the pilot
+      (FleckDefs/HemogenSparkBehind.xml).
+    - ticksBetweenMotes 15 is four a second, over twice the random sprayer's 1.8, since the
+      pilot's sprite covers the first part of each one's life.
+    - No positionOffset: they start around the pilot's center, so the ones that show come out
+      from behind the sprite on every side.
+  -->
+  <EffecterDef>
+    <defName>HPWC_HemogenRush</defName>
+    <offsetMode>Free</offsetMode>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
+        <fleckDef>MicroSparks</fleckDef>
+        <spawnLocType>OnSource</spawnLocType>
+        <chancePerTick>0.03</chancePerTick>
+        <positionOffset>(0, 0, 0.3)</positionOffset>
+        <positionRadius>0.35</positionRadius>
+        <scale>0.5~0.8</scale>
+        <color>(255, 70, 50)</color>
+        <absoluteAngle>true</absoluteAngle>
+        <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+        <angle>-25~25</angle>
+        <speed>0.35~0.6</speed>
+        <rotationRate>-12~12</rotationRate>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+        <fleckDef>HPWC_HemogenSparkBehind</fleckDef>
+        <spawnLocType>OnSource</spawnLocType>
+        <ticksBetweenMotes>15</ticksBetweenMotes>
+        <positionRadius>0.35</positionRadius>
+        <scale>0.5~0.8</scale>
+        <color>(255, 70, 50)</color>
+        <absoluteAngle>true</absoluteAngle>
+        <fleckUsesAngleForVelocity>true</fleckUsesAngleForVelocity>
+        <angle>-25~25</angle>
+        <speed>0.35~0.6</speed>
+        <rotationRate>-12~12</rotationRate>
+      </li>
+    </children>
+  </EffecterDef>
+</Defs>

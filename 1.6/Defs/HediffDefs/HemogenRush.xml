@@ -38,6 +38,9 @@
     portraits and the zoomed-out pawn cache bake, and the strength the glow holds with
     glowPulses off.
 
+    Sparks: the pilot gives off EffecterDefs/HemogenRush.xml for as long as the hediff
+    is on them, through the game's own HediffCompProperties_Effecter.
+
     The mod settings override hemogenStartCost, hemogenPerSecond, hemogenReserve, glowPulses
     and the two statFactors (Source/1.6/Settings/Settings_Rush.cs).
 
@@ -70,6 +73,9 @@
             <li>(1, 1)</li>
           </points>
         </glowPulse>
+      </li>
+      <li Class="HediffCompProperties_Effecter">
+        <stateEffecter>HPWC_HemogenRush</stateEffecter>
       </li>
       <li Class="HediffCompProperties_DisappearsOnDeath" />
     </comps>
