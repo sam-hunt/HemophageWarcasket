@@ -373,6 +373,59 @@ public class DismemberTargetTests : IDisposable
         Assert.True(decapitates);
     }
 
+    private static readonly BodyPartHeight[] Aims = [BodyPartHeight.Bottom, BodyPartHeight.Middle, BodyPartHeight.Top];
+
+    // The heights the game resolves for a ringed mechanoid: every ring takes the first ring's
+    // Middle, and the head is declared Top.
+    private static Ringed RingedAtItsHeights(params int[] ringsWithAnOrgan)
+    {
+        var ringed = new Ringed(null, ringsWithAnOrgan);
+        foreach (BodyPartRecord ring in ringed.rings)
+            ring.height = BodyPartHeight.Middle;
+        ringed.head.height = BodyPartHeight.Top;
+        return ringed;
+    }
+
+    // One ring is ready at a time, so no aim has a second limb to prefer, and an aim at the
+    // head's own height takes the ring all the same.
+    [Fact]
+    public void AimHeight_OnACentipede_ChangesNeitherTheOrderNorWhenTheHeadGoes()
+    {
+        Ringed centipede = RingedAtItsHeights(2, 3, 4);
+        BodyDef body = Body(centipede.Core);
+        foreach (BodyPartHeight aim in Aims)
+            for (int index = 0; index < 3; index++)
+            {
+                BodyPartRecord? Aimed(IEnumerable<BodyPartRecord> present, out bool decapitates) =>
+                    DismemberTarget.Choose(body, present, false, n => Math.Min(index, n - 1), out decapitates, aim);
+                Assert.Same(centipede.rings[5], Aimed(centipede.Present(), out bool decapitates));
+                Assert.False(decapitates);
+                Assert.Same(centipede.rings[4], Aimed(centipede.Present(centipede.rings[5]), out decapitates));
+                Assert.False(decapitates);
+                Assert.Same(centipede.head, Aimed(centipede.Present(centipede.rings[4]), out decapitates));
+                Assert.True(decapitates);
+            }
+    }
+
+    // A termite's shape, and with the flag a cobra's rule: no aim opens a body the def keeps
+    // shut, and none shuts one the def opens.
+    [Fact]
+    public void AimHeight_OnABodyBuiltWithoutLimbs_ChangesNothing()
+    {
+        Ringed termite = RingedAtItsHeights(2, 6);
+        BodyDef body = Body(termite.Core);
+        foreach (BodyPartHeight aim in Aims)
+        {
+            Assert.Null(DismemberTarget.Choose(body, termite.Present(), false, n => 0, out bool decapitates, aim));
+            Assert.False(decapitates);
+            Assert.Equal(StrikeOutlook.None, DismemberTarget.Outlook(body, termite.Present(), false, aim, _ => true, out decapitates));
+            Assert.False(decapitates);
+
+            Assert.Same(termite.head, DismemberTarget.Choose(body, termite.Present(), true, n => 0, out decapitates, aim));
+            Assert.True(decapitates);
+        }
+    }
+
     [Fact]
     public void RingsUnderAnUntaggedCore_ComeOffFromTheOutsideInDownToTheFirst()
     {
