@@ -7,9 +7,9 @@ comments cover install-path detection, the compile-only VFEP/VEF references (`VF
 
 The code so far is the armor's hemogen rush, its toggle (`Abilities/`), the hediff comp that
 runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
-patch), the pads' Dismember, its ability, command, part picker, drain sources, the reader of
-another mod's melee aim height, job driver and the job giver that hands a hemohunter the strike
-(`Abilities/`) and strike pool (`Comps/`), the
+patch), the pads' Dismember, its ability, command, part picker, drain sources and foresight,
+the reader of another mod's melee aim height, job driver and the job giver that hands a
+hemohunter the strike (`Abilities/`) and strike pool (`Comps/`), the
 helmet's sunlight protection (`Sunlight/`, with its three patches)
 and pyrophobia relief (`Fire/`, with its one), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`),
 the settings window (`Settings/`), with a section for each piece's mechanic and one for the

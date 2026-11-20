@@ -83,13 +83,14 @@ severities pinned in `.editorconfig`): fix the code, not the severity.
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
 Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Five
 files touch no game type, so they run anywhere; `WorkProfileTests`,
-`DismemberTargetTests` and `TunableTests` run game code and so need the game's real 1.6 runtime
-DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
+`DismemberTargetTests`, `DismemberDrainTests` and `TunableTests` run game code and so need the
+game's real 1.6 runtime DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
 `~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup), failing without them
 while the build stays green. The first holds the work trait's rule: which work types the
 settings may open, their defaults, and the tags and types a choice writes. The second holds
 which part a Dismember strike takes hold of, at which aim height, and whether it comes off, the
-third the settings sliders' arithmetic.
+third which blood loss the cursor's drain warning calls serious or fatal, the fourth the
+settings sliders' arithmetic.
 `CompatPatchTests` resolves every xpath in `1.6/Mods/*/Patches/` and the SOS2 patch against the
 main-tree defs, the only check a gated root gets short of a boot with that mod active, holds
 a patch on Dismember's extension to the fields the C# declares and a drain source on the

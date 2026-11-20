@@ -7,7 +7,7 @@
   <!-- Beside the cursor over a target, where the game's own "Will kill" goes: the strike would tear off none of the limbs it could take hold of, or only some of them -->
   <HPWC_DismemberWillWound>Will only wound</HPWC_DismemberWillWound>
   <HPWC_DismemberMayWound>May only wound</HPWC_DismemberMayWound>
-  <!-- Beside the cursor over a target from a faction that is not hostile, under the line above or the game's own "Will kill" when both apply. {0} is the faction's name -->
+  <!-- Beside the cursor over a target from a faction that is not hostile, under the lines above and the game's own "Will kill" and "Will cause major blood loss" when they apply. {0} is the faction's name -->
   <HPWC_DismemberWillAnger>Will anger {0}</HPWC_DismemberWillAnger>
   <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
   <HPWC_DismemberReload>Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}.</HPWC_DismemberReload>

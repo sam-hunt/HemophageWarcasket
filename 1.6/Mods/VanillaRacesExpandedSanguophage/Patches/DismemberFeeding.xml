@@ -13,6 +13,9 @@
     straight line between (CompAbilityEffect_AnimalfeederBite.BiteAmount). The curve is that
     line as factors of the drain's targetBloodLoss, 0.4499 by default (1 / 0.4499 and
     0.1 / 0.4499), so the mod setting for the blood loss scales animals with everything else.
+    Both are rounded up: the first must come to no less than the severity blood loss kills
+    at, or the cursor's warning of the drain, which sums as the drain does, would stop short
+    of "Will kill" over an animal the drain kills.
     A rat is drained dry; an elephant hardly notices. A wild animal's revenge needs nothing
     here: the strike is damage with the pilot as instigator, which vanilla already rolls
     manhunter for (Pawn_MindState.Notify_DamageTaken, 1.6 and 1.7). AnimalFeed rolls it for a
@@ -44,7 +47,7 @@
           <hediff>VRE_ConsumedAnimalHemogen</hediff>
           <bloodLossFactorByBaseBodySize>
             <points>
-              <li>(0.2, 2.2227)</li>
+              <li>(0.2, 2.2228)</li>
               <li>(2, 0.2223)</li>
             </points>
           </bloodLossFactorByBaseBodySize>

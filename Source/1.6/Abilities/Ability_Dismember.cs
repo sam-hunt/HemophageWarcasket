@@ -58,8 +58,20 @@ namespace HemophageWarcasket;
 // The cursor also says what the strike would do (ExtraLabelMouseAttachment): Biotech's "Will
 // kill" when it would take the head off, and that it will or may only wound when no part or
 // only some of the parts it could take would come off (DismemberTarget.Outlook, on
-// ForeseenDamage). The answer is kept for OutlookSeconds of real time, since working it out
-// walks the body and the game may be paused while what decides it changes.
+// ForeseenDamage). Under that goes what the drain would then do to a living target's blood, in
+// the two warnings Bloodfeed gives of its bite and by the same sum
+// (CompAbilityEffect_BloodfeederBite.ExtraLabelMouseAttachment, 1.6 and 1.7): the blood loss
+// the target has plus a full drain's, "Will kill" when that reaches the severity blood loss
+// kills at and Biotech's major blood loss line when it reaches a life threatening stage
+// (DismemberDrain.Outlook). A full drain is the most a drain can take, so the warning errs
+// toward being given: a pilot whose hemogen fills first stops short of it. It is given when
+// the pilot could drain the target now (DrainsFrom) and the target bleeds already or could
+// bleed from the strike: it is not deathresting, and one of the parts the strike could take
+// is not solid, vanilla's word for a part that never bleeds, an artificial limb and all below
+// it among them (BodyPartDef.IsSolid, which Hediff_Injury.BleedRate and
+// Hediff_MissingPart.IsFreshNonSolidExtremity both ask, 1.6 and 1.7). Every answer is kept
+// for OutlookSeconds of real time, since working them out walks the body and the game may be
+// paused while what decides them changes.
 //
 // TakeDamage writes no combat log line, so the strike writes its own the way
 // Verb_MeleeAttack.TryCastShot does (1.6; the entry's constructor and BattleLog.Add are the same
@@ -135,11 +147,13 @@ public class Ability_Dismember : Ability
     private Faction warnedFaction;
     private StrikeOutlook warnedOutlook;
     private bool warnedKill;
+    private DrainOutlook warnedDrain;
     private string warning;
     private Pawn foreseenFor;
     private float foreseenAt;
     private StrikeOutlook foreseen;
     private bool foreseenKill;
+    private DrainOutlook foreseenDrain;
     private string noStrikes;
     private string reloadLine;
 
@@ -176,6 +190,7 @@ public class Ability_Dismember : Ability
         warnedFaction = null;
         warnedOutlook = StrikeOutlook.None;
         warnedKill = false;
+        warnedDrain = DrainOutlook.Harmless;
         warning = null;
         foreseenFor = null;
         noStrikes = null;
@@ -288,45 +303,68 @@ public class Ability_Dismember : Ability
 
     // What the strike on the hovered pawn would do and cost, a line each as Bloodfeed stacks
     // its own: Biotech's warning when it would take the head off, or that it would or might
-    // only wound, then the faction it would anger. Asked every frame of the hover, so the text
-    // is kept until an answer changes.
+    // only wound, then what the drain would do to the blood of a target the strike leaves
+    // alive, then the faction it would anger. Asked every frame of the hover, so the text is
+    // kept until an answer changes.
     public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
     {
         if (target.Thing is not Pawn victim || victim == pawn || !victim.Spawned || victim.Dead || RefusedAsNonHostile(victim))
             return null;
         if (!DismemberTarget.CanStrike(victim, Extension, out _))
             return null;
-        StrikeOutlook outlook = Foresee(victim, out bool kills);
+        StrikeOutlook outlook = Foresee(victim, out bool kills, out DrainOutlook drain);
         Faction angered = AngeredFaction(victim);
-        if (angered == warnedFaction && outlook == warnedOutlook && kills == warnedKill)
+        if (angered == warnedFaction && outlook == warnedOutlook && kills == warnedKill && drain == warnedDrain)
             return warning;
         warnedFaction = angered;
         warnedOutlook = outlook;
         warnedKill = kills;
+        warnedDrain = drain;
         warning = kills ? "WillKill".Translate()
             : outlook == StrikeOutlook.Wounds ? "HPWC_DismemberWillWound".Translate()
             : outlook == StrikeOutlook.MayTear ? "HPWC_DismemberMayWound".Translate()
             : null;
+        if (drain == DrainOutlook.Kills)
+            AddWarning("WillKill".Translate());
+        else if (drain == DrainOutlook.SeriousBloodLoss)
+            AddWarning("WillCauseSeriousBloodloss".Translate());
         if (angered != null)
-            warning = (warning == null ? "" : warning + "\n") + "HPWC_DismemberWillAnger".Translate(angered.Name);
+            AddWarning("HPWC_DismemberWillAnger".Translate(angered.Name));
         return warning;
     }
 
-    // What a strike on this pawn would do, and whether it would take the head off (see the
-    // header).
-    private StrikeOutlook Foresee(Pawn victim, out bool kills)
+    private void AddWarning(string line) => warning = warning == null ? line : warning + "\n" + line;
+
+    // What a strike on this pawn would do, whether it would take the head off and, when it
+    // would not, what the drain would then do (see the header).
+    private StrikeOutlook Foresee(Pawn victim, out bool kills, out DrainOutlook drain)
     {
         float now = RealTime.LastRealTime;
         if (victim != foreseenFor || now < foreseenAt || now >= foreseenAt + OutlookSeconds)
         {
             foreseenFor = victim;
             foreseenAt = now;
-            foreseen = DismemberTarget.Outlook(victim, Extension, MeleeAim.HeightFor(pawn, Extension),
-                ForeseenDamage(victim), out bool decapitates);
+            BodyPartHeight aim = MeleeAim.HeightFor(pawn, Extension);
+            foreseen = DismemberTarget.Outlook(victim, Extension, aim, ForeseenDamage(victim), out bool decapitates);
             foreseenKill = decapitates && foreseen == StrikeOutlook.Tears;
+            foreseenDrain = foreseenKill ? DrainOutlook.Harmless : ForeseenDrain(victim, aim);
         }
         kills = foreseenKill;
+        drain = foreseenDrain;
         return foreseen;
+    }
+
+    // What the drain after a strike at this height would do to a living target's blood: none
+    // of it unless a drain could follow (see the header).
+    private DrainOutlook ForeseenDrain(Pawn victim, BodyPartHeight aim)
+    {
+        if (!DrainsFrom(victim))
+            return DrainOutlook.Harmless;
+        HediffSet hediffs = victim.health.hediffSet;
+        if (hediffs.BleedRateTotal <= 0f && (victim.Deathresting || !DismemberTarget.CouldBleed(victim, Extension, aim)))
+            return DrainOutlook.Harmless;
+        float lost = hediffs.GetFirstHediffOfDef(HediffDefOf.BloodLoss)?.Severity ?? 0f;
+        return DismemberDrain.Outlook(HediffDefOf.BloodLoss, lost + FullBloodLoss(victim));
     }
 
     // The strike before it is aimed at a part: the def's damage by the pilot's melee damage
@@ -537,9 +575,16 @@ public class Ability_Dismember : Ability
         GeneUtility.OffsetHemogen(pawn, gain);
         GeneUtility.OffsetHemogen(target, -gain);
         RefreshStun(target);
+        HealthUtility.AdjustSeverity(target, HediffDefOf.BloodLoss, FullBloodLoss(target) * share);
+    }
+
+    // BloodLoss severity a drain run to its end adds to this target: the extension's, scaled
+    // by the target's size when its source says so.
+    private float FullBloodLoss(Pawn target)
+    {
         FeedsOn(target, out DismemberDrainSource source);
         float bySize = source?.bloodLossFactorByBaseBodySize?.Evaluate(target.RaceProps.baseBodySize) ?? 1f;
-        HealthUtility.AdjustSeverity(target, HediffDefOf.BloodLoss, ext.targetBloodLoss * bySize * share);
+        return Extension.targetBloodLoss * bySize;
     }
 
     // Whether the pilot, bound and in a mental state, hunts with the strike (see the header).

@@ -34,7 +34,9 @@ namespace HemophageWarcasket;
 //
 // Taking hold of a part is not tearing it off: the strike does a set damage, and a part with
 // more health left than that keeps to the body, wounded (Ability_Dismember has the damage).
-// Outlook says before the click which of the two the parts the strike could take would do.
+// Outlook says before the click which of the two the parts the strike could take would do,
+// and CouldBleed whether any of them would bleed, torn off or wounded (Ability_Dismember has
+// why a solid part does not).
 //
 // A missing part's children carry missing hediffs of their own (Hediff_MissingPart adds them,
 // 1.6), so a not-missing part never sits under a missing one. CanStrike is asked by the
@@ -90,6 +92,14 @@ public static class DismemberTarget
             aim, part => Tears(hediffs.GetPartHealth(part), damage), out decapitates);
     }
 
+    // Whether a strike could leave the target bleeding from the part it takes.
+    public static bool CouldBleed(Pawn target, DismemberExtension ext, BodyPartHeight aim)
+    {
+        HediffSet hediffs = target.health.hediffSet;
+        return AnyCandidate(target.RaceProps.body, hediffs.GetNotMissingParts(), BeheadsWithoutLimbs(target.BodySize, ext),
+            aim, part => !part.def.IsSolid(part, hediffs.hediffs));
+    }
+
     // Whether damage takes a part with this much health off: HediffSet.GetPartHealth rounds
     // what is left to a whole number, and HediffSet.AddDirect removes a part left at zero
     // (1.6 and 1.7).
@@ -122,6 +132,11 @@ public static class DismemberTarget
                 torn++;
         return torn == parts.Count ? StrikeOutlook.Tears : torn == 0 ? StrikeOutlook.Wounds : StrikeOutlook.MayTear;
     }
+
+    // Whether any part the strike could take passes the test.
+    public static bool AnyCandidate(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
+        bool beheadsWithoutLimbs, BodyPartHeight aim, Predicate<BodyPartRecord> test) =>
+        Candidates(body, notMissing, beheadsWithoutLimbs, aim, out _).Exists(test);
 
     // The parts a strike picks among: the limbs not waiting, at the aim height when any is
     // there, else the head alone, else none.

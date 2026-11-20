@@ -220,6 +220,59 @@ public class DismemberTargetTests : IDisposable
     }
 
     [Fact]
+    public void AnyCandidate_IsTrueWhenOneOfTheLimbsPasses()
+    {
+        var human = new Humanlike();
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Undefined, part => part == human.legs[1]));
+        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Undefined, _ => false));
+        // Only limbs are asked: the jaw and the head pass nothing here.
+        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Undefined, part => part == human.jaw || part == human.head));
+    }
+
+    [Fact]
+    public void AnyCandidate_AsksOnlyTheLimbsAtTheAimHeight()
+    {
+        var human = new Humanlike();
+        Predicate<BodyPartRecord> aLeg = part => human.legs.Contains(part);
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Undefined, aLeg));
+        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Middle, aLeg));
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Bottom, aLeg));
+        // With no limb at the aim height every limb is asked.
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Top, aLeg));
+    }
+
+    [Fact]
+    public void AnyCandidate_DoesNotAskALimbWaitingBehindAnother()
+    {
+        var centipede = new Ringed(null, 2, 3, 4);
+        BodyDef body = Body(centipede.Core);
+        Assert.True(DismemberTarget.AnyCandidate(body, centipede.Present(), false, BodyPartHeight.Undefined, part => part == centipede.rings[5]));
+        Assert.False(DismemberTarget.AnyCandidate(body, centipede.Present(), false, BodyPartHeight.Undefined, part => part == centipede.rings[4]));
+        Assert.True(DismemberTarget.AnyCandidate(body, centipede.Present(centipede.rings[5]), false, BodyPartHeight.Undefined, part => part == centipede.rings[4]));
+    }
+
+    [Fact]
+    public void AnyCandidate_OnATargetOutOfLimbs_AsksTheHead()
+    {
+        var human = new Humanlike();
+        IEnumerable<BodyPartRecord> present = human.Present([.. human.arms, .. human.legs]);
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, present, false, BodyPartHeight.Bottom, part => part == human.head));
+        Assert.False(DismemberTarget.AnyCandidate(human.Def, present, false, BodyPartHeight.Undefined, part => part == human.torso));
+    }
+
+    [Fact]
+    public void AnyCandidate_OnABodyWithNothingToTake_IsFalse()
+    {
+        BodyPartRecord core = Part("Segment", null, BodyPartDepth.Outside);
+        Part("Brain", core, BodyPartDepth.Inside, Consciousness);
+        Assert.False(DismemberTarget.AnyCandidate(Body(core), Flatten(core), true, BodyPartHeight.Undefined, _ => true));
+
+        var termite = new Ringed(null, 2, 6);
+        Assert.False(DismemberTarget.AnyCandidate(Body(termite.Core), termite.Present(), false, BodyPartHeight.Undefined, _ => true));
+        Assert.True(DismemberTarget.AnyCandidate(Body(termite.Core), termite.Present(), true, BodyPartHeight.Undefined, part => part == termite.head));
+    }
+
+    [Fact]
     public void MissingLimb_IsNotOffered()
     {
         var human = new Humanlike();

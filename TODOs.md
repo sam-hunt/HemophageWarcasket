@@ -2,7 +2,6 @@
 
 ## Features
 
-- **VRE Sanguophage Integration: Drain warning** Bloodfeed and VRES's feeding abilities warn "Will kill" or of serious blood loss beside the cursor when the bite would bleed the target that far. Dismember warns only of a beheading, and an animalfeeder's drain bleeds any small animal dry.
 - **Tuning pass** The three pieces are the 10th generation's baseline (VFEP's Sarcophagus row less its medicine and bionics; the def headers argue each number), but for the pads' cost, which pays for Dismember. Settle the set's own stats and costs as the mechanics land, then mirror them into the CE patch.
 
 ## Testing
@@ -18,8 +17,10 @@
     - The drain, for a hemogenic pilot on a human: the 4 second bar with Bloodfeed's sound and splash.
     - The drain on a kill: a raider who dies to the strike (beheaded, or killed as the lost limb downs them) is drained as a corpse, with the bar over the corpse, the full hemogen gained and "Blood loss" on the corpse's health tab. A target shot dead during the drain is drained on the same way, and one who bleeds to death during it ends the drain there.
     - A bloodfeeder target: struck, never drained, as Bloodfeed refuses one.
+    - The drain warning beside the cursor, for a hemogenic pilot with room for hemogen: nothing over an unhurt human, "Will cause major blood loss" over one at 16% blood loss or more and "Will kill" at 56% or more (dev mode: add the BloodLoss hediff and set its severity), under "Will only wound" when both apply and above "Will anger". No such line for a pilot without the gene or at full hemogen, over a bloodfeeder, over a deathresting target that is not bleeding, or over an unhurt target whose limbs are all bionic.
     - With Vanilla Races Expanded - Sanguophage:
       - An animalfeeder pilot (a strigoi) drains an animal and gets "consumed animal hemogen". A rat bleeds to death during the drain, an elephant loses about a tenth of its blood. A pilot without the gene only strikes the animal.
+      - The same pilot's cursor reads "Will kill" over a rat or a squirrel, "Will cause major blood loss" over a husky and nothing over an elephant, and a pilot without the gene sees none of the three.
       - A sanguofeeder pilot (a bruxa) drains a sanguophage and gets "consumed sanguophage hemogen". Any pilot's drain of an ordinary human removes whichever of the three "consumed ... hemogen" hediffs the pilot had.
       - A sanguofeeder pilot on a sanguophage under 10 hemogen (dev mode: a colonist sanguophage's "DEV: hemogen -10" button): struck, never drained, and no "consumed sanguophage hemogen". One a little over 10 is drained until it falls under 10, and the bar stops short.
       - Under a blood moon (dev mode: the VRE_BloodMoon incident, pilot under 45 hemogen), an aggressive pilot who becomes a hemohunter walks to a non-hemogenic human and dismembers them, spending a strike, then drains. With the strikes spent they bite as VRES has them. A dead calm pilot (a bruxa) only ever bites, as does any pilot with "Hemohunters dismember targets" off.
