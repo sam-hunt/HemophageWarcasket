@@ -23,6 +23,10 @@ public sealed class Tunable
     // is, with a gap below it so neighbouring rows read apart, indented so it sits under its
     // section header (Listing.Indent only moves the cursor and would push the row off the right)
     // and padded on the right so it does not run up against the scrollbar.
+    // The label column is as wide as the widest label of any row in the window, in the active
+    // language, plus LabelPad, so every slider starts on one line and takes all the room the
+    // labels leave: a longer slider puts more pixels under each step. It stops at MaxLabelShare
+    // of the row, where a longer label wraps, so a long translation cannot squeeze the slider.
     // The value column is sized to the widest value a row can show, so the slider runs out to
     // it and the row ends near the window's edge. Every format here has one of two shapes: at
     // most four digits and a point, or fewer digits and a unit letter or "x" narrower than a
@@ -36,9 +40,17 @@ public sealed class Tunable
     internal const float RowGap = 6f;
     internal const float RowIndent = Listing.DefaultIndent;
     internal const float RowEndPad = Listing.DefaultIndent;
-    private const float LabelShare = 0.4f;
+    private const float MaxLabelShare = 0.4f;
+    private const float LabelPad = 14f;
     private static readonly string[] WidestValues = { "00.00", "000%" };
     private const float SliderPad = 10f;
+
+    // Every label the shared column covers: each Tunable's, and that of any other row kind
+    // laid out as a Tunable row (AddLabel), read afresh when measured since a language switch
+    // or a LabelArg changes them. Measured once a frame.
+    private static readonly List<Func<string>> Labels = new();
+    private static int widestLabelFrame = -1;
+    private static float widestLabel;
 
     private readonly string key;
     private readonly float min;
@@ -57,6 +69,7 @@ public sealed class Tunable
         this.step = step;
         this.format = format;
         DefaultValue = Unset;
+        Labels.Add(Label);
     }
 
     public float DefaultValue { get; set; }
@@ -151,7 +164,7 @@ public sealed class Tunable
         Rect row = listing.GetRect(RowHeight);
         row.xMin += RowIndent;
         row.xMax -= RowEndPad;
-        Rect labelRect = row.LeftPart(LabelShare);
+        Rect labelRect = row.LeftPartPixels(LabelWidth(row.width));
         float valueWidth = ValueWidth();
         var valueRect = new Rect(row.xMax - valueWidth, row.y, valueWidth, row.height);
         var sliderRect = new Rect(labelRect.xMax + SliderPad, row.y,
@@ -165,7 +178,7 @@ public sealed class Tunable
             shown += "HPWC_DefaultSuffix".Translate();
         TextAnchor anchor = Text.Anchor;
         Text.Anchor = TextAnchor.MiddleLeft;
-        Widgets.Label(labelRect, LabelArg == null ? ("HPWC_" + key).Translate() : ("HPWC_" + key).Translate(LabelArg));
+        Widgets.Label(labelRect, Label());
         Widgets.Label(valueRect, shown);
         Text.Anchor = anchor;
 
@@ -195,6 +208,26 @@ public sealed class Tunable
         }
         value = isDefault ? Unset : snapped;
     }
+
+    // For a row kind of a mod's own that lays out as a Tunable row: its label joins the shared
+    // column's measure, and LabelWidth gives it the column.
+    internal static void AddLabel(Func<string> label) => Labels.Add(label);
+
+    // The label column's width in a row of the given width, by the layout rule above.
+    internal static float LabelWidth(float rowWidth)
+    {
+        if (widestLabelFrame != Time.frameCount)
+        {
+            widestLabelFrame = Time.frameCount;
+            widestLabel = 0f;
+            foreach (Func<string> label in Labels)
+                widestLabel = Mathf.Max(widestLabel, Text.CalcSize(label()).x);
+        }
+        return Mathf.Min(widestLabel + LabelPad, rowWidth * MaxLabelShare);
+    }
+
+    private string Label() =>
+        LabelArg == null ? ("HPWC_" + key).Translate() : ("HPWC_" + key).Translate(LabelArg);
 
     private static float ValueWidth()
     {
