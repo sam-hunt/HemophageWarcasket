@@ -21,9 +21,9 @@
         <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore [RECIPIENT_definite]'s [recipient_part0_label] off.</li>
         <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].</li>
         <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].</li>
-        <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] wrenched [RECIPIENT_definite]'s [recipient_part0_label] but could not tear it off.</li>
-        <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tore at [RECIPIENT_definite]'s [recipient_part0_label] but it held.</li>
-        <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] but could not tear off [RECIPIENT_possessive] [recipient_part0_label].</li>
+        <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tried to tear off [RECIPIENT_definite]'s [recipient_part0_label], but only wounded it.</li>
+        <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tore at [RECIPIENT_definite]'s [recipient_part0_label], wounding it.</li>
+        <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] tried to rip off [RECIPIENT_definite]'s [recipient_part0_label], but it held.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
