@@ -9,10 +9,11 @@ using Ability = VEF.Abilities.Ability;
 namespace HemophageWarcasket;
 
 // The shoulder pads' active: the pilot walks to a target pawn, holds it through the def's
-// warmup, tears off one of its limbs (DismemberTarget decides which) and, for a hemogenic pilot
-// on a humanlike target, holds it a few seconds more and drains hemogen from it
-// (JobDriver_Dismember). Any pawn may be targeted, hostile or not unless the def's extension
-// refuses the latter; vanilla's damage bookkeeping carries the consequences.
+// warmup, tears at one of its limbs (DismemberTarget decides which), which comes off unless it
+// is too sturdy for the strike, and, for a hemogenic pilot on a humanlike target that is
+// bleeding, holds it a few seconds more and drains hemogen from it (JobDriver_Dismember). Any
+// pawn may be targeted, hostile or not unless the def's extension refuses the latter;
+// vanilla's damage bookkeeping carries the consequences.
 //
 // The job is ordered through Pawn_JobTracker.TryTakeOrderedJob, not VEF's StartAbilityJob, so a
 // click interrupts like a vanilla order and the queue key appends (1.6); the driver binds
@@ -23,31 +24,57 @@ namespace HemophageWarcasket;
 // stun every tick.
 //
 // The strike is one DamageInfo at the chosen part with the pilot as instigator, which gives
-// guilt, faction goodwill, kill blame and records through TakeDamage (1.6). Damage propagation
-// off makes DamageWorker_AddInjury.ApplyDamageToPart go straight to FinalizeAndAddInjury,
-// skipping ReduceDamageToPreserveOutsideParts, so damage at or above the part's health always
-// destroys it, and HediffSet.AddDirect turns the injury into a fresh Hediff_MissingPart.
-// IgnoreArmor also skips worn apparel's CheckPreAbsorbDamage in Pawn_HealthTracker.PreApplyDamage.
-// The amount is vanilla's surgery idiom (Recipe_RemoveBodyPart), since genes, hediffs and
-// IncomingDamageFactor scale it first; instant kill protection would otherwise spare a
-// colonist's head.
+// guilt, faction goodwill, kill blame and records through TakeDamage (1.6). Its amount is the
+// extension's damage times the pilot's MeleeDamageFactor, the stat every vanilla melee verb
+// multiplies its own by (VerbProperties.GetDamageFactorFor), so the hemogen rush and a melee
+// damage gene strengthen the strike as they do a blow, with none of a blow's random spread:
+// what a strike will do is known before the click. Armor is ignored, as the strike wrenches
+// the joint and cuts through nothing: IgnoreArmor skips the armor step in
+// DamageWorker_AddInjury.ApplyDamageToPart and worn apparel's CheckPreAbsorbDamage in
+// Pawn_HealthTracker.PreApplyDamage. The target's IncomingDamageFactor still scales it there
+// (Tough, Biotech's robust gene), after any factor a gene or hediff of the target's sets on
+// the damage def itself (Pawn.PreApplyDamage). Damage propagation off sends what is left
+// straight to FinalizeAndAddInjury, skipping ReduceDamageToPreserveOutsideParts, as one injury
+// on the one part. When the part's health less that injury rounds to nothing,
+// HediffSet.AddDirect turns it into a fresh Hediff_MissingPart (GetPartHealth rounds;
+// DismemberTarget.Tears is the same test); otherwise the part stays on, wounded, and the
+// strike is spent all the same. Instant kill protection is ignored, or it would spare a
+// colonist's head after the cursor said the strike would kill. All the same on 1.6 and 1.7.
+//
+// Combat Extended (16.7.4) leaves the strike as it is: its transpiler on ApplyDamageToPart
+// replaces the armor call inside the branch IgnoreArmor skips, its ArmorUtilityCE returns at
+// once for a damage def with no armorCategory, and its other patches on the worker are on the
+// propagation the strike turns off. What it changes is the health of the parts
+// (1.6/Mods/CombatExtended/Patches/Dismember.xml).
 //
 // The goodwill is vanilla's price for any attack on a faction that is not hostile:
 // Faction.Notify_MemberTookDamage, reached from Pawn_HealthTracker.PreApplyDamage before armor,
-// takes 1.3 a point of damage up to 100 points, so at this amount every strike costs the most
-// one hit can, 130, and Faction.CalculateAdjustedGoodwillChange adds up to a quarter more
-// while relations stand above the faction's natural goodwill. One strike turns a neutral
-// faction hostile. AngeredFaction repeats that method's exemptions and
+// takes 1.3 a point of the amount dealt up to 100 points, and
+// Faction.CalculateAdjustedGoodwillChange adds up to a quarter more while relations stand
+// above the faction's natural goodwill. AngeredFaction repeats that method's exemptions and
 // Faction.CanChangeGoodwillFor to say so beside the cursor before the click, in the words
 // vanilla warns of a harmful operation with (all the same on 1.6 and 1.7).
+//
+// The cursor also says what the strike would do (ExtraLabelMouseAttachment): Biotech's "Will
+// kill" when it would take the head off, and that it will or may only wound when no part or
+// only some of the parts it could take would come off (DismemberTarget.Outlook, on
+// ForeseenDamage). The answer is kept for OutlookSeconds of real time, since working it out
+// walks the body and the game may be paused while what decides it changes.
 //
 // TakeDamage writes no combat log line, so the strike writes its own the way
 // Verb_MeleeAttack.TryCastShot does (1.6; the entry's constructor and BattleLog.Add are the same
 // on 1.7): a BattleLogEntry_MeleeCombat on our rule pack goes into the battle log before the
-// damage, so the downed or death line the damage causes follows it, and takes the destroyed
-// part from the damage result afterward. The log entry def is required, since the entry reads
-// its icons from it. A strike that destroyed nothing takes its entry back out, as the rule pack
-// has no line without a part.
+// damage, so the downed or death line the damage causes follows it, and takes the part and
+// whether it was destroyed from the damage result afterward, which the rule pack's lines
+// choose between. The log entry def is required, since the entry reads its icons from it. A
+// strike that reached no part takes its entry back out, as the rule pack has no line without
+// one.
+//
+// The drain follows the strike onto a target that is bleeding, from the stump, from the wound
+// of a limb that held or from anything else: HediffSet.BleedRateTotal above zero, which is
+// zero for a deathresting pawn and one that cannot bleed, and which the stump of an artificial
+// limb adds nothing to (HediffSet.AddDirect leaves it not fresh, 1.6 and 1.7). It is asked on
+// every tick of the drain, which ends when the bleeding does and keeps what it collected.
 //
 // The drain is on the target's blood, alive or dead. A target that dies, to the strike or
 // during the drain, is drained on as a corpse (JobDriver_Dismember follows it there) until its
@@ -99,17 +126,22 @@ public class Ability_Dismember : Ability
     // The stun refreshed each tick lasts this long past the last refresh.
     private const int StunRefreshTicks = 5;
 
+    // How long the cursor keeps what it foresaw of a strike on the hovered pawn.
+    private const float OutlookSeconds = 0.25f;
+
     private DismemberExtension extension;
     private int settingsGeneration = -1;
     private string incapableOfViolence;
     private Faction warnedFaction;
+    private StrikeOutlook warnedOutlook;
     private bool warnedKill;
     private string warning;
+    private Pawn foreseenFor;
+    private float foreseenAt;
+    private StrikeOutlook foreseen;
+    private bool foreseenKill;
     private string noStrikes;
     private string reloadLine;
-
-    // Whether this cast's strike took its part off, read by the driver's drain toil.
-    public bool StrikeLanded { get; private set; }
 
     private DismemberExtension Extension => extension ??= def.GetModExtension<DismemberExtension>();
 
@@ -142,8 +174,10 @@ public class Ability_Dismember : Ability
         extension = null;
         incapableOfViolence = null;
         warnedFaction = null;
+        warnedOutlook = StrikeOutlook.None;
         warnedKill = false;
         warning = null;
+        foreseenFor = null;
         noStrikes = null;
         reloadLine = null;
     }
@@ -252,24 +286,73 @@ public class Ability_Dismember : Ability
         return base.MouseAttachment(target);
     }
 
-    // What the strike on the hovered pawn would cost, a line each as Bloodfeed stacks its own:
-    // Biotech's warning when it would take the head, then the faction it would anger. Asked
-    // every frame of the hover, so the text is kept until either answer changes.
+    // What the strike on the hovered pawn would do and cost, a line each as Bloodfeed stacks
+    // its own: Biotech's warning when it would take the head off, or that it would or might
+    // only wound, then the faction it would anger. Asked every frame of the hover, so the text
+    // is kept until an answer changes.
     public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
     {
         if (target.Thing is not Pawn victim || victim == pawn || !victim.Spawned || victim.Dead || RefusedAsNonHostile(victim))
             return null;
-        if (!DismemberTarget.CanStrike(victim, Extension, out bool kills))
+        if (!DismemberTarget.CanStrike(victim, Extension, out _))
             return null;
+        StrikeOutlook outlook = Foresee(victim, out bool kills);
         Faction angered = AngeredFaction(victim);
-        if (angered == warnedFaction && kills == warnedKill)
+        if (angered == warnedFaction && outlook == warnedOutlook && kills == warnedKill)
             return warning;
         warnedFaction = angered;
+        warnedOutlook = outlook;
         warnedKill = kills;
-        warning = kills ? "WillKill".Translate() : null;
+        warning = kills ? "WillKill".Translate()
+            : outlook == StrikeOutlook.Wounds ? "HPWC_DismemberWillWound".Translate()
+            : outlook == StrikeOutlook.MayTear ? "HPWC_DismemberMayWound".Translate()
+            : null;
         if (angered != null)
             warning = (warning == null ? "" : warning + "\n") + "HPWC_DismemberWillAnger".Translate(angered.Name);
         return warning;
+    }
+
+    // What a strike on this pawn would do, and whether it would take the head off (see the
+    // header).
+    private StrikeOutlook Foresee(Pawn victim, out bool kills)
+    {
+        float now = RealTime.LastRealTime;
+        if (victim != foreseenFor || now < foreseenAt || now >= foreseenAt + OutlookSeconds)
+        {
+            foreseenFor = victim;
+            foreseenAt = now;
+            foreseen = DismemberTarget.Outlook(victim, Extension, MeleeAim.HeightFor(pawn, Extension),
+                ForeseenDamage(victim), out bool decapitates);
+            foreseenKill = decapitates && foreseen == StrikeOutlook.Tears;
+        }
+        kills = foreseenKill;
+        return foreseen;
+    }
+
+    // The strike before it is aimed at a part: the def's damage by the pilot's melee damage
+    // factor, armor and instant kill protection ignored and no propagation (see the header).
+    private DamageInfo StrikeInfo()
+    {
+        float amount = Extension.damage * (pawn?.GetStatValue(StatDefOf.MeleeDamageFactor) ?? 1f);
+        var dinfo = new DamageInfo(HPWC_DefOf.HPWC_Dismember, amount, instigator: pawn);
+        dinfo.SetIgnoreArmor(true);
+        dinfo.SetAllowDamagePropagation(false);
+        dinfo.SetIgnoreInstantKillProtection(true);
+        return dinfo;
+    }
+
+    // What of it would reach a part of this pawn's: the factors a gene or a hediff sets on
+    // the damage def in Pawn.PreApplyDamage, then IncomingDamageFactor as
+    // DamageWorker_AddInjury.ApplyDamageToPart applies it to an armorless hit (1.6 and 1.7).
+    private float ForeseenDamage(Pawn victim)
+    {
+        DamageInfo dinfo = StrikeInfo();
+        float damage = dinfo.Amount * victim.health.FactorForDamage(dinfo);
+        if (victim.genes != null)
+            damage *= victim.genes.FactorForDamage(dinfo);
+        if (dinfo.Def.ExternalViolenceFor(victim))
+            damage *= victim.GetStatValue(StatDefOf.IncomingDamageFactor);
+        return damage;
     }
 
     // The faction a strike on this pawn would cost the player goodwill with, or null (see the
@@ -321,44 +404,40 @@ public class Ability_Dismember : Ability
     public override void Cast(params GlobalTargetInfo[] targets)
     {
         base.Cast(targets);
-        StrikeLanded = false;
         if (targets.Length == 0 || targets[0].Thing is not Pawn target)
             return;
         Pool?.UsedOnce();
-        StrikeLanded = Strike(target);
+        Strike(target);
     }
 
-    private bool Strike(Pawn target)
+    private void Strike(Pawn target)
     {
         if (target.Dead || !target.Spawned)
-            return false;
-        BodyPartRecord part = DismemberTarget.Choose(target, Extension, out _);
+            return;
+        BodyPartRecord part = DismemberTarget.Choose(target, Extension, MeleeAim.HeightFor(pawn, Extension), out _);
         if (part == null)
-            return false;
-        var dinfo = new DamageInfo(HPWC_DefOf.HPWC_Dismember, 99999f, 999f, -1f, pawn, part);
-        dinfo.SetIgnoreArmor(true);
-        dinfo.SetAllowDamagePropagation(false);
-        dinfo.SetIgnoreInstantKillProtection(true);
+            return;
+        DamageInfo dinfo = StrikeInfo();
+        dinfo.SetHitPart(part);
         var log = new BattleLogEntry_MeleeCombat(HPWC_DefOf.HPWC_Combat_Dismember, alwaysShowInCompact: true,
             pawn, target, implementType: null, toolLabel: null, def: LogEntryDefOf.MeleeAttack);
         Find.BattleLog.Add(log);
         IntVec3 center = target.Position;
         Map map = target.Map;
         DamageWorker.DamageResult result = target.TakeDamage(dinfo);
-        bool landed = target.Dead || target.health.hediffSet.PartIsMissing(part);
-        if (landed && !result.parts.NullOrEmpty())
-            result.AssociateWithLog(log);
-        else
+        if (result.parts.NullOrEmpty())
             Find.BattleLog.RemoveEntry(log);
-        if (landed)
+        else
+            result.AssociateWithLog(log);
+        if (target.Dead || target.health.hediffSet.PartIsMissing(part))
             Spatter(target, center, map);
-        return landed;
     }
 
     // Reused across casts; filled and read within one Spatter call.
     private static readonly List<IntVec3> SpatterCells = [];
 
-    // Throws the extension's blood filth around where the target stood, the target's own blood
+    // What a torn limb or a kill throws: the extension's blood filth around where the target
+    // stood, the target's own blood
     // as Pawn_HealthTracker.DropBloodFilth picks it (1.6), so a bloodless race throws none.
     // TryMakeFilth reads its cell before any bounds check, hence the InBounds filter; the line
     // of sight keeps the spatter off the far side of a wall. FilthMaker and GenSight are the
@@ -383,10 +462,16 @@ public class Ability_Dismember : Ability
         SpatterCells.Clear();
     }
 
-    // Whether a drain can run or go on: the def sets one, the pilot has an active hemogen gene
-    // with room for more, and the target is one the pilot feeds on that bleeds, alive or a
-    // corpse on the map with blood left in it, and holds the hemogen its source asks for.
-    public bool CanDrain(Pawn target)
+    // Whether a drain can run or go on: one could (DrainsFrom), and the target is bleeding now
+    // or dead (see the header).
+    public bool CanDrain(Pawn target) =>
+        DrainsFrom(target) && (target.Dead || target.health.hediffSet.BleedRateTotal > 0f);
+
+    // Whether the pilot could drain this target once it bleeds: the def sets a drain, the pilot
+    // has an active hemogen gene with room for more, and the target is one the pilot feeds on
+    // that can bleed, alive or a corpse on the map with blood left in it, and holds the hemogen
+    // its source asks for.
+    private bool DrainsFrom(Pawn target)
     {
         DismemberExtension ext = Extension;
         if (ext == null || ext.drainTicks <= 0 || ext.hemogenGain <= 0f)
@@ -466,9 +551,9 @@ public class Ability_Dismember : Ability
             && IsEnabledForPawn(out _);
     }
 
-    // Whether a hunt may take this pawn: a valid target for the strike that the drain then
-    // feeds on.
-    public bool CanHunt(Pawn target) => ValidateTarget(target, showMessages: false) && CanDrain(target);
+    // Whether a hunt may take this pawn: a valid target for the strike that the drain could
+    // then feed on.
+    public bool CanHunt(Pawn target) => ValidateTarget(target, showMessages: false) && DrainsFrom(target);
 
     public int DrainTicks => Extension.drainTicks;
 

@@ -6,6 +6,19 @@ namespace HemophageWarcasket;
 // Values and their rationale are in the ability def (1.6/Defs/AbilityDefs/Dismember.xml).
 public class DismemberExtension : DefModExtension
 {
+    // Damage the strike does to the one part it takes hold of, before the pilot's
+    // MeleeDamageFactor and the target's IncomingDamageFactor. A part with more health left
+    // than what comes of it is wounded and stays on.
+    public float damage;
+
+    // Where another mod keeps a melee aim height the player sets on a pawn: the full name of
+    // the ThingComp class it gives the pawn and of the BodyPartHeight field on it (MeleeAim).
+    // A strike takes a limb at that height while the target has one there. None here: a compat
+    // root's patch names them.
+    public string aimHeightComp;
+
+    public string aimHeightField;
+
     // How long the drain runs, in ticks. Zero means the pads only tear.
     public int drainTicks;
 
@@ -16,7 +29,7 @@ public class DismemberExtension : DefModExtension
     // BloodLoss severity a full drain adds to the target.
     public float targetBloodLoss;
 
-    // Blood filth a landed strike throws: this many pieces, each on a random cell within
+    // Blood filth a strike that takes its part off throws: this many pieces, each on a random cell within
     // bloodFilthRadius of the target that it can see. Zero throws none.
     public int bloodFilthCount;
 

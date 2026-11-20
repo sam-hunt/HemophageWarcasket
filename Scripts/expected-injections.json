@@ -1,6 +1,6 @@
 {
   "meta": {
-    "gameBuild": "1.7.5013 rev802",
+    "gameBuild": "1.7.5014 rev1195",
     "activeDlcs": [
       "Core",
       "Biotech",
@@ -49,10 +49,13 @@
     "RulePackDef": {
       "HPWC_Combat_Dismember.rulePack.rulesStrings": {
         "english": [
-          "r_logentry->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].",
-          "r_logentry->[INITIATOR_definite] tore [RECIPIENT_definite]'s [recipient_part0_label] off.",
-          "r_logentry->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].",
-          "r_logentry(p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label]."
+          "r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].",
+          "r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore [RECIPIENT_definite]'s [recipient_part0_label] off.",
+          "r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].",
+          "r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].",
+          "r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] wrenched [RECIPIENT_definite]'s [recipient_part0_label] but could not tear it off.",
+          "r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tore at [RECIPIENT_definite]'s [recipient_part0_label] but it held.",
+          "r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] but could not tear off [RECIPIENT_possessive] [recipient_part0_label]."
         ],
         "isCollection": true,
         "fullListAllowed": true,
@@ -134,7 +137,7 @@
     },
     "VEF.Abilities.AbilityDef": {
       "HPWC_Dismember.description": {
-        "english": "Tear an arm or a leg off a nearby target, whatever armor it wears. A target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on for a few seconds and drain hemogen from the wound, which will also cause the target to lose blood.",
+        "english": "Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on and drain hemogen from the wound, which will also cause the target to lose blood.",
         "required": true
       },
       "HPWC_Dismember.iconPath": {

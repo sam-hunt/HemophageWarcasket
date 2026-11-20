@@ -77,6 +77,23 @@ public class RulePackTests
         }).ToArray();
     }
 
+    // Dismember's strike takes hold of one part and either tears it off or does not, and the
+    // entry says which in the constant recipient_part0_destroyed. A line with no such
+    // constraint would be drawn for both outcomes, so every line carries one, and both
+    // outcomes have a line.
+    [Fact]
+    public void EveryDismemberLine_IsForAPartTornOffOrOneThatHeld()
+    {
+        var def = LoadDef("1.6/Defs/RulePackDefs/Combat_Dismember.xml");
+        var outcomes = def.Element("rulePack")!.Element("rulesStrings")!.Elements("li").Select(li => (string)li)
+            .Where(raw => raw.StartsWith("r_logentry", StringComparison.Ordinal))
+            .Select(raw => (Raw: raw, Outcome: Regex.Match(Rule.Match(raw).Groups["constraints"].Value, @"(?:^|,)recipient_part0_destroyed==(True|False)(?:,|$)")))
+            .ToList();
+        Assert.All(outcomes, line => Assert.True(line.Outcome.Success, $"'{line.Raw}' is constrained to neither outcome"));
+        Assert.Contains(outcomes, line => line.Outcome.Groups[1].Value == "True");
+        Assert.Contains(outcomes, line => line.Outcome.Groups[1].Value == "False");
+    }
+
     private static bool Supplied(string symbol, string[] keywords) =>
         keywords.Contains(symbol)
         || PartSymbols.Contains(symbol)

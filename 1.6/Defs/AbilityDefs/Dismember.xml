@@ -6,11 +6,27 @@
     JobDriver_Dismember (JobDefs/Dismember.xml), the strike's damage in
     DamageDefs/Dismember.xml and its combat log line in RulePackDefs/Combat_Dismember.xml.
 
-    The strike destroys one whole arm or leg the target still has, at random, whatever its
-    armor. A target that has lost them all loses its head. Any pawn with a limb can be
-    targeted, downed or not, mechanoids and animals included, and hostile or not while
-    canTargetNonHostile is true. What counts as a limb is DismemberTarget's rule (its header):
-    a centipede's two last body rings do, taken from the tail in.
+    The strike takes hold of one whole arm or leg the target still has, at random, whatever
+    its armor, and tears it off unless the limb is too sturdy. A target that has lost them all
+    has its head taken instead. Any pawn with a limb can be targeted, downed or not,
+    mechanoids and animals included, and hostile or not while canTargetNonHostile is true.
+    What counts as a limb is DismemberTarget's rule (its header): a centipede's two last body
+    rings do, taken from the tail in.
+
+    damage 60 is what the strike does to that one part, times the pilot's MeleeDamageFactor
+    and the target's IncomingDamageFactor (Ability_Dismember has the arithmetic). A limb with
+    more health left than that is wounded and stays on. 60 is twice a human limb's 30, so a
+    Tough target, who takes half damage, still loses it, and only one who stacks the robust
+    gene on that (22.5) keeps the limb. It is about two blows of a zeushammer (31), from a
+    strike that takes a second to wind up and a component to reload. A limb's health is its
+    part's hitPoints times the race's health scale, so of the big bodies a megaspider's leg
+    (50) and a muffalo's (53) come off, a centipede's last ring (87) only for a pilot in the
+    hemogen rush, whose melee damage factor of 1.5 makes the strike 90, and a thrumbo's leg
+    (240) takes three strikes even then. The head goes by the same damage: a human's (25)
+    comes off, a centipede's (130) takes three strikes or two in the rush.
+    aimHeightComp and aimHeightField are unset here: they name where another mod keeps a
+    melee aim height for the strike to follow, and that mod's compat root adds them
+    (1.6/Mods/CombatExtended/Patches/Dismember.xml).
 
     Targeting: range is unset and requireLineOfSight off because the click is not range
     limited; the pilot walks to the target and the job enforces reach and sight at
@@ -26,8 +42,9 @@
     abilities do. gizmoClass adds the "strikes / max" count in the button's top right corner,
     where vanilla draws a reloadable's.
 
-    DismemberExtension is the drain, which follows the strike when the pilot is hemogenic and
-    the target is humanlike and can bleed, with the target held throughout. It is Bloodfeed
+    The rest of DismemberExtension is the drain, which follows the strike when the pilot is
+    hemogenic and the target is humanlike and bleeding, as one whose limb came off is and one
+    whose limb held mostly is, with the target held throughout. It is Bloodfeed
     spread over drainTicks 240 (4 s): hemogenGain 0.2 is Bloodfeed's 20 hemogen, scaled by
     the target's body size as a bite is, and targetBloodLoss 0.4499 is the blood loss a bite
     causes, on top of the stump's own bleeding. A drain cut short keeps what it collected.
@@ -39,10 +56,10 @@
     (1.6/Mods/VanillaRacesExpandedSanguophage/Patches/DismemberFeeding.xml). hemohunterStrikes
     true is the switch on the last, on by default because a pilot who goes hunting in this
     suit is meant to be the worse for it, and off for a player who wants the plain bite back.
-    bloodFilthCount 10 within bloodFilthRadius 2 is the spatter a landed strike throws: the
-    13 cells of a radius 2 disc, so about seven of them catch some, a repeat on a cell
-    thickening it. The filth is the target's own blood, so a mechanoid throws machine bits
-    and a bloodless race nothing.
+    bloodFilthCount 10 within bloodFilthRadius 2 is the spatter a strike throws when its
+    part comes off: the 13 cells of a radius 2 disc, so about seven of them catch some, a
+    repeat on a cell thickening it. The filth is the target's own blood, so a mechanoid
+    throws machine bits and a bloodless race nothing.
     decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a termite, a
     diabolus, a war queen, a devourer) an invalid target: beheading it would kill it outright
     on first use. decapitateWithoutLimbsMaxBodySize 0.5 exempts the small ones, which lose
@@ -51,7 +68,7 @@
     smallest of the large ones being the termite at 1.6, and half a human's size sits in it.
 
     The mod settings override castTime, cooldownTime, the pads' pool and the
-    DismemberExtension fields that Source/1.6/Settings/Settings_Dismember.cs lists,
+    DismemberExtension fields that Source/1.6/Settings/Settings_Dismember.cs lists, damage and
     hemohunterStrikes among them.
 
     showUndrafted as on the hemogen rush. No castSound: the damage plays its own impact, and
@@ -60,7 +77,7 @@
   <VEF.Abilities.AbilityDef>
     <defName>HPWC_Dismember</defName>
     <label>dismember</label>
-    <description>Tear an arm or a leg off a nearby target, whatever armor it wears. A target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on for a few seconds and drain hemogen from the wound, which will also cause the target to lose blood.</description>
+    <description>Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on and drain hemogen from the wound, which will also cause the target to lose blood.</description>
     <abilityClass>HemophageWarcasket.Ability_Dismember</abilityClass>
     <gizmoClass>HemophageWarcasket.Command_Dismember</gizmoClass>
     <iconPath>UI/Abilities/WarcasketHemophage/Dismember</iconPath>
@@ -85,6 +102,7 @@
     <showUndrafted>true</showUndrafted>
     <modExtensions>
       <li Class="HemophageWarcasket.DismemberExtension">
+        <damage>60</damage>
         <drainTicks>240</drainTicks>
         <hemogenGain>0.2</hemogenGain>
         <targetBloodLoss>0.4499</targetBloodLoss>

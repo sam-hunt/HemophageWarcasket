@@ -32,9 +32,8 @@
     4 to 6), so ours take the two more the armor and helmet do, 2 to 4. Uranium is not
     touched, as CE leaves VFEP's, nor the pads' industrial components, the strike pool's
     first fill.
-  Nothing here concerns the set's abilities: what CE changes about the rush's buff,
-  Dismember's strike and reload and the hemogenic genes is unscanned (TODOs.md), and each
-  one's CE answer goes in a file of its own beside this one.
+  Nothing here concerns the set's abilities: Dismember's CE numbers are in Dismember.xml
+  beside this file, and the root's CLAUDE.md maps what else CE changes around them.
   Patches in this root apply before the main tree's and the VGE root's; none of the three
   touch the same nodes. Tests/1.6/CompatPatchTests.cs checks every xpath here against the
   main tree.

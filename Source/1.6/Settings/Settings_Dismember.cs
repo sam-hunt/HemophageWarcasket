@@ -9,10 +9,10 @@ namespace HemophageWarcasket;
 // CompProperties_ApparelReloadable the capacity overrides maxCharges and the reload cost
 // ammoCountPerCharge, vanilla's reload fields. On the HPWC_Dismember AbilityDef the cooldown
 // overrides cooldownTime (stored in game hours, ticks on the def) and the windup castTime (real
-// seconds, ticks on the def). On its DismemberExtension the drain time overrides drainTicks
-// (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the game shows), the blood
-// loss targetBloodLoss (percent), the spatter bloodFilthCount, and the three boxes
-// canTargetNonHostile, decapitateBodiesWithoutLimbs and hemohunterStrikes. The last has a row
+// seconds, ticks on the def). On its DismemberExtension the strike damage overrides damage, the
+// drain time drainTicks (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the
+// game shows), the blood loss targetBloodLoss (percent), the spatter bloodFilthCount, and the
+// three boxes canTargetNonHostile, decapitateBodiesWithoutLimbs and hemohunterStrikes. The last has a row
 // only while the extension names a hemohunter state, which a compat root's patch does, so the
 // window has no row for a mental state the game does not have. bloodFilthRadius and
 // decapitateWithoutLimbsMaxBodySize have no setting. The header carries the ability's icon and
@@ -37,6 +37,9 @@ public partial class HemophageWarcasketSettings
     {
         StepBands = [(3f, 0.25f), (6f, 0.5f), (10f, 1f)],
     };
+
+    // From a scratch to more than a thrumbo's leg has (240), past the 80 a compat root sets.
+    public readonly Tunable dismemberDamage = new("DismemberDamage", 10f, 300f, 5f, Whole);
 
     // From half a second: no drain at all is the gain's 0, not a drain of no length.
     public readonly Tunable dismemberDrainTime = new("DismemberDrainTime", 0.5f, 10f, 0.5f, RealSeconds);
@@ -70,6 +73,7 @@ public partial class HemophageWarcasketSettings
         dismemberReloadCost.ExposeData();
         dismemberCooldown.ExposeData();
         dismemberWindup.ExposeData();
+        dismemberDamage.ExposeData();
         dismemberDrainTime.ExposeData();
         dismemberGain.ExposeData();
         dismemberBloodLoss.ExposeData();
@@ -89,6 +93,7 @@ public partial class HemophageWarcasketSettings
         dismemberReloadCost.DescArgs = [Find.ActiveLanguageWorker.Pluralize(dismemberAmmo.label)];
         dismemberCooldown.DefaultValue = (float)defs.dismember.cooldownTime / GenDate.TicksPerHour;
         dismemberWindup.DefaultValue = (float)defs.dismember.castTime / GenTicks.TicksPerRealSecond;
+        dismemberDamage.DefaultValue = ext.damage;
         dismemberDrainTime.DefaultValue = (float)ext.drainTicks / GenTicks.TicksPerRealSecond;
         dismemberGain.DefaultValue = ext.hemogenGain * HemogenScale;
         dismemberBloodLoss.DefaultValue = ext.targetBloodLoss * PercentScale;
@@ -108,6 +113,7 @@ public partial class HemophageWarcasketSettings
         defs.dismemberPool.ammoCountPerCharge = Mathf.Max(1, dismemberReloadCost.IntValue);
         defs.dismember.cooldownTime = Mathf.RoundToInt(dismemberCooldown.Value * GenDate.TicksPerHour);
         defs.dismember.castTime = Mathf.RoundToInt(dismemberWindup.Value * GenTicks.TicksPerRealSecond);
+        ext.damage = dismemberDamage.Value;
         ext.drainTicks = Mathf.Max(1, Mathf.RoundToInt(dismemberDrainTime.Value * GenTicks.TicksPerRealSecond));
         ext.hemogenGain = dismemberGain.Value / HemogenScale;
         ext.targetBloodLoss = dismemberBloodLoss.Value / PercentScale;
@@ -123,6 +129,7 @@ public partial class HemophageWarcasketSettings
         dismemberReloadCost.Reset();
         dismemberCooldown.Reset();
         dismemberWindup.Reset();
+        dismemberDamage.Reset();
         dismemberDrainTime.Reset();
         dismemberGain.Reset();
         dismemberBloodLoss.Reset();
@@ -140,6 +147,7 @@ public partial class HemophageWarcasketSettings
         dismemberReloadCost.DoRow(listing);
         dismemberWindup.DoRow(listing);
         dismemberCooldown.DoRow(listing);
+        dismemberDamage.DoRow(listing);
         dismemberDrainTime.DoRow(listing);
         dismemberGain.DoRow(listing);
         dismemberBloodLoss.DoRow(listing);

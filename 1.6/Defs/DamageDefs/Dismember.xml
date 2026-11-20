@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <!--
-    The damage Dismember's strike deals to the one part it destroys (Ability_Dismember has
-    the call). A def of its own so the lost part reads "Torn off" and a beheading has its
-    own death message, and so nothing else about a vanilla damage type comes along.
+    The damage Dismember's strike deals to the one part it takes hold of (Ability_Dismember
+    has the call and the amount). A def of its own so the lost part reads "Torn off" and a
+    beheading has its own death message, and so nothing else about a vanilla damage type
+    comes along.
 
     Modeled on Core's Scratch: the Scratch injury is what gives a missing part the "Torn
-    off" label, and Crack gives a solid part, a mechanoid's limb, "Shattered". The worker is
-    the plain DamageWorker_AddInjury, since Scratch's own splits its damage over two parts.
-    No armorCategory: the strike ignores armor, so there is no armor stat for it to read.
+    off" label, and Crack gives a solid part, a mechanoid's limb, "Shattered". A limb the
+    strike could not tear off carries the same injury as a wound, a scratch as deep as the
+    strike's damage. The worker is the plain DamageWorker_AddInjury, since Scratch's own
+    splits its damage over two parts.
+    No armorCategory: the strike ignores armor, so there is no armor stat for it to read,
+    and Combat Extended's armor step returns at once for a def without one.
     externalViolence is what makes the target's faction, guilt and the damage records treat
     it as an attack.
   -->

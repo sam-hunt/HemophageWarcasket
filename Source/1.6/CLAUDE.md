@@ -7,8 +7,9 @@ comments cover install-path detection, the compile-only VFEP/VEF references (`VF
 
 The code so far is the armor's hemogen rush, its toggle (`Abilities/`), the hediff comp that
 runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
-patch), the pads' Dismember, its ability, command, part picker, drain sources, job driver and
-the job giver that hands a hemohunter the strike (`Abilities/`) and strike pool (`Comps/`), the
+patch), the pads' Dismember, its ability, command, part picker, drain sources, the reader of
+another mod's melee aim height, job driver and the job giver that hands a hemohunter the strike
+(`Abilities/`) and strike pool (`Comps/`), the
 helmet's sunlight protection (`Sunlight/`, with its three patches)
 and pyrophobia relief (`Fire/`, with its one), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`),
 the settings window (`Settings/`), with a section for each piece's mechanic and one for the
@@ -82,6 +83,10 @@ rather than restating it.
   the player or for raiders. A think tree gives the same job by making it directly
   (`JobGiver_HemohunterDismember`), setting the ability's `pawn` itself before it asks the
   ability anything.
+- **A type of another mod's is named by a def field, never in the code**, as a def of another
+  mod's is: the main tree leaves the field empty, that mod's compat root fills it in, and the
+  code resolves the name by reflection, once, with a warning and a fallback when it is not there
+  (`Abilities/MeleeAim.cs`, for Combat Extended's aim height).
 - **Mod-active checks from C#** go through a `ModDetection.IsActive(packageId)` helper
   (`../RimworldModTemplate/Source/1.7/ModDetection.cs` on its `1.7` branch, the Toxin repo's
   `PatchOperationModActive` for the XML side), never `ModsConfig.IsActive(string)`, which misses

@@ -3,7 +3,8 @@
 Guidance for Claude Code when working in this repository. This file holds only what applies
 across the whole repo. Folder guides load on their own when work touches them: `1.6/CLAUDE.md`
 (defs, patches, languages, gating), `Source/1.6/CLAUDE.md` (C#), `Scripts/CLAUDE.md` (l10n and
-release tooling), `.steamworkshop/CLAUDE.md` (Workshop page).
+release tooling), `.steamworkshop/CLAUDE.md` (Workshop page), `1.6/Mods/CombatExtended/CLAUDE.md`
+(Combat Extended).
 
 ## Project
 
@@ -33,7 +34,8 @@ believe ..."), the way Biotech tells its own sanguophage lore, and never as sett
 **State: all three mechanics in, not yet released.** The three pieces are in on the tier's
 baseline stats and costs with their commissioned art, but for the heat plating and the
 devilstrand that pays for it, the pads' cost, which pays for Dismember, and the helmet's blunt
-plating and cost, and the SOS2, VGE and CE patches mirror them. The armor's hemogen rush is
+plating and cost, and the SOS2, VGE and CE patches mirror them; the CE root also carries
+Dismember's CE numbers. The armor's hemogen rush is
 built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
 protection and pyrophobia relief, the pilot's own work trait and the settings
 window, with a section for each piece's mechanic and one for the pilot's work. The descriptions
@@ -86,7 +88,8 @@ DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
 `~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup), failing without them
 while the build stays green. The first holds the work trait's rule: which work types the
 settings may open, their defaults, and the tags and types a choice writes. The second holds
-which part a Dismember strike destroys, the third the settings sliders' arithmetic.
+which part a Dismember strike takes hold of, at which aim height, and whether it comes off, the
+third the settings sliders' arithmetic.
 `CompatPatchTests` resolves every xpath in `1.6/Mods/*/Patches/` and the SOS2 patch against the
 main-tree defs, the only check a gated root gets short of a boot with that mod active, holds
 a patch on Dismember's extension to the fields the C# declares and a drain source on the
@@ -96,7 +99,8 @@ sharing a patch or def path;
 missing one is a pink box in game and an error nowhere), the descriptions to their shared
 paragraphs and `About.xml` to no `modIconPath` (the helmet's settings header draws the mod icon,
 which only the `About/ModIcon.png` load keeps alive across a play-data reload); `RulePackTests` holds each combat log rule pack to the symbols its log entry
-supplies (an unknown one is an error only when the line is first written in game);
+supplies (an unknown one is an error only when the line is first written in game) and every
+Dismember line to one of the strike's two outcomes;
 `SettingsTargetTests` holds the ability defs, the pads' strike pool and the helmet's two
 extensions to the fields the settings write (a missing one drops those sections from the window
 with one warning). `ListMaskTests` holds the two halves of keeping the set off generated
@@ -118,9 +122,9 @@ Docs/Research/    VFEP warcasket stat tables and ability mechanics (copied from 
 LoadFolders.xml   Load roots per game version, compat roots gated by package id
 ```
 
-Not here yet, with the place each takes when it lands: `Docs/Specs/`, and a
-`1.6/Mods/CombatExtended/CLAUDE.md` once Combat Extended has been scanned for what it changes
-about hemogen (the Overlord repo's is the model).
+Not here yet: `Docs/Specs/`. One compat root has a guide of its own, loaded when work touches
+it: `1.6/Mods/CombatExtended/CLAUDE.md`, what Combat Extended changes around the set, where each
+answer lives and what was looked at and left.
 
 ## Cross-cutting rules
 

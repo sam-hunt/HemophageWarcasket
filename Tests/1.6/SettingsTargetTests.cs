@@ -66,7 +66,7 @@ public class SettingsTargetTests
         AssertHas(def, "castTime", "cooldownTime");
         XElement extension = def.Element("modExtensions")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.DismemberExtension");
-        AssertHas(extension, "drainTicks", "hemogenGain", "targetBloodLoss", "bloodFilthCount",
+        AssertHas(extension, "damage", "drainTicks", "hemogenGain", "targetBloodLoss", "bloodFilthCount",
             "canTargetNonHostile", "decapitateBodiesWithoutLimbs", "hemohunterStrikes");
     }
 

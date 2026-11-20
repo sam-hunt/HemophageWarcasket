@@ -101,9 +101,11 @@ public class DismemberTargetTests : IDisposable
             {
                 BodyPartRecord shoulder = Part("Shoulder", torso, BodyPartDepth.Outside);
                 arms[i] = Part("Arm", shoulder, BodyPartDepth.Outside, Manipulation);
+                arms[i].height = BodyPartHeight.Middle;
                 others.Add(shoulder);
                 others.Add(Part("Hand", arms[i], BodyPartDepth.Outside));
                 legs[i] = Part("Leg", torso, BodyPartDepth.Outside, Moving);
+                legs[i].height = BodyPartHeight.Bottom;
                 others.Add(Part("Foot", legs[i], BodyPartDepth.Outside));
             }
         }
@@ -131,6 +133,90 @@ public class DismemberTargetTests : IDisposable
         Assert.DoesNotContain(human.jaw, offered);
         Assert.All(human.others, p => Assert.False(DismemberTarget.IsLimb(human.Def, p)));
         Assert.False(DismemberTarget.IsLimb(human.Def, human.jaw));
+    }
+
+    private static HashSet<BodyPartRecord> Offered(BodyDef body, IEnumerable<BodyPartRecord> present, BodyPartHeight aim)
+    {
+        var offered = new HashSet<BodyPartRecord>();
+        for (int i = 0; i < 4; i++)
+            offered.Add(DismemberTarget.Choose(body, present, false, n => Math.Min(i, n - 1), out _, aim)!);
+        return offered;
+    }
+
+    [Fact]
+    public void AimHeight_NarrowsTheLimbsToThoseAtIt()
+    {
+        var human = new Humanlike();
+        Assert.Equal(new HashSet<BodyPartRecord>(human.legs), Offered(human.Def, human.Present(), BodyPartHeight.Bottom));
+        Assert.Equal(new HashSet<BodyPartRecord>(human.arms), Offered(human.Def, human.Present(), BodyPartHeight.Middle));
+    }
+
+    // A human has no limb at head height, and one who has lost both legs has none low.
+    [Fact]
+    public void AimHeight_WithNoLimbAtIt_OffersEveryLimb()
+    {
+        var human = new Humanlike();
+        Assert.Equal(new HashSet<BodyPartRecord>([.. human.arms, .. human.legs]),
+            Offered(human.Def, human.Present(), BodyPartHeight.Top));
+        Assert.Equal(new HashSet<BodyPartRecord>(human.arms),
+            Offered(human.Def, human.Present(human.legs), BodyPartHeight.Bottom));
+    }
+
+    [Fact]
+    public void AimHeight_NeverReachesTheHeadOfATargetWithLimbs()
+    {
+        var human = new Humanlike();
+        human.head.height = BodyPartHeight.Top;
+        BodyPartRecord? part = DismemberTarget.Choose(human.Def, human.Present(), false, n => 0, out bool decapitates, BodyPartHeight.Top);
+        Assert.False(decapitates);
+        Assert.NotSame(human.head, part);
+    }
+
+    // GetPartHealth rounds what an injury leaves, so half a point short still tears.
+    [Theory]
+    [InlineData(30f, 60f, true)]
+    [InlineData(30f, 30f, true)]
+    [InlineData(30f, 29.6f, true)]
+    [InlineData(30f, 29.4f, false)]
+    [InlineData(40f, 39.6f, true)]
+    [InlineData(87f, 60f, false)]
+    public void Tears_WhenWhatIsLeftRoundsToNothing(float partHealth, float damage, bool expected)
+    {
+        Assert.Equal(expected, DismemberTarget.Tears(partHealth, damage));
+    }
+
+    [Fact]
+    public void Outlook_SaysWhetherEveryPartSomeOrNoneWouldComeOff()
+    {
+        var human = new Humanlike();
+        StrikeOutlook Ask(BodyPartHeight aim, Predicate<BodyPartRecord> tears) =>
+            DismemberTarget.Outlook(human.Def, human.Present(), false, aim, tears, out _);
+        Assert.Equal(StrikeOutlook.Tears, Ask(BodyPartHeight.Undefined, _ => true));
+        Assert.Equal(StrikeOutlook.Wounds, Ask(BodyPartHeight.Undefined, _ => false));
+        Assert.Equal(StrikeOutlook.MayTear, Ask(BodyPartHeight.Undefined, part => human.arms.Contains(part)));
+        // Aimed at the legs, the arms that would come off are not what the strike takes.
+        Assert.Equal(StrikeOutlook.Wounds, Ask(BodyPartHeight.Bottom, part => human.arms.Contains(part)));
+        Assert.Equal(StrikeOutlook.Tears, Ask(BodyPartHeight.Middle, part => human.arms.Contains(part)));
+    }
+
+    [Fact]
+    public void Outlook_OnATargetOutOfLimbs_IsTheHeads()
+    {
+        var human = new Humanlike();
+        IEnumerable<BodyPartRecord> present = human.Present([.. human.arms, .. human.legs]);
+        Assert.Equal(StrikeOutlook.Tears, DismemberTarget.Outlook(human.Def, present, false, BodyPartHeight.Bottom, part => part == human.head, out bool decapitates));
+        Assert.True(decapitates);
+        Assert.Equal(StrikeOutlook.Wounds, DismemberTarget.Outlook(human.Def, present, false, BodyPartHeight.Undefined, _ => false, out decapitates));
+        Assert.True(decapitates);
+    }
+
+    [Fact]
+    public void Outlook_OnABodyWithNothingToTake_IsNone()
+    {
+        BodyPartRecord core = Part("Segment", null, BodyPartDepth.Outside);
+        Part("Brain", core, BodyPartDepth.Inside, Consciousness);
+        Assert.Equal(StrikeOutlook.None, DismemberTarget.Outlook(Body(core), Flatten(core), true, BodyPartHeight.Undefined, _ => true, out bool decapitates));
+        Assert.False(decapitates);
     }
 
     [Fact]

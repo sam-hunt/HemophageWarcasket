@@ -158,9 +158,9 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
         return toil;
     }
 
-    // Passes straight through unless the strike landed and the pilot can drain the target,
-    // dead or alive. The strike's result is transient, so a save and load mid-drain resumes on
-    // the saved ticksLeftThisToil and the tick's own checks.
+    // Passes straight through unless the pilot can drain the target, bleeding or dead, whether
+    // or not the strike took its limb off (Ability_Dismember.CanDrain). A save and load
+    // mid-drain resumes on the saved ticksLeftThisToil and the tick's own checks.
     private Toil Drain()
     {
         Toil toil = ToilMaker.MakeToil();
@@ -169,7 +169,7 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
             job.playerForced = true;
             Ability_Dismember ability = Casting;
             Pawn target = Target;
-            if (ability == null || target == null || !ability.StrikeLanded || !ability.CanDrain(target))
+            if (ability == null || target == null || !ability.CanDrain(target))
             {
                 ReadyForNextToil();
                 return;

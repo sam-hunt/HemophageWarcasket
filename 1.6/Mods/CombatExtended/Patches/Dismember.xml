@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Combat Extended and the pads' Dismember (CE 16.7.4). The fields are DismemberExtension's,
+  their rules in Ability_Dismember's and MeleeAim's headers.
+
+  damage 80, where the main tree has 60. CE leaves the strike itself alone (Ability_Dismember's
+  header has why) and keeps vanilla's scale of damage against part health, but it raises a
+  leg's hitPoints from 30 to 40, a human's and a mechanoid's, softens Tough from half damage to
+  0.66 and adds five hit points to each ring of a centipede. 80 is the main tree's 60 by that
+  40 over 30, which keeps what the def header says of 60: a Tough human loses a leg (52.8
+  against 40) as surely as an arm, a muffalo's leg (70) comes off, and a centipede's last ring
+  (108) only for a pilot in the hemogen rush (120). It sits where CE puts a warcasket's own
+  melee, between its broadsword's edge (68) and its gravity hammer's head (92). CE reads no
+  armor penetration off a strike that ignores armor, so there is none to give.
+
+  aimHeightComp and aimHeightField: CE gives every humanlike a CompMeleeTargettingGizmo and a
+  colonist with Melee 8 a button that cycles its heightInt through automatic, low, middle and
+  high, which CE's melee verb follows for a player pawn. Named here, the strike follows it too:
+  low takes a leg, middle an arm, and high, where a human has no limb, either
+  (DismemberTarget). The field is CE's own save data, so nothing of ours is stored.
+
+  Tests/1.6/CompatPatchTests.cs holds the fields named here to the ones the C# declares.
+-->
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/VEF.Abilities.AbilityDef[defName="HPWC_Dismember"]/modExtensions/li[@Class="HemophageWarcasket.DismemberExtension"]/damage</xpath>
+    <value>
+      <damage>80</damage>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/VEF.Abilities.AbilityDef[defName="HPWC_Dismember"]/modExtensions/li[@Class="HemophageWarcasket.DismemberExtension"]</xpath>
+    <value>
+      <aimHeightComp>CombatExtended.CompMeleeTargettingGizmo</aimHeightComp>
+      <aimHeightField>heightInt</aimHeightField>
+    </value>
+  </Operation>
+</Patch>

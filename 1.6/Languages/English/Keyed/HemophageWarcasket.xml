@@ -4,7 +4,10 @@
   <!-- Dismember (Source/1.6/Abilities/Ability_Dismember.cs). {0} is the target -->
   <HPWC_DismemberNoLimbs>{0} has no limbs to tear off.</HPWC_DismemberNoLimbs>
   <HPWC_DismemberNotHostile>{0} is not hostile.</HPWC_DismemberNotHostile>
-  <!-- Beside the cursor over a target from a faction that is not hostile, under the game's own "Will kill" when both apply. {0} is the faction's name -->
+  <!-- Beside the cursor over a target, where the game's own "Will kill" goes: the strike would tear off none of the limbs it could take hold of, or only some of them -->
+  <HPWC_DismemberWillWound>Will only wound</HPWC_DismemberWillWound>
+  <HPWC_DismemberMayWound>May only wound</HPWC_DismemberMayWound>
+  <!-- Beside the cursor over a target from a faction that is not hostile, under the line above or the game's own "Will kill" when both apply. {0} is the faction's name -->
   <HPWC_DismemberWillAnger>Will anger {0}</HPWC_DismemberWillAnger>
   <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
   <HPWC_DismemberReload>Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}.</HPWC_DismemberReload>
@@ -63,6 +66,9 @@
 
   <HPWC_DismemberCooldown>Cooldown</HPWC_DismemberCooldown>
   <HPWC_DismemberCooldownDesc>The time the pilot must wait between strikes. Default: {0}.</HPWC_DismemberCooldownDesc>
+
+  <HPWC_DismemberDamage>Strike damage</HPWC_DismemberDamage>
+  <HPWC_DismemberDamageDesc>The damage a strike does to the limb it takes hold of, before the pilot's melee damage factor. A limb with more health than that will be wounded instead of torn off. Default: {0}.</HPWC_DismemberDamageDesc>
 
   <HPWC_DismemberDrainTime>Drain time</HPWC_DismemberDrainTime>
   <HPWC_DismemberDrainTimeDesc>How long a hemogenic pilot spends draining hemogen from a human target. The pilot will gain the same hemogen however long it takes, and less if the drain is cut short. Default: {0}.</HPWC_DismemberDrainTimeDesc>

@@ -106,5 +106,5 @@ manifest globs, so new files and subfolders need no build change.
   names), unless the patch mirrors an upstream patch and copies its gate so both fire together
   (`Patches/SOS2Patch.xml`).
 - **A compat root that adds a def or a translatable field gets a world in the sidecar**
-  (`Scripts/CLAUDE.md`). The three roots today add neither, two moving numbers and one filling
-  def fields the main tree leaves empty, so the sidecar is one boot.
+  (`Scripts/CLAUDE.md`). The three roots today add neither: they move numbers and fill def
+  fields the main tree leaves empty, so the sidecar is one boot.

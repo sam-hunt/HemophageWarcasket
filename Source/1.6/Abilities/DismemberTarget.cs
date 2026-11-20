@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace HemophageWarcasket;
@@ -21,16 +22,38 @@ namespace HemophageWarcasket;
 // none of its rings is a limb. A lost ring costs its share of Moving and Manipulation, as a
 // lost leg or arm does (PawnCapacityUtility.CalculateLimbEfficiency, 1.6).
 //
-// The strike takes a random limb that is not waiting, equal odds. With no limb left it takes
-// the head, when the body was built with limbs (walked from BodyDef.corePart, not read off the
-// pawn) or when the def says so, for every such body or for one this small (BeheadsWithoutLimbs);
-// otherwise there is nothing to take. The head is the nearest Outside, non-core
-// ancestor-or-self of a not-missing ConsciousnessSource part (human: Brain, Skull, Head); a
-// brain directly in the core part has none.
+// The strike takes a random limb that is not waiting, equal odds. An aim height narrows that
+// to the limbs at it (BodyPartRecord.height: a human's legs are Bottom and arms Middle, 1.6)
+// while the target has one there, and to nothing less when it has none: a pilot aiming high at
+// a human still takes an arm or a leg. With no limb left the strike takes the head, when the
+// body was built with limbs (walked from BodyDef.corePart, not read off the pawn) or when the
+// def says so, for every such body or for one this small (BeheadsWithoutLimbs); otherwise there
+// is nothing to take. The head is the nearest Outside, non-core ancestor-or-self of a
+// not-missing ConsciousnessSource part (human: Brain, Skull, Head); a brain directly in the
+// core part has none. Aim never reaches the head: only a target out of limbs loses it.
+//
+// Taking hold of a part is not tearing it off: the strike does a set damage, and a part with
+// more health left than that keeps to the body, wounded (Ability_Dismember has the damage).
+// Outlook says before the click which of the two the parts the strike could take would do.
 //
 // A missing part's children carry missing hediffs of their own (Hediff_MissingPart adds them,
 // 1.6), so a not-missing part never sits under a missing one. CanStrike is asked by the
-// targeter every frame and allocates nothing; Choose may.
+// targeter every frame and allocates nothing; Choose and Outlook may.
+public enum StrikeOutlook
+{
+    // Nothing to take hold of.
+    None,
+
+    // Whichever part the strike takes comes off.
+    Tears,
+
+    // Some of the parts it could take would come off and some would not.
+    MayTear,
+
+    // No part it could take would come off.
+    Wounds,
+}
+
 public static class DismemberTarget
 {
     public static bool CanStrike(Pawn target, DismemberExtension ext, out bool decapitates)
@@ -55,9 +78,22 @@ public static class DismemberTarget
         return decapitates;
     }
 
-    public static BodyPartRecord Choose(Pawn target, DismemberExtension ext, out bool decapitates) =>
+    public static BodyPartRecord Choose(Pawn target, DismemberExtension ext, BodyPartHeight aim, out bool decapitates) =>
         Choose(target.RaceProps.body, target.health.hediffSet.GetNotMissingParts(),
-            BeheadsWithoutLimbs(target.BodySize, ext), n => Rand.Range(0, n), out decapitates);
+            BeheadsWithoutLimbs(target.BodySize, ext), n => Rand.Range(0, n), out decapitates, aim);
+
+    // What a strike of this damage, after everything that scales it, would do to the target.
+    public static StrikeOutlook Outlook(Pawn target, DismemberExtension ext, BodyPartHeight aim, float damage, out bool decapitates)
+    {
+        HediffSet hediffs = target.health.hediffSet;
+        return Outlook(target.RaceProps.body, hediffs.GetNotMissingParts(), BeheadsWithoutLimbs(target.BodySize, ext),
+            aim, part => Tears(hediffs.GetPartHealth(part), damage), out decapitates);
+    }
+
+    // Whether damage takes a part with this much health off: HediffSet.GetPartHealth rounds
+    // what is left to a whole number, and HediffSet.AddDirect removes a part left at zero
+    // (1.6 and 1.7).
+    public static bool Tears(float partHealth, float damage) => Mathf.RoundToInt(partHealth - damage) <= 0;
 
     // Whether a body of this size that was built without limbs loses its head: the def's
     // switch, or small enough for the def's size limit.
@@ -66,7 +102,31 @@ public static class DismemberTarget
 
     // pickIndex returns an index in [0, count).
     public static BodyPartRecord Choose(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
-        bool beheadsWithoutLimbs, Func<int, int> pickIndex, out bool decapitates)
+        bool beheadsWithoutLimbs, Func<int, int> pickIndex, out bool decapitates,
+        BodyPartHeight aim = BodyPartHeight.Undefined)
+    {
+        List<BodyPartRecord> parts = Candidates(body, notMissing, beheadsWithoutLimbs, aim, out decapitates);
+        return parts.Count == 0 ? null : parts[pickIndex(parts.Count)];
+    }
+
+    // tears says whether the strike would take a given part off.
+    public static StrikeOutlook Outlook(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
+        bool beheadsWithoutLimbs, BodyPartHeight aim, Predicate<BodyPartRecord> tears, out bool decapitates)
+    {
+        List<BodyPartRecord> parts = Candidates(body, notMissing, beheadsWithoutLimbs, aim, out decapitates);
+        if (parts.Count == 0)
+            return StrikeOutlook.None;
+        int torn = 0;
+        for (int i = 0; i < parts.Count; i++)
+            if (tears(parts[i]))
+                torn++;
+        return torn == parts.Count ? StrikeOutlook.Tears : torn == 0 ? StrikeOutlook.Wounds : StrikeOutlook.MayTear;
+    }
+
+    // The parts a strike picks among: the limbs not waiting, at the aim height when any is
+    // there, else the head alone, else none.
+    private static List<BodyPartRecord> Candidates(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
+        bool beheadsWithoutLimbs, BodyPartHeight aim, out bool decapitates)
     {
         decapitates = false;
         var limbs = new List<BodyPartRecord>();
@@ -81,13 +141,17 @@ public static class DismemberTarget
         if (limbs.Count > 0)
         {
             List<BodyPartRecord> ready = limbs.FindAll(limb => !Waits(limb, limbs));
-            return ready[pickIndex(ready.Count)];
+            if (aim == BodyPartHeight.Undefined)
+                return ready;
+            List<BodyPartRecord> aimed = ready.FindAll(limb => limb.height == aim);
+            return aimed.Count > 0 ? aimed : ready;
         }
         BodyPartRecord head = HeadFor(body, brain);
         if (head == null || !(BuiltWithLimbs(body) || beheadsWithoutLimbs))
-            return null;
+            return limbs;
         decapitates = true;
-        return head;
+        limbs.Add(head);
+        return limbs;
     }
 
     public static bool IsLimb(BodyDef body, BodyPartRecord part) =>
