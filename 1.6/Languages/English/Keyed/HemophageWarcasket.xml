@@ -42,7 +42,10 @@
   <HPWC_RushMeleeDamageDesc>How much damage the pilot's melee attacks will do during a hemogen rush, compared to normal. Default: {0}.</HPWC_RushMeleeDamageDesc>
 
   <HPWC_RushGlowPulse>Pulsing glow</HPWC_RushGlowPulse>
-  <HPWC_RushGlowPulseDesc>When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}.</HPWC_RushGlowPulseDesc>
+  <HPWC_RushGlowPulseDesc>When enabled, the warcasket's glow will pulse like a heartbeat. When disabled, the glow will stay steady. Default: {0}.</HPWC_RushGlowPulseDesc>
+
+  <HPWC_DeathrestGlow>Glow during deathrest</HPWC_DeathrestGlow>
+  <HPWC_DeathrestGlowDesc>When enabled, the warcasket will glow with a slow heartbeat and cast a faint red light while its pilot is deathresting. When disabled, the warcasket will stay dark during deathrest. Default: {0}.</HPWC_DeathrestGlowDesc>
 
   <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages, {5} the cost to start. One key per combination of a start cost and a drain -->
   <HPWC_RushSummaryStartCost>A hemogen rush costs {5} hemogen to start, then spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage.</HPWC_RushSummaryStartCost>

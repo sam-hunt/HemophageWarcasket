@@ -7,14 +7,17 @@ namespace HemophageWarcasket;
 // Rush section: the armor's hemogen rush, all of it on the HPWC_HemogenRush hediff. On its
 // HediffCompProperties_HemogenRush the start cost overrides hemogenStartCost, the drain
 // hemogenPerSecond and the reserve hemogenReserve, all stored and shown on the 0..100 scale
-// the game shows hemogen on, and the pulse box overrides glowPulses. On its one stage the move
+// the game shows hemogen on, the pulse box overrides glowPulses and the deathrest box
+// deathrestGlows. On its one stage the move
 // speed and melee damage override the MoveSpeed and MeleeDamageFactor statFactors, stored and
 // shown in percent. The stage's Consciousness offset has no setting. The header carries the
 // HPWC_HemogenRush ability's icon and tooltip.
 //
 // A write reaches a running rush on its own: the comp and the glow worker read their
 // properties as they run, and StatWorker reads a stage's statFactors on every call, with no
-// per-pawn cache for either stat (1.6 and 1.7).
+// per-pawn cache for either stat (1.6 and 1.7). The deathrest box is the exception: whether
+// the glow draws at all is read when a pilot's graphics are rebuilt, so a flip rebuilds those
+// of every deathresting pilot and sets their lights (DeathrestGlow.RefreshAll).
 public partial class HemophageWarcasketSettings
 {
     // Hemogen spent as a rush starts, up to five seconds of the default drain. At 0 a rush
@@ -38,6 +41,7 @@ public partial class HemophageWarcasketSettings
     public readonly Tunable rushMeleeDamage = new("RushMeleeDamage", 100f, 300f, 10f, Percent);
 
     public readonly ToggleSetting rushGlowPulse = new("RushGlowPulse");
+    public readonly ToggleSetting deathrestGlow = new("DeathrestGlow");
 
     // The ability def, for its header icon (the class header of HemophageWarcasketSettings),
     // and the header's tooltip.
@@ -52,6 +56,7 @@ public partial class HemophageWarcasketSettings
         rushMoveSpeed.ExposeData();
         rushMeleeDamage.ExposeData();
         rushGlowPulse.ExposeData();
+        deathrestGlow.ExposeData();
     }
 
     private void LoadRushDefaults(Defs defs)
@@ -62,6 +67,7 @@ public partial class HemophageWarcasketSettings
         rushMoveSpeed.DefaultValue = defs.rushMoveSpeed.value * PercentScale;
         rushMeleeDamage.DefaultValue = defs.rushMeleeDamage.value * PercentScale;
         rushGlowPulse.DefaultValue = defs.rush.glowPulses;
+        deathrestGlow.DefaultValue = defs.rush.deathrestGlows;
         rushDef = defs.rushAbility;
         rushTip = HeaderTip(rushDef.LabelCap, rushDef.description);
     }
@@ -74,6 +80,11 @@ public partial class HemophageWarcasketSettings
         defs.rushMoveSpeed.value = rushMoveSpeed.Value / PercentScale;
         defs.rushMeleeDamage.value = rushMeleeDamage.Value / PercentScale;
         defs.rush.glowPulses = rushGlowPulse.Value;
+        if (defs.rush.deathrestGlows != deathrestGlow.Value)
+        {
+            defs.rush.deathrestGlows = deathrestGlow.Value;
+            DeathrestGlow.RefreshAll();
+        }
     }
 
     private void ResetRushSettings()
@@ -84,6 +95,7 @@ public partial class HemophageWarcasketSettings
         rushMoveSpeed.Reset();
         rushMeleeDamage.Reset();
         rushGlowPulse.Reset();
+        deathrestGlow.Reset();
     }
 
     private void DrawRushSection(Listing_Standard listing, bool first = false)
@@ -96,6 +108,7 @@ public partial class HemophageWarcasketSettings
         rushMoveSpeed.DoRow(listing);
         rushMeleeDamage.DoRow(listing);
         rushGlowPulse.DoRow(listing);
+        deathrestGlow.DoRow(listing);
     }
 
     // What the section's rows amount to: the start cost, if any, the drain and how long a rush

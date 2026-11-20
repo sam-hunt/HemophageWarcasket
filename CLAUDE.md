@@ -18,7 +18,8 @@ prefix `HPWC_`.
 **Design direction: a suit that runs on its pilot's hemogen.** Each piece carries one mechanic
 built on Biotech's hemogen and the sanguophage's other genes: the armor a toggled ability that
 spends hemogen quickly for a burst of speed and strength, with glowing parts on every worn piece
-of the set while it runs; the shoulder pads an ability that destroys a target's limb and, for a
+of the set while it runs, which beat on slowly and light the pilot's cell through a deathrest;
+the shoulder pads an ability that destroys a target's limb and, for a
 hemogenic pilot on a humanlike target, drains hemogen from it, on a small stock of strikes
 reloaded with components; the helmet protection from sunlight for a pilot with a sunlight
 sensitivity gene, a steadier nerve near fire for one with the pyrophobia gene, and the set's
@@ -36,7 +37,7 @@ baseline stats and costs with their commissioned art, but for the heat plating a
 devilstrand that pays for it, the pads' cost, which pays for Dismember, and the helmet's blunt
 plating and cost, and the SOS2, VGE and CE patches mirror them; the CE root also carries
 Dismember's CE numbers. The armor's hemogen rush is
-built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
+built, with its glow on all three pieces and their slow glow through a deathrest, and so are the pads' Dismember, the helmet's sunlight
 protection and pyrophobia relief, the pilot's own work trait and the settings
 window, with a section for each piece's mechanic and one for the pilot's work. The descriptions
 and the player-facing pages are first cuts still owed a full review. `TODOs.md` is the ledger.
@@ -83,14 +84,16 @@ severities pinned in `.editorconfig`): fix the code, not the severity.
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
 Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Five
 files touch no game type, so they run anywhere; `WorkProfileTests`,
-`DismemberTargetTests`, `DismemberDrainTests` and `TunableTests` run game code and so need the
+`DismemberTargetTests`, `DismemberDrainTests`, `TunableTests` and `GlowPulseTests` run game
+code and so need the
 game's real 1.6 runtime DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
 `~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup), failing without them
 while the build stays green. The first holds the work trait's rule: which work types the
 settings may open, their defaults, and the tags and types a choice writes. The second holds
 which part a Dismember strike takes hold of, at which aim height, and whether it comes off, the
 third which blood loss the cursor's drain warning calls serious or fatal, the fourth the
-settings sliders' arithmetic.
+settings sliders' arithmetic, the fifth the glow's beat, the rush's and its mirror through a
+deathrest, on the curve the rush def ships.
 `CompatPatchTests` resolves every xpath in `1.6/Mods/*/Patches/` and the SOS2 patch against the
 main-tree defs, the only check a gated root gets short of a boot with that mod active, holds
 a patch on Dismember's extension to the fields the C# declares and a drain source on the
@@ -104,7 +107,7 @@ supplies (an unknown one is an error only when the line is first written in game
 Dismember line to one of the strike's two outcomes;
 `SettingsTargetTests` holds the ability defs, the pads' strike pool and the helmet's two
 extensions to the fields the settings write (a missing one drops those sections from the window
-with one warning). `ListMaskTests` holds the two halves of keeping the set off generated
+with one warning), and the deathrest light's def to the shape its class needs. `ListMaskTests` holds the two halves of keeping the set off generated
 pawns: the mask that hides the parts from VFEP's slot fill, and the parts' absent apparel tags.
 
 ## Layout

@@ -30,16 +30,37 @@ public class HediffCompProperties_HemogenRush : HediffCompProperties
     public int glowPulseTicks;
     public SimpleCurve glowPulse;
 
-    // Offset per pawn so a squad does not beat as one. Whole ticks: a float tick count loses
-    // its low bits a few game years in.
-    public float GlowAlpha(Pawn pawn)
+    // The glow of a deathresting pilot (DeathrestGlow), on with deathrestGlows: the same beat
+    // turned over, lit where the rush dips and dark where it rests, once every
+    // deathrestGlowBeatTicks game ticks and dark until the next. With glowPulses off, or
+    // without a curve, it holds deathrestGlowSteady. deathrestLight is the thing that lights
+    // the pilot's cell meanwhile.
+    public bool deathrestGlows = true;
+    public int deathrestGlowBeatTicks;
+    public float deathrestGlowSteady;
+    public ThingDef deathrestLight;
+
+    // Offset per pawn so a squad does not beat as one.
+    public float GlowAlpha(Pawn pawn, bool resting) => GlowAlphaAt(pawn.HashOffsetTicks(), resting);
+
+    // Whole ticks: a float tick count loses its low bits a few game years in. A resting beat
+    // lasts as long as the rush's and only comes less often, so a spacing shorter than one
+    // beat is read as one beat.
+    public float GlowAlphaAt(int ticks, bool resting)
     {
-        if (!glowPulses || glowPulse == null || glowPulseTicks <= 0)
-            return 1f;
-        int phase = pawn.HashOffsetTicks() % glowPulseTicks;
-        if (phase < 0)
-            phase += glowPulseTicks;
-        return glowPulse.Evaluate(phase / (float)glowPulseTicks);
+        bool beats = glowPulses && glowPulse != null && glowPulseTicks > 0;
+        if (!resting)
+            return beats ? glowPulse.Evaluate(Phase(ticks, glowPulseTicks) / (float)glowPulseTicks) : 1f;
+        if (!beats)
+            return deathrestGlowSteady;
+        int phase = Phase(ticks, Mathf.Max(deathrestGlowBeatTicks, glowPulseTicks));
+        return phase < glowPulseTicks ? 1f - glowPulse.Evaluate(phase / (float)glowPulseTicks) : 0f;
+    }
+
+    private static int Phase(int ticks, int period)
+    {
+        int phase = ticks % period;
+        return phase < 0 ? phase + period : phase;
     }
 
     public HediffCompProperties_HemogenRush() => compClass = typeof(HediffComp_HemogenRush);

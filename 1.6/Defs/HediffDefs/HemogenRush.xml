@@ -38,11 +38,20 @@
     portraits and the zoomed-out pawn cache bake, and the strength the glow holds with
     glowPulses off.
 
+    Deathrest glow: the pieces glow again while the pilot deathrests, with this hediff gone
+    (Source/1.6/Rendering/DeathrestGlow.cs), to a hibernating heart. The beat is glowPulse
+    turned over, lit where the rush dips and dark where it rests, so it swells to 0.75 and
+    0.6 at the rush's own pace and is over in 36 ticks. deathrestGlowBeatTicks 480 spaces
+    the beats eight seconds apart at normal speed, an eighth of the rush's rate, and the
+    pieces are dark between them. It rests dark, so portraits and the pawn cache never draw
+    it. With glowPulses off it holds deathrestGlowSteady 0.25, the rush's deepest dip.
+    deathrestLight names the light on the pilot's cell (ThingDefs_Misc/DeathrestLight.xml).
+
     Sparks: the pilot gives off EffecterDefs/HemogenRush.xml for as long as the hediff
     is on them, through the game's own HediffCompProperties_Effecter.
 
-    The mod settings override hemogenStartCost, hemogenPerSecond, hemogenReserve, glowPulses
-    and the two statFactors (Source/1.6/Settings/Settings_Rush.cs).
+    The mod settings override hemogenStartCost, hemogenPerSecond, hemogenReserve, glowPulses,
+    deathrestGlows and the two statFactors (Source/1.6/Settings/Settings_Rush.cs).
 
     defaultLabelColor is the drug highs'.
   -->
@@ -73,6 +82,10 @@
             <li>(1, 1)</li>
           </points>
         </glowPulse>
+        <deathrestGlows>true</deathrestGlows>
+        <deathrestGlowBeatTicks>480</deathrestGlowBeatTicks>
+        <deathrestGlowSteady>0.25</deathrestGlowSteady>
+        <deathrestLight>HPWC_DeathrestLight</deathrestLight>
       </li>
       <li Class="HediffCompProperties_Effecter">
         <stateEffecter>HPWC_HemogenRush</stateEffecter>
