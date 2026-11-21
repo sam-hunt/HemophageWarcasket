@@ -19,9 +19,9 @@ manifest globs, so new files and subfolders need no build change.
   The armor def's header has the mechanics.
 - **The set's abilities are VEF abilities** (`VEF.Abilities.AbilityDef`, each granted by a
   `CompProperties_AbilitiesApparel` on the piece that carries it: the armor's hemogen rush
-  and the shoulder pads' Dismember), never vanilla `AbilityDef`s: vanilla has no apparel
-  grant, and the family's abilities are all VEF's. `Docs/Research/WARCASKET_ABILITIES.md`
-  surveys VFEP's own.
+  and the shoulder pads' Dismember), never vanilla `AbilityDef`s: VFEP's abilities and the
+  family's are all VEF's. Vanilla can grant one from apparel (`apparel.abilities`, 1.6 and
+  1.7), and no warcasket does. `Docs/Research/WARCASKET_ABILITIES.md` surveys VFEP's own.
 - **Harm goes through `TakeDamage` with the pilot as instigator**, on a `DamageDef` with
   `externalViolence`, never by adding or removing hediffs directly: that one call is what makes
   the target's faction, guilt, kill blame and the damage records treat it as an attack.
