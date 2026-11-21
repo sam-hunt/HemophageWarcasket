@@ -20,17 +20,21 @@ prefix `HPWC_`.
 built on Biotech's hemogen and the sanguophage's other genes: the armor a toggled ability that
 spends hemogen quickly for a burst of speed and strength, with glowing parts on every worn piece
 of the set while it runs; the shoulder pads an ability that destroys a target's limb and, for a
-hemogenic pilot on a humanlike target, drains hemogen from it, on a small stock of strikes
-reloaded with components; the helmet protection from sunlight for a pilot with a sunlight
+hemogenic pilot on a humanlike target, has the pilot feed from the wound, on a small stock of
+strikes reloaded with components; the helmet protection from sunlight for a pilot with a sunlight
 sensitivity gene, a steadier nerve near fire for one with the pyrophobia gene, and the set's
 heaviest plating. A pilot without the gene gets a plain spacer
 warcasket. Any pilot keeps intellectual work, which VFEP's warcaskets block.
 
 **Fiction: nobody's official program.** The siblings' sets come from pirates welding themselves
-in or from a government program entombing its veterans. This one is quieter: sanguophages who
-had worked their way into that program had the pattern built in secret, for themselves, to make
-the nearly deathless harder still to destroy. Player-facing text tells it as rumor ("Some
-believe ..."), the way Biotech tells its own sanguophage lore, and never as settled history.
+in or from a government program entombing its veterans. This one is quieter: that program has
+no record of it, and two rumors stand side by side, that the designs were stolen and refitted
+for sanguophages, or that sanguophages who directed the program from the top sanctioned the
+series in secret. Player-facing text tells it as rumor ("Some think ...", "Some believe ..."),
+the way Biotech tells its own sanguophage lore, and never as settled history. It says of hemogen
+only what Biotech does: a hemogenic's own is in stores in the body, never "in the blood", and
+blood is what hemogen is extracted from. The pads carry no feeding hardware: servos and
+reinforced arms tear the limb, and the pilot feeds from the wound.
 
 **State: all three mechanics in, not yet released.** The three pieces are in on the tier's
 baseline stats and costs with their commissioned art, but for the heat plating and the
