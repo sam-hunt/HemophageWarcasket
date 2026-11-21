@@ -64,7 +64,12 @@
     second is ours, where the recipe pastes VFEP's verbatim: VFEP's paragraph gives the
     generation to a government program for its veterans, and this set's fiction is that
     sanguophages inside that program had it built in secret for themselves, told as rumor
-    the way Biotech tells its sanguophage lore.
+    the way Biotech tells its sanguophage lore. Its first sentence is the Medic's and the
+    Overlord's telling of the program, with the generation as its subject, so the set is
+    never called the program's own. The third says what each piece does in VFEP's
+    functional voice and ends on VFEP's verdict of who the series suits; the tier's sets
+    carry no catchphrase. A whole description stays inside the 133 to 205 words of VFEP's
+    spacer sets and the siblings', which leaves the pads' hemogen gain to their first line.
 
     Art: Textures/Things/Pawn/Warcasketlike/WarcasketHemophage/, laid out as VFEP's sets are.
     The worn graphic is Graphic_Multi (the _north/_east/_south facings); the item icon is the
@@ -109,8 +114,8 @@
   <VFEPirates.WarcasketDef ParentName="VFEP_WarcasketArmorBase">
     <defName>HPWC_Warcasket_Hemophage</defName>
     <label>hemophage warcasket</label>
-    <shortDescription>Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that can push the pilot's body far past its limits while quickly using up their hemogen.</shortDescription>
-    <description>Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that can push the pilot's body far past its limits while quickly using up their hemogen.\n\n10th generation warcaskets were adapted from captured pirate rigs by government military research divisions, who improved them with advanced power armor designs. The Hemophage series appears in none of their records. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, so that those who already don't age or die naturally would be even harder to destroy.\n\nThe Hemophage series is built around the hemogen in its pilot's blood. Injectors in the shell can flood the pilot's body with it, which makes them much faster and stronger for as long as their hemogen lasts. Siphon vials on the pauldrons win some of it back from an enemy whose limb the pilot has torn away, and the sealed helmet keeps sunlight off the pilot's skin. Because all of this depends on hemogen, this series offers little to a pilot without any, but it suits a sanguophage who prefers to fight up close.</description>
+    <shortDescription>Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make them faster and stronger.</shortDescription>
+    <description>Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make them faster and stronger.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some believe it was commissioned in secret by sanguophages who had worked their way into the program, to protect themselves from the few things that can still destroy them.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can flood their body with hemogen to make them much faster and stronger while it lasts. The pauldrons can tear a limb off an enemy and drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.</description>
     <graphicData>
       <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophage</texPath>
       <shaderType>CutoutComplex</shaderType>
