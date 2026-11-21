@@ -42,10 +42,9 @@
       1.6), and nothing that lowers blood pumping slows them. Any pilot has it, hemogenic or
       not, as any has the heat plating, and out of the armor the heart counts again. The
       hemogen rush raises blood pumping over this (HediffDefs/HemogenRush.xml).
-    - researchPrerequisites VFEP_SpacerWarcaskets, the tier's. Whether the set belongs behind
-      something sanguophage-specific as well is an open question in TODOs.md; the foundry
-      lists a part by BuildableDef.IsResearchFinished, which wants every entry, so a second
-      prerequisite goes on all three pieces.
+    - researchPrerequisites VFEP_SpacerWarcaskets, the tier's. The foundry lists a part by
+      BuildableDef.IsResearchFinished, which wants every entry, so a second prerequisite
+      would go on all three pieces.
 
     No apparel tags, so no pawnkind's gear roll picks the set (PawnApparelGenerator matches a
     kind's apparelTags against them), where the tier's WarcasketVeteran and WarcasketAll

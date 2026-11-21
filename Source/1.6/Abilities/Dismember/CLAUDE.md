@@ -34,8 +34,8 @@ Around it:
 - **A rule that can be decided from a body, a def or a number goes in a static class**, as
   `DismemberTarget` and `DismemberDrain` have theirs, and the ability only calls it. The
   headless suite builds no pawn, so those two are what `DismemberTargetTests` and
-  `DismemberDrainTests` can reach; a rule written on the ability is checked by hand, from
-  `TODOs.md`.
+  `DismemberDrainTests` can reach; a rule written on the ability is checked by hand, in
+  game.
 - **A new member of `Ability_Dismember` goes in the file whose header explains it**, and a
   comment that sends the reader to a header names the file when the header is another one's.
 - **A walk-up ability is ordered as a vanilla job and bound in its driver.** `Ability_Dismember`

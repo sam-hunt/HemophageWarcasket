@@ -55,6 +55,8 @@ multi-world sidecar.
   restates a def value or call path; a line joins a guide only when it constrains other files.
 - **Comments describe the present, git describes the past.** No dates, previous values, dropped
   attempts or "seen in game" notes in comments; that history goes in the commit message.
+  Nor an open question, an undecided point or work still owed: those are tracked in
+  `TODOs.md` alone, where they are seen, and a comment never points at the ledger for one.
   Comments never ship: `StageMod` strips every comment node from the staged XML, so a def header
   can carry its full rationale at no download cost.
 - **Design specs go in `Docs/Specs/`**, one file per feature, when a feature is designed before

@@ -24,9 +24,9 @@ The Hemophage is a 10th-generation warcasket made for sanguophages, and for any 
 with Biotech's hemogenic gene. It runs on the hemogen in its pilot's blood. A pilot without the
 gene gets an ordinary spacer warcasket.
 
-The mod is in development: the three pieces are in with their art and the standard stats and
-costs of a spacer warcasket. The armor's and the shoulders' abilities and the pilot's work types
-are built. The helmet's feature below is the design and is not built yet.
+The mod is in development and has no release yet. The three pieces are in with their art, and
+the armor's and the shoulders' abilities, the helmet's protections and the pilot's work types
+are built.
 
 ## Features
 

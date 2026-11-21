@@ -13,7 +13,7 @@ source of truth; every other language derives from it.
 only on explicit request, one language at a time (see `l10n/process.md`'s
 non-negotiables). Generating the key expectations sidecar is always fine;
 generating translations is not, until the English text is final. Today it
-is not: the set's abilities are not built yet (`TODOs.md`).
+is not: the full review of the English text is still open (`TODOs.md`).
 
 **The family-wide process lives in the `l10n/` submodule, load these first,
 and only these** (progressive disclosure; if `l10n/` is empty, run

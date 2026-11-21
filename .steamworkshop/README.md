@@ -15,11 +15,10 @@ native review. Format:
 - Line 2: blank
 - Rest: the BBCode description
 
-`English.txt` is a draft until the first release. It is written to the
-design, as the page will read once the armor, shoulder pad and helmet
-mechanics are in, and none of them is yet; the page describes only what a
-release ships (`CLAUDE.md` beside this file), so correct it to the landed
-features before the first upload.
+`English.txt` is a draft until the first release. It was written to the
+design ahead of the code, and the page describes only what a release ships
+(`CLAUDE.md` beside this file), so it is checked against what is built
+before the first upload (`TODOs.md`).
 
 Title convention: the English title leans on VFE Pirates' own vocabulary
 ("warcasket") so players browsing for more sets find the mod; every localized
