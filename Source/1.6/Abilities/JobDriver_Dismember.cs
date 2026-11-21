@@ -44,10 +44,18 @@ namespace HemophageWarcasket;
 // between ticks can be caught before VEF's condition fails the job. The drain toil starts in a
 // busy stance (atomicWithPrevious, as VEF's cast toil does) so that a pilot stunned at the
 // strike is already in it at that first check.
+//
+// A hemohunter's job may be on a corpse from the start (JobGiver_HemohunterDismember;
+// Ability_Dismember has the rule). The toils are the same ones: the walk and VEF's conditions
+// take a corpse as they take the one the drain followed its target to, the hold in the warmup
+// is for a pawn and passes a corpse by, and the check and the cast go to the ability's corpse
+// overloads. foundDead keeps that through a save, since a corpse in the job's target says
+// nothing by itself once FollowIntoDeath may have put it there.
 public class JobDriver_Dismember : JobDriver_CastAbilityOnce
 {
     private AbilityDef abilityDef;
     private Toil drain;
+    private bool foundDead;
 
     // The pawn the job is on, living or in the corpse the drain followed it to.
     private Pawn Target => TargetA.Thing is Corpse corpse ? corpse.InnerPawn : TargetA.Pawn;
@@ -68,9 +76,16 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
         if (ability == null || comp == null || Target == null)
             return false;
         ability.pawn = pawn;
+        foundDead = TargetA.Thing is Corpse;
         comp.currentlyCasting = ability;
-        comp.currentlyCastingTargets = [new GlobalTargetInfo(Target)];
+        comp.currentlyCastingTargets = [new GlobalTargetInfo(TargetA.Thing)];
         return base.TryMakePreToilReservations(errorOnFailed);
+    }
+
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref foundDead, "foundDead");
     }
 
     // The pilot's instance of the ability whose def names jobDef, or of any with none given,
@@ -151,7 +166,10 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
         Toil toil = ToilMaker.MakeToil();
         toil.initAction = () =>
         {
-            if (Casting?.CheckBeforeWarmup(Target) != true)
+            Ability_Dismember ability = Casting;
+            bool ready = ability != null
+                && (TargetA.Thing is Corpse corpse ? ability.CheckBeforeWarmup(corpse) : ability.CheckBeforeWarmup(Target));
+            if (!ready)
                 EndJobWith(JobCondition.Incompletable);
         };
         toil.defaultCompleteMode = ToilCompleteMode.Instant;
@@ -169,28 +187,28 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
             job.playerForced = true;
             Ability_Dismember ability = Casting;
             Pawn target = Target;
-            if (ability == null || target == null || !ability.CanDrain(target))
+            if (ability == null || target == null || !ability.CanDrain(target, foundDead))
             {
                 ReadyForNextToil();
                 return;
             }
             pawn.pather.StopDead();
             ticksLeftThisToil = ability.DrainTicks;
-            ability.MarkFeeding(target);
+            ability.MarkFeeding(target, foundDead);
             SoundDefOf.Bloodfeed_Cast.PlayOneShot(new TargetInfo(TargetA.Cell, pawn.Map));
         };
         toil.tickAction = () =>
         {
             Ability_Dismember ability = Casting;
             Pawn target = Target;
-            if (ability == null || target == null || !ability.CanDrain(target) || (!target.Dead && !ability.InReach(target)))
+            if (ability == null || target == null || !ability.CanDrain(target, foundDead) || (!target.Dead && !ability.InReach(target)))
             {
                 ReadyForNextToil();
                 return;
             }
             pawn.rotationTracker.FaceTarget(TargetA);
             // The blood loss in here can kill the target, so nothing below reads it.
-            ability.DrainTick(target);
+            ability.DrainTick(target, foundDead);
             if (ticksLeftThisToil <= 0)
                 ReadyForNextToil();
         };

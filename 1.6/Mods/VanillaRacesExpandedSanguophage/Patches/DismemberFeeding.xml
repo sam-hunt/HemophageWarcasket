@@ -24,8 +24,11 @@
     drain refuses as Bloodfeed does. Its SanguoFeed refuses a target under 10 hemogen, as
     minTargetHemogen 0.1 does: an empty target would fill the pilot all the same. The 20 it
     takes beyond the bite prices a bite on the unresisting, which a torn limb has paid.
-  - VRE_CorpseFeeder has no entry. Its CorpseFeed is for a corpse found lying, which it
-    destroys; the drain only follows a target it struck alive, and counts it as what it was.
+  - VRE_CorpseFeeder feeds on a human corpse found lying, which only a hemohunter strikes
+    (below): its CorpseFeed is how a pilot in its right mind feeds on one. CorpseFeed gives
+    its 20 hemogen whatever blood the corpse has left and destroys it; the drain takes what
+    blood is left, as from a target that died under it, and leaves the corpse. A target
+    struck alive is never this source's, dead or not.
 
   feedingHediffs. Each of that mod's feedings leaves its hediff on the feeder and removes the
   other two, and Bloodfeed and a hemogen pack remove all three (its postfix on
@@ -34,7 +37,9 @@
 
   hemohunterStates. Its blood moon sends every hemogenic human on the map under 45 hemogen
   into VRE_Hemohunter, in which its JobGiver_Hemohunter walks the pawn to a random human
-  without the hemogen gene and bites. ThinkTreeDefs/HemohunterDismember.xml asks ours first.
+  without the hemogen gene and bites, whatever feeding genes the pawn has.
+  ThinkTreeDefs/HemohunterDismember.xml asks ours first, and ours also draws from what the
+  three sources above open to the pilot while the ability's hemohunterHuntsByGene is on.
 -->
 <Patch>
   <Operation Class="PatchOperationAdd">
@@ -57,6 +62,11 @@
           <target>Hemogenic</target>
           <hediff>VRE_ConsumedSanguophageHemogen</hediff>
           <minTargetHemogen>0.1</minTargetHemogen>
+        </li>
+        <li>
+          <pilotGene>VRE_CorpseFeeder</pilotGene>
+          <target>Corpse</target>
+          <hediff>VRE_ConsumedCorpseHemogen</hediff>
         </li>
       </drainSources>
       <feedingHediffs>

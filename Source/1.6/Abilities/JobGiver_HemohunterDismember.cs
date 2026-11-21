@@ -18,12 +18,16 @@ namespace HemophageWarcasket;
 //
 // The prey is drawn as the bite's is, at random among the humanlikes on the map with no active
 // hemogen gene that the pilot can reach, ghouls aside, and then only those the strike is valid
-// on and the drain feeds from. The tree this sits in is asked on most job searches of every
-// humanlike, so the mental state test comes first and only a pawn in one goes any further.
+// on and the drain feeds from. While the ability's extension says so (hemohunterHuntsByGene)
+// the draw is also over what the pilot's drain sources feed on, each at the same odds as any
+// other prey: the pawns a source opens, and the corpses on the map when a source is for
+// those (Ability_Dismember has the rule for a corpse). The tree this sits in is asked on most
+// job searches of every humanlike, so the mental state test comes first and only a pawn in
+// one goes any further.
 public class JobGiver_HemohunterDismember : ThinkNode_JobGiver
 {
     // Filled and read within one TryGiveJob call.
-    private static readonly List<Pawn> Prey = [];
+    private static readonly List<Thing> Prey = [];
 
     protected override Job TryGiveJob(Pawn pawn)
     {
@@ -35,7 +39,7 @@ public class JobGiver_HemohunterDismember : ThinkNode_JobGiver
         ability.pawn = pawn;
         if (!ability.StrikesAsHemohunter())
             return null;
-        Pawn target = FindPrey(pawn, ability);
+        Thing target = FindPrey(pawn, ability);
         if (target == null)
             return null;
         Job job = JobMaker.MakeJob(ability.def.jobDef, target);
@@ -44,22 +48,34 @@ public class JobGiver_HemohunterDismember : ThinkNode_JobGiver
         return job;
     }
 
-    private static Pawn FindPrey(Pawn pilot, Ability_Dismember ability)
+    private static Thing FindPrey(Pawn pilot, Ability_Dismember ability)
     {
         Prey.Clear();
         IReadOnlyList<Pawn> pawns = pilot.Map.mapPawns.AllPawnsSpawned;
         for (int i = 0; i < pawns.Count; i++)
         {
             Pawn other = pawns[i];
-            if (other != pilot && other.RaceProps.Humanlike && !other.IsGhoul
-                && other.genes?.GetFirstGeneOfType<Gene_Hemogen>() == null
+            if (other != pilot && !other.IsGhoul && (IsBitePrey(other) || ability.HuntsByGene(other))
                 && ability.CanHunt(other) && pilot.CanReach(other, PathEndMode.Touch, Danger.Deadly))
             {
                 Prey.Add(other);
             }
         }
-        Pawn prey = Prey.Count > 0 ? Prey.RandomElement() : null;
+        if (ability.HuntsCorpses())
+        {
+            List<Thing> corpses = pilot.Map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse);
+            for (int i = 0; i < corpses.Count; i++)
+            {
+                if (corpses[i] is Corpse corpse && ability.CanHunt(corpse) && pilot.CanReach(corpse, PathEndMode.Touch, Danger.Deadly))
+                    Prey.Add(corpse);
+            }
+        }
+        Thing prey = Prey.Count > 0 ? Prey.RandomElement() : null;
         Prey.Clear();
         return prey;
     }
+
+    // The prey of the state's own bite.
+    private static bool IsBitePrey(Pawn other) =>
+        other.RaceProps.Humanlike && other.genes?.GetFirstGeneOfType<Gene_Hemogen>() == null;
 }

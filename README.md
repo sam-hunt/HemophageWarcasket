@@ -89,7 +89,9 @@ Coming with the first release.
   sensitivity. An animalfeeder pilot drains hemogen from animals and a sanguofeeder pilot from
   other sanguophages, each with that mod's own effects on the pilot. An aggressive pilot who
   becomes a hemohunter dismembers instead of biting while the shoulders have strikes left,
-  which a mod setting can turn off.
+  and hunts whatever its feeding genes feed on as well: animals for an animalfeeder, other
+  sanguophages for a sanguofeeder and human corpses for a corpsefeeder. Mod settings can turn
+  off either.
 - **Combat Extended**: built-in patch. CE armor values, bulk, carry capacity and shield in line
   with VFE Pirates' spacer sets and a helmet sealed against CE smoke.
 - **Warcaskets can work!, Warcaskets can haul!, Hardworking Warcaskets**: compatible. Whatever

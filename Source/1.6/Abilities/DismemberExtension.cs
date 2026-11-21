@@ -62,4 +62,8 @@ public class DismemberExtension : DefModExtension
 
     // Whether a pilot in one of those states strikes at all.
     public bool hemohunterStrikes = true;
+
+    // Whether such a pilot's prey is also what its drainSources feed on, beside the prey the
+    // state's own bite takes.
+    public bool hemohunterHuntsByGene = true;
 }

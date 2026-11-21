@@ -124,7 +124,8 @@ namespace HemophageWarcasket;
 // is: it can scale the blood loss by the target's size, stop at a floor on the target's hemogen
 // and name a hediff the feeding leaves on the pilot. Every drain takes the other feedingHediffs
 // off the pilot as it starts, so the plain drain clears them all, as Bloodfeed does under a mod
-// that keeps such hediffs. A corpse is drained as what it was alive.
+// that keeps such hediffs. The corpse of a target struck alive is drained as what it was. No
+// drain is on a dessicated corpse, which has no blood in it.
 //
 // A pilot in one of the extension's hemohunterStates hunts with the strike instead of the
 // bite that state's own mod gives it (JobGiver_HemohunterDismember), while hemohunterStrikes
@@ -133,7 +134,20 @@ namespace HemophageWarcasket;
 // the pilot's genes make aggressive mental breaks likelier
 // (Pawn_GeneTracker.AggroMentalBreakSelectionChanceFactor above 1, vanilla's product over the
 // active genes, 1.6 and 1.7: Biotech's aggressive and hyper-aggressive, and any mod's stronger
-// one).
+// one). The prey is the bite's, and while hemohunterHuntsByGene is on also whatever the
+// pilot's drainSources open to it: a hunter holds to no diet.
+//
+// A source of the Corpse kind opens a humanlike's corpse lying on the map, to a hunt and to
+// nothing else: no order of the player's targets a corpse, and the job's check asks for the
+// hunt again once the pilot stands over it. Such a strike is no attack, so it goes nowhere
+// near TakeDamage, whose bookkeeping is an attack's: it would make the pilot guilty over a
+// dead colonist as over a living one (Pawn_HealthTracker.PreApplyDamage, 1.6). It takes the
+// part off as vanilla does when a corpse is eaten, a fresh Hediff_MissingPart added to the
+// pawn in the corpse (Corpse.IngestedCalculateAmounts, 1.6 and 1.7), under the damage def's
+// own injury so the part reads as torn off, when the strike's damage would tear it off a
+// body that does nothing to lessen it. It writes no combat log line and throws the same
+// blood. The drain that follows is the one a target that died gets, on what blood the corpse
+// has left, and leaves the corpse where it lay.
 //
 // The limit is the strikes loaded in the pads: a vanilla reloadable (CompStrikePool) on the
 // piece that grants the ability (holder), one spent by every cast, landed or not, as a vanilla
@@ -500,10 +514,14 @@ public class Ability_Dismember : Ability
     public override void Cast(params GlobalTargetInfo[] targets)
     {
         base.Cast(targets);
-        if (targets.Length == 0 || targets[0].Thing is not Pawn target)
+        Thing target = targets.Length == 0 ? null : targets[0].Thing;
+        if (target is not (Pawn or Corpse))
             return;
         Pool?.UsedOnce();
-        Strike(target);
+        if (target is Corpse corpse)
+            Strike(corpse);
+        else
+            Strike((Pawn)target);
     }
 
     private void Strike(Pawn target)
@@ -527,6 +545,22 @@ public class Ability_Dismember : Ability
             result.AssociateWithLog(log);
         if (target.Dead || target.health.hediffSet.PartIsMissing(part))
             Spatter(target, center, map);
+    }
+
+    // The strike on a corpse found lying (see the header).
+    private void Strike(Corpse corpse)
+    {
+        Pawn dead = corpse.InnerPawn;
+        if (dead == null || !corpse.Spawned)
+            return;
+        BodyPartRecord part = DismemberTarget.Choose(dead, Extension, MeleeAim.HeightFor(pawn, Extension), out _);
+        if (part == null || !DismemberTarget.Tears(dead.health.hediffSet.GetPartHealth(part), StrikeInfo().Amount))
+            return;
+        var missing = (Hediff_MissingPart)HediffMaker.MakeHediff(HediffDefOf.MissingBodyPart, dead, part);
+        missing.lastInjury = HealthUtility.GetHediffDefFromDamage(HPWC_DefOf.HPWC_Dismember, dead, part);
+        missing.IsFresh = true;
+        dead.health.AddHediff(missing);
+        Spatter(dead, corpse.Position, corpse.Map);
     }
 
     // Reused across casts; filled and read within one Spatter call.
@@ -559,15 +593,16 @@ public class Ability_Dismember : Ability
     }
 
     // Whether a drain can run or go on: one could (DrainsFrom), and the target is bleeding now
-    // or dead (see the header).
-    public bool CanDrain(Pawn target) =>
-        DrainsFrom(target) && (target.Dead || target.health.hediffSet.BleedRateTotal > 0f);
+    // or dead (see the header). foundDead, here and below, says the pilot came to the target
+    // as a corpse lying on the map, which only a source of the Corpse kind feeds from.
+    public bool CanDrain(Pawn target, bool foundDead = false) =>
+        DrainsFrom(target, foundDead) && (target.Dead || target.health.hediffSet.BleedRateTotal > 0f);
 
     // Whether the pilot could drain this target once it bleeds: the def sets a drain, the pilot
     // has an active hemogen gene with room for more, and the target is one the pilot feeds on
     // that can bleed, alive or a corpse on the map with blood left in it, and holds the hemogen
     // its source asks for.
-    private bool DrainsFrom(Pawn target)
+    private bool DrainsFrom(Pawn target, bool foundDead = false)
     {
         DismemberExtension ext = Extension;
         if (ext == null || ext.drainTicks <= 0 || ext.hemogenGain <= 0f)
@@ -576,13 +611,15 @@ public class Ability_Dismember : Ability
         if (hemogen == null || !hemogen.CanOffset || hemogen.Value >= hemogen.Max)
             return false;
         Thing body = target.Dead ? target.Corpse : target;
-        return body is { Spawned: true } && FeedsOn(target, out DismemberDrainSource source)
-            && source?.BelowFloor(target) != true && target.health.CanBleed && !BledOut(target);
+        return body is { Spawned: true } && FeedsOn(target, foundDead, out DismemberDrainSource source)
+            && source?.BelowFloor(target) != true && target.health.CanBleed && !BledOut(target)
+            && (body as Corpse)?.GetRotStage() != RotStage.Dessicated;
     }
 
     // Whether the pilot drains such a target at all, and through which of the extension's
-    // wider sources: none for the plain drain (see the header).
-    private bool FeedsOn(Pawn target, out DismemberDrainSource source)
+    // wider sources: none for the plain drain, which is never on a corpse found lying (see the
+    // header).
+    private bool FeedsOn(Pawn target, bool foundDead, out DismemberDrainSource source)
     {
         source = null;
         List<DismemberDrainSource> sources = Extension.drainSources;
@@ -590,20 +627,20 @@ public class Ability_Dismember : Ability
         {
             for (int i = 0; i < sources.Count; i++)
             {
-                if (sources[i].Fits(pawn, target))
+                if (sources[i].Fits(pawn, target, foundDead))
                 {
                     source = sources[i];
                     return true;
                 }
             }
         }
-        return target.RaceProps.Humanlike && !target.IsBloodfeeder();
+        return !foundDead && target.RaceProps.Humanlike && !target.IsBloodfeeder();
     }
 
     // As a drain starts: the pilot now carries the mark of this feeding and of no other.
-    public void MarkFeeding(Pawn target)
+    public void MarkFeeding(Pawn target, bool foundDead = false)
     {
-        FeedsOn(target, out DismemberDrainSource source);
+        FeedsOn(target, foundDead, out DismemberDrainSource source);
         HediffDef mark = source?.hediff;
         HediffSet hediffs = pawn.health.hediffSet;
         List<HediffDef> marks = Extension.feedingHediffs;
@@ -625,7 +662,7 @@ public class Ability_Dismember : Ability
 
     // One tick's share of a full drain, as SanguophageUtility.DoBite gives its whole one (1.6),
     // the same from a corpse. The blood loss goes last because it can kill a living target.
-    public void DrainTick(Pawn target)
+    public void DrainTick(Pawn target, bool foundDead = false)
     {
         DismemberExtension ext = Extension;
         float share = 1f / ext.drainTicks;
@@ -633,14 +670,14 @@ public class Ability_Dismember : Ability
         GeneUtility.OffsetHemogen(pawn, gain);
         GeneUtility.OffsetHemogen(target, -gain);
         RefreshStun(target);
-        HealthUtility.AdjustSeverity(target, HediffDefOf.BloodLoss, FullBloodLoss(target) * share);
+        HealthUtility.AdjustSeverity(target, HediffDefOf.BloodLoss, FullBloodLoss(target, foundDead) * share);
     }
 
     // BloodLoss severity a drain run to its end adds to this target: the extension's, scaled
     // by the target's size when its source says so.
-    private float FullBloodLoss(Pawn target)
+    private float FullBloodLoss(Pawn target, bool foundDead = false)
     {
-        FeedsOn(target, out DismemberDrainSource source);
+        FeedsOn(target, foundDead, out DismemberDrainSource source);
         float bySize = source?.bloodLossFactorByBaseBodySize?.Evaluate(target.RaceProps.baseBodySize) ?? 1f;
         return Extension.targetBloodLoss * bySize;
     }
@@ -657,6 +694,36 @@ public class Ability_Dismember : Ability
     // Whether a hunt may take this pawn: a valid target for the strike that the drain could
     // then feed on.
     public bool CanHunt(Pawn target) => ValidateTarget(target, showMessages: false) && DrainsFrom(target);
+
+    // Whether a hunt reaches past the bite's prey for this pawn: the def lets it, and one of
+    // the extension's wider sources opens the pawn to the pilot.
+    public bool HuntsByGene(Pawn target) =>
+        Extension.hemohunterHuntsByGene && FeedsOn(target, foundDead: false, out DismemberDrainSource source) && source != null;
+
+    // Whether a hunt looks at corpses at all: the def lets it reach past the bite's prey, and
+    // the pilot has the gene of a source for them.
+    public bool HuntsCorpses()
+    {
+        List<DismemberDrainSource> sources = Extension.drainSources;
+        if (!Extension.hemohunterHuntsByGene || sources == null || pawn == null)
+            return false;
+        for (int i = 0; i < sources.Count; i++)
+        {
+            if (sources[i].target == DrainTargetKind.Corpse && sources[i].OpenTo(pawn))
+                return true;
+        }
+        return false;
+    }
+
+    // Whether a hunt may take this corpse, found lying: the dead pawn has a part for the
+    // strike and the drain could feed on it, which only a source for corpses lets it.
+    public bool CanHunt(Corpse corpse) =>
+        Extension.hemohunterHuntsByGene && corpse is { Spawned: true, InnerPawn: { } dead }
+        && DismemberTarget.CanStrike(dead, Extension, out _) && DrainsFrom(dead, foundDead: true);
+
+    // The job's check toil over a corpse: only a hunt strikes one, so the pilot must still be
+    // hunting, which asks for a loaded strike as the check over a living target does.
+    public bool CheckBeforeWarmup(Corpse corpse) => StrikesAsHemohunter() && CanHunt(corpse);
 
     public int DrainTicks => Extension.drainTicks;
 

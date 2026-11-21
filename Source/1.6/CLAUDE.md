@@ -12,8 +12,9 @@ the reader of another mod's melee aim height, job driver and the job giver that 
 hemohunter the strike (`Abilities/`) and strike pool (`Comps/`), the
 helmet's sunlight protection (`Sunlight/`, with its three patches)
 and pyrophobia relief (`Fire/`, with its one), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`),
-the settings window (`Settings/`), with a section for each piece's mechanic and one for the
-work, and the mask that keeps the set off generated pawns (`ListMask.cs`, with its patch).
+the settings window (`Settings/`), with a section for each piece's mechanic, one for the
+work and a last one for Vanilla Races Expanded - Sanguophage, shown only while that mod is
+active, and the mask that keeps the set off generated pawns (`ListMask.cs`, with its patch).
 Several rules below are the family's, written down before the code they govern so
 the next ability or comp lands in the right shape; each names the sibling file to copy from
 rather than restating it.

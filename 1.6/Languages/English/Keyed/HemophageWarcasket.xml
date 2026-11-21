@@ -91,10 +91,6 @@
   <HPWC_DismemberBehead>Behead large limbless creatures</HPWC_DismemberBehead>
   <HPWC_DismemberBeheadDesc>When enabled, a large creature that never had arms or legs, such as a diabolus, will lose its head instead, which kills it. When disabled, such creatures cannot be targeted. A small one, such as a snake, will always lose its head. Default: {0}.</HPWC_DismemberBeheadDesc>
 
-  <!-- Shown only with Vanilla Races Expanded - Sanguophage, whose mental state the hemohunter is -->
-  <HPWC_DismemberHemohunter>Hemohunters dismember targets</HPWC_DismemberHemohunter>
-  <HPWC_DismemberHemohunterDesc>When enabled, an aggressive pilot who becomes a hemohunter will dismember targets instead of biting them while the shoulders have strikes left. When disabled, the pilot will only bite. Default: {0}.</HPWC_DismemberHemohunterDesc>
-
   <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
   <HPWC_DismemberSummary>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}.</HPWC_DismemberSummary>
   <HPWC_DismemberSummaryNoCooldown>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldown>
@@ -118,5 +114,13 @@
   <HPWC_WorkSummary>The pilot can do {0} work, as well as the work that all warcasket pilots can do.</HPWC_WorkSummary>
   <HPWC_WorkSummaryNone>The pilot can only do the work that all warcasket pilots can do.</HPWC_WorkSummaryNone>
   <HPWC_WorkSummaryNothingBlocked>No work is blocked for warcasket pilots, so there is nothing to enable here.</HPWC_WorkSummaryNothingBlocked>
+
+  <!-- Vanilla Races Expanded - Sanguophage section (Source/1.6/Settings/Settings_Sanguophage.cs), shown only while that mod is active. The section's name is the mod's own. {0} in every tooltip is the default -->
+  <HPWC_SectionSanguophage>Vanilla Races Expanded - Sanguophage</HPWC_SectionSanguophage>
+  <HPWC_SectionSanguophageDesc>How Dismember will behave for a pilot who becomes a hemohunter under Vanilla Races Expanded - Sanguophage.</HPWC_SectionSanguophageDesc>
+  <HPWC_DismemberHemohunter>Hemohunters dismember targets</HPWC_DismemberHemohunter>
+  <HPWC_DismemberHemohunterDesc>When enabled, an aggressive pilot who becomes a hemohunter will dismember targets instead of biting them while the shoulders have strikes left. When disabled, the pilot will only bite. Default: {0}.</HPWC_DismemberHemohunterDesc>
+  <HPWC_HemohunterByGene>Hemohunters hunt by feeding gene</HPWC_HemohunterByGene>
+  <HPWC_HemohunterByGeneDesc>When enabled, a hemohunter pilot who dismembers targets will also hunt what the pilot's feeding genes feed on. An animalfeeder will hunt animals, a sanguofeeder other hemogenic humans and a corpsefeeder human corpses that have blood left in them. When disabled, the pilot will only hunt humans who are not hemogenic. Default: {0}.</HPWC_HemohunterByGeneDesc>
 
 </LanguageData>

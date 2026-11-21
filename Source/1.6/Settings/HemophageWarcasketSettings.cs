@@ -9,16 +9,16 @@ namespace HemophageWarcasket;
 // The set's mod settings: the window frame, the ExposeData / LoadDefaultsFromDefs / ApplyToDefs /
 // ResetToDefaults fan-out, the value formats and the shared row helpers. The class is split
 // across Settings_<Section>.cs partials, one per window section (the hemogen rush, Dismember,
-// the helmet, the pilot's work), each owning its fields, scribe entries, def-backed defaults, apply, reset
-// and draw, so a setting is a one-file edit; each partial's header lists the def fields it
+// the helmet, the pilot's work, and last Vanilla Races Expanded - Sanguophage's), each owning
+// its fields, scribe entries, def-backed defaults, apply, reset and draw, so a setting is a one-file edit; each partial's header lists the def fields it
 // writes. Each setting overrides a def field, written onto the def by ApplyToDefs (at startup,
 // then whenever the window closes), so every reader of those fields, vanilla's and VEF's
 // included, sees the setting with no code of its own. The defaults, and the rationale for them,
 // are the defs'. Nothing here is saved into a game: a save loads the same with any settings,
 // and with none.
 //
-// The two ability sections and the helmet's write through def handles found by name
-// (TryGetDefs), all or nothing, the pads' strike pool among them; the work section needs none
+// The two ability sections, the helmet's and the Vanilla Races Expanded - Sanguophage one
+// write through def handles found by name (TryGetDefs), all or nothing, the pads' strike pool among them; the work section needs none
 // of them and stands when they are missing. Each ability section's header carries the ability's own icon, read off
 // the def at draw time: VEF resolves def.icon late in loading, and a play-data reload replaces
 // the def and its texture together.
@@ -86,6 +86,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         ExposeDismemberSettings();
         ExposeHelmetSettings();
         ExposeWorkSettings();
+        ExposeSanguophageSettings();
     }
 
     // Reads the def-backed defaults before the first ApplyToDefs overwrites them; defs must be
@@ -99,6 +100,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         LoadRushDefaults(defs);
         LoadDismemberDefaults(defs);
         LoadHelmetDefaults(defs);
+        LoadSanguophageDefaults(defs);
     }
 
     // The work profile goes first: it needs none of the abilities' defs, so a saved choice
@@ -111,6 +113,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         ApplyRushToDefs(defs);
         ApplyDismemberToDefs(defs);
         ApplyHelmetToDefs(defs);
+        ApplySanguophageToDefs(defs);
         Generation++;
         TrimWornPads();
     }
@@ -121,6 +124,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         ResetDismemberSettings();
         ResetHelmetSettings();
         ResetWorkSettings();
+        ResetSanguophageSettings();
     }
 
     // Each section opens on its summary under its header, then one row per setting, and a reset
@@ -131,7 +135,9 @@ public partial class HemophageWarcasketSettings : ModSettings
     // width once it is needed. maxOneColumn keeps the listing growing downward: past its rect's
     // height it would start a new column off to the right, outside the window, and never report
     // the height the scroll view needs. While the abilities' defs were not found there is
-    // nothing of theirs to tune, so one line says so in place of their sections.
+    // nothing of theirs to tune, so one line says so in place of their sections. The last
+    // section, for Vanilla Races Expanded - Sanguophage, draws only while that mod's compat
+    // root has named a hemohunter state on the Dismember extension.
     public void DoWindowContents(Rect inRect)
     {
         const float buttonHeight = 30f;
@@ -154,6 +160,7 @@ public partial class HemophageWarcasketSettings : ModSettings
             SummaryRow(listing, () => "HPWC_SettingsUnavailable".Translate());
         }
         DrawWorkSection(listing);
+        DrawSanguophageSection(listing);
         listing.Gap(SectionGap);
         contentHeight = listing.CurHeight;
         listing.End();

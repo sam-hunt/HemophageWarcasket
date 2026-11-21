@@ -38,7 +38,8 @@ plating and cost, and the SOS2, VGE and CE patches mirror them; the CE root also
 Dismember's CE numbers. The armor's hemogen rush is
 built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
 protection and pyrophobia relief, the pilot's own work trait and the settings
-window, with a section for each piece's mechanic and one for the pilot's work. The descriptions
+window, with a section for each piece's mechanic, one for the pilot's work and a last one for
+Vanilla Races Expanded - Sanguophage, shown only while that mod is active. The descriptions
 and the player-facing pages are first cuts still owed a full review. `TODOs.md` is the ledger.
 The sibling repos (same author, same VFEP base) are the worked precedents for everything not
 here yet: `../ToxinWarcasket/` for a toggled ability, a gauge and the Biotech dependency,

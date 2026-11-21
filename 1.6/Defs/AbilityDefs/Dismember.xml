@@ -56,6 +56,10 @@
     (1.6/Mods/VanillaRacesExpandedSanguophage/Patches/DismemberFeeding.xml). hemohunterStrikes
     true is the switch on the last, on by default because a pilot who goes hunting in this
     suit is meant to be the worse for it, and off for a player who wants the plain bite back.
+    hemohunterHuntsByGene true widens that hunt from the bite's prey to whatever the pilot's
+    drainSources open to it, a corpse found lying among them: the feeding genes say what a
+    pilot can feed on, and a hunter in that state holds to no diet. Off, the hunt keeps to
+    the bite's prey.
     bloodFilthCount 10 within bloodFilthRadius 2 is the spatter a strike throws when its
     part comes off: the 13 cells of a radius 2 disc, so about seven of them catch some, a
     repeat on a cell thickening it. The filth is the target's own blood, so a mechanoid
@@ -68,8 +72,8 @@
     smallest of the large ones being the termite at 1.6, and half a human's size sits in it.
 
     The mod settings override castTime, cooldownTime, the pads' pool and the
-    DismemberExtension fields that Source/1.6/Settings/Settings_Dismember.cs lists, damage and
-    hemohunterStrikes among them.
+    DismemberExtension fields that Settings_Dismember.cs and Settings_Sanguophage.cs under
+    Source/1.6/Settings/ list, damage and hemohunterStrikes among them.
 
     showUndrafted as on the hemogen rush. No castSound: the damage plays its own impact, and
     the drain plays Bloodfeed's.
@@ -112,6 +116,7 @@
         <decapitateBodiesWithoutLimbs>false</decapitateBodiesWithoutLimbs>
         <decapitateWithoutLimbsMaxBodySize>0.5</decapitateWithoutLimbsMaxBodySize>
         <hemohunterStrikes>true</hemohunterStrikes>
+        <hemohunterHuntsByGene>true</hemohunterHuntsByGene>
       </li>
     </modExtensions>
   </VEF.Abilities.AbilityDef>
