@@ -80,10 +80,11 @@ namespace HemophageWarcasket;
 // such blood loss sends into deathrest instead (SanguophageUtility
 // .ShouldBeDeathrestingOrInComaInsteadOfDead) and which Bloodfeed's own dialog skips. Bloodfeed
 // asks over every target it takes, and takes no enemy still standing; the strike is for those,
-// so it asks only over a target that is not hostile to the pilot and is a person or belongs to
-// a faction: a colonist, slave, prisoner, guest or visitor, or an animal or mechanoid of
-// theirs, and never an enemy or a wild animal. VEF has no hook for such a dialog, so it goes
-// up in OrderForceTarget, which the vanilla Targeter calls on the click, after ValidateTarget
+// so it asks over one of the player's own faction whatever its state, a berserk colonist, a
+// rebelling slave and a colony animal turned manhunter among them, and otherwise only over a
+// target that is not hostile to the pilot and is a person or belongs to a faction: a prisoner,
+// guest or visitor, or an animal or mechanoid of theirs. An enemy and a wild animal are never
+// asked about. VEF has no hook for such a dialog, so it goes up in OrderForceTarget, which the vanilla Targeter calls on the click, after ValidateTarget
 // and before it stops targeting (Targeter.ProcessInputEvents, 1.6 and 1.7), and the job is
 // ordered from the dialog's confirm button. A think tree's job never passes through it, so a
 // hemohunter is asked nothing.
@@ -313,7 +314,11 @@ public class Ability_Dismember : Ability
     // answer (see the header).
     private string LethalOrderQuestion(Pawn victim)
     {
-        if (pawn == null || victim.HostileTo(pawn) || !(victim.RaceProps.Humanlike || victim.Faction != null))
+        if (pawn == null)
+            return null;
+        bool asked = victim.Faction is { IsPlayer: true }
+            || (!victim.HostileTo(pawn) && (victim.RaceProps.Humanlike || victim.Faction != null));
+        if (!asked)
             return null;
         Foresee(victim, out bool kills, out DrainOutlook drain);
         if (kills)
