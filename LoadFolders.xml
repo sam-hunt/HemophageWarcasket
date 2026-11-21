@@ -9,8 +9,8 @@
     <!-- Combat Extended: CE's armor scale, bulk, carry capacity, shield and smoke sealing.
          Patches only, so it needs no art root. -->
     <li IfModActive="CETeam.CombatExtended">1.6/Mods/CombatExtended</li>
-    <!-- Vanilla Races Expanded - Sanguophage: its feeding genes and hemohunter mental state
-         for the shoulders' Dismember. Patches only, so it needs no art root. -->
+    <!-- Vanilla Races Expanded - Sanguophage: its feeding genes for the shoulders'
+         Dismember. Patches only, so it needs no art root. -->
     <li IfModActive="vanillaracesexpanded.sanguophage">1.6/Mods/VanillaRacesExpandedSanguophage</li>
   </v1.6>
   <v1.7>

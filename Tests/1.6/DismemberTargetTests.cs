@@ -119,8 +119,8 @@ public class DismemberTargetTests : IDisposable
         }
     }
 
-    private static BodyPartRecord? Pick(BodyDef body, IEnumerable<BodyPartRecord> present, bool flag, out bool decapitates, int index = 0) =>
-        DismemberTarget.Choose(body, present, flag, n => Math.Min(index, n - 1), out decapitates);
+    private static BodyPartRecord? Pick(BodyDef body, IEnumerable<BodyPartRecord> present, out bool decapitates, int index = 0) =>
+        DismemberTarget.Choose(body, present, n => Math.Min(index, n - 1), out decapitates);
 
     [Fact]
     public void Humanlike_OffersExactlyItsArmsAndLegs()
@@ -128,7 +128,7 @@ public class DismemberTargetTests : IDisposable
         var human = new Humanlike();
         var offered = new HashSet<BodyPartRecord>();
         for (int i = 0; i < 4; i++)
-            offered.Add(Pick(human.Def, human.Present(), false, out bool decapitates, i)!);
+            offered.Add(Pick(human.Def, human.Present(), out bool decapitates, i)!);
         Assert.Equal(new HashSet<BodyPartRecord>([.. human.arms, .. human.legs]), offered);
         Assert.DoesNotContain(human.jaw, offered);
         Assert.All(human.others, p => Assert.False(DismemberTarget.IsLimb(human.Def, p)));
@@ -139,7 +139,7 @@ public class DismemberTargetTests : IDisposable
     {
         var offered = new HashSet<BodyPartRecord>();
         for (int i = 0; i < 4; i++)
-            offered.Add(DismemberTarget.Choose(body, present, false, n => Math.Min(i, n - 1), out _, aim)!);
+            offered.Add(DismemberTarget.Choose(body, present, n => Math.Min(i, n - 1), out _, aim)!);
         return offered;
     }
 
@@ -167,7 +167,7 @@ public class DismemberTargetTests : IDisposable
     {
         var human = new Humanlike();
         human.head.height = BodyPartHeight.Top;
-        BodyPartRecord? part = DismemberTarget.Choose(human.Def, human.Present(), false, n => 0, out bool decapitates, BodyPartHeight.Top);
+        BodyPartRecord? part = DismemberTarget.Choose(human.Def, human.Present(), n => 0, out bool decapitates, BodyPartHeight.Top);
         Assert.False(decapitates);
         Assert.NotSame(human.head, part);
     }
@@ -190,7 +190,7 @@ public class DismemberTargetTests : IDisposable
     {
         var human = new Humanlike();
         StrikeOutlook Ask(BodyPartHeight aim, Predicate<BodyPartRecord> tears) =>
-            DismemberTarget.Outlook(human.Def, human.Present(), false, aim, tears, out _);
+            DismemberTarget.Outlook(human.Def, human.Present(), aim, tears, out _);
         Assert.Equal(StrikeOutlook.Tears, Ask(BodyPartHeight.Undefined, _ => true));
         Assert.Equal(StrikeOutlook.Wounds, Ask(BodyPartHeight.Undefined, _ => false));
         Assert.Equal(StrikeOutlook.MayTear, Ask(BodyPartHeight.Undefined, part => human.arms.Contains(part)));
@@ -204,9 +204,9 @@ public class DismemberTargetTests : IDisposable
     {
         var human = new Humanlike();
         IEnumerable<BodyPartRecord> present = human.Present([.. human.arms, .. human.legs]);
-        Assert.Equal(StrikeOutlook.Tears, DismemberTarget.Outlook(human.Def, present, false, BodyPartHeight.Bottom, part => part == human.head, out bool decapitates));
+        Assert.Equal(StrikeOutlook.Tears, DismemberTarget.Outlook(human.Def, present, BodyPartHeight.Bottom, part => part == human.head, out bool decapitates));
         Assert.True(decapitates);
-        Assert.Equal(StrikeOutlook.Wounds, DismemberTarget.Outlook(human.Def, present, false, BodyPartHeight.Undefined, _ => false, out decapitates));
+        Assert.Equal(StrikeOutlook.Wounds, DismemberTarget.Outlook(human.Def, present, BodyPartHeight.Undefined, _ => false, out decapitates));
         Assert.True(decapitates);
     }
 
@@ -215,7 +215,7 @@ public class DismemberTargetTests : IDisposable
     {
         BodyPartRecord core = Part("Segment", null, BodyPartDepth.Outside);
         Part("Brain", core, BodyPartDepth.Inside, Consciousness);
-        Assert.Equal(StrikeOutlook.None, DismemberTarget.Outlook(Body(core), Flatten(core), true, BodyPartHeight.Undefined, _ => true, out bool decapitates));
+        Assert.Equal(StrikeOutlook.None, DismemberTarget.Outlook(Body(core), Flatten(core), BodyPartHeight.Undefined, _ => true, out bool decapitates));
         Assert.False(decapitates);
     }
 
@@ -223,10 +223,10 @@ public class DismemberTargetTests : IDisposable
     public void AnyCandidate_IsTrueWhenOneOfTheLimbsPasses()
     {
         var human = new Humanlike();
-        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Undefined, part => part == human.legs[1]));
-        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Undefined, _ => false));
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), BodyPartHeight.Undefined, part => part == human.legs[1]));
+        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), BodyPartHeight.Undefined, _ => false));
         // Only limbs are asked: the jaw and the head pass nothing here.
-        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Undefined, part => part == human.jaw || part == human.head));
+        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), BodyPartHeight.Undefined, part => part == human.jaw || part == human.head));
     }
 
     [Fact]
@@ -234,11 +234,11 @@ public class DismemberTargetTests : IDisposable
     {
         var human = new Humanlike();
         Predicate<BodyPartRecord> aLeg = part => human.legs.Contains(part);
-        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Undefined, aLeg));
-        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Middle, aLeg));
-        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Bottom, aLeg));
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), BodyPartHeight.Undefined, aLeg));
+        Assert.False(DismemberTarget.AnyCandidate(human.Def, human.Present(), BodyPartHeight.Middle, aLeg));
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), BodyPartHeight.Bottom, aLeg));
         // With no limb at the aim height every limb is asked.
-        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), false, BodyPartHeight.Top, aLeg));
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, human.Present(), BodyPartHeight.Top, aLeg));
     }
 
     [Fact]
@@ -246,9 +246,9 @@ public class DismemberTargetTests : IDisposable
     {
         var centipede = new Ringed(null, 2, 3, 4);
         BodyDef body = Body(centipede.Core);
-        Assert.True(DismemberTarget.AnyCandidate(body, centipede.Present(), false, BodyPartHeight.Undefined, part => part == centipede.rings[5]));
-        Assert.False(DismemberTarget.AnyCandidate(body, centipede.Present(), false, BodyPartHeight.Undefined, part => part == centipede.rings[4]));
-        Assert.True(DismemberTarget.AnyCandidate(body, centipede.Present(centipede.rings[5]), false, BodyPartHeight.Undefined, part => part == centipede.rings[4]));
+        Assert.True(DismemberTarget.AnyCandidate(body, centipede.Present(), BodyPartHeight.Undefined, part => part == centipede.rings[5]));
+        Assert.False(DismemberTarget.AnyCandidate(body, centipede.Present(), BodyPartHeight.Undefined, part => part == centipede.rings[4]));
+        Assert.True(DismemberTarget.AnyCandidate(body, centipede.Present(centipede.rings[5]), BodyPartHeight.Undefined, part => part == centipede.rings[4]));
     }
 
     [Fact]
@@ -256,8 +256,8 @@ public class DismemberTargetTests : IDisposable
     {
         var human = new Humanlike();
         IEnumerable<BodyPartRecord> present = human.Present([.. human.arms, .. human.legs]);
-        Assert.True(DismemberTarget.AnyCandidate(human.Def, present, false, BodyPartHeight.Bottom, part => part == human.head));
-        Assert.False(DismemberTarget.AnyCandidate(human.Def, present, false, BodyPartHeight.Undefined, part => part == human.torso));
+        Assert.True(DismemberTarget.AnyCandidate(human.Def, present, BodyPartHeight.Bottom, part => part == human.head));
+        Assert.False(DismemberTarget.AnyCandidate(human.Def, present, BodyPartHeight.Undefined, part => part == human.torso));
     }
 
     [Fact]
@@ -265,11 +265,10 @@ public class DismemberTargetTests : IDisposable
     {
         BodyPartRecord core = Part("Segment", null, BodyPartDepth.Outside);
         Part("Brain", core, BodyPartDepth.Inside, Consciousness);
-        Assert.False(DismemberTarget.AnyCandidate(Body(core), Flatten(core), true, BodyPartHeight.Undefined, _ => true));
+        Assert.False(DismemberTarget.AnyCandidate(Body(core), Flatten(core), BodyPartHeight.Undefined, _ => true));
 
         var termite = new Ringed(null, 2, 6);
-        Assert.False(DismemberTarget.AnyCandidate(Body(termite.Core), termite.Present(), false, BodyPartHeight.Undefined, _ => true));
-        Assert.True(DismemberTarget.AnyCandidate(Body(termite.Core), termite.Present(), true, BodyPartHeight.Undefined, part => part == termite.head));
+        Assert.False(DismemberTarget.AnyCandidate(Body(termite.Core), termite.Present(), BodyPartHeight.Undefined, _ => true));
     }
 
     [Fact]
@@ -279,7 +278,7 @@ public class DismemberTargetTests : IDisposable
         IEnumerable<BodyPartRecord> present = human.Present(human.arms[0], human.legs[1]);
         for (int i = 0; i < 4; i++)
         {
-            BodyPartRecord? part = Pick(human.Def, present, false, out bool decapitates, i);
+            BodyPartRecord? part = Pick(human.Def, present, out bool decapitates, i);
             Assert.False(decapitates);
             Assert.True(part == human.arms[1] || part == human.legs[0]);
         }
@@ -291,7 +290,7 @@ public class DismemberTargetTests : IDisposable
         BodyPartRecord core = Part("Thorax", null, BodyPartDepth.Outside);
         BodyPartRecord leg = Part("Leg", core, BodyPartDepth.Outside, Moving, Manipulation);
         int asked = 0;
-        BodyPartRecord? part = DismemberTarget.Choose(Body(core), Flatten(core), false, n => { asked = n; return 0; }, out _);
+        BodyPartRecord? part = DismemberTarget.Choose(Body(core), Flatten(core), n => { asked = n; return 0; }, out _);
         Assert.Same(leg, part);
         Assert.Equal(1, asked);
     }
@@ -301,13 +300,13 @@ public class DismemberTargetTests : IDisposable
     public void NoLimbsLeft_GivesTheHeadAndDecapitates()
     {
         var human = new Humanlike();
-        BodyPartRecord? part = Pick(human.Def, human.Present([.. human.arms, .. human.legs]), false, out bool decapitates);
+        BodyPartRecord? part = Pick(human.Def, human.Present([.. human.arms, .. human.legs]), out bool decapitates);
         Assert.Same(human.head, part);
         Assert.True(decapitates);
     }
 
     [Fact]
-    public void BodyBuiltWithoutLimbs_GivesNothingByDefaultAndItsHeadWithTheFlag()
+    public void BodyBuiltWithoutLimbs_GivesNothing()
     {
         BodyPartRecord core = Part("Segment", null, BodyPartDepth.Outside);
         BodyPartRecord head = Part("Head", core, BodyPartDepth.Outside);
@@ -315,33 +314,15 @@ public class DismemberTargetTests : IDisposable
         BodyDef body = Body(core);
         Assert.False(DismemberTarget.BuiltWithLimbs(body));
 
-        Assert.Null(Pick(body, Flatten(core), false, out bool decapitates));
+        Assert.Null(Pick(body, Flatten(core), out bool decapitates));
         Assert.False(decapitates);
-
-        Assert.Same(head, Pick(body, Flatten(core), true, out decapitates));
-        Assert.True(decapitates);
-    }
-
-    // The size limit is inclusive and the switch overrides it.
-    [Fact]
-    public void BodyBuiltWithoutLimbs_LosesItsHeadWhenSmallEnoughOrWhenTheSwitchIsOn()
-    {
-        var ext = new DismemberExtension { decapitateWithoutLimbsMaxBodySize = 0.5f };
-        Assert.True(DismemberTarget.BeheadsWithoutLimbs(0.25f, ext));
-        Assert.True(DismemberTarget.BeheadsWithoutLimbs(0.5f, ext));
-        Assert.False(DismemberTarget.BeheadsWithoutLimbs(1.6f, ext));
-
-        ext.decapitateBodiesWithoutLimbs = true;
-        Assert.True(DismemberTarget.BeheadsWithoutLimbs(4f, ext));
-
-        Assert.False(DismemberTarget.BeheadsWithoutLimbs(0.25f, new DismemberExtension()));
     }
 
     [Fact]
-    public void BrainInTheCorePart_GivesNothingEvenWithTheFlag()
+    public void BrainInTheCorePart_GivesNothing()
     {
         BodyPartRecord core = Part("Blob", null, BodyPartDepth.Outside, Consciousness);
-        Assert.Null(Pick(Body(core), Flatten(core), true, out bool decapitates));
+        Assert.Null(Pick(Body(core), Flatten(core), out bool decapitates));
         Assert.False(decapitates);
     }
 
@@ -352,7 +333,7 @@ public class DismemberTargetTests : IDisposable
         Part("Leg", core, BodyPartDepth.Outside, Moving);
         BodyDef body = Body(core);
         IEnumerable<BodyPartRecord> noLeg = Flatten(core).Where(p => p == core);
-        Assert.Null(Pick(body, noLeg, true, out _));
+        Assert.Null(Pick(body, noLeg, out _));
     }
 
     // Six rings, each holding the next and every one tagged as both kinds of limb, with the
@@ -393,12 +374,12 @@ public class DismemberTargetTests : IDisposable
         Assert.True(DismemberTarget.BuiltWithLimbs(body));
         for (int index = 0; index < 3; index++)
         {
-            Assert.Same(centipede.rings[5], Pick(body, centipede.Present(), false, out bool decapitates, index));
+            Assert.Same(centipede.rings[5], Pick(body, centipede.Present(), out bool decapitates, index));
             Assert.False(decapitates);
-            Assert.Same(centipede.rings[4], Pick(body, centipede.Present(centipede.rings[5]), false, out decapitates, index));
+            Assert.Same(centipede.rings[4], Pick(body, centipede.Present(centipede.rings[5]), out decapitates, index));
             Assert.False(decapitates);
         }
-        Assert.Same(centipede.head, Pick(body, centipede.Present(centipede.rings[4]), false, out bool beheads));
+        Assert.Same(centipede.head, Pick(body, centipede.Present(centipede.rings[4]), out bool beheads));
         Assert.True(beheads);
     }
 
@@ -412,18 +393,15 @@ public class DismemberTargetTests : IDisposable
     }
 
     [Fact]
-    public void RingedBodyWithAnOrganInItsLastRing_HasNoLimbsAndLosesItsHeadOnlyWithTheFlag()
+    public void RingedBodyWithAnOrganInItsLastRing_HasNoLimbsAndGivesNothing()
     {
         var diabolus = new Ringed(null, 2, 6);
         BodyDef body = Body(diabolus.Core);
         Assert.All(diabolus.rings, ring => Assert.False(DismemberTarget.IsLimb(body, ring)));
         Assert.False(DismemberTarget.BuiltWithLimbs(body));
 
-        Assert.Null(Pick(body, diabolus.Present(), false, out bool decapitates));
+        Assert.Null(Pick(body, diabolus.Present(), out bool decapitates));
         Assert.False(decapitates);
-
-        Assert.Same(diabolus.head, Pick(body, diabolus.Present(), true, out decapitates));
-        Assert.True(decapitates);
     }
 
     private static readonly BodyPartHeight[] Aims = [BodyPartHeight.Bottom, BodyPartHeight.Middle, BodyPartHeight.Top];
@@ -450,7 +428,7 @@ public class DismemberTargetTests : IDisposable
             for (int index = 0; index < 3; index++)
             {
                 BodyPartRecord? Aimed(IEnumerable<BodyPartRecord> present, out bool decapitates) =>
-                    DismemberTarget.Choose(body, present, false, n => Math.Min(index, n - 1), out decapitates, aim);
+                    DismemberTarget.Choose(body, present, n => Math.Min(index, n - 1), out decapitates, aim);
                 Assert.Same(centipede.rings[5], Aimed(centipede.Present(), out bool decapitates));
                 Assert.False(decapitates);
                 Assert.Same(centipede.rings[4], Aimed(centipede.Present(centipede.rings[5]), out decapitates));
@@ -460,8 +438,7 @@ public class DismemberTargetTests : IDisposable
             }
     }
 
-    // A termite's shape, and with the flag a cobra's rule: no aim opens a body the def keeps
-    // shut, and none shuts one the def opens.
+    // A termite's shape: no aim opens a body the def keeps shut.
     [Fact]
     public void AimHeight_OnABodyBuiltWithoutLimbs_ChangesNothing()
     {
@@ -469,13 +446,10 @@ public class DismemberTargetTests : IDisposable
         BodyDef body = Body(termite.Core);
         foreach (BodyPartHeight aim in Aims)
         {
-            Assert.Null(DismemberTarget.Choose(body, termite.Present(), false, n => 0, out bool decapitates, aim));
+            Assert.Null(DismemberTarget.Choose(body, termite.Present(), n => 0, out bool decapitates, aim));
             Assert.False(decapitates);
-            Assert.Equal(StrikeOutlook.None, DismemberTarget.Outlook(body, termite.Present(), false, aim, _ => true, out decapitates));
+            Assert.Equal(StrikeOutlook.None, DismemberTarget.Outlook(body, termite.Present(), aim, _ => true, out decapitates));
             Assert.False(decapitates);
-
-            Assert.Same(termite.head, DismemberTarget.Choose(body, termite.Present(), true, n => 0, out decapitates, aim));
-            Assert.True(decapitates);
         }
     }
 
@@ -488,7 +462,7 @@ public class DismemberTargetTests : IDisposable
         for (int i = 5; i >= 0; i--)
         {
             IEnumerable<BodyPartRecord> present = i == 5 ? rings.Present() : rings.Present(rings.rings[i + 1]);
-            Assert.Same(rings.rings[i], Pick(body, present, false, out bool decapitates, index: 3));
+            Assert.Same(rings.rings[i], Pick(body, present, out bool decapitates, index: 3));
             Assert.False(decapitates);
         }
     }
@@ -512,7 +486,7 @@ public class DismemberTargetTests : IDisposable
         Assert.False(DismemberTarget.IsLimb(tank, second));
         var offered = new HashSet<BodyPartRecord>();
         for (int i = 0; i < 3; i++)
-            offered.Add(Pick(tank, Flatten(plate), false, out _, i)!);
+            offered.Add(Pick(tank, Flatten(plate), out _, i)!);
         Assert.Equal(new HashSet<BodyPartRecord>([front, rear, claw]), offered);
     }
 
@@ -527,7 +501,7 @@ public class DismemberTargetTests : IDisposable
         BodyPartRecord leg = Part("Leg", ring, BodyPartDepth.Outside, Moving);
         var offered = new HashSet<BodyPartRecord>();
         for (int i = 0; i < 2; i++)
-            offered.Add(Pick(Body(core), Flatten(core), false, out _, i)!);
+            offered.Add(Pick(Body(core), Flatten(core), out _, i)!);
         Assert.Equal(new HashSet<BodyPartRecord>([ring, leg]), offered);
     }
 
@@ -542,7 +516,7 @@ public class DismemberTargetTests : IDisposable
         BodyDef body = Body(core);
         Assert.False(DismemberTarget.IsLimb(body, gravCore));
         Assert.False(DismemberTarget.IsLimb(body, segment));
-        Assert.Same(arm, Pick(body, Flatten(core), false, out bool decapitates, index: 5));
+        Assert.Same(arm, Pick(body, Flatten(core), out bool decapitates, index: 5));
         Assert.False(decapitates);
     }
 }

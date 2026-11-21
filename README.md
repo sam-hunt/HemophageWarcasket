@@ -87,11 +87,7 @@ Coming with the first release.
   other VGE integration.
 - **Vanilla Races Expanded - Sanguophage**: built-in support. The helmet covers its dangerous UV
   sensitivity. An animalfeeder pilot drains hemogen from animals and a sanguofeeder pilot from
-  other sanguophages, each with that mod's own effects on the pilot. An aggressive pilot who
-  becomes a hemohunter dismembers instead of biting while the shoulders have strikes left,
-  and hunts whatever its feeding genes feed on as well: animals for an animalfeeder, other
-  sanguophages for a sanguofeeder and human corpses for a corpsefeeder. Mod settings can turn
-  off either.
+  other sanguophages, each with that mod's own effects on the pilot.
 - **Combat Extended**: built-in patch. CE armor values, bulk, carry capacity and shield in line
   with VFE Pirates' spacer sets and a helmet sealed against CE smoke.
 - **Warcaskets can work!, Warcaskets can haul!, Hardworking Warcaskets**: compatible. Whatever

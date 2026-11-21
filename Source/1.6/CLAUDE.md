@@ -16,8 +16,7 @@ Where each mechanic lives:
   relief (`Fire/`, with its one).
 - **The pilot's work**: the trait's rule (`WorkProfile.cs`) and the startup that mirrors it
   (`Startup.cs`).
-- **The settings window** (`Settings/`): a section for each piece's mechanic, one for the work
-  and a last one for Vanilla Races Expanded - Sanguophage, shown only while that mod is active.
+- **The settings window** (`Settings/`): a section for each piece's mechanic and one for the work.
 - **The mask that keeps the set off generated pawns**: `ListMask.cs`, with its patch.
 
 Several rules below are the family's, written down before the code they govern so

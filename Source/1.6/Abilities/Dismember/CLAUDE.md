@@ -3,22 +3,21 @@
 Loaded when work touches the pads' ability. Each file's header is the record of its own part;
 this file says which header to read and holds the rules that cross these files. Outside this
 folder the feature is its defs (`1.6/Defs/AbilityDefs/Dismember.xml` has the values and their
-rationale, with `DamageDefs/`, `JobDefs/`, `RulePackDefs/` and `ThinkTreeDefs/` beside it), the
+rationale, with `DamageDefs/`, `JobDefs/` and `RulePackDefs/` beside it), the
 strike pool (`Comps/CompStrikePool.cs`) and its settings section
 (`Settings/Settings_Dismember.cs`).
 
-`Ability_Dismember` is one class in five files, each named for what it answers:
+`Ability_Dismember` is one class in four files, each named for what it answers:
 
 - **`Ability_Dismember.cs`**: the button and when it is enabled, who can be targeted, how a
   click becomes a job, the question before a lethal order, the hold on the target, the strike
   pool and the catch-up after a settings write.
 - **`Ability_Dismember.Strike.cs`**: the damage and what scales it, armor and Combat Extended,
-  the combat log line, the strike on a corpse and the blood it throws.
+  the combat log line, and the blood it throws.
 - **`Ability_Dismember.Foresight.cs`**: the cursor's lines, which say what the strike and the
-  drain would do and which faction they would anger, and how long an answer is kept.
+  drain would do, and how long an answer is kept.
 - **`Ability_Dismember.Drain.cs`**: who is drained and through which source, when a drain runs
-  and stops, and the drain on a corpse.
-- **`Ability_Dismember.Hunt.cs`**: when a hemohunter pilot strikes and what it may hunt.
+  and stops.
 
 Around it:
 
@@ -27,9 +26,7 @@ Around it:
 - **`DismemberExtension.cs`, `DismemberDrainSource.cs`**: the def fields. `CompatPatchTests`
   reads both files by path for their public fields, so a move or rename changes the test.
 - **`MeleeAim.cs`**: another mod's melee aim height, read by reflection.
-- **`JobDriver_Dismember.cs`**: the toils, the binding to VEF's comp and the drain's following
-  a target into death.
-- **`JobGiver_HemohunterDismember.cs`**: the search for a hemohunter's prey.
+- **`JobDriver_Dismember.cs`**: the toils, and the binding to VEF's comp.
 - **`Command_Dismember.cs`**: the strike count on the button.
 
 ## Rules
@@ -44,9 +41,7 @@ Around it:
 - **A walk-up ability is ordered as a vanilla job and bound in its driver.** `Ability_Dismember`
   and `JobDriver_Dismember` are the model, after the Medic repo's: the job goes through
   `TryTakeOrderedJob` so it interrupts and queues as an order does, and the driver writes
-  `CompAbilities.currentlyCasting` and the ability's `pawn` when the job starts. A think tree
-  gives the same job by making it directly (`JobGiver_HemohunterDismember`), setting the
-  ability's `pawn` itself before it asks the ability anything.
+  `CompAbilities.currentlyCasting` and the ability's `pawn` when the job starts.
 - **A stocked ability's charges are a vanilla `CompApparelReloadable` on the piece that grants
   it**, in per-charge mode and without verbs, read off the ability's `holder`; the def's
   `gizmoClass` names a command that returns the count as `TopRightLabel`. The pads' pool,

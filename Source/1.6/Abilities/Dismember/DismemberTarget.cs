@@ -26,11 +26,11 @@ namespace HemophageWarcasket;
 // to the limbs at it (BodyPartRecord.height: a human's legs are Bottom and arms Middle, 1.6)
 // while the target has one there, and to nothing less when it has none: a pilot aiming high at
 // a human still takes an arm or a leg. With no limb left the strike takes the head, when the
-// body was built with limbs (walked from BodyDef.corePart, not read off the pawn) or when the
-// def says so, for every such body or for one this small (BeheadsWithoutLimbs); otherwise there
-// is nothing to take. The head is the nearest Outside, non-core ancestor-or-self of a
-// not-missing ConsciousnessSource part (human: Brain, Skull, Head); a brain directly in the
-// core part has none. Aim never reaches the head: only a target out of limbs loses it.
+// body was built with limbs (walked from BodyDef.corePart, not read off the pawn); a body built
+// with none, a cobra or a diabolus, has nothing to take and is no target. The head is the
+// nearest Outside, non-core ancestor-or-self of a not-missing ConsciousnessSource part (human:
+// Brain, Skull, Head); a brain directly in the core part has none. Aim never reaches the head:
+// only a target out of limbs loses it.
 //
 // Taking hold of a part is not tearing it off: the strike does a set damage, and a part with
 // more health left than that keeps to the body, wounded (Ability_Dismember.Strike.cs has the
@@ -58,9 +58,8 @@ public enum StrikeOutlook
 
 public static class DismemberTarget
 {
-    public static bool CanStrike(Pawn target, DismemberExtension ext, out bool decapitates)
+    public static bool CanStrike(Pawn target)
     {
-        decapitates = false;
         BodyDef body = target.RaceProps.body;
         HediffSet hediffs = target.health.hediffSet;
         List<BodyPartRecord> all = body.AllParts;
@@ -76,28 +75,26 @@ public static class DismemberTarget
             if (brain == null && HasTag(part, BodyPartTagDefOf.ConsciousnessSource))
                 brain = part;
         }
-        decapitates = HeadFor(body, brain) != null && (BuiltWithLimbs(body) || BeheadsWithoutLimbs(target.BodySize, ext));
-        return decapitates;
+        return HeadFor(body, brain) != null && BuiltWithLimbs(body);
     }
 
-    public static BodyPartRecord Choose(Pawn target, DismemberExtension ext, BodyPartHeight aim, out bool decapitates) =>
-        Choose(target.RaceProps.body, target.health.hediffSet.GetNotMissingParts(),
-            BeheadsWithoutLimbs(target.BodySize, ext), n => Rand.Range(0, n), out decapitates, aim);
+    public static BodyPartRecord Choose(Pawn target, BodyPartHeight aim) =>
+        Choose(target.RaceProps.body, target.health.hediffSet.GetNotMissingParts(), n => Rand.Range(0, n), out _, aim);
 
     // What a strike of this damage, after everything that scales it, would do to the target.
-    public static StrikeOutlook Outlook(Pawn target, DismemberExtension ext, BodyPartHeight aim, float damage, out bool decapitates)
+    public static StrikeOutlook Outlook(Pawn target, BodyPartHeight aim, float damage, out bool decapitates)
     {
         HediffSet hediffs = target.health.hediffSet;
-        return Outlook(target.RaceProps.body, hediffs.GetNotMissingParts(), BeheadsWithoutLimbs(target.BodySize, ext),
-            aim, part => Tears(hediffs.GetPartHealth(part), damage), out decapitates);
+        return Outlook(target.RaceProps.body, hediffs.GetNotMissingParts(), aim,
+            part => Tears(hediffs.GetPartHealth(part), damage), out decapitates);
     }
 
     // Whether a strike could leave the target bleeding from the part it takes.
-    public static bool CouldBleed(Pawn target, DismemberExtension ext, BodyPartHeight aim)
+    public static bool CouldBleed(Pawn target, BodyPartHeight aim)
     {
         HediffSet hediffs = target.health.hediffSet;
-        return AnyCandidate(target.RaceProps.body, hediffs.GetNotMissingParts(), BeheadsWithoutLimbs(target.BodySize, ext),
-            aim, part => !part.def.IsSolid(part, hediffs.hediffs));
+        return AnyCandidate(target.RaceProps.body, hediffs.GetNotMissingParts(), aim,
+            part => !part.def.IsSolid(part, hediffs.hediffs));
     }
 
     // Whether damage takes a part with this much health off: HediffSet.GetPartHealth rounds
@@ -105,25 +102,19 @@ public static class DismemberTarget
     // (1.6 and 1.7).
     public static bool Tears(float partHealth, float damage) => Mathf.RoundToInt(partHealth - damage) <= 0;
 
-    // Whether a body of this size that was built without limbs loses its head: the def's
-    // switch, or small enough for the def's size limit.
-    public static bool BeheadsWithoutLimbs(float bodySize, DismemberExtension ext) =>
-        ext.decapitateBodiesWithoutLimbs || bodySize <= ext.decapitateWithoutLimbsMaxBodySize;
-
     // pickIndex returns an index in [0, count).
     public static BodyPartRecord Choose(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
-        bool beheadsWithoutLimbs, Func<int, int> pickIndex, out bool decapitates,
-        BodyPartHeight aim = BodyPartHeight.Undefined)
+        Func<int, int> pickIndex, out bool decapitates, BodyPartHeight aim = BodyPartHeight.Undefined)
     {
-        List<BodyPartRecord> parts = Candidates(body, notMissing, beheadsWithoutLimbs, aim, out decapitates);
+        List<BodyPartRecord> parts = Candidates(body, notMissing, aim, out decapitates);
         return parts.Count == 0 ? null : parts[pickIndex(parts.Count)];
     }
 
     // tears says whether the strike would take a given part off.
     public static StrikeOutlook Outlook(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
-        bool beheadsWithoutLimbs, BodyPartHeight aim, Predicate<BodyPartRecord> tears, out bool decapitates)
+        BodyPartHeight aim, Predicate<BodyPartRecord> tears, out bool decapitates)
     {
-        List<BodyPartRecord> parts = Candidates(body, notMissing, beheadsWithoutLimbs, aim, out decapitates);
+        List<BodyPartRecord> parts = Candidates(body, notMissing, aim, out decapitates);
         if (parts.Count == 0)
             return StrikeOutlook.None;
         int torn = 0;
@@ -135,13 +126,13 @@ public static class DismemberTarget
 
     // Whether any part the strike could take passes the test.
     public static bool AnyCandidate(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
-        bool beheadsWithoutLimbs, BodyPartHeight aim, Predicate<BodyPartRecord> test) =>
-        Candidates(body, notMissing, beheadsWithoutLimbs, aim, out _).Exists(test);
+        BodyPartHeight aim, Predicate<BodyPartRecord> test) =>
+        Candidates(body, notMissing, aim, out _).Exists(test);
 
     // The parts a strike picks among: the limbs not waiting, at the aim height when any is
     // there, else the head alone, else none.
     private static List<BodyPartRecord> Candidates(BodyDef body, IEnumerable<BodyPartRecord> notMissing,
-        bool beheadsWithoutLimbs, BodyPartHeight aim, out bool decapitates)
+        BodyPartHeight aim, out bool decapitates)
     {
         decapitates = false;
         var limbs = new List<BodyPartRecord>();
@@ -162,7 +153,7 @@ public static class DismemberTarget
             return aimed.Count > 0 ? aimed : ready;
         }
         BodyPartRecord head = HeadFor(body, brain);
-        if (head == null || !(BuiltWithLimbs(body) || beheadsWithoutLimbs))
+        if (head == null || !BuiltWithLimbs(body))
             return limbs;
         decapitates = true;
         limbs.Add(head);

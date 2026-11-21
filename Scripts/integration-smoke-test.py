@@ -63,7 +63,7 @@ engine.OWN_PATTERNS = ["HemophageWarcasket", "[Hemophage Warcasket]", "HPWC_"]
 # walks our WarcasketDefs, VEF's ApparelExtension and CompShieldBubble run
 # on them, VGE1's vacuum rules read the resistance our patch lowers, and
 # CE's armor and inventory code reads the stats the CombatExtended root
-# sets, and the Dismember drain and the hemohunter's strike read the defs
+# sets, and the Dismember drain reads the defs
 # of Vanilla Races Expanded - Sanguophage that its root names. An error mentioning any of these gates the test even when the
 # exception fires inside their code.
 engine.INTEGRATION_PATTERNS = {

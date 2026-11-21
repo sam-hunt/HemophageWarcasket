@@ -14,10 +14,10 @@ namespace HemophageWarcasket;
 // pawn may be targeted, hostile or not unless the def's extension refuses the latter;
 // vanilla's damage bookkeeping carries the consequences.
 //
-// The class is in five files. This one has the button, the targeting, the order and the hold on
-// the target. The strike, the cursor's foresight, the drain and a hemohunter's hunt each have a
-// file and a header of their own: Ability_Dismember.Strike.cs, Ability_Dismember.Foresight.cs,
-// Ability_Dismember.Drain.cs and Ability_Dismember.Hunt.cs.
+// The class is in four files. This one has the button, the targeting, the order and the hold on
+// the target. The strike, the cursor's foresight and the drain each have a file and a header of
+// their own: Ability_Dismember.Strike.cs, Ability_Dismember.Foresight.cs and
+// Ability_Dismember.Drain.cs.
 //
 // The job is ordered through Pawn_JobTracker.TryTakeOrderedJob, not VEF's StartAbilityJob, so a
 // click interrupts like a vanilla order and the queue key appends (1.6); the driver binds
@@ -39,7 +39,7 @@ namespace HemophageWarcasket;
 // asked about. VEF has no hook for such a dialog, so it goes up in OrderForceTarget, which the
 // vanilla Targeter calls on the click, after ValidateTarget and before it stops targeting
 // (Targeter.ProcessInputEvents, 1.6 and 1.7), and the job is ordered from the dialog's confirm
-// button. A think tree's job never passes through it, so a hemohunter is asked nothing.
+// button.
 //
 // The limit is the strikes loaded in the pads: a vanilla reloadable (CompStrikePool) on the
 // piece that grants the ability (holder), one spent by every cast, landed or not, as a vanilla
@@ -97,11 +97,6 @@ public partial class Ability_Dismember : Ability
         base.Init();
         extension = null;
         incapableOfViolence = null;
-        warnedFaction = null;
-        warnedOutlook = StrikeOutlook.None;
-        warnedKill = false;
-        warnedDrain = DrainOutlook.Harmless;
-        warning = null;
         foreseenFor = null;
         noStrikes = null;
         reloadLine = null;
@@ -144,7 +139,7 @@ public partial class Ability_Dismember : Ability
         string rejection = null;
         if (RefusedAsNonHostile(victim))
             rejection = "HPWC_DismemberNotHostile";
-        else if (!DismemberTarget.CanStrike(victim, Extension, out _))
+        else if (!DismemberTarget.CanStrike(victim))
             rejection = "HPWC_DismemberNoLimbs";
         if (rejection == null)
             return true;
@@ -214,10 +209,10 @@ public partial class Ability_Dismember : Ability
             || (!victim.HostileTo(pawn) && (victim.RaceProps.Humanlike || victim.Faction != null));
         if (!asked)
             return null;
-        Foresee(victim, out bool kills, out DrainOutlook drain);
-        if (kills)
+        Foresee(victim);
+        if (foreseenKill)
             return "HPWC_DismemberConfirmKill".Translate(victim.Named("PAWN"));
-        if (drain == DrainOutlook.Kills)
+        if (foreseenDrain == DrainOutlook.Kills)
             return "HPWC_DismemberConfirmDrainKill".Translate(victim.Named("PAWN"));
         return null;
     }

@@ -67,7 +67,7 @@ public class SettingsTargetTests
         XElement extension = def.Element("modExtensions")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.DismemberExtension");
         AssertHas(extension, "damage", "drainTicks", "hemogenGain", "targetBloodLoss", "bloodFilthCount",
-            "canTargetNonHostile", "decapitateBodiesWithoutLimbs", "hemohunterStrikes", "hemohunterHuntsByGene");
+            "canTargetNonHostile");
     }
 
     // The settings write the pool in per-charge mode, so the def must declare that mode, on

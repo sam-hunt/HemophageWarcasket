@@ -8,7 +8,8 @@
 
     The strike takes hold of one whole arm or leg the target still has, at random, whatever
     its armor, and tears it off unless the limb is too sturdy. A target that has lost them all
-    has its head taken instead. Any pawn with a limb can be targeted, downed or not,
+    has its head taken instead, and a body built with none (a cobra, a termite, a diabolus) is
+    no target. Any pawn with a limb can be targeted, downed or not,
     mechanoids and animals included, and hostile or not while canTargetNonHostile is true.
     What counts as a limb is DismemberTarget's rule (its header): a centipede's two last body
     rings do, taken from the tail in.
@@ -47,33 +48,20 @@
     whose limb held mostly is, with the target held throughout. It is Bloodfeed
     spread over drainTicks 240 (4 s): hemogenGain 0.2 is Bloodfeed's 20 hemogen, scaled by
     the target's body size as a bite is, and targetBloodLoss 0.4499 is the blood loss a bite
-    causes, on top of the stump's own bleeding. A drain cut short keeps what it collected.
-    A target that dies, to the strike or during the drain, is drained on as a corpse for the
-    blood it has left, and one that died of blood loss has none (Ability_Dismember.Drain.cs).
-    A bloodfeeder is not drained, as Bloodfeed refuses one. drainSources, feedingHediffs and
-    hemohunterStates are unset here: they widen the drain for another mod's feeding genes
-    and hand its hunting mental state the strike, so each is added by that mod's compat root
-    (1.6/Mods/VanillaRacesExpandedSanguophage/Patches/DismemberFeeding.xml). hemohunterStrikes
-    true is the switch on the last, on by default because a pilot who goes hunting in this
-    suit is meant to be the worse for it, and off for a player who wants the plain bite back.
-    hemohunterHuntsByGene true widens that hunt from the bite's prey to whatever the pilot's
-    drainSources open to it, a corpse found lying among them: the feeding genes say what a
-    pilot can feed on, and a hunter in that state holds to no diet. Off, the hunt keeps to
-    the bite's prey.
+    causes, on top of the stump's own bleeding. A drain cut short keeps what it collected,
+    and the target's death ends it (Ability_Dismember.Drain.cs).
+    A bloodfeeder is not drained, as Bloodfeed refuses one. drainSources and feedingHediffs
+    are unset here: they widen the drain for another mod's feeding genes, so each is added by
+    that mod's compat root
+    (1.6/Mods/VanillaRacesExpandedSanguophage/Patches/DismemberFeeding.xml).
     bloodFilthCount 10 within bloodFilthRadius 2 is the spatter a strike throws when its
     part comes off: the 13 cells of a radius 2 disc, so about seven of them catch some, a
     repeat on a cell thickening it. The filth is the target's own blood, so a mechanoid
     throws machine bits and a bloodless race nothing.
-    decapitateBodiesWithoutLimbs false leaves a body built with no limbs at all (a termite, a
-    diabolus, a war queen, a devourer) an invalid target: beheading it would kill it outright
-    on first use. decapitateWithoutLimbsMaxBodySize 0.5 exempts the small ones, which lose
-    their head whatever the switch says: a cobra (body size 0.25) dies to any one hit, so
-    there is nothing to protect. Limbless bodies fall on either side of a wide gap, the
-    smallest of the large ones being the termite at 1.6, and half a human's size sits in it.
 
     The mod settings override castTime, cooldownTime, the pads' pool and the
-    DismemberExtension fields that Settings_Dismember.cs and Settings_Sanguophage.cs under
-    Source/1.6/Settings/ list, damage and hemohunterStrikes among them.
+    DismemberExtension fields that Source/1.6/Settings/Settings_Dismember.cs lists, damage
+    among them.
 
     showUndrafted as on the hemogen rush. No castSound: the damage plays its own impact, and
     the drain plays Bloodfeed's.
@@ -113,10 +101,6 @@
         <bloodFilthCount>10</bloodFilthCount>
         <bloodFilthRadius>2</bloodFilthRadius>
         <canTargetNonHostile>true</canTargetNonHostile>
-        <decapitateBodiesWithoutLimbs>false</decapitateBodiesWithoutLimbs>
-        <decapitateWithoutLimbsMaxBodySize>0.5</decapitateWithoutLimbsMaxBodySize>
-        <hemohunterStrikes>true</hemohunterStrikes>
-        <hemohunterHuntsByGene>true</hemohunterHuntsByGene>
       </li>
     </modExtensions>
   </VEF.Abilities.AbilityDef>

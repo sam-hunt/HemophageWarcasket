@@ -11,19 +11,9 @@ namespace HemophageWarcasket;
 // of a limb that held or from anything else: HediffSet.BleedRateTotal above zero, which is
 // zero for a deathresting pawn and one that cannot bleed, and which the stump of an artificial
 // limb adds nothing to (HediffSet.AddDirect leaves it not fresh, 1.6 and 1.7). It is asked on
-// every tick of the drain, which ends when the bleeding does and keeps what it collected.
-//
-// The drain is on the target's blood, alive or dead. A target that dies, to the strike or
-// during the drain, is drained on as a corpse (JobDriver_Dismember follows it there) until its
-// blood runs out: the drain adds its blood loss to the dead pawn as to a living one, and stops
-// at the severity a pawn dies of blood loss at, so a corpse gives what blood it had left and
-// one that bled to death gives none. A corpse is not held to the reach a living target is: it
-// goes nowhere on its own, and Pawn.Kill puts it on the nearest free cell when the target died
-// standing on an item. Pawn.Kill places the corpse before TakeDamage returns and keeps the
-// pawn in it, hediffs and genes included; Pawn_HealthTracker.CanBleed and
-// Pawn.BodySize do not ask whether the pawn lives, and CheckForStateChange returns at once
-// for a dead one, so a severity change on a corpse does nothing but move the number (1.6, the
-// same on 1.7).
+// every tick of the drain, which ends when the bleeding does and keeps what it collected. It
+// ends with the target's life as well, to the strike or to the blood loss: the job is on the
+// pawn, and the dead are not drained.
 //
 // Who is drained is Bloodfeed's rule: a humanlike that bleeds and is no bloodfeeder
 // (GeneUtility.IsBloodfeeder, what the Bloodfeed ability's canTargetBloodfeeders refuses, 1.6).
@@ -32,25 +22,16 @@ namespace HemophageWarcasket;
 // is: it can scale the blood loss by the target's size, stop at a floor on the target's hemogen
 // and name a hediff the feeding leaves on the pilot. Every drain takes the other feedingHediffs
 // off the pilot as it starts, so the plain drain clears them all, as Bloodfeed does under a mod
-// that keeps such hediffs. The corpse of a target struck alive is drained as what it was. No
-// drain is on a dessicated corpse, which has no blood in it.
-//
-// A corpse found lying is drained through a source of the Corpse kind and through nothing else,
-// which only a hemohunter's hunt comes to (Ability_Dismember.Hunt.cs). That drain is the one a
-// target that died gets, on what blood the corpse has left, and leaves the corpse where it lay.
+// that keeps such hediffs.
 public partial class Ability_Dismember
 {
-    // Whether a drain can run or go on: one could (DrainsFrom), and the target is bleeding now
-    // or dead (see the header). foundDead, here and below, says the pilot came to the target
-    // as a corpse lying on the map, which only a source of the Corpse kind feeds from.
-    public bool CanDrain(Pawn target, bool foundDead) =>
-        DrainsFrom(target, foundDead) && (target.Dead || target.health.hediffSet.BleedRateTotal > 0f);
+    // Whether a drain can run or go on: one could (DrainsFrom), and the target is bleeding now.
+    public bool CanDrain(Pawn target) => DrainsFrom(target) && target.health.hediffSet.BleedRateTotal > 0f;
 
     // Whether the pilot could drain this target once it bleeds: the def sets a drain, the pilot
-    // has an active hemogen gene with room for more, and the target is one the pilot feeds on
-    // that can bleed, alive or a corpse on the map with blood left in it, and holds the hemogen
-    // its source asks for.
-    private bool DrainsFrom(Pawn target, bool foundDead)
+    // has an active hemogen gene with room for more, and the target is a living one the pilot
+    // feeds on that can bleed and holds the hemogen its source asks for.
+    private bool DrainsFrom(Pawn target)
     {
         DismemberExtension ext = Extension;
         if (ext.drainTicks <= 0 || ext.hemogenGain <= 0f)
@@ -58,16 +39,13 @@ public partial class Ability_Dismember
         Gene_Hemogen hemogen = pawn?.genes?.GetFirstGeneOfType<Gene_Hemogen>();
         if (hemogen == null || !hemogen.CanOffset || hemogen.Value >= hemogen.Max)
             return false;
-        Thing body = target.Dead ? target.Corpse : target;
-        return body is { Spawned: true } && FeedsOn(target, foundDead, out DismemberDrainSource source)
-            && source?.BelowFloor(target) != true && target.health.CanBleed && !BledOut(target)
-            && (body as Corpse)?.GetRotStage() != RotStage.Dessicated;
+        return target is { Spawned: true, Dead: false } && FeedsOn(target, out DismemberDrainSource source)
+            && source?.BelowFloor(target) != true && target.health.CanBleed;
     }
 
     // Whether the pilot drains such a target at all, and through which of the extension's
-    // wider sources: none for the plain drain, which is never on a corpse found lying (see the
-    // header).
-    private bool FeedsOn(Pawn target, bool foundDead, out DismemberDrainSource source)
+    // wider sources: none for the plain drain.
+    private bool FeedsOn(Pawn target, out DismemberDrainSource source)
     {
         source = null;
         List<DismemberDrainSource> sources = Extension.drainSources;
@@ -75,20 +53,20 @@ public partial class Ability_Dismember
         {
             for (int i = 0; i < sources.Count; i++)
             {
-                if (sources[i].Fits(pawn, target, foundDead))
+                if (sources[i].Fits(pawn, target))
                 {
                     source = sources[i];
                     return true;
                 }
             }
         }
-        return !foundDead && target.RaceProps.Humanlike && !target.IsBloodfeeder();
+        return target.RaceProps.Humanlike && !target.IsBloodfeeder();
     }
 
     // As a drain starts: the pilot now carries the mark of this feeding and of no other.
-    public void MarkFeeding(Pawn target, bool foundDead)
+    public void MarkFeeding(Pawn target)
     {
-        FeedsOn(target, foundDead, out DismemberDrainSource source);
+        FeedsOn(target, out DismemberDrainSource source);
         HediffDef mark = source?.hediff;
         HediffSet hediffs = pawn.health.hediffSet;
         List<HediffDef> marks = Extension.feedingHediffs;
@@ -104,13 +82,9 @@ public partial class Ability_Dismember
             pawn.health.AddHediff(mark);
     }
 
-    // Vanilla's own test for a hediff that kills, which only a corpse can pass.
-    private static bool BledOut(Pawn target) =>
-        target.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss)?.CauseDeathNow() == true;
-
-    // One tick's share of a full drain, as SanguophageUtility.DoBite gives its whole one (1.6),
-    // the same from a corpse. The blood loss goes last because it can kill a living target.
-    public void DrainTick(Pawn target, bool foundDead)
+    // One tick's share of a full drain, as SanguophageUtility.DoBite gives its whole one (1.6).
+    // The blood loss goes last because it can kill the target.
+    public void DrainTick(Pawn target)
     {
         DismemberExtension ext = Extension;
         float share = 1f / ext.drainTicks;
@@ -118,14 +92,14 @@ public partial class Ability_Dismember
         GeneUtility.OffsetHemogen(pawn, gain);
         GeneUtility.OffsetHemogen(target, -gain);
         RefreshStun(target);
-        HealthUtility.AdjustSeverity(target, HediffDefOf.BloodLoss, FullBloodLoss(target, foundDead) * share);
+        HealthUtility.AdjustSeverity(target, HediffDefOf.BloodLoss, FullBloodLoss(target) * share);
     }
 
     // BloodLoss severity a drain run to its end adds to this target: the extension's, scaled
     // by the target's size when its source says so.
-    private float FullBloodLoss(Pawn target, bool foundDead)
+    private float FullBloodLoss(Pawn target)
     {
-        FeedsOn(target, foundDead, out DismemberDrainSource source);
+        FeedsOn(target, out DismemberDrainSource source);
         float bySize = source?.bloodLossFactorByBaseBodySize?.Evaluate(target.RaceProps.baseBodySize) ?? 1f;
         return Extension.targetBloodLoss * bySize;
     }

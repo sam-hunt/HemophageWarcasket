@@ -5,8 +5,7 @@ using Verse;
 
 namespace HemophageWarcasket;
 
-// Ability_Dismember's strike, on a living target and on a corpse found lying
-// (Ability_Dismember.cs has the ability as a whole).
+// Ability_Dismember's strike (Ability_Dismember.cs has the ability as a whole).
 //
 // The strike is one DamageInfo at the chosen part with the pilot as instigator, which gives
 // guilt, faction goodwill, kill blame and records through TakeDamage (1.6). Its amount is the
@@ -40,15 +39,6 @@ namespace HemophageWarcasket;
 // choose between. The log entry def is required, since the entry reads its icons from it. A
 // strike that reached no part takes its entry back out, as the rule pack has no line without
 // one.
-//
-// A corpse found lying, which only a hemohunter's hunt comes to (Ability_Dismember.Hunt.cs), is
-// struck another way. Such a strike is no attack, so it goes nowhere near TakeDamage, whose
-// bookkeeping is an attack's: it would make the pilot guilty over a dead colonist as over a
-// living one (Pawn_HealthTracker.PreApplyDamage, 1.6). It takes the part off as vanilla does
-// when a corpse is eaten, a fresh Hediff_MissingPart added to the pawn in the corpse
-// (Corpse.IngestedCalculateAmounts, 1.6 and 1.7), under the damage def's own injury so the part
-// reads as torn off, when the strike's damage would tear it off a body that does nothing to
-// lessen it. It writes no combat log line and throws the same blood.
 public partial class Ability_Dismember
 {
     // The strike before it is aimed at a part: the def's damage by the pilot's melee damage
@@ -67,21 +57,17 @@ public partial class Ability_Dismember
     public override void Cast(params GlobalTargetInfo[] targets)
     {
         base.Cast(targets);
-        Thing target = targets.Length == 0 ? null : targets[0].Thing;
-        if (target is not (Pawn or Corpse))
+        if (targets.Length == 0 || targets[0].Thing is not Pawn target)
             return;
         Pool?.UsedOnce();
-        if (target is Corpse corpse)
-            Strike(corpse);
-        else
-            Strike((Pawn)target);
+        Strike(target);
     }
 
     private void Strike(Pawn target)
     {
         if (target.Dead || !target.Spawned)
             return;
-        BodyPartRecord part = DismemberTarget.Choose(target, Extension, MeleeAim.HeightFor(pawn, Extension), out _);
+        BodyPartRecord part = DismemberTarget.Choose(target, MeleeAim.HeightFor(pawn, Extension));
         if (part == null)
             return;
         DamageInfo dinfo = StrikeInfo();
@@ -98,22 +84,6 @@ public partial class Ability_Dismember
             result.AssociateWithLog(log);
         if (target.Dead || target.health.hediffSet.PartIsMissing(part))
             Spatter(target, center, map);
-    }
-
-    // The strike on a corpse found lying (see the header).
-    private void Strike(Corpse corpse)
-    {
-        Pawn dead = corpse.InnerPawn;
-        if (dead == null || !corpse.Spawned)
-            return;
-        BodyPartRecord part = DismemberTarget.Choose(dead, Extension, MeleeAim.HeightFor(pawn, Extension), out _);
-        if (part == null || !DismemberTarget.Tears(dead.health.hediffSet.GetPartHealth(part), StrikeInfo().Amount))
-            return;
-        var missing = (Hediff_MissingPart)HediffMaker.MakeHediff(HediffDefOf.MissingBodyPart, dead, part);
-        missing.lastInjury = HealthUtility.GetHediffDefFromDamage(HPWC_DefOf.HPWC_Dismember, dead, part);
-        missing.IsFresh = true;
-        dead.health.AddHediff(missing);
-        Spatter(dead, corpse.Position, corpse.Map);
     }
 
     // Reused across casts; filled and read within one Spatter call.

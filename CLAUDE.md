@@ -39,8 +39,7 @@ plating and cost, and the SOS2, VGE and CE patches mirror them; the CE root also
 Dismember's CE numbers. The armor's hemogen rush is
 built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
 protection and pyrophobia relief, the pilot's own work trait and the settings
-window, with a section for each piece's mechanic, one for the pilot's work and a last one for
-Vanilla Races Expanded - Sanguophage, shown only while that mod is active. The descriptions
+window, with a section for each piece's mechanic and one for the pilot's work. The descriptions
 and the player-facing pages are first cuts still owed a full review. `TODOs.md` is the ledger.
 The sibling repos (same author, same VFEP base) are the worked precedents for everything not
 here yet: `../ToxinWarcasket/` for a toggled ability, a gauge and the Biotech dependency,
@@ -147,7 +146,7 @@ answer lives and what was looked at and left.
   (`1.6/Mods/<Mod>/`, `IfModActive` on its package id), never in the main tree behind
   `MayRequire`; `1.6/CLAUDE.md` has why. `1.6/Mods/VanillaRacesExpandedSanguophage/` is that
   root, and its shape is the one to keep: the main tree declares def fields that stay empty
-  (`DismemberExtension`'s drain sources, feeding hediffs and hemohunter states), the root's
+  (`DismemberExtension`'s drain sources and feeding hediffs), the root's
   patch fills them with that mod's defs, and the C# reads the fields and names no def of
   another mod.
 - **Player-facing text follows `l10n/languages/English.md`** (def labels and descriptions,

@@ -48,7 +48,7 @@ Sanguophage/`).
   drain's default blood loss stays a hair under CE's severe stage, as under vanilla's.
 - **Downed targets do not die of being downed.** CE turns off the roll that kills a pawn as it
   goes down (`Pawn_HealthTracker.CheckForStateChange`), so more of the pilot's targets are
-  drained alive under CE and fewer as corpses.
+  still alive to drain under CE.
 - **Suppression interrupts any job**, an ordered Dismember included, with a run for cover or a
   hunker. The armor's CE row makes its pilot immune, as CE does every spacer warcasket's.
 - **The hemogen rush.** CE patches neither `MeleeDamageFactor` nor a hediff's stat factors. Its

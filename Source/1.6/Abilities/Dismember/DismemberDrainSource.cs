@@ -11,10 +11,6 @@ public enum DrainTargetKind
 
     // A humanlike with an active hemogen gene, bloodfeeders included.
     Hemogenic,
-
-    // A humanlike's corpse that the pilot found lying, and only that: a target the pilot
-    // struck alive is drained on as what it was.
-    Corpse,
 }
 
 // One wider source of hemogen for the pads' drain than the plain one (the header of
@@ -39,18 +35,14 @@ public class DismemberDrainSource
     // scale, and never starts on one. Zero asks for nothing.
     public float minTargetHemogen;
 
-    public bool OpenTo(Pawn pilot) => pilotGene != null && pilot.genes?.HasActiveGene(pilotGene) == true;
-
-    // foundDead says the pilot came to the victim as a corpse.
-    public bool Fits(Pawn pilot, Pawn victim, bool foundDead)
+    public bool Fits(Pawn pilot, Pawn victim)
     {
-        if (!OpenTo(pilot) || foundDead != (target == DrainTargetKind.Corpse))
+        if (pilotGene == null || pilot.genes?.HasActiveGene(pilotGene) != true)
             return false;
         return target switch
         {
             DrainTargetKind.Animal => victim.RaceProps.Animal,
-            DrainTargetKind.Hemogenic => victim.RaceProps.Humanlike && victim.genes?.GetFirstGeneOfType<Gene_Hemogen>() != null,
-            _ => victim.RaceProps.Humanlike,
+            _ => victim.RaceProps.Humanlike && victim.genes?.GetFirstGeneOfType<Gene_Hemogen>() != null,
         };
     }
 

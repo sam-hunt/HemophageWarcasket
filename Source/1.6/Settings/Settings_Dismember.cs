@@ -12,10 +12,8 @@ namespace HemophageWarcasket;
 // seconds, ticks on the def). On its DismemberExtension the strike damage overrides damage, the
 // drain time drainTicks (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the
 // game shows), the blood loss targetBloodLoss (percent), the spatter bloodFilthCount, and the
-// two boxes canTargetNonHostile and decapitateBodiesWithoutLimbs. bloodFilthRadius and
-// decapitateWithoutLimbsMaxBodySize have no setting, and the hemohunter fields are the
-// Vanilla Races Expanded - Sanguophage section's (Settings_Sanguophage.cs). The header carries
-// the ability's icon and tooltip.
+// box canTargetNonHostile. bloodFilthRadius has no setting. The header carries the ability's
+// icon and tooltip.
 //
 // Every field is read per cast, so a write needs nothing of the live abilities but the running
 // cooldown, which each caps on its next gizmo request (Ability_Dismember.ReconcileSettings),
@@ -52,7 +50,6 @@ public partial class HemophageWarcasketSettings
     public readonly Tunable dismemberSpatter = new("DismemberSpatter", 0f, 20f, 1f, Whole);
 
     public readonly ToggleSetting dismemberNonHostile = new("DismemberNonHostile");
-    public readonly ToggleSetting dismemberBehead = new("DismemberBehead");
 
     // The ability def, for its header icon, and the header's tooltip.
     private AbilityDef dismemberDef;
@@ -74,7 +71,6 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.ExposeData();
         dismemberSpatter.ExposeData();
         dismemberNonHostile.ExposeData();
-        dismemberBehead.ExposeData();
     }
 
     private void LoadDismemberDefaults(Defs defs)
@@ -93,7 +89,6 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.DefaultValue = ext.targetBloodLoss * PercentScale;
         dismemberSpatter.DefaultValue = ext.bloodFilthCount;
         dismemberNonHostile.DefaultValue = ext.canTargetNonHostile;
-        dismemberBehead.DefaultValue = ext.decapitateBodiesWithoutLimbs;
         dismemberDef = defs.dismember;
         dismemberTip = HeaderTip(dismemberDef.LabelCap, dismemberDef.description);
     }
@@ -111,7 +106,6 @@ public partial class HemophageWarcasketSettings
         ext.targetBloodLoss = dismemberBloodLoss.Value / PercentScale;
         ext.bloodFilthCount = dismemberSpatter.IntValue;
         ext.canTargetNonHostile = dismemberNonHostile.Value;
-        ext.decapitateBodiesWithoutLimbs = dismemberBehead.Value;
     }
 
     private void ResetDismemberSettings()
@@ -126,7 +120,6 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.Reset();
         dismemberSpatter.Reset();
         dismemberNonHostile.Reset();
-        dismemberBehead.Reset();
     }
 
     private void DrawDismemberSection(Listing_Standard listing)
@@ -143,7 +136,6 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.DoRow(listing);
         dismemberSpatter.DoRow(listing);
         dismemberNonHostile.DoRow(listing);
-        dismemberBehead.DoRow(listing);
     }
 
     // What the section's rows amount to: a sentence for the strikes held and what each costs to
