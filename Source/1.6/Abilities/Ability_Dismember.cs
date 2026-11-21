@@ -73,6 +73,21 @@ namespace HemophageWarcasket;
 // for OutlookSeconds of real time, since working them out walks the body and the game may be
 // paused while what decides them changes.
 //
+// An order that would kill asks first, as Bloodfeed does before a lethal bite
+// (CompAbilityEffect_BloodfeederBite.ConfirmationDialog, 1.6 and 1.7), from the same foresight
+// as the cursor's "Will kill": a strike that would take the head off, or a drain that would
+// bleed the target to death, the latter never over a target with the deathless gene, which
+// such blood loss sends into deathrest instead (SanguophageUtility
+// .ShouldBeDeathrestingOrInComaInsteadOfDead) and which Bloodfeed's own dialog skips. Bloodfeed
+// asks over every target it takes, and takes no enemy still standing; the strike is for those,
+// so it asks only over a target that is not hostile to the pilot and is a person or belongs to
+// a faction: a colonist, slave, prisoner, guest or visitor, or an animal or mechanoid of
+// theirs, and never an enemy or a wild animal. VEF has no hook for such a dialog, so it goes
+// up in OrderForceTarget, which the vanilla Targeter calls on the click, after ValidateTarget
+// and before it stops targeting (Targeter.ProcessInputEvents, 1.6 and 1.7), and the job is
+// ordered from the dialog's confirm button. A think tree's job never passes through it, so a
+// hemohunter is asked nothing.
+//
 // TakeDamage writes no combat log line, so the strike writes its own the way
 // Verb_MeleeAttack.TryCastShot does (1.6; the entry's constructor and BattleLog.Add are the same
 // on 1.7): a BattleLogEntry_MeleeCombat on our rule pack goes into the battle log before the
@@ -279,6 +294,35 @@ public class Ability_Dismember : Ability
         return ValidateTarget(target, ReportsToPlayer);
     }
 
+    // The targeter's click. An order that would kill a target the player is not fighting waits
+    // on the player's answer (see the header); the queue key is read now, as the answer comes
+    // on a later event, and the dialog pauses the game until it does.
+    public override void OrderForceTarget(LocalTargetInfo target)
+    {
+        if (target.Thing is not Pawn victim || LethalOrderQuestion(victim) is not { } question)
+        {
+            base.OrderForceTarget(target);
+            return;
+        }
+        currentTargetingIndex = -1;
+        bool queue = KeyBindingDefOf.QueueOrder.IsDownEvent;
+        Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(question, () => Order(victim, queue), destructive: true));
+    }
+
+    // What to ask before a strike on this pawn is ordered, or null when the order needs no
+    // answer (see the header).
+    private string LethalOrderQuestion(Pawn victim)
+    {
+        if (pawn == null || victim.HostileTo(pawn) || !(victim.RaceProps.Humanlike || victim.Faction != null))
+            return null;
+        Foresee(victim, out bool kills, out DrainOutlook drain);
+        if (kills)
+            return "HPWC_DismemberConfirmKill".Translate(victim.Named("PAWN"));
+        if (drain == DrainOutlook.Kills && victim.genes?.HasActiveGene(GeneDefOf.Deathless) != true)
+            return "HPWC_DismemberConfirmDrainKill".Translate(victim.Named("PAWN"));
+        return null;
+    }
+
     // Vanilla's order semantics in place of VEF's StartAbilityJob (see the header). The def has
     // no AbilityExtension_AbilityMods and the pilot is never a caravan member while the gizmo
     // shows, so skipping the base's Valid, PreCast and caravan branches loses nothing.
@@ -286,10 +330,14 @@ public class Ability_Dismember : Ability
     {
         currentTargetingIndex = -1;
         currentTargets = new GlobalTargetInfo[def.targetCount];
-        if (targets.Length == 0 || targets[0].Thing is not Pawn target || pawn.jobs == null)
-            return;
-        pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(def.jobDef, target), JobTag.Misc);
+        if (targets.Length > 0 && targets[0].Thing is Pawn target)
+            Order(target, queue: false);
     }
+
+    // TryTakeOrderedJob reads the queue key itself on the event it is called from (1.6 and
+    // 1.7); queue asks for the same of an order given after that event has passed.
+    private void Order(Pawn target, bool queue) =>
+        pawn?.jobs?.TryTakeOrderedJob(JobMaker.MakeJob(def.jobDef, target), JobTag.Misc, queue);
 
     // Vanilla's cursor rule: the no-shoot cross over anything the ability cannot be ordered
     // on, else the def's icon through the base. The vanilla Targeter hands a pawn under the

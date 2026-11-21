@@ -9,6 +9,9 @@
   <HPWC_DismemberMayWound>May only wound</HPWC_DismemberMayWound>
   <!-- Beside the cursor over a target from a faction that is not hostile, under the lines above and the game's own "Will kill" and "Will cause major blood loss" when they apply. {0} is the faction's name -->
   <HPWC_DismemberWillAnger>Will anger {0}</HPWC_DismemberWillAnger>
+  <!-- The dialog before an order that would kill a target that is not hostile, where the game asks "Bloodfeeding on {PAWN_nameDef} will kill {PAWN_objective}." before a lethal bite: the strike would tear the head off a target with no limbs left, or the drain after it would bleed the target to death. PAWN is the target -->
+  <HPWC_DismemberConfirmKill>The strike will tear off {PAWN_nameDef}'s head, which will kill {PAWN_objective}.\n\nAre you sure?</HPWC_DismemberConfirmKill>
+  <HPWC_DismemberConfirmDrainKill>Draining hemogen from {PAWN_nameDef} after the strike will kill {PAWN_objective}.\n\nAre you sure?</HPWC_DismemberConfirmDrainKill>
   <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
   <HPWC_DismemberReload>Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}.</HPWC_DismemberReload>
 
