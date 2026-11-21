@@ -15,9 +15,10 @@
     all five of VFEP's spacer helmets. Insulation 10 / 10 is three of the five's (Controller,
     Sarcophagus, Brute; the Siegebreaker's and the Guardian's are 5 / 2).
 
-    Cost: ComponentSpacer 2 is three of the five's. Plasteel 70 is the Guardian helmet's,
-    what VFEP charges for Blunt 1.5. DevilstrandCloth 30 pays for the heat plating in the
-    Hazard's currency: its armor takes 100 and its shoulders 50 for the same Heat 2. The
+    Cost: ComponentSpacer 4 is the tier's price for a helmet with a function of its own (the
+    Controller's and the Brute's, where the other three take 2), here the visor's two.
+    Plasteel 70 is the Guardian helmet's, what VFEP charges for Blunt 1.5. DevilstrandCloth
+    30 pays for the heat plating in the Hazard's currency: its armor takes 100 and its shoulders 50 for the same Heat 2. The
     Hazard's own helmet takes none, so the 30 is this set's price, a helmet's share at that
     rate.
 
@@ -73,7 +74,7 @@
       <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.7</VacuumResistance>
     </equippedStatOffsets>
     <costList>
-      <ComponentSpacer>2</ComponentSpacer>
+      <ComponentSpacer>4</ComponentSpacer>
       <Plasteel>70</Plasteel>
       <DevilstrandCloth>30</DevilstrandCloth>
     </costList>

@@ -34,8 +34,9 @@ believe ..."), the way Biotech tells its own sanguophage lore, and never as sett
 
 **State: all three mechanics in, not yet released.** The three pieces are in on the tier's
 baseline stats and costs with their commissioned art, but for the heat plating and the
-devilstrand that pays for it, the pads' cost, which pays for Dismember, and the helmet's blunt
-plating and cost, and the SOS2, VGE and CE patches mirror them; the CE root also carries
+devilstrand that pays for it, the armor's blood pumping floor and hemogen packs, the pads'
+hemogen gain and their cost, which pays for Dismember, and the helmet's blunt plating and
+cost, and the SOS2, VGE and CE patches mirror them; the CE root also carries
 Dismember's CE numbers. The armor's hemogen rush is
 built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
 protection and pyrophobia relief, the pilot's own work trait and the settings

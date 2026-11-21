@@ -5,12 +5,12 @@
     1.6/Defs/ThingDefs_Misc/Apparel_Various.xml). Docs/Research/VFEP_WARCASKET_STATS.md
     tabulates the tier.
 
-    Tuning: the 10th generation's baseline but for the heat plating. Each field is the value
-    most of VFEP's five spacer sets (Siegebreaker, Guardian, Controller, Sarcophagus, Brute)
-    share, which is the Sarcophagus's row less its glitterworld medicine and its bionics.
-    With the bionics go its capacity floors of 1 and its guards against downing and death:
-    the 0.7 floors on Moving and Manipulation below are the other four sets'. The set's own
-    numbers arrive with its mechanics (TODOs.md) and are argued here when they do.
+    Tuning: the 10th generation's baseline but for the heat plating, the blood pumping floor
+    and the hemogen packs. Each field is the value most of VFEP's five spacer sets
+    (Siegebreaker, Guardian, Controller, Sarcophagus, Brute) share, which is the
+    Sarcophagus's row less its glitterworld medicine and its bionics. With the bionics go
+    its guards against downing and death and all but one of its capacity floors of 1: the
+    0.7 floors on Moving and Manipulation below are the other four sets'.
     - Sharp 2 / Blunt 1 on the armor and the shoulders. Blunt 1.5 is the Guardian's and the
       Brute's specialty, which the helmet alone takes, with Heat 2 (its header).
     - Heat 1.5 on the armor and the shoulders, over the tier's 1. Flame damage arrives
@@ -30,6 +30,18 @@
       the plasteel runs 145 to 200 across the tier. DevilstrandCloth 50 pays for the heat
       plating in the Hazard's currency, half of that armor's 100 for half its step, as 25 on
       the shoulders is half of its shoulders' 50.
+    - HemogenPack 5 primes the injectors, the count each of Biotech's deathrest buildings
+      takes. A pack does not spoil, the foundry welds any costList item, and like the rest
+      of the cost none comes back.
+    - BloodPumping floor 1, the one floor of the Sarcophagus's kept: the injectors move the
+      pilot's blood whatever the heart does. VEF lifts the finished capacity, a destroyed
+      heart's 0 included (its PawnCapacityUtility.CalculateCapacityLevel postfix), and death
+      by a lost capacity asks for that level. So in the armor a lost heart neither kills a
+      pilot nor puts a Deathless one into the coma that stands in for death
+      (SanguophageUtility.ShouldBeDeathrestingOrInComaInsteadOfDead asks ShouldBeDead first;
+      1.6), and nothing that lowers blood pumping slows them. Any pilot has it, hemogenic or
+      not, as any has the heat plating, and out of the armor the heart counts again. The
+      hemogen rush raises blood pumping over this (HediffDefs/HemogenRush.xml).
     - researchPrerequisites VFEP_SpacerWarcaskets, the tier's. Whether the set belongs behind
       something sanguophage-specific as well is an open question in TODOs.md; the foundry
       lists a part by BuildableDef.IsResearchFinished, which wants every entry, so a second
@@ -126,6 +138,7 @@
       <Plasteel>145</Plasteel>
       <Uranium>50</Uranium>
       <DevilstrandCloth>50</DevilstrandCloth>
+      <HemogenPack>5</HemogenPack>
     </costList>
     <researchPrerequisites>
       <li>VFEP_SpacerWarcaskets</li>
@@ -192,6 +205,10 @@
           <li>
             <capacity>Manipulation</capacity>
             <minLevel>0.7</minLevel>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <minLevel>1</minLevel>
           </li>
         </pawnCapacityMinLevels>
       </li>

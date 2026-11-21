@@ -51,6 +51,10 @@ public class SettingsTargetTests
         XElement stage = def.Element("stages")!.Elements("li").Single();
         AssertHas(stage, "statFactors");
         AssertHas(stage.Element("statFactors")!, "MoveSpeed", "MeleeDamageFactor");
+        // The move speed row reads the blood pumping offset to show the rush's whole gain.
+        AssertHas(stage, "capMods");
+        AssertHas(stage.Element("capMods")!.Elements("li")
+            .Single(li => (string?)li.Element("capacity") == "BloodPumping"), "offset");
     }
 
     [Fact]

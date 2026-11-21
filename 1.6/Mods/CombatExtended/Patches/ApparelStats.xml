@@ -25,9 +25,10 @@
     gives every sealed spacer helmet. The tox immunity is added only when absent, CE's own
     guard against a second patch producing a duplicate node.
   - Costs as CE reprices the Sarcophagus's: plasteel and spacer components of 145 / 6 to
-    225 / 8 on the armor, plasteel 60 to 90 on the shoulders. The helmet's 70 / 2 is the
-    Guardian helmet's price and goes where CE takes that, to 105 / 4. No piece's devilstrand
-    is touched, as CE leaves the Hazard's. The Sarcophagus's pads have no spacer
+    225 / 8 on the armor, plasteel 60 to 90 on the shoulders. The helmet's plasteel 70 is
+    the Guardian helmet's and goes where CE takes that, to 105, and its 4 spacer components
+    are the Controller's and the Brute's and go where CE takes theirs, to 6. No piece's
+    devilstrand is touched, as CE leaves the Hazard's, nor the armor's hemogen packs. The Sarcophagus's pads have no spacer
     components and CE has no one rule for a pad's (the Controller's 2 go to 1, the Brute's
     4 to 6), so ours take the two more the armor and helmet do, 2 to 4. Uranium is not
     touched, as CE leaves VFEP's, nor the pads' industrial components, the strike pool's
@@ -165,7 +166,7 @@
   <Operation Class="PatchOperationReplace">
     <xpath>Defs/VFEPirates.WarcasketDef[defName="HPWC_WarcasketHelmet_Hemophage"]/costList/ComponentSpacer</xpath>
     <value>
-      <ComponentSpacer>4</ComponentSpacer>
+      <ComponentSpacer>6</ComponentSpacer>
     </value>
   </Operation>
   <Operation Class="PatchOperationReplace">

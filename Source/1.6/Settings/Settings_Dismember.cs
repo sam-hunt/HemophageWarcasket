@@ -13,7 +13,8 @@ namespace HemophageWarcasket;
 // drain time drainTicks (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the
 // game shows), the blood loss targetBloodLoss (percent), the spatter bloodFilthCount, and the
 // box canTargetNonHostile. bloodFilthRadius has no setting. The header carries the ability's
-// icon and tooltip.
+// icon and tooltip. The summary quotes the gain as the pilot gets it, times the
+// HemogenGainFactor the pads themselves give their wearer.
 //
 // Every field is read per cast, so a write needs nothing of the live abilities but the running
 // cooldown, which each caps on its next gizmo request (Ability_Dismember.ReconcileSettings),
@@ -55,9 +56,11 @@ public partial class HemophageWarcasketSettings
     private AbilityDef dismemberDef;
     private string dismemberTip;
 
-    // The reload item and the pool's charge noun, for the summary.
+    // The reload item, the pool's charge noun and the pads' HemogenGainFactor on their wearer,
+    // for the summary.
     private ThingDef dismemberAmmo;
     private string dismemberNoun;
+    private float dismemberPadsGain = 1f;
 
     private void ExposeDismemberSettings()
     {
@@ -89,6 +92,7 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.DefaultValue = ext.targetBloodLoss * PercentScale;
         dismemberSpatter.DefaultValue = ext.bloodFilthCount;
         dismemberNonHostile.DefaultValue = ext.canTargetNonHostile;
+        dismemberPadsGain = defs.padsHemogenGain;
         dismemberDef = defs.dismember;
         dismemberTip = HeaderTip(dismemberDef.LabelCap, dismemberDef.description);
     }
@@ -150,7 +154,8 @@ public partial class HemophageWarcasketSettings
             ? drain ? "HPWC_DismemberSummary" : "HPWC_DismemberSummaryNoDrain"
             : drain ? "HPWC_DismemberSummaryNoCooldown" : "HPWC_DismemberSummaryNoCooldownNoDrain";
         return key.Translate(RealSeconds(dismemberWindup.Value), Period(dismemberCooldown.Value),
-            RealSeconds(dismemberDrainTime.Value), Whole(dismemberGain.Value), Percent(dismemberBloodLoss.Value),
+            RealSeconds(dismemberDrainTime.Value), Whole(dismemberGain.Value * dismemberPadsGain),
+            Percent(dismemberBloodLoss.Value),
             Ability_Dismember.Counted(dismemberNoun, dismemberStrikes.IntValue),
             Ability_Dismember.Counted(dismemberAmmo.label, dismemberReloadCost.IntValue));
     }

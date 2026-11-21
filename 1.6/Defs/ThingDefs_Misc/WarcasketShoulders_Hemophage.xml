@@ -12,7 +12,12 @@
     the armor's as across the tier. ComponentSpacer 2 pays for the pads' module, the
     Controller shoulders' price for theirs, and ComponentIndustrial 2 is the pool's first
     fill, since a crafted piece starts full. DevilstrandCloth 25 is the heat plating's price
-    (the armor's header). There is no offset beyond those two.
+    (the armor's header).
+
+    HemogenGainFactor +0.25 is the siphon vials, the one offset beyond the tier's two and the
+    number Biotech's hemogen amplifier gives. GeneUtility.OffsetHemogen multiplies every gain
+    by the stat, so the pilot's bloodfeed, hemogen packs and Dismember's drain each give a
+    quarter more, a drain's 20 becoming 25. It does nothing for a pilot without the gene.
 
     Dismember: the pads' module, an ability granted by the CompAbilitiesApparel below
     (AbilityDefs/Dismember.xml has it), limited by the strikes loaded in the reloadable
@@ -73,6 +78,7 @@
       <EquipDelay>1</EquipDelay>
     </statBases>
     <equippedStatOffsets>
+      <HemogenGainFactor>0.25</HemogenGainFactor>
       <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.2</SlaveSuppressionOffset>
       <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.1</VacuumResistance>
     </equippedStatOffsets>

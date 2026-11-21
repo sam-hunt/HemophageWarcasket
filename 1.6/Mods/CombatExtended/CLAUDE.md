@@ -54,7 +54,9 @@ Sanguophage/`).
 - **The hemogen rush.** CE patches neither `MeleeDamageFactor` nor a hediff's stat factors. Its
   move speed worker multiplies the finished stat by the pilot's carried weight, after the rush's
   factor, and its melee verb takes its damage through vanilla's
-  `VerbProperties.AdjustedMeleeDamageAmount`, the rush's factor included.
+  `VerbProperties.AdjustedMeleeDamageAmount`, the rush's factor included. CE patches no
+  capacity either, so the rush's blood pumping and the armor's floor on it stand; the floor
+  also cancels the blood pumping part of CE's smoke inhalation.
 - **Untouched by CE**: hemogen, the hemogenic and bloodfeeder genes, Bloodfeed, deathrest,
   the sunlight and pyrophobia genes, mental breaks through `MentalBreakWorker`, VEF abilities
   and their apparel grant, VEF's shield bubble, VFEP's warcasket trait and abilities, and every

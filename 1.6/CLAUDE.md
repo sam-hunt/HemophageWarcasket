@@ -11,8 +11,9 @@ manifest globs, so new files and subfolders need no build change.
   (`VFEP_WarcasketArmorBase`, `VFEP_WarcasketShoulderPadBase`, `VFEP_WarcasketHelmetBase`), so
   the foundry, entombing and removal surgery pick them up without C#. Check VFEP's XML before
   reimplementing anything a base provides. The three defs are the 10th generation's baseline,
-  field by field the value most of VFEP's five spacer sets share; a field a def header does not
-  discuss is that baseline's, so diff against VFEP's Sarcophagus before changing one.
+  field by field the value most of VFEP's five spacer sets share, but for what each header
+  argues as the set's own; a field a def header does not discuss is that baseline's, so diff
+  against VFEP's Sarcophagus before changing one.
 - **Every `ApparelExtension` we declare carries `priority` 1.** The VFEP bases carry their own,
   and VEF merges duplicates at resolve time, keeping the highest priority and dropping fields its
   `Merge` does not copy; any new `ApparelExtension` field, from any load root, goes on our entry.

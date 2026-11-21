@@ -225,10 +225,14 @@ public partial class HemophageWarcasketSettings : ModSettings
         public AbilityDef rushAbility;
         public HediffCompProperties_HemogenRush rush;
         public StatModifier rushMoveSpeed;
+        // Read, never written, and may be absent: the move speed row then writes its whole gain.
+        public PawnCapacityModifier rushBloodPumping;
         public StatModifier rushMeleeDamage;
         public AbilityDef dismember;
         public DismemberExtension dismemberExtension;
         public CompProperties_ApparelReloadable dismemberPool;
+        // The pads' own HemogenGainFactor on their wearer, 1 with no offset. Read, never written.
+        public float padsHemogenGain;
         public SunlightShieldExtension helmetShield;
         public PyrophobiaReliefExtension helmetPyrophobia;
     }
@@ -244,15 +248,18 @@ public partial class HemophageWarcasketSettings : ModSettings
         HediffStage stage = rush?.stages?.Count == 1 ? rush.stages[0] : null;
         AbilityDef dismember = DefDatabase<AbilityDef>.GetNamedSilentFail(DismemberDefName);
         ThingDef helmet = DefDatabase<ThingDef>.GetNamedSilentFail(HelmetDefName);
+        ThingDef pads = DefDatabase<ThingDef>.GetNamedSilentFail(PadsDefName);
         defs = new Defs
         {
             rushAbility = DefDatabase<AbilityDef>.GetNamedSilentFail(RushDefName),
             rush = rush?.CompProps<HediffCompProperties_HemogenRush>(),
             rushMoveSpeed = stage?.statFactors?.Find(m => m.stat == StatDefOf.MoveSpeed),
             rushMeleeDamage = stage?.statFactors?.Find(m => m.stat == StatDefOf.MeleeDamageFactor),
+            rushBloodPumping = stage?.capMods?.Find(m => m.capacity == PawnCapacityDefOf.BloodPumping),
             dismember = dismember,
             dismemberExtension = dismember?.GetModExtension<DismemberExtension>(),
-            dismemberPool = DefDatabase<ThingDef>.GetNamedSilentFail(PadsDefName)?.GetCompProperties<CompProperties_ApparelReloadable>(),
+            dismemberPool = pads?.GetCompProperties<CompProperties_ApparelReloadable>(),
+            padsHemogenGain = 1f + (pads?.equippedStatOffsets.GetStatOffsetFromList(StatDefOf.HemogenGainFactor) ?? 0f),
             helmetShield = helmet?.GetModExtension<SunlightShieldExtension>(),
             helmetPyrophobia = helmet?.GetModExtension<PyrophobiaReliefExtension>(),
         };

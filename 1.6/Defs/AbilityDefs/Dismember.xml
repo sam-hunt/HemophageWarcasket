@@ -16,15 +16,19 @@
 
     damage 60 is what the strike does to that one part, times the pilot's MeleeDamageFactor
     and the target's IncomingDamageFactor (Ability_Dismember.Strike.cs has the sum). A limb with
-    more health left than that is wounded and stays on. 60 is twice a human limb's 30, so a
-    Tough target, who takes half damage, still loses it, and only one who stacks the robust
-    gene on that (22.5) keeps the limb. It is about two blows of a zeushammer (31), from a
-    strike that takes a second to wind up and a component to reload. A limb's health is its
-    part's hitPoints times the race's health scale, so of the big bodies a megaspider's leg
-    (50) and a muffalo's (53) come off, a centipede's last ring (87) only for a pilot in the
-    hemogen rush, whose melee damage factor of 1.5 makes the strike 90, and a thrumbo's leg
-    (240) takes three strikes even then. The head goes by the same damage: a human's (25)
-    comes off, a centipede's (130) takes three strikes or two in the rush.
+    more health left than that is wounded and stays on. 60 is set for a pilot with no
+    melee gene: twice a human limb's 30, so a Tough target, who takes
+    half damage, still loses it, and only one who stacks the robust gene on that (22.5) keeps
+    the limb. It is about two blows of a zeushammer (31), from a strike that takes a second
+    to wind up and a component to reload. A limb's health is its part's hitPoints times the
+    race's health scale, so of the big bodies a megaspider's leg (50) and a muffalo's (53)
+    come off, a centipede's last ring (87) only at a melee damage factor of 1.5 (90), and a
+    thrumbo's leg (240) takes three strikes even then. The head goes by the same damage: a
+    human's (25) comes off, a centipede's (130) takes three strikes or two at 1.5.
+    That factor is the hemogen rush's, and a sanguophage's own: the MeleeDamage_Strong gene
+    makes every strike of theirs 90 and one in the rush 135, which takes a thrumbo's leg in
+    two and a centipede's head in one. A pilot with MeleeDamage_Weak strikes for 30, a human
+    limb exactly, and 45 in the rush.
     aimHeightComp and aimHeightField are unset here: they name where another mod keeps a
     melee aim height for the strike to follow, and that mod's compat root adds them
     (1.6/Mods/CombatExtended/Patches/Dismember.xml).
@@ -47,7 +51,8 @@
     hemogenic and the target is humanlike and bleeding, as one whose limb came off is and one
     whose limb held mostly is, with the target held throughout. It is Bloodfeed
     spread over drainTicks 240 (4 s): hemogenGain 0.2 is Bloodfeed's 20 hemogen, scaled by
-    the target's body size as a bite is, and targetBloodLoss 0.4499 is the blood loss a bite
+    the target's body size and the pilot's HemogenGainFactor as a bite is, which the pads'
+    own offset makes 25, and targetBloodLoss 0.4499 is the blood loss a bite
     causes, on top of the stump's own bleeding. A drain cut short keeps what it collected,
     and the target's death ends it (Ability_Dismember.Drain.cs).
     A bloodfeeder is not drained, as Bloodfeed refuses one. drainSources and feedingHediffs

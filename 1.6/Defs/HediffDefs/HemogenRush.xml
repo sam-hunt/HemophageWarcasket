@@ -3,12 +3,21 @@
   <!--
     The hemogen rush: on the pilot while the armor's toggle is on (AbilityDefs/HemogenRush.xml).
 
-    Buff, each number a vanilla one for the same effect:
+    Buff:
     - Consciousness +0.2, go-juice's. Not its painFactor: the pilot's trait already takes all
       pain away (TraitDefs/WarcasketTrait_Hemophage.xml), and the rush ends with the armor off.
-    - MeleeDamageFactor 1.5, juggernaut serum's.
-    - MoveSpeed 1.5, under rage speed's 1.75. A factor rather than an offset so the gain
-      scales with what the warcasket's own move speed penalties leave.
+    - MeleeDamageFactor 1.5, juggernaut serum's. On the sanguophage's MeleeDamage_Strong
+      gene that is 2.25, as the serum is.
+    - Move speed 1.5 in all, under rage speed's 1.75, in two parts. BloodPumping +1 is the
+      injectors at work, 200% on the Health tab. Moving takes 0.2 of blood pumping's gain,
+      where Consciousness stops reading it at 1 (their capacity workers; 1.6 and 1.7), so it
+      comes to Moving 1.2, which is move speed 1.2 and at most 7 points of melee dodge. The
+      one stat that reads it directly is the rest rate, and a rush ends with sleep.
+      MoveSpeed 1.25 is the rest. Both multiply, so the gain scales with the pilot's own
+      speed: a sanguophage's 4.8 cells a second becomes 7.2, about an unarmored baseliner's
+      on go-juice. The offset adds to whatever else raises the pilot's blood pumping, a
+      bionic heart for one, and a destroyed heart takes none, since the game adds offsets
+      only to a capacity above 0.
     Melee cooldown is left alone: with the damage factor it would about double melee output.
 
     Drain: hemogenPerSecond 0.02 is 2 hemogen a second on the scale the game shows, and one
@@ -42,7 +51,8 @@
     is on them, through the game's own HediffCompProperties_Effecter.
 
     The mod settings override hemogenStartCost, hemogenPerSecond, hemogenReserve, glowPulses
-    and the two statFactors (Source/1.6/Settings/Settings_Rush.cs).
+    and the two statFactors (Source/1.6/Settings/Settings_Rush.cs). Their move speed is the
+    1.5 in all, written as the MoveSpeed factor that reaches it beside the blood pumping.
 
     defaultLabelColor is the drug highs'.
   -->
@@ -86,9 +96,13 @@
             <capacity>Consciousness</capacity>
             <offset>0.2</offset>
           </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>1</offset>
+          </li>
         </capMods>
         <statFactors>
-          <MoveSpeed>1.5</MoveSpeed>
+          <MoveSpeed>1.25</MoveSpeed>
           <MeleeDamageFactor>1.5</MeleeDamageFactor>
         </statFactors>
       </li>

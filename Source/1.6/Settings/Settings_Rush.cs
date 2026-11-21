@@ -7,10 +7,12 @@ namespace HemophageWarcasket;
 // Rush section: the armor's hemogen rush, all of it on the HPWC_HemogenRush hediff. On its
 // HediffCompProperties_HemogenRush the start cost overrides hemogenStartCost, the drain
 // hemogenPerSecond and the reserve hemogenReserve, all stored and shown on the 0..100 scale
-// the game shows hemogen on, and the pulse box overrides glowPulses. On its one stage the move
-// speed and melee damage override the MoveSpeed and MeleeDamageFactor statFactors, stored and
-// shown in percent. The stage's Consciousness offset has no setting. The header carries the
-// HPWC_HemogenRush ability's icon and tooltip.
+// the game shows hemogen on, and the pulse box overrides glowPulses. On its one stage the
+// melee damage overrides the MeleeDamageFactor statFactor and the move speed the MoveSpeed
+// one, both stored and shown in percent. The move speed row is the rush's whole gain, so what
+// it writes is that over the share the stage's BloodPumping offset already gives
+// (RushPumpingSpeed). The stage's two capacity offsets have no setting. The header carries
+// the HPWC_HemogenRush ability's icon and tooltip.
 //
 // A write reaches a running rush on its own: the comp and the glow worker read their
 // properties as they run, and StatWorker reads a stage's statFactors on every call, with no
@@ -33,7 +35,8 @@ public partial class HemophageWarcasketSettings
     // so a full pilot can always start one.
     public readonly Tunable rushReserve = new("RushReserve", 0f, HemogenScale - StartCostMax - 5f, 5f, Whole);
 
-    // The buff, from 100%, no change: a rush never weakens.
+    // The buff, from 100%, no change: a rush never weakens. At 100% the MoveSpeed factor
+    // written is under 1, cancelling the blood pumping's share.
     public readonly Tunable rushMoveSpeed = new("RushMoveSpeed", 100f, 250f, 10f, Percent);
     public readonly Tunable rushMeleeDamage = new("RushMeleeDamage", 100f, 300f, 10f, Percent);
 
@@ -43,6 +46,15 @@ public partial class HemophageWarcasketSettings
     // and the header's tooltip.
     private AbilityDef rushDef;
     private string rushTip;
+
+    // Moving, and move speed with it, takes this share of blood pumping's gain over 100%
+    // (PawnCapacityWorker_Moving's lerp; 1.6 and 1.7).
+    private const float MovingPerBloodPumping = 0.2f;
+
+    // What the stage's BloodPumping offset multiplies move speed by, for a pilot whose blood
+    // pumping is otherwise 100%.
+    private static float RushPumpingSpeed(Defs defs) =>
+        1f + MovingPerBloodPumping * (defs.rushBloodPumping?.offset ?? 0f);
 
     private void ExposeRushSettings()
     {
@@ -59,7 +71,7 @@ public partial class HemophageWarcasketSettings
         rushStartCost.DefaultValue = defs.rush.hemogenStartCost * HemogenScale;
         rushDrain.DefaultValue = defs.rush.hemogenPerSecond * HemogenScale;
         rushReserve.DefaultValue = defs.rush.hemogenReserve * HemogenScale;
-        rushMoveSpeed.DefaultValue = defs.rushMoveSpeed.value * PercentScale;
+        rushMoveSpeed.DefaultValue = defs.rushMoveSpeed.value * RushPumpingSpeed(defs) * PercentScale;
         rushMeleeDamage.DefaultValue = defs.rushMeleeDamage.value * PercentScale;
         rushGlowPulse.DefaultValue = defs.rush.glowPulses;
         rushDef = defs.rushAbility;
@@ -71,7 +83,7 @@ public partial class HemophageWarcasketSettings
         defs.rush.hemogenStartCost = rushStartCost.Value / HemogenScale;
         defs.rush.hemogenPerSecond = rushDrain.Value / HemogenScale;
         defs.rush.hemogenReserve = rushReserve.Value / HemogenScale;
-        defs.rushMoveSpeed.value = rushMoveSpeed.Value / PercentScale;
+        defs.rushMoveSpeed.value = rushMoveSpeed.Value / PercentScale / RushPumpingSpeed(defs);
         defs.rushMeleeDamage.value = rushMeleeDamage.Value / PercentScale;
         defs.rush.glowPulses = rushGlowPulse.Value;
     }
