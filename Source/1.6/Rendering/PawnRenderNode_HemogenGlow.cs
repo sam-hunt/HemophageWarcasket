@@ -4,8 +4,7 @@ using Verse;
 namespace HemophageWarcasket;
 
 // A piece's hemogen glow: a second render node from that piece's
-// apparel.renderNodeProperties, drawn over its worn sprite while the pilot's hemogen rush runs
-// and, to a slower beat, while the pilot deathrests.
+// apparel.renderNodeProperties, drawn over its worn sprite while the pilot's hemogen rush runs.
 // DynamicPawnRenderNodeSetup_Apparel sets node.apparel on it and attaches it under
 // props.parentTagDef, beside the piece's own worn-graphic node, and the base node loads
 // props.texPath as a Graphic_Multi. Everything else (mesh, transform, layer, visibility) is
@@ -14,10 +13,6 @@ namespace HemophageWarcasket;
 public class PawnRenderNode_HemogenGlow : PawnRenderNode
 {
     private PawnRenderNode wornNode;
-
-    // Which glow the worker found when the draw requests were last rebuilt: the deathrest's,
-    // or else the rush's.
-    public bool Resting { get; set; }
 
     public PawnRenderNode_HemogenGlow(Pawn pawn, PawnRenderNodeProperties props, PawnRenderTree tree)
         : base(pawn, props, tree)

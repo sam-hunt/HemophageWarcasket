@@ -34,14 +34,10 @@ manifest globs, so new files and subfolders need no build change.
   rush reads the hediff off the pawn.
 - **Worn graphics go through the pawn render tree** (`apparel.renderNodeProperties`), never draw
   hooks. The hemogen glow is the model: each piece's def declares a node for its own glow
-  sprite, which draws while the pilot has the rush hediff or deathrests, whichever pieces they
-  wear. A new
+  sprite, which draws while the pilot has the rush hediff, whichever pieces they wear. A new
   node keeps to what `Source/1.6/Rendering/` records: portraits and the zoomed-out pawn cache
   bake the tree in child order and ignore per-frame property blocks, so an overlay sits after
   the sprite it covers and anything animated bakes as one fixed state.
-- **Light on the glow grid is for a pilot who stays put.** A glower that moves has the grid
-  rebuilt around it at every step, so the rush lights nothing and a deathrest does, through a
-  thing spawned on the pilot's cell for as long as it lasts (`ThingDefs_Misc/DeathrestLight.xml`).
 - **Art is `Textures/Things/Pawn/Warcasketlike/WarcasketHemophage/`**, VFEP's layout and file
   naming: `WarcasketHemophage`, `...Shoulders`, `...Helmet`, each with `_north`, `_east`,
   `_south`, a mask beside every one of those (`_northm`) and a bare-named copy of the south

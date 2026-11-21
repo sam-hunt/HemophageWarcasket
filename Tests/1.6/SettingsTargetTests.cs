@@ -47,25 +47,10 @@ public class SettingsTargetTests
         XElement def = Def("HediffDefs", "HemogenRush.xml", "HPWC_HemogenRush");
         XElement comp = def.Element("comps")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.HediffCompProperties_HemogenRush");
-        AssertHas(comp, "hemogenStartCost", "hemogenPerSecond", "hemogenReserve", "glowPulses",
-            "deathrestGlows");
+        AssertHas(comp, "hemogenStartCost", "hemogenPerSecond", "hemogenReserve", "glowPulses");
         XElement stage = def.Element("stages")!.Elements("li").Single();
         AssertHas(stage, "statFactors");
         AssertHas(stage.Element("statFactors")!, "MoveSpeed", "MeleeDamageFactor");
-    }
-
-    // The glow light the rush def names must be the def on disk, shaped as DeathrestLight needs:
-    // its self-check runs on the rare tick, it stays out of saves and it carries the one glower.
-    [Fact]
-    public void DeathrestLight_IsShapedAsTheCodeNeeds()
-    {
-        XElement comp = Def("HediffDefs", "HemogenRush.xml", "HPWC_HemogenRush").Element("comps")!.Elements("li")
-            .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.HediffCompProperties_HemogenRush");
-        XElement light = Def("ThingDefs_Misc", "DeathrestLight.xml", (string)comp.Element("deathrestLight")!);
-        Assert.Equal("HemophageWarcasket.DeathrestLight", (string?)light.Element("thingClass"));
-        Assert.Equal("Rare", (string?)light.Element("tickerType"));
-        Assert.Equal("false", (string?)light.Element("isSaveable"));
-        Assert.Equal("CompProperties_Glower", (string?)light.Element("comps")!.Elements("li").Single().Attribute("Class"));
     }
 
     [Fact]
