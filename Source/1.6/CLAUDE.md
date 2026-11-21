@@ -5,16 +5,21 @@ and the rationale for its numbers; this file holds only the rules that cross fil
 comments cover install-path detection, the compile-only VFEP/VEF references (`VFEP_PATH` and
 `VEF_PATH` override the Workshop copy) and the deploy manifest.
 
-The code so far is the armor's hemogen rush, its toggle (`Abilities/`), the hediff comp that
-runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`, with its
-patch), the pads' Dismember, its ability, command, part picker, drain sources and foresight,
-the reader of another mod's melee aim height, job driver and the job giver that hands a
-hemohunter the strike (`Abilities/`) and strike pool (`Comps/`), the
-helmet's sunlight protection (`Sunlight/`, with its three patches)
-and pyrophobia relief (`Fire/`, with its one), then the pilot's work trait (`WorkProfile.cs`), the startup that mirrors it (`Startup.cs`),
-the settings window (`Settings/`), with a section for each piece's mechanic, one for the
-work and a last one for Vanilla Races Expanded - Sanguophage, shown only while that mod is
-active, and the mask that keeps the set off generated pawns (`ListMask.cs`, with its patch).
+Where each mechanic lives:
+
+- **The armor's hemogen rush**: the toggle (`Abilities/Ability_HemogenRush.cs`), the hediff comp
+  that runs it (`Hediffs/`) and the glow node every piece draws while it runs (`Rendering/`,
+  with its patch).
+- **The pads' Dismember**: `Abilities/Dismember/`, which has a guide of its own (which file
+  answers what, the walk-up job, the strike pool), and the pool itself (`Comps/`).
+- **The helmet**: sunlight protection (`Sunlight/`, with its three patches) and pyrophobia
+  relief (`Fire/`, with its one).
+- **The pilot's work**: the trait's rule (`WorkProfile.cs`) and the startup that mirrors it
+  (`Startup.cs`).
+- **The settings window** (`Settings/`): a section for each piece's mechanic, one for the work
+  and a last one for Vanilla Races Expanded - Sanguophage, shown only while that mod is active.
+- **The mask that keeps the set off generated pawns**: `ListMask.cs`, with its patch.
+
 Several rules below are the family's, written down before the code they govern so
 the next ability or comp lands in the right shape; each names the sibling file to copy from
 rather than restating it.
@@ -54,12 +59,6 @@ rather than restating it.
   caught up by the instance on its next gizmo request, keyed on
   `HemophageWarcasketSettings.Generation` (`Ability_Dismember`); what it leaves stale on a
   worn piece (strikes over a lowered capacity) the settings trim themselves.
-- **A stocked ability's charges are a vanilla `CompApparelReloadable` on the piece that grants
-  it**, in per-charge mode and without verbs, read off the ability's `holder`; the def's
-  `gizmoClass` names a command that returns the count as `TopRightLabel`. The pads' pool,
-  `Ability_Dismember` and `Command_Dismember` are the model, after the Medic repo's shot. A
-  capacity the settings can lower needs the comp subclassed to stay within it
-  (`Comps/CompStrikePool.cs`): vanilla's reload throws on a count over the maximum.
 - **A switch an XML patch reads is a restart-time setting**, read through a
   `PatchOperationSetting` (the Overlord repo's `Source/1.6/PatchOperations/`) while the patches
   apply; its row carries the restart suffix and the settings code writes nothing for it.
@@ -76,18 +75,13 @@ rather than restating it.
   from `VFEP_WarcasketTrait` by `WorkProfile.Mirror` in `Startup.Run` so the mods that reshape
   VFEP's work profile reshape ours. Nothing else writes the trait's work fields, and nothing
   tests a pawn for `VFEP_WarcasketTrait`: a hemophage pilot does not carry it.
-- **A walk-up ability is ordered as a vanilla job and bound in its driver.** `Ability_Dismember`
-  and `JobDriver_Dismember` are the model, after the Medic repo's: the job goes through
-  `TryTakeOrderedJob` so it interrupts and queues as an order does, and the driver writes
-  `CompAbilities.currentlyCasting` when the job starts. An apparel ability's `pawn` is null
-  until its first gizmo draw or that binding, and VEF fires no apparel ability's autocast, for
-  the player or for raiders. A think tree gives the same job by making it directly
-  (`JobGiver_HemohunterDismember`), setting the ability's `pawn` itself before it asks the
-  ability anything.
+- **An apparel ability's `pawn` is null until its first gizmo draw** or until something binds
+  it, and VEF fires no apparel ability's autocast, for the player or for raiders.
+  `Abilities/Dismember/CLAUDE.md` has how a job binds it.
 - **A type of another mod's is named by a def field, never in the code**, as a def of another
   mod's is: the main tree leaves the field empty, that mod's compat root fills it in, and the
   code resolves the name by reflection, once, with a warning and a fallback when it is not there
-  (`Abilities/MeleeAim.cs`, for Combat Extended's aim height).
+  (`Abilities/Dismember/MeleeAim.cs`, for Combat Extended's aim height).
 - **Mod-active checks from C#** go through a `ModDetection.IsActive(packageId)` helper
   (`../RimworldModTemplate/Source/1.7/ModDetection.cs` on its `1.7` branch, the Toxin repo's
   `PatchOperationModActive` for the XML side), never `ModsConfig.IsActive(string)`, which misses

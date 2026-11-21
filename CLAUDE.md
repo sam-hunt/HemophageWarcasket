@@ -2,9 +2,10 @@
 
 Guidance for Claude Code when working in this repository. This file holds only what applies
 across the whole repo. Folder guides load on their own when work touches them: `1.6/CLAUDE.md`
-(defs, patches, languages, gating), `Source/1.6/CLAUDE.md` (C#), `Scripts/CLAUDE.md` (l10n and
-release tooling), `.steamworkshop/CLAUDE.md` (Workshop page), `1.6/Mods/CombatExtended/CLAUDE.md`
-(Combat Extended).
+(defs, patches, languages, gating), `Source/1.6/CLAUDE.md` (C#),
+`Source/1.6/Abilities/Dismember/CLAUDE.md` (the pads' ability, file by file), `Scripts/CLAUDE.md`
+(l10n and release tooling), `.steamworkshop/CLAUDE.md` (Workshop page),
+`1.6/Mods/CombatExtended/CLAUDE.md` (Combat Extended).
 
 ## Project
 
