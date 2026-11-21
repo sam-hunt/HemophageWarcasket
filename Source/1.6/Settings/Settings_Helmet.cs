@@ -51,7 +51,7 @@ public partial class HemophageWarcasketSettings
     {
         SectionHeader(listing, "HPWC_SectionHelmet", Mod.Content.ModMetaData?.Icon,
             HeaderTip("HPWC_SectionHelmet".Translate(), "HPWC_SectionHelmetDesc".Translate()), first);
-        helmetSunlight.DoRow(listing);
         helmetPyrophobia.DoRow(listing);
+        helmetSunlight.DoRow(listing);
     }
 }
