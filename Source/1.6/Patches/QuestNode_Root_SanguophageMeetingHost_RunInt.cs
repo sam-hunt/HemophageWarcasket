@@ -11,7 +11,8 @@ namespace HemophageWarcasket.Patches;
 // through quest.GeneratePawn and stores the list in the quest's slate as "sanguophages" and its
 // first pawn as "asker", so a postfix reads both back from QuestGen.slate, which is still this
 // quest's while the root node runs. Slate.Get answers null for a name never set. The asker is
-// the leader the quest's text names, and the one who may offer to join the colony.
+// the leader the quest's text names, and the one who may offer to join the colony. The
+// meeting's chances ignore the quest's threat points, so the calls pass 0.
 //
 // This runs once for each such quest generated, not when the sanguophages walk in: they wait in
 // the quest wearing the set.
@@ -43,6 +44,7 @@ public static class QuestNode_Root_SanguophageMeetingHost_RunInt
             return;
         Pawn leader = QuestGen.slate.Get<Pawn>("asker");
         foreach (Pawn pawn in sanguophages)
-            QuestPilot.TryDress(pawn, pawn == leader ? QuestPilotSource.MeetingLeader : QuestPilotSource.MeetingGuest);
+            QuestPilot.TryDress(
+                pawn, pawn == leader ? QuestPilotSource.MeetingLeader : QuestPilotSource.MeetingGuest, 0f);
     }
 }

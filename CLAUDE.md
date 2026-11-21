@@ -118,7 +118,8 @@ extensions and the armor's quest extension to the fields the settings write (a m
 with one warning). `ListMaskTests` holds the two halves of keeping the set off generated
 pawns: the mask that hides the parts from VFEP's slot fill, and the parts' absent apparel tags.
 `QuestPilotTests`, the fifth to run game code, holds the exception, the quests' sanguophages:
-each source's own chance, the armor's extension to the set's own pieces and research, and the
+each source's own chance, the shuttle master's floor on the quest's threat points, the armor's
+extension to the set's own pieces and research, and the
 two vanilla quest roots the patches bind by name to the game's 1.6 assembly.
 
 ## Layout

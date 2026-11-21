@@ -23,6 +23,8 @@
   <!-- A checkbox's default in its tooltip -->
   <HPWC_Enabled>enabled</HPWC_Enabled>
   <HPWC_Disabled>disabled</HPWC_Disabled>
+  <!-- A slider's value at its off end -->
+  <HPWC_Off>Off</HPWC_Off>
 
   <!-- Hemogen rush section (Source/1.6/Settings/Settings_Rush.cs). {0} in every tooltip is the default -->
   <HPWC_SectionRush>Hemogen rush</HPWC_SectionRush>
@@ -119,6 +121,8 @@
   <HPWC_QuestMeetingGuestDesc>The chance that each of the other sanguophages at a meeting will arrive in a hemophage warcasket as well. Default: {0}.</HPWC_QuestMeetingGuestDesc>
   <HPWC_QuestShipMaster>Shuttle master</HPWC_QuestShipMaster>
   <HPWC_QuestShipMasterDesc>The chance that the sanguophage master of a crashed shuttle will be entombed in a hemophage warcasket, which will make the master much harder to down and capture. Default: {0}.</HPWC_QuestShipMasterDesc>
+  <HPWC_QuestShipMasterPoints>Shuttle master threat points</HPWC_QuestShipMasterPoints>
+  <HPWC_QuestShipMasterPointsDesc>The threat points a crashed shuttle quest must be worth before its sanguophage master can be in a hemophage warcasket. The game raises threat points with your colony's wealth and number of colonists. Default: {0}.</HPWC_QuestShipMasterPointsDesc>
   <HPWC_QuestResearch>Required research</HPWC_QuestResearch>
   <HPWC_QuestResearchDesc>The research your colony must finish before any of these sanguophages can arrive in a hemophage warcasket. Default: {0}.</HPWC_QuestResearchDesc>
   <!-- The first stop of the slider, before the research projects' own names -->

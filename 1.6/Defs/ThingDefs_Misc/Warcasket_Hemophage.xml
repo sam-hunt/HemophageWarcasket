@@ -60,8 +60,8 @@
     quests generate, hemogenic by their pawn kind and so the pilots the set is built for.
     Source/1.6/QuestPilot/QuestPilot.cs has how a pawn is dressed. A set that arrives this
     way cannot be taken off and reused (VFEP blocks the strip and the drop), so what the
-    player can gain from it is the pilot inside. The three chances and requiredResearch are
-    mod settings defaulting to the values here:
+    player can gain from it is the pilot inside. The three chances, shipMasterMinPoints and
+    requiredResearch are mod settings defaulting to the values here:
     - meetingLeaderChance 0.7, the sanguophage who asks for the meeting and leads it: a
       neutral guest, so most meetings show the set without setting it against the colony.
       The leader is also the one who may offer to join, one of the two or three turns the
@@ -74,6 +74,18 @@
       sanguophage's whole 120%, so a psychic weapon reaches only a pilot whose trait raises
       it, and the floors below hold Moving and Manipulation.
       The quest sizes its thralls from threat points that count none of this.
+    - shipMasterMinPoints 2500, the quest's threat points the master's chance needs. The
+      quest spends its points on head count alone: the master plus thralls from two curves,
+      (0, 2) to (2000, 5) in the shuttle and (2000, 0), (2500, 2), (5000, 4), (8000, 6)
+      dropped later, every pawn at combatPower 100. So vanilla's quest is a whole raid's
+      worth of combat power at its 300-point floor and about a third of one at 2500. The set
+      is priced at about 450 combat power on top of the master's 100, an estimate from VFEP's
+      own warcasket pilots (300 to 600 against 65 to 220 for its kinds without one). At 2500
+      the dressed quest is 1250 combat power, half a raid at those points, and it is the
+      first of the slider's stops at which the quest brings two reinforcements (one arrives
+      from just over 2125 points, two from 2375). Under the floor the master is never
+      dressed, whatever the chance. 0 is no floor. Unlike the chance, the floor answers the
+      fight's size, not the capture: a dressed master is as hard to down at any points.
     - requiredResearch VFEP_Warcaskets, the player's own, read as the quest is generated:
       a colony that has not opened VFEP's warcasket line meets none of these pilots.
       researchOptions are the steps the settings offer after "none", the four of VFEP's
@@ -254,6 +266,7 @@
       </li>
       <li Class="HemophageWarcasket.QuestPilotExtension">
         <shipMasterChance>0</shipMasterChance>
+        <shipMasterMinPoints>2500</shipMasterMinPoints>
         <meetingLeaderChance>0.7</meetingLeaderChance>
         <meetingGuestChance>0.1</meetingGuestChance>
         <requiredResearch>VFEP_Warcaskets</requiredResearch>

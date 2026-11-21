@@ -17,7 +17,8 @@ namespace HemophageWarcasket;
 // The pawn is alive and off the map: quest.GeneratePawn passes it to the world, where it waits
 // for the quest to be accepted and its arrival delay to run. Both the roll and the research are
 // therefore read as the quest is generated, and a setting changed or a project finished after
-// that does not reach a pawn already made.
+// that does not reach a pawn already made. So are the quest's threat points, which the shuttle
+// master's chance also needs at or above the extension's floor.
 //
 // What the pawn is left as is what the foundry leaves a pilot as, piece by piece:
 // - The set alone. Everything else the pawn wore is destroyed first, as VFEP's postfix strips
@@ -56,7 +57,7 @@ public static class QuestPilot
     public static QuestPilotExtension Extension =>
         DefDatabase<ThingDef>.GetNamedSilentFail(ArmorDefName)?.GetModExtension<QuestPilotExtension>();
 
-    public static void TryDress(Pawn pawn, QuestPilotSource source)
+    public static void TryDress(Pawn pawn, QuestPilotSource source, float points)
     {
         try
         {
@@ -68,7 +69,7 @@ public static class QuestPilot
                 return;
             if (pawn.genes?.GetFirstGeneOfType<Gene_Hemogen>() == null)
                 return;
-            if (!Rand.Chance(extension.ChanceFor(source)))
+            if (!Rand.Chance(extension.ChanceFor(source, points)))
                 return;
             List<ThingDef> set = [armor, .. extension.otherPieces];
             if (!set.TrueForAll(piece => Fits(pawn, piece)) || !WearableTogether(set, pawn.RaceProps.body))

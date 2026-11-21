@@ -12,11 +12,13 @@ using Xunit;
 namespace HemophageWarcasket.Tests;
 
 // The quest pilot's pure rule (QuestPilotExtension.ChanceFor): each source has a chance of its
-// own. Then the def wiring, checked off the XML since the WarcasketDef type pulls in VFEP, which
-// the test output never carries: the armor declares the extension once, with chances in range,
-// names the set's other two pieces, each a def of this mod, and offers research options that end
-// on the set's own research. Last, the two vanilla methods the patches bind by name, on the
-// game's 1.6 assembly: a rename there would otherwise only show as a warning in a player's log.
+// own, and the shuttle master's needs the quest's threat points at or above the floor. Then the
+// def wiring, checked off the XML since the WarcasketDef type pulls in VFEP, which the test
+// output never carries: the armor declares the extension once, with chances in range and the
+// floor within 0 to 10000, names the set's other two pieces, each a def of this mod, and offers
+// research options that end on the set's own research. Last, the two vanilla methods the
+// patches bind by name, on the game's 1.6 assembly: a rename there would otherwise only show as
+// a warning in a player's log.
 public class QuestPilotTests
 {
     private const string DefsFolder = "1.6/Defs/ThingDefs_Misc";
@@ -46,19 +48,31 @@ public class QuestPilotTests
     private static string[] Names(XElement list) => list.Elements("li").Select(li => li.Value.Trim()).ToArray();
 
     [Theory]
-    [InlineData(QuestPilotSource.ShipMaster, 0.2f)]
-    [InlineData(QuestPilotSource.MeetingLeader, 0.5f)]
-    [InlineData(QuestPilotSource.MeetingGuest, 0.9f)]
-    public void ChanceFor_IsTheSourcesOwn(QuestPilotSource source, float expected)
+    [InlineData(QuestPilotSource.ShipMaster, 2499f, 0f)]
+    [InlineData(QuestPilotSource.ShipMaster, 2500f, 0.2f)]
+    [InlineData(QuestPilotSource.ShipMaster, 6000f, 0.2f)]
+    [InlineData(QuestPilotSource.MeetingLeader, 0f, 0.5f)]
+    [InlineData(QuestPilotSource.MeetingGuest, 0f, 0.9f)]
+    public void ChanceFor_IsTheSourcesOwn_AndTheShuttleMastersNeedsTheFloor(
+        QuestPilotSource source, float points, float expected)
     {
         var extension = new QuestPilotExtension
         {
             shipMasterChance = 0.2f,
+            shipMasterMinPoints = 2500f,
             meetingLeaderChance = 0.5f,
             meetingGuestChance = 0.9f,
         };
 
-        Assert.Equal(expected, extension.ChanceFor(source));
+        Assert.Equal(expected, extension.ChanceFor(source, points));
+    }
+
+    [Fact]
+    public void ChanceFor_WithNoFloor_IsTheShuttleMastersChanceAtZeroPoints()
+    {
+        var extension = new QuestPilotExtension { shipMasterChance = 0.2f, shipMasterMinPoints = 0f };
+
+        Assert.Equal(0.2f, extension.ChanceFor(QuestPilotSource.ShipMaster, 0f));
     }
 
     [Fact]
@@ -82,6 +96,15 @@ public class QuestPilotTests
         Assert.NotNull(element);
         float chance = float.Parse(element!.Value, CultureInfo.InvariantCulture);
         Assert.InRange(chance, 0f, 1f);
+    }
+
+    [Fact]
+    public void Armor_ShuttleMasterFloorIsWithinZeroToTenThousand()
+    {
+        XElement? element = ExtensionEntry().Element("shipMasterMinPoints");
+
+        Assert.NotNull(element);
+        Assert.InRange(float.Parse(element!.Value, CultureInfo.InvariantCulture), 0f, 10000f);
     }
 
     [Fact]

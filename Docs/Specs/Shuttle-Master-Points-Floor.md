@@ -1,7 +1,8 @@
 # SPEC: A threat-point floor for the shuttle master's set
 
-Status: PROPOSED, not built. Extends the quest pilots (`Source/1.6/QuestPilot/`, the armor def's
-"Quest pilots" header paragraph), which are built and not yet run in game. Vanilla facts below
+Status: BUILT as recommended in section 4, with the floor at 2500 and the slider; the code and
+the armor def's "Quest pilots" header paragraph supersede this file. Section 6's third decision
+stands open in `TODOs.md`: the price of 450 is unchecked in play. Vanilla facts below
 were read on RimWorld 1.7.5014 and the frozen 1.6 assembly, the same on both unless a line says
 otherwise; each names where it was read so a build session can re-check it instead of trusting
 this file.

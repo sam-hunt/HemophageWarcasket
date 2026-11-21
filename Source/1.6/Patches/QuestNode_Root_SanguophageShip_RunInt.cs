@@ -13,6 +13,10 @@ namespace HemophageWarcasket.Patches;
 // while the root node runs. Slate.Get answers null for a name never set. The thralls generated
 // beside the master are not hemogenic and are not offered.
 //
+// The quest's threat points are read from the slate as "points", the read RunInt itself makes
+// (slate.Get("points", 0f)), so a quest generated with no points in its slate reads 0 and is
+// under any floor.
+//
 // This runs once for each such quest generated, not when the shuttle crashes: the master waits
 // in the quest wearing the set.
 //
@@ -37,5 +41,6 @@ public static class QuestNode_Root_SanguophageShip_RunInt
     public static MethodBase TargetMethod() => Target;
 
     public static void Postfix() =>
-        QuestPilot.TryDress(QuestGen.slate?.Get<Pawn>("sanguophage"), QuestPilotSource.ShipMaster);
+        QuestPilot.TryDress(QuestGen.slate?.Get<Pawn>("sanguophage"), QuestPilotSource.ShipMaster,
+            QuestGen.slate?.Get("points", 0f) ?? 0f);
 }

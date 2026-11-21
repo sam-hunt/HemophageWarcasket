@@ -78,7 +78,8 @@ rather than restating it.
   VFEP's work profile reshape ours. Nothing else writes the trait's work fields, and nothing
   tests a pawn for `VFEP_WarcasketTrait`: a hemophage pilot does not carry it.
 - **The quest pilots are one rule and two postfixes.** `QuestPilot/QuestPilot.TryDress` puts
-  the whole set on a living, hemogenic pawn by the chances and the research on the armor's
+  the whole set on a living, hemogenic pawn by the chances, the research and, for the shuttle
+  master, the floor on the quest's threat points, all on the armor's
   `QuestPilotExtension`, and is called only from the postfixes on the two vanilla quest roots
   that make Biotech's sanguophages (`Patches/QuestNode_Root_SanguophageShip_RunInt`,
   `Patches/QuestNode_Root_SanguophageMeetingHost_RunInt`), both bound by name with a

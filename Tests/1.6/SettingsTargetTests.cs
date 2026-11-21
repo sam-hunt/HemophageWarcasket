@@ -111,6 +111,7 @@ public class SettingsTargetTests
         XElement armor = Def("ThingDefs_Misc", "Warcasket_Hemophage.xml", "HPWC_Warcasket_Hemophage");
         XElement pilot = armor.Element("modExtensions")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.QuestPilotExtension");
-        AssertHas(pilot, "shipMasterChance", "meetingLeaderChance", "meetingGuestChance", "researchOptions");
+        AssertHas(pilot, "shipMasterChance", "shipMasterMinPoints", "meetingLeaderChance", "meetingGuestChance",
+            "researchOptions");
     }
 }
