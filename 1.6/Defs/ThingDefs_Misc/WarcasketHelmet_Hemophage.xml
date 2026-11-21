@@ -10,10 +10,13 @@
     the stat's maximum. Blunt 1.5 is the Guardian's and the Brute's specialty, the most any
     VFEP piece carries, and Combat Extended has a row for it. Heat 2 is the stat's maximum and
     the Hazard's on every piece: flame damage arrives without armor penetration, so none of
-    it gets through to the head. Mass 8, PsychicSensitivity -0.5, ToxicResistance 0.5,
-    SlaveSuppressionOffset 0.1, VacuumResistance 0.7 and uiIconScale 1.25 are the same on
-    all five of VFEP's spacer helmets. Insulation 10 / 10 is three of the five's (Controller,
-    Sarcophagus, Brute; the Siegebreaker's and the Guardian's are 5 / 2).
+    it gets through to the head. MoveSpeed -0.1 is the plating's weight: no spacer helmet
+    carries a MoveSpeed offset, the Guardian pays for its Blunt 1.5 with -0.5 on its
+    shoulders, and -0.1 is what VFEP's Warcasket, Marine and Aerial helmets take. Mass 8,
+    PsychicSensitivity -0.5, ToxicResistance 0.5, SlaveSuppressionOffset 0.1,
+    VacuumResistance 0.7 and uiIconScale 1.25 are the same on all five of VFEP's spacer
+    helmets. Insulation 10 / 10 is three of the five's (Controller, Sarcophagus, Brute; the
+    Siegebreaker's and the Guardian's are 5 / 2).
 
     Cost: ComponentSpacer 4 is the tier's price for a helmet with a function of its own (the
     Controller's and the Brute's, where the other three take 2), here the visor's two.
@@ -68,6 +71,7 @@
       <EquipDelay>1</EquipDelay>
     </statBases>
     <equippedStatOffsets>
+      <MoveSpeed>-0.1</MoveSpeed>
       <PsychicSensitivity>-0.5</PsychicSensitivity>
       <ToxicResistance>0.5</ToxicResistance>
       <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.1</SlaveSuppressionOffset>
