@@ -14,12 +14,19 @@
     fill, since a crafted piece starts full. DevilstrandCloth 25 is the heat plating's price
     (the armor's header).
 
-    HemogenGainFactor +0.25 is the pads' reward for the drain, the one offset beyond the
-    tier's two and the number Biotech's hemogen amplifier gives. It has no hardware in the
-    fiction and no line in the descriptions: the pads are servos and reinforced arms, and
-    the pilot drains hemogen from the wound they leave (the armor's header). GeneUtility.OffsetHemogen multiplies every gain
-    by the stat, so the pilot's bloodfeed, hemogen packs and Dismember's drain each give a
-    quarter more, a drain's 20 becoming 25. It does nothing for a pilot without the gene.
+    PsychicSensitivity -0.2 cancels Biotech's psy-sensitive gene (PsychicAbility_Enhanced,
+    +0.2), which the sanguophage carries. The armor and the helmet take the tier's -0.5 each,
+    and no VFEP shoulder pads take any, so the full set leaves a sanguophage at 0, psychically
+    deaf, as the tier's full sets leave a baseliner. A pilot without the gene lands below 0,
+    which the stat's minValue 0 clamps.
+
+    HemogenGainFactor +0.25 is the pads' reward for the drain, beside the tier's two offsets
+    and the psychic one, and the number Biotech's hemogen amplifier gives. It has no hardware
+    in the fiction and no line in the descriptions: the pads are servos and reinforced arms,
+    and the pilot drains hemogen from the wound they leave (the armor's header).
+    GeneUtility.OffsetHemogen multiplies every gain by the stat, so the pilot's bloodfeed,
+    hemogen packs and Dismember's drain each give a quarter more, a drain's 20 becoming 25.
+    It does nothing for a pilot without the gene.
 
     Dismember: the pads' module, an ability granted by the CompAbilitiesApparel below
     (AbilityDefs/Dismember.xml has it), limited by the strikes loaded in the reloadable
@@ -81,6 +88,7 @@
     </statBases>
     <equippedStatOffsets>
       <HemogenGainFactor>0.25</HemogenGainFactor>
+      <PsychicSensitivity>-0.2</PsychicSensitivity>
       <SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.2</SlaveSuppressionOffset>
       <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.1</VacuumResistance>
     </equippedStatOffsets>
