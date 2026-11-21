@@ -34,8 +34,11 @@ series in secret. Player-facing text tells it as rumor ("Some think ...", "Some 
 the way Biotech tells its own sanguophage lore, and never as settled history. It says of hemogen
 only what Biotech does: a hemogenic's own is in stores in the body, never "in the blood", and
 blood is what hemogen is extracted from. The pads carry no hardware for the drain: servos and
-reinforced arms tear the limb, and the pilot "drains hemogen from the wound", words that say
-where it comes from and not how, on every surface.
+reinforced arms tear the limb, and the pilot drains hemogen, on every surface. No surface names
+Bloodfeed, fangs or feeding, which are the bloodfeeder gene's where any hemogenic pilot drains.
+The in-game descriptions say "drains hemogen from the wound", words that say where it comes
+from and not how; `About.xml`, the Workshop page and the README may say whom it is drained
+from instead ("from unwilling targets").
 
 **State: all three mechanics in, not yet released.** The three pieces are in on the tier's
 baseline stats and costs with their commissioned art, but for the heat plating and the

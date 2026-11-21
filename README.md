@@ -20,24 +20,26 @@ Vanilla Factions Expanded - Pirates lets you weld a pawn into a warcasket, a ste
 customized part by part at the foundry, with a range of sets that carries a colony from the
 industrial era into the late game. This mod adds one more set to that range.
 
-The Hemophage is a 10th-generation warcasket made for sanguophages, and for any other pilot
-with Biotech's hemogenic gene. It runs on its pilot's hemogen. A pilot without the gene cannot
-use the hemogen rush or drain hemogen, and keeps everything else.
+The Hemophage is an off-record 10th-generation warcasket that enhances hemogenic pilots. Rumor
+blames sanguophages either way: some say they stole and refitted the designs, others that it
+was an inside job all the way to the top. A pilot without Biotech's hemogenic gene cannot use
+hemogen rush or drain hemogen when dismembering, and keeps everything else.
 
 ## Features
 
 ### The Set
 
-Armor, shoulder pads and helmet, welded on at VFE Pirates' warcasket foundry and unlocked by its
-spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets as you please.
+Armor, shoulder pads and helmet, each with extra protection against heat damage beyond the
+spacer-tier baseline, welded on at VFE Pirates' warcasket foundry and unlocked by its spacer
+warcaskets research. Mix and match with other warcaskets' pieces as you please.
 
-- **Armor:** Grants hemogen rush, which spends the pilot's hemogen quickly to make them much
-  faster and stronger, and keeps their blood pumping even without a heart
-- **Shoulders:** Grants dismember, which tears a limb off an enemy so a hemogenic pilot can
-  drain hemogen from the wound. The shoulders hold a few strikes, reload with components and
-  raise the pilot's hemogen gain
-- **Helmet:** Shields a pilot who is sensitive to sunlight and steadies one who is afraid of
-  fire, with the heaviest plating of the set
+- **Armor:** Grants hemogen rush, allowing a pilot to accelerate their hemogen metabolism
+  temporarily, making them much faster and stronger.
+- **Shoulders:** Grants dismember, engaging heavy burnout servos to tear a limb clean off most
+  enemies. A hemogenic pilot can drain hemogen even from unwilling targets this way.
+- **Helmet:** Shields against sunlight sensitivity, and contains filters that steady against
+  pyrophobia. Heavy plating covers a sanguophage's biggest weakness: getting their brains blown
+  out.
 - **Mod settings** for how fast the armor spends hemogen and what it gives in return, the
   shoulders' strike capacity, reload cost, casting time, drain and targets, a steady glow
   in place of the pulse, the helmet's protection from sunlight and from fire terror, and
@@ -49,9 +51,8 @@ spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets 
 
 ### Enabled work types
 
-VFE Pirates' warcaskets block all skilled and intellectual labor. The Hemophage's pilot keeps
-intellectual work, so they can still research and hack. The mod settings can block it again, or
-enable any of the other work a warcasket blocks.
+The pilot can still research and hack, which VFE Pirates' warcaskets otherwise block. These can
+be widened or narrowed in mod settings.
 
 ## Requirements
 
