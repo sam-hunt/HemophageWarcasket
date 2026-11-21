@@ -23,15 +23,16 @@ Sanguophage/`).
   is argued from a part's hit points needs its CE value in that file.
 - **Melee aim height**: a comp CE adds to every humanlike, set by the player from a gizmo.
   `Patches/Dismember.xml` names the comp and its field for the strike to follow; the code that
-  reads it (`Source/1.6/Abilities/MeleeAim.cs`) names nothing of CE's. A renamed class or field
-  is one warning in the log and a random limb, so check both names after a CE update.
+  reads it (`Source/1.6/Abilities/Dismember/MeleeAim.cs`) names nothing of CE's. A renamed class
+  or field is one warning in the log and a random limb, so check both names after a CE update.
 
 ## Looked at and left alone
 
 - **The strike's damage path.** CE's armor replaces vanilla's inside the branch a hit that
   ignores armor skips, and returns at once for a damage def without an `armorCategory`; its
-  other patches on `DamageWorker_AddInjury` are on the propagation the strike turns off
-  (`Ability_Dismember`'s header). `DamageDefs/Dismember.xml` must keep no `armorCategory`.
+  other patches on `DamageWorker_AddInjury` are on the propagation the strike turns off (the
+  header of `Ability_Dismember.Strike.cs`). `DamageDefs/Dismember.xml` must keep no
+  `armorCategory`.
 - **The reload.** CE prefixes `JobGiver_Reload.TryGiveJob`: a pilot carrying the pool's
   components has as many as the pads lack dropped at their feet and loaded from there, and
   otherwise vanilla fetches from the map as without CE. CE's "Reload worn armor" button on every

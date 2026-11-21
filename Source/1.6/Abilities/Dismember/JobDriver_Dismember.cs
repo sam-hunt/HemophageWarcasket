@@ -46,11 +46,11 @@ namespace HemophageWarcasket;
 // strike is already in it at that first check.
 //
 // A hemohunter's job may be on a corpse from the start (JobGiver_HemohunterDismember;
-// Ability_Dismember has the rule). The toils are the same ones: the walk and VEF's conditions
-// take a corpse as they take the one the drain followed its target to, the hold in the warmup
-// is for a pawn and passes a corpse by, and the check and the cast go to the ability's corpse
-// overloads. foundDead keeps that through a save, since a corpse in the job's target says
-// nothing by itself once FollowIntoDeath may have put it there.
+// Ability_Dismember.Hunt.cs has the rule). The toils are the same ones: the walk and VEF's
+// conditions take a corpse as they take the one the drain followed its target to, the hold in
+// the warmup is for a pawn and passes a corpse by, and the check and the cast go to the
+// ability's corpse overloads. foundDead keeps that through a save, since a corpse in the job's
+// target says nothing by itself once FollowIntoDeath may have put it there.
 public class JobDriver_Dismember : JobDriver_CastAbilityOnce
 {
     private AbilityDef abilityDef;

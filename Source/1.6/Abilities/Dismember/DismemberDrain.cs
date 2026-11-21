@@ -17,7 +17,7 @@ public enum DrainOutlook
 }
 
 // The drain's foresight as plain arithmetic on a hediff def, so it runs on a hand-built one.
-// Ability_Dismember's header has when the cursor asks and with what severity.
+// The header of Ability_Dismember.Foresight.cs has when the cursor asks and with what severity.
 public static class DismemberDrain
 {
     // What a target left at this severity of the blood loss hediff comes to, by the two tests

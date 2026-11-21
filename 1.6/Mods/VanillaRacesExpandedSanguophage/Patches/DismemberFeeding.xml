@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
   Vanilla Races Expanded - Sanguophage: what its feeding genes and its hemohunter mental state
-  mean to the pads' Dismember. The fields are DismemberExtension's, their rules in
-  Ability_Dismember's header; this root only names that mod's defs for them. Its 1.7 folder is
-  its 1.6 one, so this root is listed under both versions.
+  mean to the pads' Dismember. The fields are DismemberExtension's, their rules in the headers
+  of Ability_Dismember.Drain.cs and Ability_Dismember.Hunt.cs; this root only names that mod's
+  defs for them. Its 1.7 folder is its 1.6 one, so this root is listed under both versions.
 
   drainSources. That mod gives a feeding gene an ability of its own beside Bloodfeed, with the
   same 20 hemogen scaled by body size, and the drain takes each gene's targets as that ability

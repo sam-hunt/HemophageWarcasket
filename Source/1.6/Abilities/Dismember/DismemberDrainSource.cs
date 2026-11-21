@@ -17,10 +17,10 @@ public enum DrainTargetKind
     Corpse,
 }
 
-// One wider source of hemogen for the pads' drain than the plain one (Ability_Dismember's
-// header has the rule), listed on the ability's DismemberExtension. The main tree lists none:
-// each comes from a compat root, with the mod whose gene it reads, and its values and their
-// rationale are in that root's patch.
+// One wider source of hemogen for the pads' drain than the plain one (the header of
+// Ability_Dismember.Drain.cs has the rule), listed on the ability's DismemberExtension. The
+// main tree lists none: each comes from a compat root, with the mod whose gene it reads, and
+// its values and their rationale are in that root's patch.
 public class DismemberDrainSource
 {
     // The gene the pilot needs active.

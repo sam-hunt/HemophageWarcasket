@@ -14,7 +14,7 @@
     rings do, taken from the tail in.
 
     damage 60 is what the strike does to that one part, times the pilot's MeleeDamageFactor
-    and the target's IncomingDamageFactor (Ability_Dismember has the arithmetic). A limb with
+    and the target's IncomingDamageFactor (Ability_Dismember.Strike.cs has the sum). A limb with
     more health left than that is wounded and stays on. 60 is twice a human limb's 30, so a
     Tough target, who takes half damage, still loses it, and only one who stacks the robust
     gene on that (22.5) keeps the limb. It is about two blows of a zeushammer (31), from a
@@ -49,7 +49,7 @@
     the target's body size as a bite is, and targetBloodLoss 0.4499 is the blood loss a bite
     causes, on top of the stump's own bleeding. A drain cut short keeps what it collected.
     A target that dies, to the strike or during the drain, is drained on as a corpse for the
-    blood it has left, and one that died of blood loss has none (Ability_Dismember's header).
+    blood it has left, and one that died of blood loss has none (Ability_Dismember.Drain.cs).
     A bloodfeeder is not drained, as Bloodfeed refuses one. drainSources, feedingHediffs and
     hemohunterStates are unset here: they widen the drain for another mod's feeding genes
     and hand its hunting mental state the strike, so each is added by that mod's compat root

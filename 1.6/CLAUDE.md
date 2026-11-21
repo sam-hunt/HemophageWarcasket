@@ -27,7 +27,7 @@ manifest globs, so new files and subfolders need no build change.
   the target's faction, guilt, kill blame and the damage records treat it as an attack.
   It writes no combat log line, so the caller adds one, on a rule pack of ours under vanilla's
   own log entry class. Dismember's strike is the model (`DamageDefs/Dismember.xml`,
-  `RulePackDefs/Combat_Dismember.xml`, `Ability_Dismember`).
+  `RulePackDefs/Combat_Dismember.xml`, `Ability_Dismember.Strike.cs`).
 - **A state the pilot carries is a hediff.** The hemogen rush is on while the pilot has
   `HPWC_HemogenRush`: the toggle adds it and asks its comp to stop it, its stage is the buff,
   its comp spends the hemogen and ends it, and the game saves it. Anything that reacts to the

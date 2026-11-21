@@ -33,10 +33,10 @@ namespace HemophageWarcasket;
 // core part has none. Aim never reaches the head: only a target out of limbs loses it.
 //
 // Taking hold of a part is not tearing it off: the strike does a set damage, and a part with
-// more health left than that keeps to the body, wounded (Ability_Dismember has the damage).
-// Outlook says before the click which of the two the parts the strike could take would do,
-// and CouldBleed whether any of them would bleed, torn off or wounded (Ability_Dismember has
-// why a solid part does not).
+// more health left than that keeps to the body, wounded (Ability_Dismember.Strike.cs has the
+// damage). Outlook says before the click which of the two the parts the strike could take would
+// do, and CouldBleed whether any of them would bleed, torn off or wounded
+// (Ability_Dismember.Foresight.cs has why a solid part does not).
 //
 // A missing part's children carry missing hediffs of their own (Hediff_MissingPart adds them,
 // 1.6), so a not-missing part never sits under a missing one. CanStrike is asked by the

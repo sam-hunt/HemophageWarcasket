@@ -81,7 +81,7 @@ public class CompatPatchTests
     }
 
     private static string[] PublicFields(string sourceFile) =>
-        Regex.Matches(File.ReadAllText(Path.Combine(RepoRoot, "Source/1.6/Abilities", sourceFile)),
+        Regex.Matches(File.ReadAllText(Path.Combine(RepoRoot, "Source/1.6/Abilities/Dismember", sourceFile)),
                 @"^\s*public\s+[\w<>\[\], ]+?\s+(\w+)\s*(?:=[^;]*)?;", RegexOptions.Multiline)
             .Cast<Match>().Select(m => m.Groups[1].Value).ToArray();
 
@@ -99,7 +99,7 @@ public class CompatPatchTests
     public void DismemberExtensionPatches_NameOnlyDeclaredFields()
     {
         var extensionFields = PublicFields("DismemberExtension.cs");
-        var sourceFile = File.ReadAllText(Path.Combine(RepoRoot, "Source/1.6/Abilities/DismemberDrainSource.cs"));
+        var sourceFile = File.ReadAllText(Path.Combine(RepoRoot, "Source/1.6/Abilities/Dismember/DismemberDrainSource.cs"));
         var sourceFields = PublicFields("DismemberDrainSource.cs");
         var targetKinds = Regex.Matches(Regex.Match(sourceFile, @"enum DrainTargetKind\s*\{(.*?)\}", RegexOptions.Singleline).Groups[1].Value,
             @"^\s*(\w+),", RegexOptions.Multiline).Cast<Match>().Select(m => m.Groups[1].Value).ToArray();

@@ -20,7 +20,7 @@ namespace HemophageWarcasket;
 // aside, and then only those the strike is valid on and the drain feeds from. While the
 // ability's extension says so (hemohunterHuntsByGene) it is also what the pilot's drain
 // sources feed on: the pawns a source opens, and the corpses on the map when a source is for
-// those (Ability_Dismember has the rule for a corpse).
+// those (Ability_Dismember.Hunt.cs has the rule for a corpse).
 //
 // Of that prey the pilot takes the nearest it can reach, by straight distance, as vanilla's
 // berserk takes its own (JobGiver_Berserk, through AttackTargetFinder.BestAttackTarget to
