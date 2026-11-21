@@ -21,12 +21,8 @@ customized part by part at the foundry, with a range of sets that carries a colo
 industrial era into the late game. This mod adds one more set to that range.
 
 The Hemophage is a 10th-generation warcasket made for sanguophages, and for any other pilot
-with Biotech's hemogenic gene. It runs on the hemogen in its pilot's blood. A pilot without the
-gene gets an ordinary spacer warcasket.
-
-The mod is in development and has no release yet. The three pieces are in with their art, and
-the armor's and the shoulders' abilities, the helmet's protections and the pilot's work types
-are built.
+with Biotech's hemogenic gene. It runs on its pilot's hemogen. A pilot without the gene cannot
+use the hemogen rush or drain hemogen, and keeps everything else.
 
 ## Features
 
@@ -35,10 +31,11 @@ are built.
 Armor, shoulder pads and helmet, welded on at VFE Pirates' warcasket foundry and unlocked by its
 spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets as you please.
 
-- **Armor:** An ability that spends the pilot's hemogen quickly to make them much faster and
-  stronger for a short time
-- **Shoulders:** An ability that tears a limb off an enemy, after which a hemogenic pilot
-  drains hemogen from the wound. The shoulders hold two strikes and reload with components
+- **Armor:** Grants hemogen rush, which spends the pilot's hemogen quickly to make them much
+  faster and stronger, and keeps their blood pumping even without a heart
+- **Shoulders:** Grants dismember, which tears a limb off an enemy so a hemogenic pilot can
+  drain hemogen from the wound. The shoulders hold a few strikes, reload with components and
+  raise the pilot's hemogen gain
 - **Helmet:** Shields a pilot who is sensitive to sunlight and steadies one who is afraid of
   fire, with the heaviest plating of the set
 - **Mod settings** for how fast the armor spends hemogen and what it gives in return, the

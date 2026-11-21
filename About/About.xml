@@ -4,11 +4,11 @@
   <author>Sam Hunt</author>
   <packageId>shunter.hemophagewarcasket</packageId>
   <modVersion>0.1.0</modVersion>
-  <description>Adds the Hemophage, a 10th-generation warcasket for Vanilla Factions Expanded - Pirates made for sanguophages and any other pilot with the hemogenic gene, built at the warcasket foundry like any other set.
+  <description>Adds the Hemophage, a 10th-generation warcasket for Vanilla Factions Expanded - Pirates made for sanguophages and any other hemogenic pilot, built at the warcasket foundry like any other set.
 
-The armor can spend the pilot's hemogen to push their body far past its limits for a short time. The shoulders let the pilot tear a limb off an enemy and then drain hemogen from the wound, and the helmet shields the pilot from sunlight.
+The armor can spend the pilot's hemogen to make them much faster and stronger, and keeps their blood pumping even without a heart. The shoulders let the pilot tear a limb off an enemy and drain hemogen from the wound, and the helmet shields the pilot from sunlight and steadies them near fire.
 
-Supports CE, Vanilla Gravship Expanded, and SOS2.</description>
+Supports CE, Vanilla Gravship Expanded, Vanilla Races Expanded - Sanguophage and SOS2.</description>
   <supportedVersions>
     <li>1.6</li>
     <li>1.7</li>

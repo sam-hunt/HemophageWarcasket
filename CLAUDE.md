@@ -20,8 +20,8 @@ prefix `HPWC_`.
 built on Biotech's hemogen and the sanguophage's other genes: the armor a toggled ability that
 spends hemogen quickly for a burst of speed and strength, with glowing parts on every worn piece
 of the set while it runs; the shoulder pads an ability that destroys a target's limb and, for a
-hemogenic pilot on a humanlike target, has the pilot feed from the wound, on a small stock of
-strikes reloaded with components; the helmet protection from sunlight for a pilot with a sunlight
+hemogenic pilot on a humanlike target, drains hemogen from it, on a small stock of strikes
+reloaded with components; the helmet protection from sunlight for a pilot with a sunlight
 sensitivity gene, a steadier nerve near fire for one with the pyrophobia gene, and the set's
 heaviest plating. A pilot without the gene gets a plain spacer
 warcasket. Any pilot keeps intellectual work, which VFEP's warcaskets block.
@@ -33,8 +33,9 @@ for sanguophages, or that sanguophages who directed the program from the top san
 series in secret. Player-facing text tells it as rumor ("Some think ...", "Some believe ..."),
 the way Biotech tells its own sanguophage lore, and never as settled history. It says of hemogen
 only what Biotech does: a hemogenic's own is in stores in the body, never "in the blood", and
-blood is what hemogen is extracted from. The pads carry no feeding hardware: servos and
-reinforced arms tear the limb, and the pilot feeds from the wound.
+blood is what hemogen is extracted from. The pads carry no hardware for the drain: servos and
+reinforced arms tear the limb, and the pilot "drains hemogen from the wound", words that say
+where it comes from and not how, on every surface.
 
 **State: all three mechanics in, not yet released.** The three pieces are in on the tier's
 baseline stats and costs with their commissioned art, but for the heat plating and the

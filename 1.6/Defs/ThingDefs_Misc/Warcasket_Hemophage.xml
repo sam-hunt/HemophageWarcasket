@@ -74,11 +74,12 @@
 
     What the text may say of hemogen is what Biotech says: a hemogenic's own is in stores in
     the body ("internal hemogen stores", "hemogen glands"), never in the blood, and blood is
-    what hemogen is extracted from. So the suit spends the pilot's hemogen and the pilot
-    feeds from a wound. The pads have no feeding hardware: their servos and reinforced arms
-    tear the limb, and feeding is the pilot's own. Any hemogenic pilot feeds (AbilityDefs/
-    Dismember.xml), so the text names neither fangs nor Bloodfeed, which are the bloodfeeder
-    gene's.
+    what hemogen is extracted from. So the suit spends the pilot's hemogen, and the pilot
+    drains hemogen from a wound, which says where it comes from and not how. The pads have
+    no hardware for the drain: their servos and reinforced arms tear the limb, and the rest
+    is the pilot's own. Any hemogenic pilot drains (AbilityDefs/Dismember.xml), so the text
+    names neither fangs nor Bloodfeed, which are the bloodfeeder gene's, nor feeding, which
+    reads as eating.
 
     Art: Textures/Things/Pawn/Warcasketlike/WarcasketHemophage/, laid out as VFEP's sets are.
     The worn graphic is Graphic_Multi (the _north/_east/_south facings); the item icon is the
@@ -124,7 +125,7 @@
     <defName>HPWC_Warcasket_Hemophage</defName>
     <label>hemophage warcasket</label>
     <shortDescription>Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make them faster and stronger.</shortDescription>
-    <description>Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make them faster and stronger.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted for sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend their hemogen quickly to make them much faster and stronger. Servos in the pauldrons can tear a limb off an enemy and leave a wound the pilot can feed from, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.</description>
+    <description>Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make them faster and stronger.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted for sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend their hemogen quickly to make them much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.</description>
     <graphicData>
       <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophage</texPath>
       <shaderType>CutoutComplex</shaderType>

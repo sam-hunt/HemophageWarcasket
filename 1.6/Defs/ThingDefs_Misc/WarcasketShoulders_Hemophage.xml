@@ -14,10 +14,10 @@
     fill, since a crafted piece starts full. DevilstrandCloth 25 is the heat plating's price
     (the armor's header).
 
-    HemogenGainFactor +0.25 is the pads' reward for feeding, the one offset beyond the tier's
-    two and the number Biotech's hemogen amplifier gives. It has no hardware in the fiction
-    and no line in the text: the pads are servos and reinforced arms, and the pilot feeds from
-    the wound they leave (the armor's header). GeneUtility.OffsetHemogen multiplies every gain
+    HemogenGainFactor +0.25 is the pads' reward for the drain, the one offset beyond the
+    tier's two and the number Biotech's hemogen amplifier gives. It has no hardware in the
+    fiction and no line in the descriptions: the pads are servos and reinforced arms, and
+    the pilot drains hemogen from the wound they leave (the armor's header). GeneUtility.OffsetHemogen multiplies every gain
     by the stat, so the pilot's bloodfeed, hemogen packs and Dismember's drain each give a
     quarter more, a drain's 20 becoming 25. It does nothing for a pilot without the gene.
 
@@ -65,7 +65,7 @@
     <defName>HPWC_WarcasketShoulders_Hemophage</defName>
     <label>hemophage warcasket shoulders</label>
     <shortDescription>Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy.</shortDescription>
-    <description>Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted for sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend their hemogen quickly to make them much faster and stronger. Servos in the pauldrons can tear a limb off an enemy and leave a wound the pilot can feed from, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.</description>
+    <description>Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted for sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend their hemogen quickly to make them much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.</description>
     <graphicData>
       <texPath>Things/Pawn/Warcasketlike/WarcasketHemophage/WarcasketHemophageShoulders</texPath>
       <shaderType>CutoutComplex</shaderType>
