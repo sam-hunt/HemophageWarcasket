@@ -59,7 +59,7 @@
   <HediffDef>
     <defName>HPWC_HemogenRush</defName>
     <label>hemogen rush</label>
-    <description>This person's warcasket is pumping hemogen through their body, allowing them to move faster and hit harder. Their hemogen will run down quickly while this lasts.</description>
+    <description>This person's warcasket is spending their hemogen quickly, allowing them to move faster and hit harder.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(1, 0, 0.5)</defaultLabelColor>
     <isBad>false</isBad>

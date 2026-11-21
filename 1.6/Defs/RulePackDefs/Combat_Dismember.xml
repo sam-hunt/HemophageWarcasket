@@ -7,7 +7,7 @@
     took hold of, and the constant recipient_part0_destroyed, True when it came off
     (PlayLogEntryUtility.RulesForDamagedParts, 1.6 and 1.7). The part is a limb, or the head of
     a target with none left, so no line may assume which. Every line carries one of the two
-    values of the constant, the first four for a part torn off and the rest for one that held.
+    values of the constant, the first three for a part torn off and the rest for one that held.
 
     Every line is a whole sentence with no include and no sub-rule, so a translation can
     reorder each freely. Tests/1.6/RulePackTests.cs holds the symbols to the ones that entry
@@ -18,7 +18,6 @@
     <rulePack>
       <rulesStrings>
         <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].</li>
-        <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore [RECIPIENT_definite]'s [recipient_part0_label] off.</li>
         <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].</li>
         <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].</li>
         <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tried to tear off [RECIPIENT_definite]'s [recipient_part0_label], but only wounded it.</li>

@@ -15,7 +15,7 @@
 
   <!-- Mod settings (Source/1.6/Settings/) -->
   <HPWC_SettingsCategory>Hemophage Warcasket</HPWC_SettingsCategory>
-  <!-- Shown in place of the two ability sections (HemophageWarcasketSettings.TryGetDefs) -->
+  <!-- Shown in place of the ability and helmet sections (HemophageWarcasketSettings.TryGetDefs) -->
   <HPWC_SettingsUnavailable>The ability and helmet settings are unavailable. Another mod has changed the hemophage warcasket, so they will keep their built-in values.</HPWC_SettingsUnavailable>
 
   <!-- After a slider's value while it is unset -->
@@ -30,7 +30,7 @@
   <HPWC_SectionRush>Hemogen rush</HPWC_SectionRush>
 
   <HPWC_RushStartCost>Hemogen cost to start</HPWC_RushStartCost>
-  <HPWC_RushStartCostDesc>The amount of hemogen the pilot spends at once each time a rush starts. Default: {0}.</HPWC_RushStartCostDesc>
+  <HPWC_RushStartCostDesc>The amount of hemogen the pilot spends each time a rush starts. Default: {0}.</HPWC_RushStartCostDesc>
 
   <HPWC_RushDrain>Hemogen per second</HPWC_RushDrain>
   <HPWC_RushDrainDesc>The amount of hemogen the pilot spends each second while the rush is running. Default: {0}.</HPWC_RushDrainDesc>
@@ -74,10 +74,10 @@
   <HPWC_DismemberDamageDesc>The damage a strike does to the limb it takes hold of, before the pilot's melee damage factor. A limb with more health than that will be wounded instead of torn off. Default: {0}.</HPWC_DismemberDamageDesc>
 
   <HPWC_DismemberDrainTime>Drain time</HPWC_DismemberDrainTime>
-  <HPWC_DismemberDrainTimeDesc>How long a hemogenic pilot spends draining hemogen from a human target. The pilot will gain the same hemogen however long it takes, and less if the drain is cut short. Default: {0}.</HPWC_DismemberDrainTimeDesc>
+  <HPWC_DismemberDrainTimeDesc>How long a hemogenic pilot spends draining hemogen from a human target. A full drain will give the same amount of hemogen however long it takes. Default: {0}.</HPWC_DismemberDrainTimeDesc>
 
   <HPWC_DismemberGain>Base hemogen gain</HPWC_DismemberGain>
-  <HPWC_DismemberGainDesc>The hemogen the pilot gains from a full drain, more from a larger target and less from a child. At zero, the pilot will not drain the target. Default: {0}.</HPWC_DismemberGainDesc>
+  <HPWC_DismemberGainDesc>The amount of hemogen the pilot gains from a full drain, which is affected by the target's body size. At zero, the pilot will not drain the target. Default: {0}.</HPWC_DismemberGainDesc>
 
   <HPWC_DismemberBloodLoss>Blood loss</HPWC_DismemberBloodLoss>
   <HPWC_DismemberBloodLossDesc>The blood loss a full drain causes in the target, on top of the bleeding from the lost limb. Default: {0}.</HPWC_DismemberBloodLossDesc>
@@ -96,15 +96,15 @@
 
   <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in every tooltip is the default -->
   <HPWC_SectionHelmet>Helmet</HPWC_SectionHelmet>
-  <HPWC_SectionHelmetDesc>The sealed visor of the hemophage warcasket helmet, which keeps sunlight off a pilot who is sensitive to it and steadies a pilot who is afraid of fire.</HPWC_SectionHelmetDesc>
+  <HPWC_SectionHelmetDesc>The sealed visor of the hemophage warcasket helmet keeps sunlight off a pilot who is sensitive to it and steadies a pilot who is afraid of fire.</HPWC_SectionHelmetDesc>
   <HPWC_HelmetSunlight>Sunlight protection</HPWC_HelmetSunlight>
   <HPWC_HelmetSunlightDesc>When enabled, the helmet will protect a pilot with a UV sensitivity gene from the effects of sunlight. When disabled, sunlight will slow such a pilot and lower their mood as usual. Default: {0}.</HPWC_HelmetSunlightDesc>
   <HPWC_HelmetPyrophobia>Fire terror chance</HPWC_HelmetPyrophobia>
-  <HPWC_HelmetPyrophobiaDesc>How often a pilot with the pyrophobia gene will flee in terror from a nearby fire, compared to the same pawn without the helmet. At 100%, the helmet will make no difference. At 0%, the pilot will never flee from fire. Default: {0}.</HPWC_HelmetPyrophobiaDesc>
+  <HPWC_HelmetPyrophobiaDesc>How often a pilot with the pyrophobia gene will flee in terror from a nearby fire, compared to normal. At 0%, the pilot will never flee from fire. Default: {0}.</HPWC_HelmetPyrophobiaDesc>
 
   <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
   <HPWC_SectionWork>Enabled work types</HPWC_SectionWork>
-  <HPWC_SectionWorkDesc>The work types a pilot of the hemophage warcasket can do, out of those that warcasket pilots normally cannot. Work that another mod opens for all warcasket pilots will stay open.</HPWC_SectionWorkDesc>
+  <HPWC_SectionWorkDesc>The work types a pilot of the hemophage warcasket can do, out of those that warcasket pilots normally cannot. Work that another mod enables for all warcasket pilots will stay enabled.</HPWC_SectionWorkDesc>
   <!-- {0} is HPWC_Enabled or HPWC_Disabled -->
   <HPWC_WorkDesc>When enabled, pilots of the hemophage warcasket can do this work, though you will need to assign it in the work tab. When disabled, they cannot. Default: {0}.</HPWC_WorkDesc>
   <!-- {0} is a list of work types as the work tab names them -->

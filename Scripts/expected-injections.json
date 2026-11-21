@@ -32,7 +32,7 @@
     },
     "HediffDef": {
       "HPWC_HemogenRush.description": {
-        "english": "This person's warcasket is pumping hemogen through their body, allowing them to move faster and hit harder. Their hemogen will run down quickly while this lasts.",
+        "english": "This person's warcasket is spending their hemogen quickly, allowing them to move faster and hit harder.",
         "required": true
       },
       "HPWC_HemogenRush.label": {
@@ -50,7 +50,6 @@
       "HPWC_Combat_Dismember.rulePack.rulesStrings": {
         "english": [
           "r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].",
-          "r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore [RECIPIENT_definite]'s [recipient_part0_label] off.",
           "r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].",
           "r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].",
           "r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tried to tear off [RECIPIENT_definite]'s [recipient_part0_label], but only wounded it.",
@@ -67,7 +66,7 @@
         "english": "HPWC_HemogenGlow"
       },
       "HPWC_WarcasketHelmet_Hemophage.description": {
-        "english": "Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a visor that shields the pilot from sunlight and makes them less likely to flee from fire.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend their hemogen quickly to make them much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.",
+        "english": "Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a visor that shields the pilot from sunlight and makes them less likely to flee from fire.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend hemogen quickly to make the pilot much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.",
         "required": true
       },
       "HPWC_WarcasketHelmet_Hemophage.label": {
@@ -92,7 +91,7 @@
         "normalized": "HPWC_WarcasketShoulders_Hemophage.comps.2.cooldownGerund"
       },
       "HPWC_WarcasketShoulders_Hemophage.description": {
-        "english": "Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend their hemogen quickly to make them much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.",
+        "english": "Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend hemogen quickly to make the pilot much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.",
         "required": true
       },
       "HPWC_WarcasketShoulders_Hemophage.label": {
@@ -111,7 +110,7 @@
         "normalized": "HPWC_Warcasket_Hemophage.comps.2.shieldTexPath"
       },
       "HPWC_Warcasket_Hemophage.description": {
-        "english": "Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make them faster and stronger.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend their hemogen quickly to make them much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.",
+        "english": "Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make the pilot faster and stronger.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend hemogen quickly to make the pilot much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.",
         "required": true
       },
       "HPWC_Warcasket_Hemophage.label": {
@@ -119,7 +118,7 @@
         "required": true
       },
       "HPWC_Warcasket_Hemophage.shortDescription": {
-        "english": "Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make them faster and stronger.",
+        "english": "Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make the pilot faster and stronger.",
         "required": true
       }
     },
@@ -137,7 +136,7 @@
     },
     "VEF.Abilities.AbilityDef": {
       "HPWC_Dismember.description": {
-        "english": "Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on and drain hemogen from the wound, which will also cause the target to lose blood.",
+        "english": "Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood.",
         "required": true
       },
       "HPWC_Dismember.iconPath": {
@@ -156,7 +155,7 @@
         "required": true
       },
       "HPWC_HemogenRush.description": {
-        "english": "Run the warcasket's injectors, which pump the pilot's own hemogen through their body far faster than it would normally be used. The pilot will move faster and hit harder while their hemogen drains quickly. Toggle again to stop. The injectors will also stop when the pilot runs out of hemogen.",
+        "english": "Run the warcasket's injectors, which will spend the pilot's hemogen quickly. The pilot will move faster and hit harder for as long as the injectors are running. Toggle again to stop the injectors. They will also stop when the pilot runs out of hemogen.",
         "required": true
       },
       "HPWC_HemogenRush.iconPath": {

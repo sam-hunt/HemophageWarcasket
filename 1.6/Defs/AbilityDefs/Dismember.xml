@@ -74,7 +74,7 @@
   <VEF.Abilities.AbilityDef>
     <defName>HPWC_Dismember</defName>
     <label>dismember</label>
-    <description>Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then hold on and drain hemogen from the wound, which will also cause the target to lose blood.</description>
+    <description>Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood.</description>
     <abilityClass>HemophageWarcasket.Ability_Dismember</abilityClass>
     <gizmoClass>HemophageWarcasket.Command_Dismember</gizmoClass>
     <iconPath>UI/Abilities/WarcasketHemophage/Dismember</iconPath>
