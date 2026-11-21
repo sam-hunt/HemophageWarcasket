@@ -71,7 +71,10 @@ namespace HemophageWarcasket;
 // it among them (BodyPartDef.IsSolid, which Hediff_Injury.BleedRate and
 // Hediff_MissingPart.IsFreshNonSolidExtremity both ask, 1.6 and 1.7). Every answer is kept
 // for OutlookSeconds of real time, since working them out walks the body and the game may be
-// paused while what decides them changes.
+// paused while what decides them changes. The hovered pawn's own tooltip is off while the
+// ability is targeting (HidePawnTooltips, as on Ideology's Convert and Counsel): it opens at the
+// cursor, over those lines, and TooltipGiverList.DispenseAllThingTooltips hands out none while
+// the targeting source says so (1.6 and 1.7).
 //
 // An order that would kill asks first, as Bloodfeed does before a lethal bite
 // (CompAbilityEffect_BloodfeederBite.ConfirmationDialog, 1.6 and 1.7), from the same foresight
@@ -190,6 +193,9 @@ public class Ability_Dismember : Ability
     public override bool CanAutoCast => false;
 
     public override bool AutoCast => false;
+
+    // The cursor's lines in place of the hovered pawn's tooltip (see the header).
+    public override bool HidePawnTooltips => true;
 
     // Drafted or not (the def's showUndrafted). VEF also shows gizmos on caravan members, who
     // have nobody to walk to.
