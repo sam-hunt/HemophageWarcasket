@@ -8,7 +8,8 @@ namespace HemophageWarcasket.Tests;
 
 // DismemberDrain.Outlook on hand-built blood loss defs, written from the contract in its
 // header: Kills at or above the def's lethal severity, otherwise SeriousBloodLoss when the
-// stage at that severity is life threatening, otherwise Harmless. The first def has vanilla's
+// stage at that severity is life threatening, otherwise Harmless, and never Kills for a
+// deathless target, which is left with SeriousBloodLoss there. The first def has vanilla's
 // BloodLoss shape: lethal at 1, stages from 0, 0.15, 0.30, 0.45 and 0.60, only the last life
 // threatening.
 public class DismemberDrainTests
@@ -37,7 +38,19 @@ public class DismemberDrainTests
     [InlineData(1.5f, DrainOutlook.Kills)]
     public void Outlook_FollowsTheStageThenTheLethalSeverity(float severity, DrainOutlook expected)
     {
-        Assert.Equal(expected, DismemberDrain.Outlook(BloodLoss(), severity));
+        Assert.Equal(expected, DismemberDrain.Outlook(BloodLoss(), severity, deathless: false));
+    }
+
+    [Theory]
+    [InlineData(0.2f, DrainOutlook.Harmless)]
+    [InlineData(0.59f, DrainOutlook.Harmless)]
+    [InlineData(0.6f, DrainOutlook.SeriousBloodLoss)]
+    [InlineData(0.99f, DrainOutlook.SeriousBloodLoss)]
+    [InlineData(1f, DrainOutlook.SeriousBloodLoss)]
+    [InlineData(1.5f, DrainOutlook.SeriousBloodLoss)]
+    public void Outlook_ForADeathlessTarget_NeverKills(float severity, DrainOutlook expected)
+    {
+        Assert.Equal(expected, DismemberDrain.Outlook(BloodLoss(), severity, deathless: true));
     }
 
     [Fact]
@@ -48,8 +61,20 @@ public class DismemberDrainTests
             lethalSeverity = 1f,
             stages = [new HediffStage { minSeverity = 0f }, new HediffStage { minSeverity = 0.5f }],
         };
-        Assert.Equal(DrainOutlook.Harmless, DismemberDrain.Outlook(def, 0f));
-        Assert.Equal(DrainOutlook.Harmless, DismemberDrain.Outlook(def, 0.99f));
-        Assert.Equal(DrainOutlook.Kills, DismemberDrain.Outlook(def, 1f));
+        Assert.Equal(DrainOutlook.Harmless, DismemberDrain.Outlook(def, 0f, deathless: false));
+        Assert.Equal(DrainOutlook.Harmless, DismemberDrain.Outlook(def, 0.99f, deathless: false));
+        Assert.Equal(DrainOutlook.Kills, DismemberDrain.Outlook(def, 1f, deathless: false));
+    }
+
+    [Fact]
+    public void Outlook_ForADeathlessTarget_IsSeriousAtTheLethalSeverityWhateverTheStages()
+    {
+        var def = new HediffDef
+        {
+            lethalSeverity = 1f,
+            stages = [new HediffStage { minSeverity = 0f }, new HediffStage { minSeverity = 0.5f }],
+        };
+        Assert.Equal(DrainOutlook.Harmless, DismemberDrain.Outlook(def, 0.99f, deathless: true));
+        Assert.Equal(DrainOutlook.SeriousBloodLoss, DismemberDrain.Outlook(def, 1f, deathless: true));
     }
 }

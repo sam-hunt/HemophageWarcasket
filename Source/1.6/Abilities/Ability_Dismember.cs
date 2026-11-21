@@ -62,8 +62,8 @@ namespace HemophageWarcasket;
 // the two warnings Bloodfeed gives of its bite and by the same sum
 // (CompAbilityEffect_BloodfeederBite.ExtraLabelMouseAttachment, 1.6 and 1.7): the blood loss
 // the target has plus a full drain's, "Will kill" when that reaches the severity blood loss
-// kills at and Biotech's major blood loss line when it reaches a life threatening stage
-// (DismemberDrain.Outlook). A full drain is the most a drain can take, so the warning errs
+// kills at and Biotech's major blood loss line when it reaches a life threatening stage, or
+// when it would kill but for the target's deathless gene (DismemberDrain.Outlook). A full drain is the most a drain can take, so the warning errs
 // toward being given: a pilot whose hemogen fills first stops short of it. It is given when
 // the pilot could drain the target now (DrainsFrom) and the target bleeds already or could
 // bleed from the strike: it is not deathresting, and one of the parts the strike could take
@@ -76,9 +76,7 @@ namespace HemophageWarcasket;
 // An order that would kill asks first, as Bloodfeed does before a lethal bite
 // (CompAbilityEffect_BloodfeederBite.ConfirmationDialog, 1.6 and 1.7), from the same foresight
 // as the cursor's "Will kill": a strike that would take the head off, or a drain that would
-// bleed the target to death, the latter never over a target with the deathless gene, which
-// such blood loss sends into deathrest instead (SanguophageUtility
-// .ShouldBeDeathrestingOrInComaInsteadOfDead) and which Bloodfeed's own dialog skips. Bloodfeed
+// bleed the target to death, which no drain does to a target with the deathless gene. Bloodfeed
 // asks over every target it takes, and takes no enemy still standing; the strike is for those,
 // so it asks over one of the player's own faction whatever its state, a berserk colonist, a
 // rebelling slave and a colony animal turned manhunter among them, and otherwise only over a
@@ -323,7 +321,7 @@ public class Ability_Dismember : Ability
         Foresee(victim, out bool kills, out DrainOutlook drain);
         if (kills)
             return "HPWC_DismemberConfirmKill".Translate(victim.Named("PAWN"));
-        if (drain == DrainOutlook.Kills && victim.genes?.HasActiveGene(GeneDefOf.Deathless) != true)
+        if (drain == DrainOutlook.Kills)
             return "HPWC_DismemberConfirmDrainKill".Translate(victim.Named("PAWN"));
         return null;
     }
@@ -417,7 +415,8 @@ public class Ability_Dismember : Ability
         if (hediffs.BleedRateTotal <= 0f && (victim.Deathresting || !DismemberTarget.CouldBleed(victim, Extension, aim)))
             return DrainOutlook.Harmless;
         float lost = hediffs.GetFirstHediffOfDef(HediffDefOf.BloodLoss)?.Severity ?? 0f;
-        return DismemberDrain.Outlook(HediffDefOf.BloodLoss, lost + FullBloodLoss(victim));
+        return DismemberDrain.Outlook(HediffDefOf.BloodLoss, lost + FullBloodLoss(victim),
+            deathless: victim.genes?.HasActiveGene(GeneDefOf.Deathless) == true);
     }
 
     // The strike before it is aimed at a part: the def's damage by the pilot's melee damage
