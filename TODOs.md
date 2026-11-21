@@ -17,6 +17,8 @@
 ## Later
 
 - **AI use of the rush and Dismember** A pilot the player does not control casts neither (VEF fires no apparel ability's autocast), so a quest's sanguophage in the set fights with its plating alone.
+- **A threat-point floor for the shuttle master's set** `Docs/Specs/Shuttle-Master-Points-Floor.md`, proposed, with three decisions open in its section 6.
+- **Thralls in lesser warcaskets** `Docs/Specs/Thrall-Warcaskets.md`, proposed, after the floor, with four decisions open in its section 5.
 - **AI sanguophages and their own abilities** Check whether a quest's sanguophage uses its gene abilities in a fight (piercing spine, longjump, coagulate), in the set and out of it.
 - `Docs/Research/WARCASKET_ABILITIES.md` is the Shipcracker repo's copy and still carries that set's scoping notes and design proposal, with pointers to a ledger that is not this one. Cut it down to the VFEP survey?
 - The test suite is flaky. The host crashes on a failed load of UnityEngine.CoreModule in roughly one run in ten. Left alone since the test project is the family template's; should probably be chased.

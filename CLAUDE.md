@@ -133,11 +133,12 @@ Scripts/          l10n shims, the sidecar, the smoke test and the preview GIF bu
 l10n/             rimworld-l10n toolkit, pinned submodule   (not shipped)
 Docs/Research/    VFEP warcasket stat tables and ability mechanics (copied from the siblings),
                   and the preview GIF transcode's measurements
+Docs/Specs/       Design specs, one per feature designed before it is built
 .steamworkshop/   Workshop page text and images             (not shipped)
 LoadFolders.xml   Load roots per game version, compat roots gated by package id
 ```
 
-Not here yet: `Docs/Specs/`. One compat root has a guide of its own, loaded when work touches
+One compat root has a guide of its own, loaded when work touches
 it: `1.6/Mods/CombatExtended/CLAUDE.md`, what Combat Extended changes around the set, where each
 answer lives and what was looked at and left.
 
