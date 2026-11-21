@@ -29,7 +29,7 @@ warcasket. Any pilot keeps intellectual work, which VFEP's warcaskets block.
 **Fiction: nobody's official program.** The siblings' sets come from pirates welding themselves
 in or from a government program entombing its veterans. This one is quieter: that program has
 no record of it, and two rumors stand side by side, that the designs were stolen and refitted
-for sanguophages, or that sanguophages who directed the program from the top sanctioned the
+by sanguophages, or that sanguophages who directed the program from the top sanctioned the
 series in secret. Player-facing text tells it as rumor ("Some think ...", "Some believe ..."),
 the way Biotech tells its own sanguophage lore, and never as settled history. It says of hemogen
 only what Biotech does: a hemogenic's own is in stores in the body, never "in the blood", and
