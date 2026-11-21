@@ -16,19 +16,23 @@ namespace HemophageWarcasket;
 // and VEF leaves it null until the first gizmo draw. Doors are bashed and designations
 // ignored, as the bite's job has them.
 //
-// The prey is drawn as the bite's is, at random among the humanlikes on the map with no active
-// hemogen gene that the pilot can reach, ghouls aside, and then only those the strike is valid
-// on and the drain feeds from. While the ability's extension says so (hemohunterHuntsByGene)
-// the draw is also over what the pilot's drain sources feed on, each at the same odds as any
-// other prey: the pawns a source opens, and the corpses on the map when a source is for
-// those (Ability_Dismember has the rule for a corpse). The tree this sits in is asked on most
-// job searches of every humanlike, so the mental state test comes first and only a pawn in
-// one goes any further.
+// The prey is the bite's, the humanlikes on the map with no active hemogen gene, ghouls
+// aside, and then only those the strike is valid on and the drain feeds from. While the
+// ability's extension says so (hemohunterHuntsByGene) it is also what the pilot's drain
+// sources feed on: the pawns a source opens, and the corpses on the map when a source is for
+// those (Ability_Dismember has the rule for a corpse).
+//
+// Of that prey the pilot takes the nearest it can reach, by straight distance, as vanilla's
+// berserk takes its own (JobGiver_Berserk, through AttackTargetFinder.BestAttackTarget to
+// GenClosest.ClosestThing_Global, 1.6), with no limit on how far that is. The bite draws its
+// prey at random over the map, which over prey this wide would walk a pilot past everyone
+// near it to a far animal or an old corpse. The distance is tested first, so only prey nearer
+// than the nearest so far is asked anything else, and the path last.
+//
+// The tree this sits in is asked on most job searches of every humanlike, so the mental
+// state test comes first and only a pawn in one goes any further.
 public class JobGiver_HemohunterDismember : ThinkNode_JobGiver
 {
-    // Filled and read within one TryGiveJob call.
-    private static readonly List<Thing> Prey = [];
-
     protected override Job TryGiveJob(Pawn pawn)
     {
         if (!pawn.InMentalState || !pawn.Spawned)
@@ -50,15 +54,18 @@ public class JobGiver_HemohunterDismember : ThinkNode_JobGiver
 
     private static Thing FindPrey(Pawn pilot, Ability_Dismember ability)
     {
-        Prey.Clear();
+        Thing nearest = null;
+        int nearestDistance = int.MaxValue;
         IReadOnlyList<Pawn> pawns = pilot.Map.mapPawns.AllPawnsSpawned;
         for (int i = 0; i < pawns.Count; i++)
         {
             Pawn other = pawns[i];
-            if (other != pilot && !other.IsGhoul && (IsBitePrey(other) || ability.HuntsByGene(other))
+            if (other != pilot && !other.IsGhoul && IsNearer(pilot, other, nearestDistance, out int distance)
+                && (IsBitePrey(other) || ability.HuntsByGene(other))
                 && ability.CanHunt(other) && pilot.CanReach(other, PathEndMode.Touch, Danger.Deadly))
             {
-                Prey.Add(other);
+                nearest = other;
+                nearestDistance = distance;
             }
         }
         if (ability.HuntsCorpses())
@@ -66,13 +73,21 @@ public class JobGiver_HemohunterDismember : ThinkNode_JobGiver
             List<Thing> corpses = pilot.Map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse);
             for (int i = 0; i < corpses.Count; i++)
             {
-                if (corpses[i] is Corpse corpse && ability.CanHunt(corpse) && pilot.CanReach(corpse, PathEndMode.Touch, Danger.Deadly))
-                    Prey.Add(corpse);
+                if (corpses[i] is Corpse corpse && IsNearer(pilot, corpse, nearestDistance, out int distance)
+                    && ability.CanHunt(corpse) && pilot.CanReach(corpse, PathEndMode.Touch, Danger.Deadly))
+                {
+                    nearest = corpse;
+                    nearestDistance = distance;
+                }
             }
         }
-        Thing prey = Prey.Count > 0 ? Prey.RandomElement() : null;
-        Prey.Clear();
-        return prey;
+        return nearest;
+    }
+
+    private static bool IsNearer(Pawn pilot, Thing prey, int than, out int distance)
+    {
+        distance = pilot.Position.DistanceToSquared(prey.Position);
+        return distance < than;
     }
 
     // The prey of the state's own bite.

@@ -38,8 +38,9 @@
   hemohunterStates. Its blood moon sends every hemogenic human on the map under 45 hemogen
   into VRE_Hemohunter, in which its JobGiver_Hemohunter walks the pawn to a random human
   without the hemogen gene and bites, whatever feeding genes the pawn has.
-  ThinkTreeDefs/HemohunterDismember.xml asks ours first, and ours also draws from what the
-  three sources above open to the pilot while the ability's hemohunterHuntsByGene is on.
+  ThinkTreeDefs/HemohunterDismember.xml asks ours first. Ours takes the nearest prey, not a
+  random one, and counts as prey what the three sources above open to the pilot while the
+  ability's hemohunterHuntsByGene is on.
 -->
 <Patch>
   <Operation Class="PatchOperationAdd">
