@@ -8,10 +8,11 @@ using Xunit;
 
 namespace HemophageWarcasket.Tests;
 
-// The def fields the ability and helmet settings read their defaults from and write back onto,
-// read off the XML. The settings find them by name at startup, all or nothing
-// (HemophageWarcasketSettings.TryGetDefs): with one missing, the game logs a single warning and
-// the settings window drops those sections, which no build or boot fails on. Each field
+// The def fields the ability, helmet and quest settings read their defaults from and write back
+// onto, read off the XML. The settings find the abilities' and the helmet's by name at startup,
+// all or nothing (HemophageWarcasketSettings.TryGetDefs): with one missing, the game logs a
+// single warning and the settings window drops those sections, which no build or boot fails on.
+// The quest section finds the armor's extension by itself and is dropped the same way. Each field
 // is spelled out in the XML rather than left to its C# default so the def stays the record of
 // what a slider's default is.
 public class SettingsTargetTests
@@ -101,5 +102,15 @@ public class SettingsTargetTests
         XElement relief = helmet.Element("modExtensions")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.PyrophobiaReliefExtension");
         AssertHas(relief, "breakChanceFactor");
+    }
+
+    // requiredResearch is left out: it is absent while the default is no requirement.
+    [Fact]
+    public void QuestPilot_HasEveryFieldItsSettingsWrite()
+    {
+        XElement armor = Def("ThingDefs_Misc", "Warcasket_Hemophage.xml", "HPWC_Warcasket_Hemophage");
+        XElement pilot = armor.Element("modExtensions")!.Elements("li")
+            .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.QuestPilotExtension");
+        AssertHas(pilot, "shipMasterChance", "meetingLeaderChance", "meetingGuestChance", "researchOptions");
     }
 }

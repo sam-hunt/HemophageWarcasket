@@ -40,7 +40,8 @@ spacer warcaskets research. Mix and match the pieces with VFE Pirates' own sets 
   fire, with the heaviest plating of the set
 - **Mod settings** for how fast the armor spends hemogen and what it gives in return, the
   shoulders' strike capacity, reload cost, casting time, drain and targets, a steady glow
-  in place of the pulse, and the helmet's protection from sunlight and from fire terror
+  in place of the pulse, the helmet's protection from sunlight and from fire terror, and
+  how often the sanguophages of Biotech's quests arrive already entombed in the set
 - **Spacer-tier plating with extra heat protection, and a ranged shield** on VFE Pirates'
   10th-generation chassis
 - **Built on VFE Pirates** rather than beside it: the foundry, entombing, customization and

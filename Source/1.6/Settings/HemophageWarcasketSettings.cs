@@ -9,7 +9,7 @@ namespace HemophageWarcasket;
 // The set's mod settings: the window frame, the ExposeData / LoadDefaultsFromDefs / ApplyToDefs /
 // ResetToDefaults fan-out, the value formats and the shared row helpers. The class is split
 // across Settings_<Section>.cs partials, one per window section (the hemogen rush, Dismember,
-// the helmet and the pilot's work), each owning
+// the helmet, the pilot's work and the quests' sanguophages), each owning
 // its fields, scribe entries, def-backed defaults, apply, reset and draw, so a setting is a one-file edit; each partial's header lists the def fields it
 // writes. Each setting overrides a def field, written onto the def by ApplyToDefs (at startup,
 // then whenever the window closes), so every reader of those fields, vanilla's and VEF's
@@ -18,8 +18,8 @@ namespace HemophageWarcasket;
 // and with none.
 //
 // The two ability sections and the helmet's
-// write through def handles found by name (TryGetDefs), all or nothing, the pads' strike pool among them; the work section needs none
-// of them and stands when they are missing. Each ability section's header carries the ability's own icon, read off
+// write through def handles found by name (TryGetDefs), all or nothing, the pads' strike pool among them; the work section and the quests' need none
+// of them and stand when they are missing. Each ability section's header carries the ability's own icon, read off
 // the def at draw time: VEF resolves def.icon late in loading, and a play-data reload replaces
 // the def and its texture together.
 public partial class HemophageWarcasketSettings : ModSettings
@@ -86,6 +86,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         ExposeDismemberSettings();
         ExposeHelmetSettings();
         ExposeWorkSettings();
+        ExposeQuestPilotSettings();
     }
 
     // Reads the def-backed defaults before the first ApplyToDefs overwrites them; defs must be
@@ -93,6 +94,7 @@ public partial class HemophageWarcasketSettings : ModSettings
     public void LoadDefaultsFromDefs()
     {
         LoadWorkDefaults();
+        LoadQuestPilotDefaults();
         abilityDefaultsLoaded = TryGetDefs(out Defs defs);
         if (!abilityDefaultsLoaded)
             return;
@@ -101,11 +103,12 @@ public partial class HemophageWarcasketSettings : ModSettings
         LoadHelmetDefaults(defs);
     }
 
-    // The work profile goes first: it needs none of the abilities' defs, so a saved choice
-    // still holds while they are missing.
+    // The work profile and the quests' sanguophages go first: they need none of the abilities'
+    // defs, so a saved choice still holds while those are missing.
     public void ApplyToDefs()
     {
         ApplyWorkToDefs();
+        ApplyQuestPilotToDefs();
         if (!abilityDefaultsLoaded || !TryGetDefs(out Defs defs))
             return;
         ApplyRushToDefs(defs);
@@ -121,6 +124,7 @@ public partial class HemophageWarcasketSettings : ModSettings
         ResetDismemberSettings();
         ResetHelmetSettings();
         ResetWorkSettings();
+        ResetQuestPilotSettings();
     }
 
     // Each section opens on its summary under its header, then one row per setting, and a reset
@@ -154,6 +158,7 @@ public partial class HemophageWarcasketSettings : ModSettings
             SummaryRow(listing, () => "HPWC_SettingsUnavailable".Translate());
         }
         DrawWorkSection(listing);
+        DrawQuestPilotSection(listing);
         listing.Gap(SectionGap);
         contentHeight = listing.CurHeight;
         listing.End();

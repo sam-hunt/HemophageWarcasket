@@ -44,8 +44,10 @@ hemogen gain and their cost, which pays for Dismember, and the helmet's blunt pl
 cost, and the SOS2, VGE and CE patches mirror them; the CE root also carries
 Dismember's CE numbers. The armor's hemogen rush is
 built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
-protection and pyrophobia relief, the pilot's own work trait and the settings
-window, with a section for each piece's mechanic and one for the pilot's work. The descriptions
+protection and pyrophobia relief, the pilot's own work trait, the sanguophages of Biotech's two
+quests who may arrive in the set, and the settings
+window, with a section for each piece's mechanic, one for the pilot's work and one for those
+quests. The descriptions
 and the player-facing pages are first cuts still owed a full review. `TODOs.md` is the ledger.
 The sibling repos (same author, same VFEP base) are the worked precedents for everything not
 here yet: `../ToxinWarcasket/` for a toggled ability, a gauge and the Biotech dependency,
@@ -92,7 +94,7 @@ severities pinned in `.editorconfig`): fix the code, not the severity.
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
 Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Five
 files touch no game type, so they run anywhere; `WorkProfileTests`,
-`DismemberTargetTests`, `DismemberDrainTests` and `TunableTests` run game code and so need the
+`DismemberTargetTests`, `DismemberDrainTests`, `TunableTests` and `QuestPilotTests` run game code and so need the
 game's real 1.6 runtime DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
 `~/.local/share/RimWorld-1.6/Managed`; the csproj documents the lookup), failing without them
 while the build stays green. The first holds the work trait's rule: which work types the
@@ -111,10 +113,13 @@ paragraphs and `About.xml` to no `modIconPath` (the helmet's settings header dra
 which only the `About/ModIcon.png` load keeps alive across a play-data reload); `RulePackTests` holds each combat log rule pack to the symbols its log entry
 supplies (an unknown one is an error only when the line is first written in game) and every
 Dismember line to one of the strike's two outcomes;
-`SettingsTargetTests` holds the ability defs, the pads' strike pool and the helmet's two
-extensions to the fields the settings write (a missing one drops those sections from the window
+`SettingsTargetTests` holds the ability defs, the pads' strike pool, the helmet's two
+extensions and the armor's quest extension to the fields the settings write (a missing one drops those sections from the window
 with one warning). `ListMaskTests` holds the two halves of keeping the set off generated
 pawns: the mask that hides the parts from VFEP's slot fill, and the parts' absent apparel tags.
+`QuestPilotTests`, the fifth to run game code, holds the exception, the quests' sanguophages:
+each source's own chance, the armor's extension to the set's own pieces and research, and the
+two vanilla quest roots the patches bind by name to the game's 1.6 assembly.
 
 ## Layout
 

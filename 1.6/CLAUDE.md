@@ -48,7 +48,8 @@ manifest globs, so new files and subfolders need no build change.
 - **The parts declare no `apparel/tags`**, which keeps them out of every pawnkind's gear roll;
   VFEP's slot fill, which reads no tags, is answered in
   `Source/1.6/Patches/PawnGenerator_GeneratePawn_Patch_Postfix.cs`. The armor def's header has
-  why; a patch that adds a tag (Save Our Ship 2's `EVA`) adds the node with it.
+  why, and the one exception, the quests' sanguophages its `QuestPilotExtension` dresses; a
+  patch that adds a tag (Save Our Ship 2's `EVA`) adds the node with it.
 - **A protection a piece gives its wearer is a `DefModExtension` flag on the piece**, read off
   the worn apparel by the patches that answer the game's own checks. The helmet's
   `SunlightShieldExtension` is the model, with `PyrophobiaReliefExtension` beside it: it names

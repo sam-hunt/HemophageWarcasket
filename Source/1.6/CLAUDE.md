@@ -16,8 +16,11 @@ Where each mechanic lives:
   relief (`Fire/`, with its one).
 - **The pilot's work**: the trait's rule (`WorkProfile.cs`) and the startup that mirrors it
   (`Startup.cs`).
-- **The settings window** (`Settings/`): a section for each piece's mechanic and one for the work.
+- **The settings window** (`Settings/`): a section for each piece's mechanic, one for the work
+  and one for the quests' sanguophages.
 - **The mask that keeps the set off generated pawns**: `ListMask.cs`, with its patch.
+- **The quests' sanguophages who arrive in the set**: the rule (`QuestPilot/`) and its two
+  patches.
 
 Several rules below are the family's, written down before the code they govern so
 the next ability or comp lands in the right shape; each names the sibling file to copy from
@@ -74,6 +77,15 @@ rather than restating it.
   from `VFEP_WarcasketTrait` by `WorkProfile.Mirror` in `Startup.Run` so the mods that reshape
   VFEP's work profile reshape ours. Nothing else writes the trait's work fields, and nothing
   tests a pawn for `VFEP_WarcasketTrait`: a hemophage pilot does not carry it.
+- **The quest pilots are one rule and two postfixes.** `QuestPilot/QuestPilot.TryDress` puts
+  the whole set on a living, hemogenic pawn by the chances and the research on the armor's
+  `QuestPilotExtension`, and is called only from the postfixes on the two vanilla quest roots
+  that make Biotech's sanguophages (`Patches/QuestNode_Root_SanguophageShip_RunInt`,
+  `Patches/QuestNode_Root_SanguophageMeetingHost_RunInt`), both bound by name with a
+  stand-down. Never dress a pawn from a `PawnGenerator` patch: the pawn must have left
+  generation, past VFEP's slot fill, which the mask answers only for a pawn wearing no part of
+  ours. `QuestPilot`'s header has the order of events and what the pawn is left as; the armor
+  def's has the numbers. The Overlord repo's `AncientPilot/` is the sibling, for the dead.
 - **An apparel ability's `pawn` is null until its first gizmo draw** or until something binds
   it, and VEF fires no apparel ability's autocast, for the player or for raiders.
   `Abilities/Dismember/CLAUDE.md` has how a job binds it.

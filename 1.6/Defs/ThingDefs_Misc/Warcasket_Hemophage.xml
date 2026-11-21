@@ -53,7 +53,33 @@
     rush nor Dismember and the set arrives as a plain spacer warcasket. VFEP's slot fill
     reads no tags; Source/1.6/Patches/PawnGenerator_GeneratePawn_Patch_Postfix.cs keeps the
     set out of it. Save Our Ship 2's EVA tag (1.6/Patches/SOS2Patch.xml) is then the only one
-    a part has.
+    a part has. The generated pawns that may wear the set are dressed after generation
+    (Quest pilots, below).
+
+    Quest pilots: QuestPilotExtension, the set on the sanguophages Biotech's two sanguophage
+    quests generate, hemogenic by their pawn kind and so the pilots the set is built for.
+    Source/1.6/QuestPilot/QuestPilot.cs has how a pawn is dressed. A set that arrives this
+    way cannot be taken off and reused (VFEP blocks the strip and the drop), so what the
+    player can gain from it is the pilot inside. The three chances and requiredResearch are
+    mod settings defaulting to the values here:
+    - meetingLeaderChance 0.7, the sanguophage who asks for the meeting and leads it: a
+      neutral guest, so most meetings show the set without setting it against the colony.
+      The leader is also the one who may offer to join, one of the two or three turns the
+      quest draws from mid-meeting, and then brings the set along.
+    - meetingGuestChance 0.1, each of the one to seven others: now and then a second set at
+      the table, and a betrayed meeting that is rarely much harder than vanilla's.
+    - shipMasterChance 0. The master of the crashed shuttle is that quest's prize, to be
+      downed and captured, and the set closes most of the ways to down one: the trait's
+      zero pain ends pain shock, the three pieces' PsychicSensitivity sums to -1.2, a
+      sanguophage's whole 120%, so a psychic weapon reaches only a pilot whose trait raises
+      it, and the floors below hold Moving and Manipulation.
+      The quest sizes its thralls from threat points that count none of this.
+    - requiredResearch VFEP_Warcaskets, the player's own, read as the quest is generated:
+      a colony that has not opened VFEP's warcasket line meets none of these pilots.
+      researchOptions are the steps the settings offer after "none", the four of VFEP's
+      warcasket line in the order its prerequisites chain them, ending on the set's own
+      VFEP_SpacerWarcaskets.
+    - otherPieces, with this def the set a pilot is dressed in, all of it or none.
 
     Hemogen rush: the armor's module, a toggled ability granted by the CompAbilitiesApparel
     below. AbilityDefs/HemogenRush.xml and HediffDefs/HemogenRush.xml have it.
@@ -225,6 +251,22 @@
             <minLevel>1</minLevel>
           </li>
         </pawnCapacityMinLevels>
+      </li>
+      <li Class="HemophageWarcasket.QuestPilotExtension">
+        <shipMasterChance>0</shipMasterChance>
+        <meetingLeaderChance>0.7</meetingLeaderChance>
+        <meetingGuestChance>0.1</meetingGuestChance>
+        <requiredResearch>VFEP_Warcaskets</requiredResearch>
+        <researchOptions>
+          <li>VFEP_Warcaskets</li>
+          <li>VFEP_AdvancedWarcaskets</li>
+          <li>VFEP_SpecialisedWarcaskets</li>
+          <li>VFEP_SpacerWarcaskets</li>
+        </researchOptions>
+        <otherPieces>
+          <li>HPWC_WarcasketShoulders_Hemophage</li>
+          <li>HPWC_WarcasketHelmet_Hemophage</li>
+        </otherPieces>
       </li>
     </modExtensions>
   </VFEPirates.WarcasketDef>
