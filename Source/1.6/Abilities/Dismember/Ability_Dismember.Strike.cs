@@ -128,7 +128,7 @@ public partial class Ability_Dismember
     private void Spatter(Pawn target, IntVec3 center, Map map)
     {
         DismemberExtension ext = Extension;
-        if (ext == null || ext.bloodFilthCount <= 0 || map == null)
+        if (ext.bloodFilthCount <= 0 || map == null)
             return;
         ThingDef blood = target.IsMutant ? target.mutant.Def.bloodDef ?? target.RaceProps.BloodDef : target.RaceProps.BloodDef;
         if (blood == null)

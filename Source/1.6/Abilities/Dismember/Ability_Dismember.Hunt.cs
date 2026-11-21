@@ -33,7 +33,7 @@ public partial class Ability_Dismember
 
     // Whether a hunt may take this pawn: a valid target for the strike that the drain could
     // then feed on.
-    public bool CanHunt(Pawn target) => ValidateTarget(target, showMessages: false) && DrainsFrom(target);
+    public bool CanHunt(Pawn target) => ValidateTarget(target, showMessages: false) && DrainsFrom(target, foundDead: false);
 
     // Whether a hunt reaches past the bite's prey for this pawn: the def lets it, and one of
     // the extension's wider sources opens the pawn to the pilot.

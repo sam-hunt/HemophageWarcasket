@@ -112,13 +112,13 @@ public partial class Ability_Dismember
     // of it unless a drain could follow (see the header).
     private DrainOutlook ForeseenDrain(Pawn victim, BodyPartHeight aim)
     {
-        if (!DrainsFrom(victim))
+        if (!DrainsFrom(victim, foundDead: false))
             return DrainOutlook.Harmless;
         HediffSet hediffs = victim.health.hediffSet;
         if (hediffs.BleedRateTotal <= 0f && (victim.Deathresting || !DismemberTarget.CouldBleed(victim, Extension, aim)))
             return DrainOutlook.Harmless;
         float lost = hediffs.GetFirstHediffOfDef(HediffDefOf.BloodLoss)?.Severity ?? 0f;
-        return DismemberDrain.Outlook(HediffDefOf.BloodLoss, lost + FullBloodLoss(victim),
+        return DismemberDrain.Outlook(HediffDefOf.BloodLoss, lost + FullBloodLoss(victim, foundDead: false),
             deathless: victim.genes?.HasActiveGene(GeneDefOf.Deathless) == true);
     }
 

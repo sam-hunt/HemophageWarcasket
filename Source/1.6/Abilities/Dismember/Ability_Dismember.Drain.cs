@@ -43,17 +43,17 @@ public partial class Ability_Dismember
     // Whether a drain can run or go on: one could (DrainsFrom), and the target is bleeding now
     // or dead (see the header). foundDead, here and below, says the pilot came to the target
     // as a corpse lying on the map, which only a source of the Corpse kind feeds from.
-    public bool CanDrain(Pawn target, bool foundDead = false) =>
+    public bool CanDrain(Pawn target, bool foundDead) =>
         DrainsFrom(target, foundDead) && (target.Dead || target.health.hediffSet.BleedRateTotal > 0f);
 
     // Whether the pilot could drain this target once it bleeds: the def sets a drain, the pilot
     // has an active hemogen gene with room for more, and the target is one the pilot feeds on
     // that can bleed, alive or a corpse on the map with blood left in it, and holds the hemogen
     // its source asks for.
-    private bool DrainsFrom(Pawn target, bool foundDead = false)
+    private bool DrainsFrom(Pawn target, bool foundDead)
     {
         DismemberExtension ext = Extension;
-        if (ext == null || ext.drainTicks <= 0 || ext.hemogenGain <= 0f)
+        if (ext.drainTicks <= 0 || ext.hemogenGain <= 0f)
             return false;
         Gene_Hemogen hemogen = pawn?.genes?.GetFirstGeneOfType<Gene_Hemogen>();
         if (hemogen == null || !hemogen.CanOffset || hemogen.Value >= hemogen.Max)
@@ -86,7 +86,7 @@ public partial class Ability_Dismember
     }
 
     // As a drain starts: the pilot now carries the mark of this feeding and of no other.
-    public void MarkFeeding(Pawn target, bool foundDead = false)
+    public void MarkFeeding(Pawn target, bool foundDead)
     {
         FeedsOn(target, foundDead, out DismemberDrainSource source);
         HediffDef mark = source?.hediff;
@@ -110,7 +110,7 @@ public partial class Ability_Dismember
 
     // One tick's share of a full drain, as SanguophageUtility.DoBite gives its whole one (1.6),
     // the same from a corpse. The blood loss goes last because it can kill a living target.
-    public void DrainTick(Pawn target, bool foundDead = false)
+    public void DrainTick(Pawn target, bool foundDead)
     {
         DismemberExtension ext = Extension;
         float share = 1f / ext.drainTicks;
@@ -123,7 +123,7 @@ public partial class Ability_Dismember
 
     // BloodLoss severity a drain run to its end adds to this target: the extension's, scaled
     // by the target's size when its source says so.
-    private float FullBloodLoss(Pawn target, bool foundDead = false)
+    private float FullBloodLoss(Pawn target, bool foundDead)
     {
         FeedsOn(target, foundDead, out DismemberDrainSource source);
         float bySize = source?.bloodLossFactorByBaseBodySize?.Evaluate(target.RaceProps.baseBodySize) ?? 1f;
