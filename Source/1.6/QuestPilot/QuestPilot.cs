@@ -33,8 +33,14 @@ namespace HemophageWarcasket;
 // - One colour across the three pieces, the armor's draw from the def's colorGenerator
 //   (CompColorable.Initialize draws one for each piece as it is made), since a set built for
 //   one pilot is painted as one.
-// - A warcasket weapon in place of the one the pawn kind gave: the extension's rangedWeapon
-//   for a gun, its meleeWeapon for a melee weapon, and nothing for a pawn generated unarmed.
+// - A warcasket weapon in place of the one the pawn kind gave, and nothing for a pawn
+//   generated unarmed. A sanguophage takes the one their skills fit, the extension's
+//   rangedWeapon when Shooting is the higher level and its meleeWeapon otherwise
+//   (FightsAtRange): vanilla arms a pawn by price and commonality, with no look at its skills
+//   (PawnWeaponGenerator.TryGenerateWeaponFor), and Biotech's sanguophage has a melee
+//   aptitude gene, so most arrive with the melee weapon. A thrall keeps the kind vanilla
+//   gave, rangedWeapon for a gun and meleeWeapon for a melee weapon, so the shuttle's fight
+//   keeps vanilla's mix of the two.
 //   VEF lets a pawn hold one for the trait or the armor (EquipmentUtility_CanEquip_Patch), and
 //   VFEP prices its own warcasket pilots with one, which is where the sets' prices come from.
 //   The old weapon is destroyed. The crashed shuttle quest biocodes its reinforcements'
@@ -93,7 +99,7 @@ public static class QuestPilot
                 return false;
             if (!Rand.Chance(extension.ChanceFor(source, points)))
                 return false;
-            return Dress(pawn, [armor, .. extension.otherPieces], extension);
+            return Dress(pawn, [armor, .. extension.otherPieces], extension, weaponBySkill: true);
         }
         catch (Exception exception)
         {
@@ -129,7 +135,7 @@ public static class QuestPilot
                 if (next >= picks.Count)
                     break;
                 ThrallTier tier = tiers[picks[next]];
-                if (Dress(thrall, [tier.armor, .. tier.otherPieces], extension))
+                if (Dress(thrall, [tier.armor, .. tier.otherPieces], extension, weaponBySkill: false))
                     next++;
             }
         }
@@ -139,7 +145,12 @@ public static class QuestPilot
         }
     }
 
-    private static bool Dress(Pawn pawn, List<ThingDef> set, QuestPilotExtension extension)
+    // True for the gun, false for the melee weapon. SkillRecord.Level counts a gene's aptitude
+    // and is 0 for a skill the pawn cannot use. A tie goes to the melee weapon: the set is built
+    // to fight up close.
+    public static bool FightsAtRange(int shooting, int melee) => shooting > melee;
+
+    private static bool Dress(Pawn pawn, List<ThingDef> set, QuestPilotExtension extension, bool weaponBySkill)
     {
         if (pawn?.apparel == null || pawn.Dead)
             return false;
@@ -154,7 +165,7 @@ public static class QuestPilot
             pieces.Add(apparel);
         }
         ThingWithComps held = pawn.equipment?.Primary;
-        ThingWithComps weapon = WeaponInPlaceOf(held, extension);
+        ThingWithComps weapon = WeaponInPlaceOf(pawn, held, extension, weaponBySkill);
         pawn.apparel.DestroyAll();
         foreach (Apparel apparel in pieces)
             pawn.apparel.Wear(apparel, dropReplacedApparel: false, locked: true);
@@ -169,13 +180,15 @@ public static class QuestPilot
 
     // Null for no exchange: an unarmed pawn, a kind of weapon the extension names nothing for,
     // or a pawn already holding it.
-    private static ThingWithComps WeaponInPlaceOf(ThingWithComps held, QuestPilotExtension extension)
+    private static ThingWithComps WeaponInPlaceOf(
+        Pawn pawn, ThingWithComps held, QuestPilotExtension extension, bool bySkill)
     {
-        if (held == null)
+        if (held == null || !held.def.IsWeapon)
             return null;
-        ThingDef def = held.def.IsRangedWeapon ? extension.rangedWeapon
-            : held.def.IsMeleeWeapon ? extension.meleeWeapon
-            : null;
+        bool ranged = held.def.IsRangedWeapon;
+        if (bySkill && pawn.skills is { } skills)
+            ranged = FightsAtRange(skills.GetSkill(SkillDefOf.Shooting).Level, skills.GetSkill(SkillDefOf.Melee).Level);
+        ThingDef def = ranged ? extension.rangedWeapon : extension.meleeWeapon;
         if (def == null || def == held.def)
             return null;
         return ThingMaker.MakeThing(def, GenStuff.RandomStuffFor(def)) as ThingWithComps;

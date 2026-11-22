@@ -33,9 +33,10 @@ public class QuestPilotExtension : DefModExtension
     // them or in none.
     public List<ThingDef> otherPieces = [];
 
-    // What a dressed pawn's weapon is exchanged for, a gun for rangedWeapon and a melee weapon
-    // for meleeWeapon, whichever set the pawn was dressed in. Null leaves that kind of weapon
-    // as the pawn kind gave it.
+    // What a dressed pawn's weapon is exchanged for, whichever set the pawn was dressed in:
+    // rangedWeapon for a sanguophage whose Shooting is above their Melee and for a thrall who
+    // held a gun, meleeWeapon for the others. Null leaves those pawns the weapon the pawn kind
+    // gave.
     public ThingDef rangedWeapon;
     public ThingDef meleeWeapon;
 

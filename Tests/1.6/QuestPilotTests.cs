@@ -12,9 +12,10 @@ using Xunit;
 
 namespace HemophageWarcasket.Tests;
 
-// The quest pilot's pure rule (QuestPilotExtension.ChanceFor): each source has a chance of its
-// own, and the shuttle master's needs the quest's threat points at or above the floor. Then the
-// def wiring, checked off the XML since the WarcasketDef type pulls in VFEP, which the test
+// The quest pilot's pure rules: each source has a chance of its own, and the shuttle master's
+// needs the quest's threat points at or above the floor (QuestPilotExtension.ChanceFor); a
+// sanguophage is handed the gun only with Shooting above Melee (QuestPilot.FightsAtRange). Then
+// the def wiring, checked off the XML since the WarcasketDef type pulls in VFEP, which the test
 // output never carries: the armor declares the extension once, with chances in range and the
 // floor within 0 to 10000, names the set's other two pieces, each a def of this mod, and offers
 // research options that end on the set's own research, the two weapons it hands a dressed pawn,
@@ -75,6 +76,16 @@ public class QuestPilotTests
         var extension = new QuestPilotExtension { shipMasterChance = 0.2f, shipMasterMinPoints = 0f };
 
         Assert.Equal(0.2f, extension.ChanceFor(QuestPilotSource.ShipMaster, 0f));
+    }
+
+    [Theory]
+    [InlineData(0, 17, false)]
+    [InlineData(9, 8, true)]
+    [InlineData(6, 6, false)]
+    [InlineData(0, 0, false)]
+    public void FightsAtRange_OnlyWithShootingAboveMelee(int shooting, int melee, bool expected)
+    {
+        Assert.Equal(expected, QuestPilot.FightsAtRange(shooting, melee));
     }
 
     [Fact]

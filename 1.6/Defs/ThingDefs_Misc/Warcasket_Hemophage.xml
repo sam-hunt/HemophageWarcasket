@@ -93,11 +93,12 @@
       VFEP_SpacerWarcaskets.
     - otherPieces, with this def the set a pilot is dressed in, all of it or none.
     - rangedWeapon VFEP_WarcasketGun_Autorifle and meleeWeapon
-      VFEP_WarcasketMeleeWeapon_Broadsword, what a dressed pawn's own gun or melee weapon is
-      exchanged for, in either quest and in any set: the two plain weapons of VFEP's line (the
+      VFEP_WarcasketMeleeWeapon_Broadsword, what a dressed pawn's own weapon is exchanged
+      for, in either quest and in any set: the two plain weapons of VFEP's line (the
       autorifle is the one its footsoldiers carry), so a pawn in a warcasket fights as VFEP's
-      own pilots do and the prices below, which are VFEP's for armed pilots, hold. A meeting's
-      leader who joins brings the weapon along.
+      own pilots do and the prices below, which are VFEP's for armed pilots, hold. A
+      sanguophage takes the one that fits the higher of their Shooting and Melee, a thrall
+      the kind of weapon they held. A meeting's leader who joins brings the weapon along.
 
     The crashed shuttle's thralls, on the same extension: some of them arrive in one of VFEP's
     two plain sets, which have no module for the AI to leave unused. Source/1.6/QuestPilot/

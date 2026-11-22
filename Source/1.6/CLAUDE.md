@@ -90,9 +90,10 @@ rather than restating it.
   The shuttle postfix also hands the quest's thralls to `QuestPilot.DressThralls`, which
   dresses as many as the pure `ThrallBudget` answers in the VFEP sets the extension's
   `thrallTiers` name. Every dressed pawn goes through the one `Dress`, which also exchanges
-  the weapon; VFEP's sets and weapons are named in the armor def's XML and nowhere in the C#,
-  and Combat Extended's magazine is reached through `WeaponAmmo` by the names its root's patch
-  fills in.
+  the weapon, for a sanguophage by the higher of Shooting and Melee and for a thrall by the
+  kind of weapon held; VFEP's sets and weapons are named in the armor def's XML and nowhere in
+  the C#, and Combat Extended's magazine is reached through `WeaponAmmo` by the names its root's
+  patch fills in.
 - **An apparel ability's `pawn` is null until its first gizmo draw** or until something binds
   it, and VEF fires no apparel ability's autocast, for the player or for raiders.
   `Abilities/Dismember/CLAUDE.md` has how a job binds it.
