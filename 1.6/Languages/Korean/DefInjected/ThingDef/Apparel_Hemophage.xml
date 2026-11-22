@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a visor that shields the pilot from sunlight and makes them less likely to flee from fire.
+
+The 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.
+
+The Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend hemogen quickly to make the pilot much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close. -->
+  <HPWC_WarcasketHelmet_Hemophage.description>우주시대 기술로 특화된 워캐스킷 헬멧입니다. 개선된 충격 분산 능력과 열기 방어력을 갖췄으며, 바이저를 장착했습니다. 바이저는 조종사를 햇빛으로부터 지켜 주고, 불 앞에서 쉽게 달아나지 않게 해 줍니다.\n\n10세대 워캐스킷은 정부 사업단이 노획한 해적 장비를 자체 동력 갑옷 설계로 다시 만든 것입니다. 이 워캐스킷은 달리 더는 복무할 길이 없는 숙련병에게 지급되었습니다. 사업단의 기록에는 헤모파지 시리즈가 없습니다. 생귀오파지가 설계를 훔쳐 개조했다고 생각하는 사람도 있습니다. 사업단을 처음부터 조종해 온 생귀오파지가 사업단 최상부에서 이 시리즈를 비밀리에 승인했다고 믿는 사람도 있습니다.\n\n헤모파지 시리즈는 조종사의 혈액정수로 움직입니다. 몸통의 주입기는 심장이 없어도 조종사의 혈액 순환을 유지해 주며, 혈액정수를 빠르게 소모해 조종사를 훨씬 빠르고 강하게 만들 수도 있습니다. 어깨의 서보 모터가 적의 사지를 뜯어내면 조종사는 그 상처에서 혈액정수를 추출할 수 있습니다. 헬멧은 햇빛을 막아 주고, 불 가까이에서도 조종사가 평정을 잃지 않게 도와줍니다. 흡혈성이 아닌 조종사에게는 다소 아쉬운 시리즈이지만, 근접전을 선호하는 생귀오파지에게는 잘 맞습니다.</HPWC_WarcasketHelmet_Hemophage.description>
+  <!-- EN: hemophage warcasket helmet -->
+  <HPWC_WarcasketHelmet_Hemophage.label>헤모파지 워캐스킷 헬멧</HPWC_WarcasketHelmet_Hemophage.label>
+  <!-- EN: Specialized spacer-tech warcasket helmet with improved impact dispersion and heat protection, equipped with a visor that shields the pilot from sunlight and makes them less likely to flee from fire. -->
+  <HPWC_WarcasketHelmet_Hemophage.shortDescription>우주시대 기술로 특화된 워캐스킷 헬멧입니다. 개선된 충격 분산 능력과 열기 방어력을 갖췄으며, 바이저를 장착했습니다. 바이저는 조종사를 햇빛으로부터 지켜 주고, 불 앞에서 쉽게 달아나지 않게 해 줍니다.</HPWC_WarcasketHelmet_Hemophage.shortDescription>
+  <!-- EN: strike -->
+  <HPWC_WarcasketShoulders_Hemophage.comps.CompStrikePool.chargeNoun>일격</HPWC_WarcasketShoulders_Hemophage.comps.CompStrikePool.chargeNoun>
+  <!-- EN: on cooldown -->
+  <HPWC_WarcasketShoulders_Hemophage.comps.CompStrikePool.cooldownGerund>재사용 대기 중</HPWC_WarcasketShoulders_Hemophage.comps.CompStrikePool.cooldownGerund>
+  <!-- EN: Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy.
+
+The 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.
+
+The Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend hemogen quickly to make the pilot much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close. -->
+  <HPWC_WarcasketShoulders_Hemophage.description>우주시대 기술로 특화된 워캐스킷 어깨입니다. 개선된 열기 방어력을 갖췄으며, 적의 사지를 뜯어낼 수 있는 강력한 서보 모터와 강화 팔을 장착했습니다.\n\n10세대 워캐스킷은 정부 사업단이 노획한 해적 장비를 자체 동력 갑옷 설계로 다시 만든 것입니다. 이 워캐스킷은 달리 더는 복무할 길이 없는 숙련병에게 지급되었습니다. 사업단의 기록에는 헤모파지 시리즈가 없습니다. 생귀오파지가 설계를 훔쳐 개조했다고 생각하는 사람도 있습니다. 사업단을 처음부터 조종해 온 생귀오파지가 사업단 최상부에서 이 시리즈를 비밀리에 승인했다고 믿는 사람도 있습니다.\n\n헤모파지 시리즈는 조종사의 혈액정수로 움직입니다. 몸통의 주입기는 심장이 없어도 조종사의 혈액 순환을 유지해 주며, 혈액정수를 빠르게 소모해 조종사를 훨씬 빠르고 강하게 만들 수도 있습니다. 어깨의 서보 모터가 적의 사지를 뜯어내면 조종사는 그 상처에서 혈액정수를 추출할 수 있습니다. 헬멧은 햇빛을 막아 주고, 불 가까이에서도 조종사가 평정을 잃지 않게 도와줍니다. 흡혈성이 아닌 조종사에게는 다소 아쉬운 시리즈이지만, 근접전을 선호하는 생귀오파지에게는 잘 맞습니다.</HPWC_WarcasketShoulders_Hemophage.description>
+  <!-- EN: hemophage warcasket shoulders -->
+  <HPWC_WarcasketShoulders_Hemophage.label>헤모파지 워캐스킷 어깨</HPWC_WarcasketShoulders_Hemophage.label>
+  <!-- EN: Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy. -->
+  <HPWC_WarcasketShoulders_Hemophage.shortDescription>우주시대 기술로 특화된 워캐스킷 어깨입니다. 개선된 열기 방어력을 갖췄으며, 적의 사지를 뜯어낼 수 있는 강력한 서보 모터와 강화 팔을 장착했습니다.</HPWC_WarcasketShoulders_Hemophage.shortDescription>
+  <!-- EN: Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make the pilot faster and stronger.
+
+The 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.
+
+The Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend hemogen quickly to make the pilot much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close. -->
+  <HPWC_Warcasket_Hemophage.description>우주시대 기술로 특화된 워캐스킷입니다. 개선된 열기 방어력을 갖췄으며, 혈액정수 주입기를 장착했습니다. 주입기는 조종사의 혈액 순환을 대신하고, 혈액정수를 소모해 조종사를 더 빠르고 강하게 만들 수 있습니다.\n\n10세대 워캐스킷은 정부 사업단이 노획한 해적 장비를 자체 동력 갑옷 설계로 다시 만든 것입니다. 이 워캐스킷은 달리 더는 복무할 길이 없는 숙련병에게 지급되었습니다. 사업단의 기록에는 헤모파지 시리즈가 없습니다. 생귀오파지가 설계를 훔쳐 개조했다고 생각하는 사람도 있습니다. 사업단을 처음부터 조종해 온 생귀오파지가 사업단 최상부에서 이 시리즈를 비밀리에 승인했다고 믿는 사람도 있습니다.\n\n헤모파지 시리즈는 조종사의 혈액정수로 움직입니다. 몸통의 주입기는 심장이 없어도 조종사의 혈액 순환을 유지해 주며, 혈액정수를 빠르게 소모해 조종사를 훨씬 빠르고 강하게 만들 수도 있습니다. 어깨의 서보 모터가 적의 사지를 뜯어내면 조종사는 그 상처에서 혈액정수를 추출할 수 있습니다. 헬멧은 햇빛을 막아 주고, 불 가까이에서도 조종사가 평정을 잃지 않게 도와줍니다. 흡혈성이 아닌 조종사에게는 다소 아쉬운 시리즈이지만, 근접전을 선호하는 생귀오파지에게는 잘 맞습니다.</HPWC_Warcasket_Hemophage.description>
+  <!-- EN: hemophage warcasket -->
+  <HPWC_Warcasket_Hemophage.label>헤모파지 워캐스킷</HPWC_Warcasket_Hemophage.label>
+  <!-- EN: Specialized spacer-tech warcasket shell with improved heat protection, equipped with hemogen injectors that replace the pilot's blood pumping and can spend hemogen to make the pilot faster and stronger. -->
+  <HPWC_Warcasket_Hemophage.shortDescription>우주시대 기술로 특화된 워캐스킷입니다. 개선된 열기 방어력을 갖췄으며, 혈액정수 주입기를 장착했습니다. 주입기는 조종사의 혈액 순환을 대신하고, 혈액정수를 소모해 조종사를 더 빠르고 강하게 만들 수 있습니다.</HPWC_Warcasket_Hemophage.shortDescription>
+
+</LanguageData>

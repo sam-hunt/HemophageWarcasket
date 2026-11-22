@@ -21,7 +21,7 @@ welcome too.
 | English              | Source           | -         |
 | Simplified Chinese   | Machine-assisted | -         |
 | Russian              | Machine-assisted | -         |
-| Korean               | Planned          | -         |
+| Korean               | Machine-assisted | -         |
 | German               | Planned          | -         |
 | Spanish              | Planned          | -         |
 | French               | Planned          | -         |

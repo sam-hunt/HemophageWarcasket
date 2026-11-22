@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN:
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tried to tear off [RECIPIENT_definite]'s [recipient_part0_label], but only wounded it.</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tore at [RECIPIENT_definite]'s [recipient_part0_label], wounding it.</li>
+    <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] tried to rip off [RECIPIENT_definite]'s [recipient_part0_label], but it held.</li>
+  -->
+  <HPWC_Combat_Dismember.rulePack.rulesStrings>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite](이)가 [RECIPIENT_definite]의 [recipient_part0_label](을)를 뜯어냄.</li>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite](이)가 [RECIPIENT_definite]의 [recipient_part0_label](을)를 뽑아 버림.</li>
+    <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite](이)가 [RECIPIENT_definite](을)를 붙잡고 [recipient_part0_label](을)를 뜯어냄.</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite](이)가 [RECIPIENT_definite]의 [recipient_part0_label](을)를 뜯어내려 했지만 상처만 입힘.</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite](이)가 [RECIPIENT_definite]의 [recipient_part0_label](을)를 잡아 뜯어 상처를 입힘.</li>
+    <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite](이)가 [RECIPIENT_definite]의 [recipient_part0_label](을)를 뽑아 버리려 했지만 떨어지지 않음.</li>
+  </HPWC_Combat_Dismember.rulePack.rulesStrings>
+
+</LanguageData>

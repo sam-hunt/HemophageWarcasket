@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Dismember (Source/1.6/Abilities/Dismember/). {0} is the target -->
+  <!-- EN: {0} has no limbs to tear off. -->
+  <HPWC_DismemberNoLimbs>{0}에게는 뜯어낼 사지가 없습니다.</HPWC_DismemberNoLimbs>
+  <!-- EN: {0} is not hostile. -->
+  <HPWC_DismemberNotHostile>{0}(은)는 적대적이지 않습니다.</HPWC_DismemberNotHostile>
+  <!-- Beside the cursor over a target, where the game's own "Will kill" goes: the strike would tear off none of the limbs it could take hold of, or only some of them -->
+  <!-- EN: Will only wound -->
+  <HPWC_DismemberWillWound>부상에 그침</HPWC_DismemberWillWound>
+  <!-- EN: May only wound -->
+  <HPWC_DismemberMayWound>부상에 그칠 수 있음</HPWC_DismemberMayWound>
+  <!-- The dialog before an order that would kill a target that is not hostile, where the game asks "Bloodfeeding on {PAWN_nameDef} will kill {PAWN_objective}." before a lethal bite: the strike would tear the head off a target with no limbs left, or the drain after it would bleed the target to death. PAWN is the target -->
+  <!-- EN: The strike will tear off {PAWN_nameDef}'s head, which will kill {PAWN_objective}.\n\nAre you sure? -->
+  <HPWC_DismemberConfirmKill>일격으로 {PAWN_nameDef}의 머리를 뜯어내면 {PAWN_objective} 죽이게 됩니다.\n\n계속하시겠습니까?</HPWC_DismemberConfirmKill>
+  <!-- EN: Draining hemogen from {PAWN_nameDef} after the strike will kill {PAWN_objective}.\n\nAre you sure? -->
+  <HPWC_DismemberConfirmDrainKill>일격 후 {PAWN_nameDef}에게서 혈액정수를 추출하면 {PAWN_objective} 죽이게 됩니다.\n\n계속하시겠습니까?</HPWC_DismemberConfirmDrainKill>
+  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
+  <!-- EN: Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}. -->
+  <HPWC_DismemberReload>일격마다 어깨의 서보 모터가 하나씩 타 버리며, {0}(으)로 재장전하면 교체할 수 있습니다.</HPWC_DismemberReload>
+
+  <!-- Mod settings (Source/1.6/Settings/) -->
+  <!-- EN: Hemophage Warcasket -->
+  <HPWC_SettingsCategory>헤모파지 워캐스킷</HPWC_SettingsCategory>
+  <!-- Shown in place of the ability and helmet sections (HemophageWarcasketSettings.TryGetDefs) -->
+  <!-- EN: The ability and helmet settings are unavailable. Another mod has changed the hemophage warcasket, so they will keep their built-in values. -->
+  <HPWC_SettingsUnavailable>능력과 헬멧 설정을 사용할 수 없습니다. 다른 모드가 헤모파지 워캐스킷을 변경했기 때문에 이 설정에는 내장된 값이 그대로 적용됩니다.</HPWC_SettingsUnavailable>
+
+  <!-- After a slider's value while it is unset -->
+  <!-- EN:  (default) -->
+  <HPWC_DefaultSuffix> (기본값)</HPWC_DefaultSuffix>
+  <!-- A checkbox's default in its tooltip -->
+  <!-- EN: enabled -->
+  <HPWC_Enabled>켜짐</HPWC_Enabled>
+  <!-- EN: disabled -->
+  <HPWC_Disabled>꺼짐</HPWC_Disabled>
+  <!-- A slider's value at its off end -->
+  <!-- EN: Off -->
+  <HPWC_Off>없음</HPWC_Off>
+
+  <!-- Hemogen rush section (Source/1.6/Settings/Settings_Rush.cs). {0} in every tooltip is the default -->
+  <!-- EN: Hemogen rush -->
+  <HPWC_SectionRush>혈액정수 쇄도</HPWC_SectionRush>
+
+  <!-- EN: Hemogen cost to start -->
+  <HPWC_RushStartCost>시작 시 혈액정수 비용</HPWC_RushStartCost>
+  <!-- EN: The amount of hemogen the pilot spends each time a rush starts. Default: {0}. -->
+  <HPWC_RushStartCostDesc>쇄도를 시작할 때마다 조종사가 소모하는 혈액정수의 양입니다. 기본값: {0}.</HPWC_RushStartCostDesc>
+
+  <!-- EN: Hemogen per second -->
+  <HPWC_RushDrain>초당 혈액정수</HPWC_RushDrain>
+  <!-- EN: The amount of hemogen the pilot spends each second while the rush is running. Default: {0}. -->
+  <HPWC_RushDrainDesc>쇄도가 이어지는 동안 조종사가 1초마다 소모하는 혈액정수의 양입니다. 기본값: {0}.</HPWC_RushDrainDesc>
+
+  <!-- EN: Hemogen reserve -->
+  <HPWC_RushReserve>혈액정수 비축량</HPWC_RushReserve>
+  <!-- EN: The hemogen level at which the rush will stop on its own. At zero, it will run until the pilot has no hemogen left and develops a hemogen craving. Default: {0}. -->
+  <HPWC_RushReserveDesc>쇄도가 저절로 멈추는 혈액정수 수치입니다. 0으로 설정하면 조종사의 혈액정수가 바닥나 혈액정수 갈망이 생길 때까지 쇄도가 이어집니다. 기본값: {0}.</HPWC_RushReserveDesc>
+
+  <!-- EN: Move speed -->
+  <HPWC_RushMoveSpeed>이동 속도</HPWC_RushMoveSpeed>
+  <!-- EN: The pilot's move speed during a hemogen rush, compared to normal. Default: {0}. -->
+  <HPWC_RushMoveSpeedDesc>혈액정수 쇄도 중 조종사의 이동 속도를 평소와 비교한 값입니다. 기본값: {0}.</HPWC_RushMoveSpeedDesc>
+
+  <!-- EN: Melee damage -->
+  <HPWC_RushMeleeDamage>근접 피해</HPWC_RushMeleeDamage>
+  <!-- EN: How much damage the pilot's melee attacks will do during a hemogen rush, compared to normal. Default: {0}. -->
+  <HPWC_RushMeleeDamageDesc>혈액정수 쇄도 중 조종사의 근접 공격이 평소보다 얼마나 큰 피해를 주는지 나타냅니다. 기본값: {0}.</HPWC_RushMeleeDamageDesc>
+
+  <!-- EN: Pulsing glow -->
+  <HPWC_RushGlowPulse>맥동하는 빛</HPWC_RushGlowPulse>
+  <!-- EN: When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}. -->
+  <HPWC_RushGlowPulseDesc>켜면 혈액정수 쇄도 중 워캐스킷의 빛이 심장이 뛰듯 맥동합니다. 끄면 빛이 최대 밝기로 유지됩니다. 기본값: {0}.</HPWC_RushGlowPulseDesc>
+
+  <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages, {5} the cost to start. One key per combination of a start cost and a drain -->
+  <!-- EN: A hemogen rush costs {5} hemogen to start, then spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
+  <HPWC_RushSummaryStartCost>혈액정수 쇄도는 시작할 때 혈액정수 {5}만큼을 소모하고, 이후 초당 {0}씩 소모하다가 {1}에서 멈춥니다. 따라서 혈액정수 100에서 시작한 쇄도는 {2} 동안 이어집니다. 조종사의 이동 속도는 {3}, 근접 피해는 {4}입니다.</HPWC_RushSummaryStartCost>
+  <!-- EN: A hemogen rush spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
+  <HPWC_RushSummary>혈액정수 쇄도는 초당 혈액정수 {0}씩 소모하다가 {1}에서 멈춥니다. 따라서 혈액정수 100에서 시작한 쇄도는 {2} 동안 이어집니다. 조종사의 이동 속도는 {3}, 근접 피해는 {4}입니다.</HPWC_RushSummary>
+  <!-- {0} and {1} are the percentages, {2} the cost to start -->
+  <!-- EN: A hemogen rush costs {2} hemogen to start and spends none after that, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage. -->
+  <HPWC_RushSummaryStartCostNoDrain>혈액정수 쇄도는 시작할 때 혈액정수 {2}만큼을 소모하고 그 뒤로는 소모하지 않으므로, 조종사가 멈출 때까지 이어집니다. 조종사의 이동 속도는 {0}, 근접 피해는 {1}입니다.</HPWC_RushSummaryStartCostNoDrain>
+  <!-- EN: A hemogen rush spends no hemogen, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage. -->
+  <HPWC_RushSummaryFree>혈액정수 쇄도는 혈액정수를 소모하지 않으므로, 조종사가 멈출 때까지 이어집니다. 조종사의 이동 속도는 {0}, 근접 피해는 {1}입니다.</HPWC_RushSummaryFree>
+
+  <!-- Dismember section (Source/1.6/Settings/Settings_Dismember.cs) -->
+  <!-- EN: Dismember -->
+  <HPWC_SectionDismember>사지 절단</HPWC_SectionDismember>
+
+  <!-- EN: Strike capacity -->
+  <HPWC_DismemberStrikes>일격 용량</HPWC_DismemberStrikes>
+  <!-- EN: The number of strikes the shoulders hold when full. Default: {0}. -->
+  <HPWC_DismemberStrikesDesc>어깨에 최대로 장전할 수 있는 일격의 수입니다. 기본값: {0}.</HPWC_DismemberStrikesDesc>
+
+  <!-- {1} is the reload item in the plural, such as "components" -->
+  <!-- EN: Reload cost per strike -->
+  <HPWC_DismemberReloadCost>일격당 재장전 비용</HPWC_DismemberReloadCost>
+  <!-- EN: The number of {1} it takes to reload one strike. Default: {0}. -->
+  <HPWC_DismemberReloadCostDesc>일격 하나를 재장전하는 데 필요한 {1} 개수입니다. 기본값: {0}.</HPWC_DismemberReloadCostDesc>
+
+  <!-- EN: Casting time -->
+  <HPWC_DismemberWindup>시전 시간</HPWC_DismemberWindup>
+  <!-- EN: How long the pilot holds the target still before tearing off an arm or a leg. Default: {0}. -->
+  <HPWC_DismemberWindupDesc>조종사가 대상을 꼼짝 못 하게 붙잡고 있다가 팔이나 다리를 뜯어내기까지 걸리는 시간입니다. 기본값: {0}.</HPWC_DismemberWindupDesc>
+
+  <!-- EN: Cooldown -->
+  <HPWC_DismemberCooldown>재사용 대기</HPWC_DismemberCooldown>
+  <!-- EN: The time the pilot must wait between strikes. Default: {0}. -->
+  <HPWC_DismemberCooldownDesc>조종사가 일격 후 다음 일격까지 기다려야 하는 시간입니다. 기본값: {0}.</HPWC_DismemberCooldownDesc>
+
+  <!-- EN: Strike damage -->
+  <HPWC_DismemberDamage>일격 피해</HPWC_DismemberDamage>
+  <!-- EN: The damage a strike does to the limb it takes hold of, before the pilot's melee damage factor. A limb with more health than that will be wounded instead of torn off. Default: {0}. -->
+  <HPWC_DismemberDamageDesc>붙잡은 사지에 일격이 주는 피해로, 조종사의 근접 피해 계수를 적용하기 전의 값입니다. 체력이 이보다 많은 사지는 뜯겨 나가지 않고 부상만 입습니다. 기본값: {0}.</HPWC_DismemberDamageDesc>
+
+  <!-- EN: Drain time -->
+  <HPWC_DismemberDrainTime>추출 시간</HPWC_DismemberDrainTime>
+  <!-- EN: How long a hemogenic pilot spends draining hemogen from a human target. A full drain will give the same amount of hemogen however long it takes. Default: {0}. -->
+  <HPWC_DismemberDrainTimeDesc>흡혈성 조종사가 인간 대상에게서 혈액정수를 추출하는 데 걸리는 시간입니다. 시간이 얼마나 걸리든 추출을 끝까지 마치면 얻는 혈액정수의 양은 같습니다. 기본값: {0}.</HPWC_DismemberDrainTimeDesc>
+
+  <!-- EN: Base hemogen gain -->
+  <HPWC_DismemberGain>기본 혈액정수 획득량</HPWC_DismemberGain>
+  <!-- EN: The amount of hemogen the pilot gains from a full drain, which is affected by the target's body size. At zero, the pilot will not drain the target. Default: {0}. -->
+  <HPWC_DismemberGainDesc>추출을 끝까지 마쳤을 때 조종사가 얻는 혈액정수의 양이며, 대상의 신체 크기에 따라 달라집니다. 0으로 설정하면 조종사는 대상에게서 혈액정수를 추출하지 않습니다. 기본값: {0}.</HPWC_DismemberGainDesc>
+
+  <!-- EN: Blood loss -->
+  <HPWC_DismemberBloodLoss>혈액 손실</HPWC_DismemberBloodLoss>
+  <!-- EN: The blood loss a full drain causes in the target, on top of the bleeding from the lost limb. Default: {0}. -->
+  <HPWC_DismemberBloodLossDesc>추출을 끝까지 마쳤을 때 대상에게 생기는 혈액 손실입니다. 잃은 사지에서 나는 출혈과는 따로 더해집니다. 기본값: {0}.</HPWC_DismemberBloodLossDesc>
+
+  <!-- EN: Blood spatter -->
+  <HPWC_DismemberSpatter>피 튀김</HPWC_DismemberSpatter>
+  <!-- EN: The number of blood spatters a strike will leave on the ground around the target. Default: {0}. -->
+  <HPWC_DismemberSpatterDesc>일격 한 번에 대상 주위 바닥에 튀는 핏자국의 수입니다. 기본값: {0}.</HPWC_DismemberSpatterDesc>
+
+  <!-- EN: Allow non-hostile targets -->
+  <HPWC_DismemberNonHostile>적대적이지 않은 대상 허용</HPWC_DismemberNonHostile>
+  <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
+  <HPWC_DismemberNonHostileDesc>켜면 조종사가 적대적이지 않은 대상의 사지도 절단할 수 있지만, 대상이 속한 세력의 분노를 삽니다. 끄면 적대적인 대상만 절단할 수 있습니다. 기본값: {0}.</HPWC_DismemberNonHostileDesc>
+
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->
+  <HPWC_DismemberSummary>어깨에는 {5}(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸립니다. 흡혈성 조종사는 이어서 인간 대상에게서 {2} 동안 혈액정수를 추출해 혈액정수 {3}만큼을 얻으며, 대상의 혈액 손실은 {4} 늘어납니다. 일격 후 재사용 대기시간은 {1}입니다.</HPWC_DismemberSummary>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once. -->
+  <HPWC_DismemberSummaryNoCooldown>어깨에는 {5}(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸립니다. 흡혈성 조종사는 이어서 인간 대상에게서 {2} 동안 혈액정수를 추출해 혈액정수 {3}만큼을 얻으며, 대상의 혈액 손실은 {4} 늘어납니다. 다음 일격은 바로 이어갈 수 있습니다.</HPWC_DismemberSummaryNoCooldown>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}. -->
+  <HPWC_DismemberSummaryNoDrain>어깨에는 {5}(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸리며, 조종사는 대상에게서 혈액정수를 추출하지 않습니다. 일격 후 재사용 대기시간은 {1}입니다.</HPWC_DismemberSummaryNoDrain>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once. -->
+  <HPWC_DismemberSummaryNoCooldownNoDrain>어깨에는 {5}(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸리며, 조종사는 대상에게서 혈액정수를 추출하지 않습니다. 다음 일격은 바로 이어갈 수 있습니다.</HPWC_DismemberSummaryNoCooldownNoDrain>
+
+  <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in every tooltip is the default -->
+  <!-- EN: Helmet -->
+  <HPWC_SectionHelmet>헬멧</HPWC_SectionHelmet>
+  <!-- EN: The sealed visor of the hemophage warcasket helmet keeps sunlight off a pilot who is sensitive to it and steadies a pilot who is afraid of fire. -->
+  <HPWC_SectionHelmetDesc>헤모파지 워캐스킷 헬멧의 밀폐형 바이저는 햇빛에 민감한 조종사를 햇빛으로부터 지켜 주고, 불을 두려워하는 조종사를 진정시켜 줍니다.</HPWC_SectionHelmetDesc>
+  <!-- EN: Sunlight protection -->
+  <HPWC_HelmetSunlight>햇빛 차단</HPWC_HelmetSunlight>
+  <!-- EN: When enabled, the helmet will protect a pilot with a UV sensitivity gene from the effects of sunlight. When disabled, sunlight will slow such a pilot and lower their mood as usual. Default: {0}. -->
+  <HPWC_HelmetSunlightDesc>켜면 헬멧이 자외선 민감성 유전자가 있는 조종사를 햇빛의 영향으로부터 보호합니다. 끄면 그런 조종사는 평소처럼 햇빛을 받으면 느려지고 기분이 나빠집니다. 기본값: {0}.</HPWC_HelmetSunlightDesc>
+  <!-- EN: Fire terror chance -->
+  <HPWC_HelmetPyrophobia>불에서 도망칠 확률</HPWC_HelmetPyrophobia>
+  <!-- EN: How often a pilot with the pyrophobia gene will flee in terror from a nearby fire, compared to normal. At 0%, the pilot will never flee from fire. Default: {0}. -->
+  <HPWC_HelmetPyrophobiaDesc>불 공포증 유전자가 있는 조종사가 근처의 불을 보고 겁에 질려 달아나는 빈도를 평소와 견준 값입니다. 0%로 설정하면 조종사는 절대 불에서 도망치지 않습니다. 기본값: {0}.</HPWC_HelmetPyrophobiaDesc>
+
+  <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
+  <!-- EN: Enabled work types -->
+  <HPWC_SectionWork>활성화된 작업 유형</HPWC_SectionWork>
+  <!-- EN: The work types a pilot of the hemophage warcasket can do, out of those that warcasket pilots normally cannot. Work that another mod enables for all warcasket pilots will stay enabled. -->
+  <HPWC_SectionWorkDesc>보통 워캐스킷 조종사는 할 수 없지만 헤모파지 워캐스킷 조종사는 할 수 있는 작업 유형입니다. 다른 모드가 모든 워캐스킷 조종사에게 허용한 작업은 계속 허용됩니다.</HPWC_SectionWorkDesc>
+  <!-- {0} is HPWC_Enabled or HPWC_Disabled -->
+  <!-- EN: When enabled, pilots of the hemophage warcasket can do this work, though you will need to assign it in the work tab. When disabled, they cannot. Default: {0}. -->
+  <HPWC_WorkDesc>켜면 헤모파지 워캐스킷 조종사가 이 작업을 할 수 있지만, 작업 탭에서 따로 할당해야 합니다. 끄면 할 수 없습니다. 기본값: {0}.</HPWC_WorkDesc>
+  <!-- {0} is a list of work types as the work tab names them -->
+  <!-- EN: The pilot can do {0} work, as well as the work that all warcasket pilots can do. -->
+  <HPWC_WorkSummary>조종사는 모든 워캐스킷 조종사가 할 수 있는 작업에 더해 {0} 작업도 할 수 있습니다.</HPWC_WorkSummary>
+  <!-- EN: The pilot can only do the work that all warcasket pilots can do. -->
+  <HPWC_WorkSummaryNone>조종사는 모든 워캐스킷 조종사가 할 수 있는 작업만 할 수 있습니다.</HPWC_WorkSummaryNone>
+  <!-- EN: No work is blocked for warcasket pilots, so there is nothing to enable here. -->
+  <HPWC_WorkSummaryNothingBlocked>워캐스킷 조종사에게 막힌 작업이 없으므로, 여기서 허용할 작업도 없습니다.</HPWC_WorkSummaryNothingBlocked>
+
+  <!-- Quest section (Source/1.6/Settings/Settings_QuestPilot.cs, ResearchGateSetting.cs): the sanguophages of Biotech's sanguophage meeting quest and of its crashed sanguophage shuttle quest, and that shuttle's thralls. {0} in every tooltip is the default -->
+  <!-- EN: Sanguophages from quests -->
+  <HPWC_SectionQuestPilot>임무로 오는 생귀오파지</HPWC_SectionQuestPilot>
+  <!-- EN: Sanguophages who come to your colony during a quest can arrive already entombed in a hemophage warcasket. One who joins you will stay in it. The thralls of a crashed shuttle can arrive in lesser warcaskets. -->
+  <HPWC_SectionQuestPilotDesc>임무 중 정착지에 찾아오는 생귀오파지가 이미 헤모파지 워캐스킷에 안치된 채로 나타날 수 있습니다. 합류한 생귀오파지는 워캐스킷에서 나오지 않습니다. 추락한 왕복선의 흡혈종복은 하급 워캐스킷을 입고 나타날 수 있습니다.</HPWC_SectionQuestPilotDesc>
+  <!-- EN: Required research -->
+  <HPWC_QuestResearch>필요한 연구</HPWC_QuestResearch>
+  <!-- EN: The research your colony must finish before any of these sanguophages can arrive in a hemophage warcasket. Default: {0}. -->
+  <HPWC_QuestResearchDesc>이 생귀오파지들이 헤모파지 워캐스킷을 입고 나타나려면 정착지에서 먼저 완료해야 하는 연구입니다. 기본값: {0}.</HPWC_QuestResearchDesc>
+  <!-- The first stop of the slider, before the research projects' own names -->
+  <!-- EN: None -->
+  <HPWC_QuestResearchNone>없음</HPWC_QuestResearchNone>
+  <!-- The two quests' subheadings, each over its own rows, and their tooltips -->
+  <!-- EN: Sanguophage meeting -->
+  <HPWC_QuestMeeting>생귀오파지 회의</HPWC_QuestMeeting>
+  <!-- EN: A quest where a sanguophage leader asks you to host a meeting. If you accept, the leader and the other guests will arrive at your colony and spend several hours in discussion. -->
+  <HPWC_QuestMeetingDesc>생귀오파지 지도자가 회의 장소를 내어 달라고 요청하는 임무입니다. 수락하면 지도자와 다른 손님들이 정착지에 도착해 몇 시간 동안 의논합니다.</HPWC_QuestMeetingDesc>
+  <!-- EN: Leader warcasket chance -->
+  <HPWC_QuestMeetingLeader>지도자 워캐스킷 확률</HPWC_QuestMeetingLeader>
+  <!-- EN: The chance that the leader of a sanguophage meeting will arrive in a hemophage warcasket. Default: {0}. -->
+  <HPWC_QuestMeetingLeaderDesc>생귀오파지 회의의 지도자가 헤모파지 워캐스킷을 입고 나타날 확률입니다. 기본값: {0}.</HPWC_QuestMeetingLeaderDesc>
+  <!-- EN: Guest warcasket chance -->
+  <HPWC_QuestMeetingGuest>손님 워캐스킷 확률</HPWC_QuestMeetingGuest>
+  <!-- EN: The chance that each of the other sanguophages at a meeting will arrive in a hemophage warcasket as well. Default: {0}. -->
+  <HPWC_QuestMeetingGuestDesc>회의에 오는 다른 생귀오파지 각각이 헤모파지 워캐스킷을 입고 나타날 확률입니다. 기본값: {0}.</HPWC_QuestMeetingGuestDesc>
+  <!-- EN: Crashed shuttle -->
+  <HPWC_QuestShip>추락한 왕복선</HPWC_QuestShip>
+  <!-- EN: A quest where you can draw a hostile shuttle down to a crash near your colony. Its sanguophage master and thralls will leave the wreck and fight you. -->
+  <HPWC_QuestShipDesc>정착지 근처에 적대적인 왕복선의 불시착을 유도할 수 있는 임무입니다. 왕복선에 탄 생귀오파지 주인과 흡혈종복은 잔해에서 나와 싸움을 겁니다.</HPWC_QuestShipDesc>
+  <!-- EN: Master warcasket chance -->
+  <HPWC_QuestShipMaster>주인 워캐스킷 확률</HPWC_QuestShipMaster>
+  <!-- EN: The chance that the sanguophage master of a crashed shuttle will be entombed in a hemophage warcasket, which will make the master much harder to down and capture. Default: {0}. -->
+  <HPWC_QuestShipMasterDesc>추락한 왕복선의 생귀오파지 주인이 헤모파지 워캐스킷에 안치되어 있을 확률입니다. 그 경우 주인을 쓰러뜨려 생포하기가 훨씬 어려워집니다. 기본값: {0}.</HPWC_QuestShipMasterDesc>
+  <!-- EN: Master warcasket points -->
+  <HPWC_QuestShipMasterPoints>주인 워캐스킷 위협 점수</HPWC_QuestShipMasterPoints>
+  <!-- EN: The threat points a crashed shuttle quest must be worth before its sanguophage master can arrive in a hemophage warcasket. The storyteller raises threat points with your colonist count and colony wealth. Default: {0}. -->
+  <HPWC_QuestShipMasterPointsDesc>추락한 왕복선 임무의 위협 점수가 이 값 이상이어야 생귀오파지 주인이 헤모파지 워캐스킷을 입고 나타날 수 있습니다. 이야기꾼은 정착민 수와 정착지 재산에 따라 위협 점수를 높입니다. 기본값: {0}.</HPWC_QuestShipMasterPointsDesc>
+  <!-- The slider's value at 0, where there is no floor -->
+  <!-- EN: None -->
+  <HPWC_QuestShipMasterPointsNone>없음</HPWC_QuestShipMasterPointsNone>
+  <!-- 0 is shown as HPWC_Off. The warcaskets are VFE Pirates' own basic sets, each needing its own research -->
+  <!-- EN: Thrall warcaskets -->
+  <HPWC_QuestThrallShare>흡혈종복 워캐스킷</HPWC_QuestThrallShare>
+  <!-- EN: How strong a crashed shuttle quest should be compared to a raid on your colony. If the quest is weaker, some of the master's thralls will arrive in lesser warcaskets you have researched. Default: {0}. -->
+  <HPWC_QuestThrallShareDesc>추락한 왕복선 임무가 내 정착지를 노리는 습격에 비해 어느 정도 강해야 하는지 정합니다. 임무가 이보다 약하면 주인의 흡혈종복 중 일부가 정착지가 연구를 완료한 하급 워캐스킷을 입고 나타납니다. 기본값: {0}.</HPWC_QuestThrallShareDesc>
+
+</LanguageData>

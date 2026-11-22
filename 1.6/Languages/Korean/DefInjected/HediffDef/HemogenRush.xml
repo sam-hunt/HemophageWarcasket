@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: This person's warcasket is spending their hemogen quickly, allowing them to move faster and hit harder. -->
+  <HPWC_HemogenRush.description>이 사람의 워캐스킷이 혈액정수를 빠르게 소모하는 덕분에, 이 사람은 더 빨리 움직이고 더 강하게 공격할 수 있습니다.</HPWC_HemogenRush.description>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>혈액정수 쇄도</HPWC_HemogenRush.label>
+
+</LanguageData>
