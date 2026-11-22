@@ -19,7 +19,7 @@ welcome too.
 | Language             | Status           | Credit    |
 | -------------------- | ---------------- | --------- |
 | English              | Source           | -         |
-| Simplified Chinese   | Planned          | -         |
+| Simplified Chinese   | Machine-assisted | -         |
 | Russian              | Planned          | -         |
 | Korean               | Planned          | -         |
 | German               | Planned          | -         |

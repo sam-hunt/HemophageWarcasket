@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>血原奔涌</HPWC_HemogenRush.label>
+  <!-- EN: This person's warcasket is spending their hemogen quickly, allowing them to move faster and hit harder. -->
+  <HPWC_HemogenRush.description>此人的战棺正在快速消耗血原质，使其移动更快、攻击更猛。</HPWC_HemogenRush.description>
+</LanguageData>
