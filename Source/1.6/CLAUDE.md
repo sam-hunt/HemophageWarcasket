@@ -34,11 +34,15 @@ rather than restating it.
   it. The root holds `ModInit.cs`, `Startup.cs` and `HPWC_DefOf.cs` alone.
 - **Patch classes live in `Patches/`** under the `.Patches` namespace suffix, to avoid RimWorld
   type-name conflicts. Log with the `[Hemophage Warcasket]` prefix.
-- **Patch timing is the load-bearing hazard.** `PatchAll()` runs from the
+- **Patch timing is the load-bearing hazard.** The patches are applied from the
   `[StaticConstructorOnStartup]` in `ModInit.cs`, never from a `Mod` subclass constructor: a
   detour on a VFEP method applied before defs load runs that type's static ctor early and breaks
   it for good (the BetterTradersGuild v1.1.0 CWTL incident). `ModInit`'s header has the
   rationale; `HemophageWarcasketMod` owns the settings only.
+- **`ModInit` patches class by class, never through `Harmony.PatchAll`**, which stops at the
+  first class that throws: a failing class costs its own patch and an error in the log, and
+  every other class and `Startup.Run` still run. A new patch needs only its `[HarmonyPatch]`
+  attribute to be picked up.
 - **A postfix on a check the game asks constantly does nothing until the original's answer
   needs changing.** The stat worker asks a gene's conditional affecter on every stat it computes
   for a carrier, so the sunlight postfix tests `__result` before it looks at the pawn
@@ -46,8 +50,8 @@ rather than restating it.
   itself. A patch's header says how often its target runs and for which pawns.
 - **A patch on a corner of VEF or VFEP the set does not otherwise depend on finds its target by
   name and skips itself with a warning when it is missing**
-  (`Patches/HediffComp_StageBySunlight_CompPostTickInterval`): one target that fails to resolve
-  throws out of `PatchAll` and takes every later patch and `Startup.Run` with it.
+  (`Patches/HediffComp_StageBySunlight_CompPostTickInterval`): a typed target that fails to
+  resolve is an exception in a player's log, where a stand-down is one line.
 - **Startup def-derived state must survive an in-process play-data reload** (a language switch
   reloads every def). Anything that reads or writes a def at startup goes in the idempotent
   `Startup.Run`, called once from `ModInit` and again from the

@@ -17,8 +17,8 @@ namespace HemophageWarcasket.Patches;
 // unshielded carrier standing in sunlight.
 //
 // The target is found by name, and a miss skips this patch with a warning: a typed target
-// that VEF has since renamed would throw out of PatchAll and take every other patch and the
-// startup work with it. The comp has no static state, so patching it runs nothing of VEF's
+// that VEF has since renamed would be a missing-member exception in a player's log for a
+// relief the set can do without. The comp has no static state, so patching it runs nothing of VEF's
 // (ModInit has the timing rule). Verified on VEF's 1.6 and 1.7 builds.
 [HarmonyPatch]
 public static class HediffComp_StageBySunlight_CompPostTickInterval

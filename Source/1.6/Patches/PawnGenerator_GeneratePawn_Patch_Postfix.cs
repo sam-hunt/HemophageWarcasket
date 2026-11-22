@@ -39,7 +39,7 @@ namespace HemophageWarcasket.Patches;
 //
 // The target is VFEP's own patch method, an internal no test of ours can pin (the suite loads
 // no VFEP assembly), so it is bound by name: should VFEP move it, this patch stands down with a
-// warning where a typed target would fail PatchAll and take every other patch with it.
+// warning where a typed target would be an exception in a player's log.
 [HarmonyPatch]
 public static class PawnGenerator_GeneratePawn_Patch_Postfix
 {

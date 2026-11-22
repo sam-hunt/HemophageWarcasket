@@ -19,7 +19,7 @@ namespace HemophageWarcasket.Patches;
 //
 // RunInt is protected, so it is bound by name, and as this type declares it, since the abstract
 // QuestNode.RunInt would answer an inherited lookup: should it move, this patch stands down with
-// a warning where a failed lookup would stop PatchAll and take every other patch with it.
+// a warning where a failed lookup would be an exception in a player's log.
 [HarmonyPatch]
 public static class QuestNode_Root_SanguophageMeetingHost_RunInt
 {
