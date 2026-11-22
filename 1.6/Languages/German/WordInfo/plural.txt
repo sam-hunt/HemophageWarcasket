@@ -1,0 +1,3 @@
+// Hemophage Warcasket: chargeNoun plural and the reload item counted by Ability_Dismember.Counted
+Schlag;Schläge
+Bauteil;Bauteile
