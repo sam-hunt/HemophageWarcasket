@@ -10,8 +10,8 @@
   <HPWC_HemogenRush.verbProperties.label>гемогенный форсаж</HPWC_HemogenRush.verbProperties.label>
   <!-- EN: dismember -->
   <HPWC_Dismember.label>отрыв конечности</HPWC_Dismember.label>
-  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
-  <HPWC_Dismember.description>Отрывает руку или ногу цели поблизости, какая бы броня на ней ни была. Слишком крепкую конечность удар только ранит, а цель, у которой не осталось конечностей, вместо этого лишится головы. Гемогеничный пилот после удара по человеку вытянет гемоген из раны, а цель потеряет кровь.</HPWC_Dismember.description>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is a non-hemogenic human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>Отрывает руку или ногу цели поблизости, какая бы броня на ней ни была. Слишком крепкую конечность удар только ранит, а цель, у которой не осталось конечностей, вместо этого лишится головы. Гемогеничный пилот после удара по негемогеничному человеку вытянет гемоген из раны, а цель потеряет кровь.</HPWC_Dismember.description>
   <!-- EN: Tearing off a limb. -->
   <HPWC_Dismember.jobReportString>отрывает конечность</HPWC_Dismember.jobReportString>
   <!-- EN: dismember -->

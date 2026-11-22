@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
-  <HPWC_Dismember.description>근처에 있는 대상의 팔이나 다리를 뜯어냅니다. 대상이 어떤 갑옷을 입었든 상관없습니다. 뜯어내기에는 너무 튼튼한 사지는 부상만 입으며, 남은 사지가 없는 대상은 대신 머리를 잃습니다. 조종사가 흡혈성이고 대상이 인간이라면, 조종사는 이어서 상처에서 혈액정수를 추출하고 대상은 피를 잃습니다.</HPWC_Dismember.description>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is a non-hemogenic human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>근처에 있는 대상의 팔이나 다리를 뜯어냅니다. 대상이 어떤 갑옷을 입었든 상관없습니다. 뜯어내기에는 너무 튼튼한 사지는 부상만 입으며, 남은 사지가 없는 대상은 대신 머리를 잃습니다. 조종사가 흡혈성이고 대상이 흡혈성이 아닌 인간이라면, 조종사는 이어서 상처에서 혈액정수를 추출하고 대상은 피를 잃습니다.</HPWC_Dismember.description>
   <!-- EN: Tearing off a limb. -->
   <HPWC_Dismember.jobReportString>사지 뜯어내는 중</HPWC_Dismember.jobReportString>
   <!-- EN: dismember -->

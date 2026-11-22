@@ -136,7 +136,7 @@
     },
     "VEF.Abilities.AbilityDef": {
       "HPWC_Dismember.description": {
-        "english": "Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood.",
+        "english": "Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is a non-hemogenic human, the pilot will then drain hemogen from the wound, and the target will lose blood.",
         "required": true
       },
       "HPWC_Dismember.iconPath": {

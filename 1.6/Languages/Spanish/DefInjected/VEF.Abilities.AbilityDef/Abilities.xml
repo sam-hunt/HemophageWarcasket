@@ -12,8 +12,8 @@
 
   <!-- EN: dismember -->
   <HPWC_Dismember.label>desmembrar</HPWC_Dismember.label>
-  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
-  <HPWC_Dismember.description>Arranca un brazo o una pierna a un objetivo cercano, lleve la armadura que lleve. Una extremidad demasiado resistente para arrancarla solo quedará herida, y un objetivo al que no le queden extremidades se quedará sin cabeza. Si el piloto es hemogénico y el objetivo es humano, después extraerá hemógeno de la herida y el objetivo perderá sangre.</HPWC_Dismember.description>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is a non-hemogenic human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>Arranca un brazo o una pierna a un objetivo cercano, lleve la armadura que lleve. Una extremidad demasiado resistente para arrancarla solo quedará herida, y un objetivo al que no le queden extremidades se quedará sin cabeza. Si el piloto es hemogénico y el objetivo es un humano no hemogénico, después extraerá hemógeno de la herida y el objetivo perderá sangre.</HPWC_Dismember.description>
   <!-- EN: Tearing off a limb. -->
   <HPWC_Dismember.jobReportString>arrancando una extremidad.</HPWC_Dismember.jobReportString>
   <!-- EN: dismember -->

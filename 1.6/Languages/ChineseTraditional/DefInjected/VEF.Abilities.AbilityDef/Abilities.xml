@@ -11,8 +11,8 @@
 
   <!-- EN: dismember -->
   <HPWC_Dismember.label>肢解</HPWC_Dismember.label>
-  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
-  <HPWC_Dismember.description>扯下附近目標的一條手臂或腿，無視其穿戴的任何護甲。太過結實而扯不下的肢體只會受傷，目標若沒有肢體可扯，則會改為扯下頭部。如果駕駛員具有血原性，而目標是人類，駕駛員接著會從傷口汲取血原，目標也會因此失血。</HPWC_Dismember.description>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is a non-hemogenic human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>扯下附近目標的一條手臂或腿，無視其穿戴的任何護甲。太過結實而扯不下的肢體只會受傷，目標若沒有肢體可扯，則會改為扯下頭部。如果駕駛員具有血原性，而目標是非血原性人類，駕駛員接著會從傷口汲取血原，目標也會因此失血。</HPWC_Dismember.description>
   <!-- EN: Tearing off a limb. -->
   <HPWC_Dismember.jobReportString>扯下肢體</HPWC_Dismember.jobReportString>
   <!-- EN: dismember -->

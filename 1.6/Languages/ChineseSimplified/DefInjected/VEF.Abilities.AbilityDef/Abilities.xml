@@ -10,8 +10,8 @@
   <HPWC_HemogenRush.verbProperties.label>血原奔涌</HPWC_HemogenRush.verbProperties.label>
   <!-- EN: dismember -->
   <HPWC_Dismember.label>肢解</HPWC_Dismember.label>
-  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
-  <HPWC_Dismember.description>无视护甲，撕下附近目标的一条手臂或一条腿。过于结实、撕不下来的肢体只会受伤，没有肢体可撕的目标则会被撕下头部。若驾驶员拥有血原化基因且目标是人类，驾驶员随后会从伤口抽取血原质，目标也会因此失血。</HPWC_Dismember.description>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is a non-hemogenic human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>无视护甲，撕下附近目标的一条手臂或一条腿。过于结实、撕不下来的肢体只会受伤，没有肢体可撕的目标则会被撕下头部。若驾驶员拥有血原化基因且目标是没有血原化基因的人类，驾驶员随后会从伤口抽取血原质，目标也会因此失血。</HPWC_Dismember.description>
   <!-- EN: Tearing off a limb. -->
   <HPWC_Dismember.jobReportString>撕下一条肢体。</HPWC_Dismember.jobReportString>
   <!-- EN: dismember -->

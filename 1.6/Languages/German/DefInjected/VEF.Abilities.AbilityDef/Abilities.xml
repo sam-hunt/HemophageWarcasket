@@ -12,8 +12,8 @@
 
   <!-- EN: dismember -->
   <HPWC_Dismember.label>Zerstückeln</HPWC_Dismember.label>
-  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
-  <HPWC_Dismember.description>Reiße einem Ziel in der Nähe einen Arm oder ein Bein ab, ganz gleich, welche Rüstung es trägt. Eine zu robuste Gliedmaße wird nur verletzt, und ein Ziel ohne Gliedmaßen verliert stattdessen den Kopf. Ist der Pilot hämogenisch und das Ziel ein Mensch, entzieht er der Wunde danach Hämogen, und das Ziel verliert Blut.</HPWC_Dismember.description>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is a non-hemogenic human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>Reiße einem Ziel in der Nähe einen Arm oder ein Bein ab, ganz gleich, welche Rüstung es trägt. Eine zu robuste Gliedmaße wird nur verletzt, und ein Ziel ohne Gliedmaßen verliert stattdessen den Kopf. Ist der Pilot hämogenisch und das Ziel ein nicht-hämogenischer Mensch, entzieht er der Wunde danach Hämogen, und das Ziel verliert Blut.</HPWC_Dismember.description>
   <!-- EN: Tearing off a limb. -->
   <HPWC_Dismember.jobReportString>reißt eine Gliedmaße ab.</HPWC_Dismember.jobReportString>
   <!-- EN: dismember -->

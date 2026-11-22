@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
-  <HPWC_Dismember.description>近くの対象の腕か脚を引きちぎります.アーマーを着ていても防げません.頑丈すぎて引きちぎれない手足は,傷を負うだけです.手足が残っていない対象は,代わりに頭を失います.パイロットがヘモゲニックで対象が人間なら,その後で傷口からヘモゲンを抽出し,対象を失血させます.</HPWC_Dismember.description>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is a non-hemogenic human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>近くの対象の腕か脚を引きちぎります.アーマーを着ていても防げません.頑丈すぎて引きちぎれない手足は,傷を負うだけです.手足が残っていない対象は,代わりに頭を失います.パイロットがヘモゲニックで対象が非ヘモゲニックの人間なら,その後で傷口からヘモゲンを抽出し,対象を失血させます.</HPWC_Dismember.description>
   <!-- EN: Tearing off a limb. -->
   <HPWC_Dismember.jobReportString>手足を引きちぎっている</HPWC_Dismember.jobReportString>
   <!-- EN: dismember -->
