@@ -29,8 +29,8 @@ the smoke list); the engines live in the `l10n/` submodule. Nothing here ships.
   Sibling-mod "dump WILL fail" warnings at launch are expected: the probe is ticked for every
   family mod but each boot loads only its own list.
 - **Translation passes are deferred until shortly before release**, one language at a time on
-  explicit request, through the `/translate` skill, once the English text is final. No language
-  exists yet; the public roster is in `CONTRIBUTING.md`.
+  explicit request, through the `/translate` skill, once the English text is final. The public
+  roster is in `CONTRIBUTING.md`.
 - **`preview-gif.py`** rebuilds `.steamworkshop/Preview.gif` from the artist's MP4 and
   `About/Preview.png`, deterministically, and refuses to write a file at or over Steam's 1 MiB.
   It is run only when the art changes: a new delivery, or a redrawn PNG, whose pixels are the

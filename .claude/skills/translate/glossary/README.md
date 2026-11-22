@@ -3,16 +3,15 @@
 Per-language files here (`German.md`, `Russian.md`, `ChineseSimplified.md`,
 and so on, named after the RimWorld language folder) hold everything about
 a language's translation that is specific to this mod: the set's own
-coined terms, the Workshop title, the charge-noun
-constraint for that language's plural lookup, and anything pending native
-review.
+coined terms, the Workshop title, the charge noun and the reload item with
+the plural-lookup files that language ships for them, and anything pending
+native review.
 
-Every roster language has a seeded file, written before any translation
-pass ran and before the set's own text was final. Each carries, in this
-order: a pointer to where the family's VFEP vocabulary for that language
-lives; the set-specific rows (none yet); the charge-noun constraint, for
-when an ability adds one; the list of terms the first pass must still
-ground or coin; and what is pending native review.
+Every roster language has a file, filled by its first machine-assisted
+pass. Each carries, in this order: a pointer to where the family's VFEP
+vocabulary for that language lives; the set-specific rows, each with the
+vanilla def or key its rendering rests on; what was ported from the
+siblings; the charge nouns; and what is pending native review.
 
 The VFEP warcasket vocabulary (how "warcasket", the parts, "entomb",
 VFEP's set names and research labels, the spacer openers and the

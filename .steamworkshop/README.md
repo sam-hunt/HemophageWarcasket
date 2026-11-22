@@ -7,9 +7,9 @@ RimWorld.
 ## Description/
 
 One file per language, named after the RimWorld language folders. English is
-the source of truth and the only file so far; the others arrive with their
-language's first translation pass as machine-assisted first passes pending
-native review. Format:
+the source of truth and the only file so far; the others follow once the
+English page is final, as machine-assisted first passes pending native
+review. Format:
 
 - Line 1: the Workshop title for that language
 - Line 2: blank
@@ -26,11 +26,10 @@ title must contain the term VFE Pirates' own translation for that language
 uses for "warcasket" (the `translate` skill's glossary records it). Titles are
 fully localized with no English brand appended: Workshop search is
 language-agnostic (any language's title matches regardless of UI language)
-and the preview thumbnail already carries the English name. Once the mod has
-a settings window, each title must equal that language's
-`HPWC_SettingsCategory` Keyed value (the window's header), and the checker
-enforces the coupling through `WORKSHOP_TITLE_KEY` in
-`Scripts/check-translations.py`; until then the title stands alone.
+and the preview thumbnail already carries the English name. Each title must
+equal that language's `HPWC_SettingsCategory` Keyed value (the settings
+window's header), and the checker enforces the coupling through
+`WORKSHOP_TITLE_KEY` in `Scripts/check-translations.py`.
 
 Player-facing rules from CLAUDE.md apply here too: no em dashes. Numbers on
 the page must match the defs; when a tuning change moves one, update this

@@ -14,7 +14,7 @@ let an agent run it.
 
 The mod targets the languages below, chosen by RimWorld's per-language
 audience size. Contributions for any other language RimWorld supports are
-welcome too. No translations exist yet.
+welcome too.
 
 | Language             | Status           | Credit    |
 | -------------------- | ---------------- | --------- |
@@ -45,12 +45,18 @@ this one.
 
 ### Contributing a translation
 
-- English is served by the def XML alone; the mod has no Keyed file yet, so
-  a translation is DefInjected only. The key set comes from
-  `Scripts/expected-injections.json`, all of it under `ThingDef` (the three
-  warcasket parts are `VFEPirates.WarcasketDef`s, which the game files under
-  `ThingDef`), and goes in
-  `1.6/Languages/<Language>/DefInjected/ThingDef/Apparel_Hemophage.xml`.
+- The text has two parts. Everything the code prints is the one Keyed file,
+  `1.6/Languages/English/Keyed/HemophageWarcasket.xml`, translated to
+  `1.6/Languages/<Language>/Keyed/HemophageWarcasket.xml` with the same keys;
+  the comments in the English file say where each string appears and what
+  its placeholders hold. The defs' text is DefInjected: the key set comes
+  from `Scripts/expected-injections.json` (every entry marked `required`),
+  and each def type has its own folder under
+  `1.6/Languages/<Language>/DefInjected/` (`ThingDef` for the three
+  warcasket parts, which are `VFEPirates.WarcasketDef`s the game files under
+  `ThingDef`, then `VEF.Abilities.AbilityDef`, `HediffDef`, `JobDef`,
+  `DamageDef`, `RulePackDef` and `TraitDef`). An existing language's folder
+  shows the layout.
 - Every translated entry carries the current English source in a comment
   directly above it, e.g. `<!-- EN: hemophage warcasket -->`; this is how
   stale translations are detected when the English changes.
@@ -59,11 +65,18 @@ this one.
   `shortDescription` equal to its description's first paragraph, as the
   English does.
 - Hemogen, sanguophage and the other Biotech terms follow RimWorld's
-  official translation for the language. The mod's VFE Pirates vocabulary
-  for each language (how "warcasket", the set's name and the foundry are
-  rendered, and which community VFE Pirates translation it follows) is
-  recorded in `.claude/skills/translate/glossary/<Language>.md`; match it,
-  or change it there in the same PR.
+  official translation for the language, in the same plain words. The mod's
+  own vocabulary for each language (how "warcasket", the set's name, the two
+  abilities and the foundry are rendered, and which community VFE Pirates
+  translation it follows) is recorded in
+  `.claude/skills/translate/glossary/<Language>.md`; match it, or change it
+  there in the same PR.
+- The game counts two nouns in the settings and in Dismember's tooltip, the
+  strike and the component a strike is reloaded with ("2 strikes",
+  "1 component"), and forms their plurals itself. Where a language needs
+  help with that, the forms are in `1.6/Languages/<Language>/WordInfo/`;
+  the glossary's "Charge nouns" section says which files a language ships
+  and why.
 - The Workshop page text lives in `.steamworkshop/Description/<Language>.txt`
   (see that folder's README for the format); corrections there are welcome
   too.

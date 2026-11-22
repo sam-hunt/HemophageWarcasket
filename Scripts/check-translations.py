@@ -14,8 +14,9 @@ import check_translations as engine  # noqa: E402  (import after sys.path edit)
 
 engine.REPO_ROOT = Path(__file__).resolve().parent.parent
 
-# No [TranslationCanChangeCount]-style matching-token fields in this repo:
-# the surface is three apparel defs' label/description text.
+# No field needs a parity exemption: the one list in the surface, the combat
+# log rule pack's rulesStrings, is marked fullListAllowed in the sidecar, so
+# the engine already lets a language change its length.
 engine.PARITY_EXEMPT_FIELDS = set()
 
 # RATIONALE: Biotech is a hard dependency (About.xml's modDependencies): the
