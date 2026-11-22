@@ -1,9 +1,5 @@
 # TODOs
 
-## Pre-release polish
-
-- **First Workshop publish.** Commit `About/PublishedFileId.txt` back from the local installation's deployment to the repo, add the Workshop link and the Steam badges to the README. Then check the README and CLAUDE.md are up to date
-
 ## Later
 
 - **AI use of the rush and Dismember** A pilot the player does not control casts neither (VEF fires no apparel ability's autocast), so a quest's sanguophage in the set fights with its plating alone.
