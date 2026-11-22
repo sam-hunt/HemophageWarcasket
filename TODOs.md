@@ -2,10 +2,6 @@
 
 ## Pre-release polish
 
-- **Smoke test on 1.6**
-- **Quest pilots in game** Generate both sanguophage quests at 100% chance (dev quest generation) and check:
-  - the join offer and a capture
-  - under Combat Extended, that a dressed pawn's autorifle fires and reloads from the three spare magazines
 - **First Workshop publish.** Commit `About/PublishedFileId.txt`, add the Workshop link and the Steam badges to the README
 
 ## Later
