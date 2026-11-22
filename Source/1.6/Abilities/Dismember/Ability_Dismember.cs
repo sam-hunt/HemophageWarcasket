@@ -74,9 +74,12 @@ public partial class Ability_Dismember : Ability
     // "2 / 2", for the command's corner.
     public string StrikesLabel => Pool?.LabelRemaining;
 
-    // "1 component", "2 components", "2 strikes": a count of something by its label.
+    // "1 component", "2 components", "2 strikes": a count of something by its label. A count
+    // under two keeps the label as it is here, because not every language's worker does:
+    // LanguageWorker_French.Pluralize ignores its count and would print "1 composants"
+    // (decompiled on 1.7).
     internal static string Counted(string label, int count) =>
-        count + " " + Find.ActiveLanguageWorker.Pluralize(label, count);
+        count + " " + (count < 2 ? label : Find.ActiveLanguageWorker.Pluralize(label, count));
 
     // Whether the pilot's rejections go to the player's log; a non-player pilot's are not.
     private bool ReportsToPlayer => pawn?.Faction == Faction.OfPlayer;
