@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>Arranque um braço ou uma perna de um alvo próximo, qualquer que seja a armadura dele. Um membro resistente demais para ser arrancado será apenas ferido, e um alvo sem nenhum membro restante terá a cabeça arrancada no lugar. Se o piloto for hemogênico e o alvo for humano, o piloto drenará hemogênio da ferida em seguida, e o alvo perderá sangue.</HPWC_Dismember.description>
+  <!-- EN: Tearing off a limb. -->
+  <HPWC_Dismember.jobReportString>arrancando um membro.</HPWC_Dismember.jobReportString>
+  <!-- EN: dismember -->
+  <HPWC_Dismember.label>desmembrar</HPWC_Dismember.label>
+  <!-- EN: dismember -->
+  <HPWC_Dismember.verbProperties.label>desmembrar</HPWC_Dismember.verbProperties.label>
+
+  <!-- EN: Run the warcasket's injectors, which will spend the pilot's hemogen quickly. The pilot will move faster and hit harder for as long as the injectors are running. Toggle again to stop the injectors. They will also stop when the pilot runs out of hemogen. -->
+  <HPWC_HemogenRush.description>Acione os injetores da carcaça de guerra, que gastarão depressa o hemogênio do piloto. Enquanto estiverem funcionando, o piloto se moverá mais rápido e baterá com mais força. Acione de novo para desligá-los. Também se desligarão sozinhos quando o hemogênio acabar.</HPWC_HemogenRush.description>
+  <!-- EN: Using ability: {0} -->
+  <HPWC_HemogenRush.jobReportString>usando habilidade: {0}.</HPWC_HemogenRush.jobReportString>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>ímpeto de hemogênio</HPWC_HemogenRush.label>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.verbProperties.label>ímpeto de hemogênio</HPWC_HemogenRush.verbProperties.label>
+
+</LanguageData>

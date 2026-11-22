@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN:
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tried to tear off [RECIPIENT_definite]'s [recipient_part0_label], but only wounded it.</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tore at [RECIPIENT_definite]'s [recipient_part0_label], wounding it.</li>
+    <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] tried to rip off [RECIPIENT_definite]'s [recipient_part0_label], but it held.</li>
+  -->
+  <HPWC_Combat_Dismember.rulePack.rulesStrings>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] agarrou [RECIPIENT_definite] e arrancou-lhe o(a) [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] segurou [RECIPIENT_definite] com força e lhe arrancou o(a) [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->Com um puxão violento, [INITIATOR_definite] deixou [RECIPIENT_definite] sem o(a) [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] agarrou [RECIPIENT_definite] e tentou arrancar-lhe o(a) [recipient_part0_label], mas só conseguiu feri-lo(a).</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] feriu [RECIPIENT_definite] no(a) [recipient_part0_label] ao tentar arrancá-lo(a).</li>
+    <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] puxou [RECIPIENT_definite] pelo(a) [recipient_part0_label], mas não conseguiu arrancá-lo(a).</li>
+  </HPWC_Combat_Dismember.rulePack.rulesStrings>
+
+</LanguageData>

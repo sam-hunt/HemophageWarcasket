@@ -1,0 +1,3 @@
+// Hemophage Warcasket: the strike noun and Core's component label, both counted
+golpe;golpes
+componente;componentes

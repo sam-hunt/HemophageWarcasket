@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: This person's warcasket is spending their hemogen quickly, allowing them to move faster and hit harder. -->
+  <HPWC_HemogenRush.description>A carcaça de guerra está gastando depressa o hemogênio desta pessoa para que ela se mova mais rápido e bata com mais força.</HPWC_HemogenRush.description>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>ímpeto de hemogênio</HPWC_HemogenRush.label>
+
+</LanguageData>

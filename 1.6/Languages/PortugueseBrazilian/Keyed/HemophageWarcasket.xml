@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Dismember (Source/1.6/Abilities/Dismember/). {0} is the target -->
+  <!-- EN: {0} has no limbs to tear off. -->
+  <HPWC_DismemberNoLimbs>{0} não tem membros para arrancar.</HPWC_DismemberNoLimbs>
+  <!-- EN: {0} is not hostile. -->
+  <HPWC_DismemberNotHostile>{0} não é hostil.</HPWC_DismemberNotHostile>
+  <!-- Beside the cursor over a target, where the game's own "Will kill" goes: the strike would tear off none of the limbs it could take hold of, or only some of them -->
+  <!-- EN: Will only wound -->
+  <HPWC_DismemberWillWound>irá apenas ferir</HPWC_DismemberWillWound>
+  <!-- EN: May only wound -->
+  <HPWC_DismemberMayWound>pode apenas ferir</HPWC_DismemberMayWound>
+  <!-- The dialog before an order that would kill a target that is not hostile, where the game asks "Bloodfeeding on {PAWN_nameDef} will kill {PAWN_objective}." before a lethal bite: the strike would tear the head off a target with no limbs left, or the drain after it would bleed the target to death. PAWN is the target -->
+  <!-- EN: The strike will tear off {PAWN_nameDef}'s head, which will kill {PAWN_objective}.\n\nAre you sure? -->
+  <HPWC_DismemberConfirmKill>O golpe matará {PAWN_nameDef}, pois arrancará a cabeça {PAWN_objective}.\n\nTem certeza?</HPWC_DismemberConfirmKill>
+  <!-- EN: Draining hemogen from {PAWN_nameDef} after the strike will kill {PAWN_objective}.\n\nAre you sure? -->
+  <HPWC_DismemberConfirmDrainKill>Drenar hemogênio de {PAWN_nameDef} depois do golpe causará a morte {PAWN_objective}.\n\nTem certeza?</HPWC_DismemberConfirmDrainKill>
+  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
+  <!-- EN: Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}. -->
+  <HPWC_DismemberReload>Cada golpe queimará um dos servomotores das ombreiras, que poderá ser substituído com uma recarga de {0}.</HPWC_DismemberReload>
+
+  <!-- Mod settings (Source/1.6/Settings/) -->
+  <!-- EN: Hemophage Warcasket -->
+  <HPWC_SettingsCategory>Carcaça de Guerra Hemófaga</HPWC_SettingsCategory>
+  <!-- Shown in place of the ability and helmet sections (HemophageWarcasketSettings.TryGetDefs) -->
+  <!-- EN: The ability and helmet settings are unavailable. Another mod has changed the hemophage warcasket, so they will keep their built-in values. -->
+  <HPWC_SettingsUnavailable>As configurações das habilidades e do capacete estão indisponíveis. Outro mod alterou a carcaça de guerra hemófaga, então elas manterão os valores originais.</HPWC_SettingsUnavailable>
+
+  <!-- After a slider's value while it is unset -->
+  <!-- EN:  (default) -->
+  <HPWC_DefaultSuffix> (padrão)</HPWC_DefaultSuffix>
+  <!-- A checkbox's default in its tooltip -->
+  <!-- EN: enabled -->
+  <HPWC_Enabled>ativado</HPWC_Enabled>
+  <!-- EN: disabled -->
+  <HPWC_Disabled>desativado</HPWC_Disabled>
+  <!-- A slider's value at its off end -->
+  <!-- EN: Off -->
+  <HPWC_Off>Desligado</HPWC_Off>
+
+  <!-- Hemogen rush section (Source/1.6/Settings/Settings_Rush.cs). {0} in every tooltip is the default -->
+  <!-- EN: Hemogen rush -->
+  <HPWC_SectionRush>Ímpeto de hemogênio</HPWC_SectionRush>
+
+  <!-- EN: Hemogen cost to start -->
+  <HPWC_RushStartCost>Custo de hemogênio para iniciar</HPWC_RushStartCost>
+  <!-- EN: The amount of hemogen the pilot spends each time a rush starts. Default: {0}. -->
+  <HPWC_RushStartCostDesc>Quanto hemogênio o piloto gasta toda vez que inicia um ímpeto. Padrão: {0}.</HPWC_RushStartCostDesc>
+
+  <!-- EN: Hemogen per second -->
+  <HPWC_RushDrain>Hemogênio por segundo</HPWC_RushDrain>
+  <!-- EN: The amount of hemogen the pilot spends each second while the rush is running. Default: {0}. -->
+  <HPWC_RushDrainDesc>A quantidade de hemogênio que o piloto gasta a cada segundo enquanto o ímpeto durar. Padrão: {0}.</HPWC_RushDrainDesc>
+
+  <!-- EN: Hemogen reserve -->
+  <HPWC_RushReserve>Reserva de hemogênio</HPWC_RushReserve>
+  <!-- EN: The hemogen level at which the rush will stop on its own. At zero, it will run until the pilot has no hemogen left and develops a hemogen craving. Default: {0}. -->
+  <HPWC_RushReserveDesc>O nível de hemogênio em que o ímpeto parará sozinho. Em zero, o ímpeto continuará até o piloto ficar sem hemogênio e começar a sofrer de desejo por hemogênio. Padrão: {0}.</HPWC_RushReserveDesc>
+
+  <!-- EN: Move speed -->
+  <HPWC_RushMoveSpeed>Velocidade de movimento</HPWC_RushMoveSpeed>
+  <!-- EN: The pilot's move speed during a hemogen rush, compared to normal. Default: {0}. -->
+  <HPWC_RushMoveSpeedDesc>A velocidade de movimento do piloto durante um ímpeto de hemogênio, em relação ao normal. Padrão: {0}.</HPWC_RushMoveSpeedDesc>
+
+  <!-- EN: Melee damage -->
+  <HPWC_RushMeleeDamage>Dano corpo a corpo</HPWC_RushMeleeDamage>
+  <!-- EN: How much damage the pilot's melee attacks will do during a hemogen rush, compared to normal. Default: {0}. -->
+  <HPWC_RushMeleeDamageDesc>Quanto dano os ataques corpo a corpo do piloto causarão durante um ímpeto de hemogênio, em relação ao normal. Padrão: {0}.</HPWC_RushMeleeDamageDesc>
+
+  <!-- EN: Pulsing glow -->
+  <HPWC_RushGlowPulse>Brilho pulsante</HPWC_RushGlowPulse>
+  <!-- EN: When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}. -->
+  <HPWC_RushGlowPulseDesc>Quando ativado, o brilho da carcaça de guerra pulsará como um batimento cardíaco durante um ímpeto de hemogênio. Quando desativado, o brilho ficará sempre na intensidade máxima. Padrão: {0}.</HPWC_RushGlowPulseDesc>
+
+  <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages, {5} the cost to start. One key per combination of a start cost and a drain -->
+  <!-- EN: A hemogen rush costs {5} hemogen to start, then spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
+  <HPWC_RushSummaryStartCost>Um ímpeto de hemogênio custa {5} de hemogênio para começar e depois gasta {0} de hemogênio por segundo até o piloto ficar com {1}, então um ímpeto iniciado com 100 de hemogênio dura {2}. O piloto se move a {3} da velocidade normal e causa {4} do dano corpo a corpo.</HPWC_RushSummaryStartCost>
+  <!-- EN: A hemogen rush spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
+  <HPWC_RushSummary>Um ímpeto de hemogênio gasta {0} de hemogênio por segundo até o piloto ficar com {1}, então um ímpeto iniciado com 100 de hemogênio dura {2}. O piloto se move a {3} da velocidade normal e causa {4} do dano corpo a corpo.</HPWC_RushSummary>
+  <!-- {0} and {1} are the percentages, {2} the cost to start -->
+  <!-- EN: A hemogen rush costs {2} hemogen to start and spends none after that, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage. -->
+  <HPWC_RushSummaryStartCostNoDrain>Um ímpeto de hemogênio custa {2} de hemogênio para começar e não gasta mais nada depois disso, então dura até o piloto encerrá-lo. O piloto se move a {0} da velocidade normal e causa {1} do dano corpo a corpo.</HPWC_RushSummaryStartCostNoDrain>
+  <!-- EN: A hemogen rush spends no hemogen, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage. -->
+  <HPWC_RushSummaryFree>Um ímpeto de hemogênio não gasta hemogênio, então dura até o piloto encerrá-lo. O piloto se move a {0} da velocidade normal e causa {1} do dano corpo a corpo.</HPWC_RushSummaryFree>
+
+  <!-- Dismember section (Source/1.6/Settings/Settings_Dismember.cs) -->
+  <!-- EN: Dismember -->
+  <HPWC_SectionDismember>Desmembrar</HPWC_SectionDismember>
+
+  <!-- EN: Strike capacity -->
+  <HPWC_DismemberStrikes>Capacidade de golpes</HPWC_DismemberStrikes>
+  <!-- EN: The number of strikes the shoulders hold when full. Default: {0}. -->
+  <HPWC_DismemberStrikesDesc>O número de golpes que as ombreiras comportam quando cheias. Padrão: {0}.</HPWC_DismemberStrikesDesc>
+
+  <!-- {1} is the reload item in the plural, such as "components" -->
+  <!-- EN: Reload cost per strike -->
+  <HPWC_DismemberReloadCost>Custo de recarga por golpe</HPWC_DismemberReloadCost>
+  <!-- EN: The number of {1} it takes to reload one strike. Default: {0}. -->
+  <HPWC_DismemberReloadCostDesc>A quantidade de {1} necessária para recarregar um golpe. Padrão: {0}.</HPWC_DismemberReloadCostDesc>
+
+  <!-- EN: Casting time -->
+  <HPWC_DismemberWindup>Tempo de invocação</HPWC_DismemberWindup>
+  <!-- EN: How long the pilot holds the target still before tearing off an arm or a leg. Default: {0}. -->
+  <HPWC_DismemberWindupDesc>Quanto tempo o piloto segura o alvo imóvel antes de arrancar um braço ou uma perna. Padrão: {0}.</HPWC_DismemberWindupDesc>
+
+  <!-- EN: Cooldown -->
+  <HPWC_DismemberCooldown>Tempo de recarga</HPWC_DismemberCooldown>
+  <!-- EN: The time the pilot must wait between strikes. Default: {0}. -->
+  <HPWC_DismemberCooldownDesc>Quanto tempo o piloto precisa esperar entre um golpe e outro. Padrão: {0}.</HPWC_DismemberCooldownDesc>
+
+  <!-- EN: Strike damage -->
+  <HPWC_DismemberDamage>Dano do golpe</HPWC_DismemberDamage>
+  <!-- EN: The damage a strike does to the limb it takes hold of, before the pilot's melee damage factor. A limb with more health than that will be wounded instead of torn off. Default: {0}. -->
+  <HPWC_DismemberDamageDesc>O dano que um golpe causa ao membro agarrado, antes do fator de dano corpo a corpo do piloto. Um membro com mais pontos de vida do que esse valor será ferido em vez de arrancado. Padrão: {0}.</HPWC_DismemberDamageDesc>
+
+  <!-- EN: Drain time -->
+  <HPWC_DismemberDrainTime>Tempo de drenagem</HPWC_DismemberDrainTime>
+  <!-- EN: How long a hemogenic pilot spends draining hemogen from a human target. A full drain will give the same amount of hemogen however long it takes. Default: {0}. -->
+  <HPWC_DismemberDrainTimeDesc>Quanto tempo um piloto hemogênico leva para drenar hemogênio de um alvo humano. Uma drenagem completa dá a mesma quantidade de hemogênio, não importa quanto tempo leve. Padrão: {0}.</HPWC_DismemberDrainTimeDesc>
+
+  <!-- EN: Base hemogen gain -->
+  <HPWC_DismemberGain>Ganho base de hemogênio</HPWC_DismemberGain>
+  <!-- EN: The amount of hemogen the pilot gains from a full drain, which is affected by the target's body size. At zero, the pilot will not drain the target. Default: {0}. -->
+  <HPWC_DismemberGainDesc>A quantidade de hemogênio que o piloto ganha com uma drenagem completa. O ganho é afetado pelo tamanho do corpo do alvo. Em zero, o piloto não drenará o alvo. Padrão: {0}.</HPWC_DismemberGainDesc>
+
+  <!-- EN: Blood loss -->
+  <HPWC_DismemberBloodLoss>Perda de sangue</HPWC_DismemberBloodLoss>
+  <!-- EN: The blood loss a full drain causes in the target, on top of the bleeding from the lost limb. Default: {0}. -->
+  <HPWC_DismemberBloodLossDesc>A perda de sangue que uma drenagem completa causa no alvo, além do sangramento do membro perdido. Padrão: {0}.</HPWC_DismemberBloodLossDesc>
+
+  <!-- EN: Blood spatter -->
+  <HPWC_DismemberSpatter>Respingos de sangue</HPWC_DismemberSpatter>
+  <!-- EN: The number of blood spatters a strike will leave on the ground around the target. Default: {0}. -->
+  <HPWC_DismemberSpatterDesc>O número de respingos de sangue que um golpe deixará no chão ao redor do alvo. Padrão: {0}.</HPWC_DismemberSpatterDesc>
+
+  <!-- EN: Allow non-hostile targets -->
+  <HPWC_DismemberNonHostile>Permitir alvos não hostis</HPWC_DismemberNonHostile>
+  <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
+  <HPWC_DismemberNonHostileDesc>Quando ativado, o piloto poderá desmembrar alvos que não são hostis, mas a facção do alvo ficará irritada. Quando desativado, só alvos hostis poderão ser desmembrados. Padrão: {0}.</HPWC_DismemberNonHostileDesc>
+
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->
+  <HPWC_DismemberSummary>As ombreiras comportam {5}, e cada um é recarregado com {6}. Um golpe leva {0} de invocação, e depois um piloto hemogênico drena um alvo humano por {2}, o que lhe dá {3} de hemogênio e causa {4} de perda de sangue. O tempo de recarga depois de um golpe é de {1}.</HPWC_DismemberSummary>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once. -->
+  <HPWC_DismemberSummaryNoCooldown>As ombreiras comportam {5}, e cada um é recarregado com {6}. Um golpe leva {0} de invocação, e depois um piloto hemogênico drena um alvo humano por {2}, o que lhe dá {3} de hemogênio e causa {4} de perda de sangue. O próximo golpe pode ser desferido imediatamente.</HPWC_DismemberSummaryNoCooldown>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}. -->
+  <HPWC_DismemberSummaryNoDrain>As ombreiras comportam {5}, e cada um é recarregado com {6}. Um golpe leva {0} de invocação, e o piloto não drena o alvo. O tempo de recarga depois de um golpe é de {1}.</HPWC_DismemberSummaryNoDrain>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once. -->
+  <HPWC_DismemberSummaryNoCooldownNoDrain>As ombreiras comportam {5}, e cada um é recarregado com {6}. Um golpe leva {0} de invocação, e o piloto não drena o alvo. O próximo golpe pode ser desferido imediatamente.</HPWC_DismemberSummaryNoCooldownNoDrain>
+
+  <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in every tooltip is the default -->
+  <!-- EN: Helmet -->
+  <HPWC_SectionHelmet>Capacete</HPWC_SectionHelmet>
+  <!-- EN: The sealed visor of the hemophage warcasket helmet keeps sunlight off a pilot who is sensitive to it and steadies a pilot who is afraid of fire. -->
+  <HPWC_SectionHelmetDesc>A viseira selada do capacete de carcaça de guerra hemófaga protege da luz solar o piloto sensível a ela e acalma o piloto que tem medo de fogo.</HPWC_SectionHelmetDesc>
+  <!-- EN: Sunlight protection -->
+  <HPWC_HelmetSunlight>Proteção contra luz solar</HPWC_HelmetSunlight>
+  <!-- EN: When enabled, the helmet will protect a pilot with a UV sensitivity gene from the effects of sunlight. When disabled, sunlight will slow such a pilot and lower their mood as usual. Default: {0}. -->
+  <HPWC_HelmetSunlightDesc>Quando ativado, o capacete protegerá dos efeitos da luz solar um piloto com um gene de sensibilidade UV. Quando desativado, a luz solar deixará esse piloto mais lento e piorará o humor dele, como de costume. Padrão: {0}.</HPWC_HelmetSunlightDesc>
+  <!-- EN: Fire terror chance -->
+  <HPWC_HelmetPyrophobia>Chance de terror ao fogo</HPWC_HelmetPyrophobia>
+  <!-- EN: How often a pilot with the pyrophobia gene will flee in terror from a nearby fire, compared to normal. At 0%, the pilot will never flee from fire. Default: {0}. -->
+  <HPWC_HelmetPyrophobiaDesc>Com que frequência um piloto com o gene pirofobia fugirá aterrorizado de um incêndio próximo, em relação ao normal. Em 0%, o piloto nunca fugirá do fogo. Padrão: {0}.</HPWC_HelmetPyrophobiaDesc>
+
+  <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
+  <!-- EN: Enabled work types -->
+  <HPWC_SectionWork>Tipos de trabalho ativados</HPWC_SectionWork>
+  <!-- EN: The work types a pilot of the hemophage warcasket can do, out of those that warcasket pilots normally cannot. Work that another mod enables for all warcasket pilots will stay enabled. -->
+  <HPWC_SectionWorkDesc>Os tipos de trabalho que um piloto de carcaça de guerra hemófaga pode fazer, dentre aqueles que os pilotos de carcaças de guerra normalmente não podem fazer. Um trabalho que outro mod ativar para todos os pilotos de carcaças de guerra continuará ativado.</HPWC_SectionWorkDesc>
+  <!-- {0} is HPWC_Enabled or HPWC_Disabled -->
+  <!-- EN: When enabled, pilots of the hemophage warcasket can do this work, though you will need to assign it in the work tab. When disabled, they cannot. Default: {0}. -->
+  <HPWC_WorkDesc>Quando ativado, os pilotos de carcaça de guerra hemófaga poderão fazer este trabalho, mas você precisará atribuí-lo na aba de Trabalho. Quando desativado, não poderão. Padrão: {0}.</HPWC_WorkDesc>
+  <!-- {0} is a list of work types as the work tab names them -->
+  <!-- EN: The pilot can do {0} work, as well as the work that all warcasket pilots can do. -->
+  <HPWC_WorkSummary>Trabalhos que o piloto pode fazer: {0}, além dos que qualquer piloto de carcaça de guerra pode fazer.</HPWC_WorkSummary>
+  <!-- EN: The pilot can only do the work that all warcasket pilots can do. -->
+  <HPWC_WorkSummaryNone>O piloto só pode fazer os trabalhos que todos os pilotos de carcaças de guerra podem fazer.</HPWC_WorkSummaryNone>
+  <!-- EN: No work is blocked for warcasket pilots, so there is nothing to enable here. -->
+  <HPWC_WorkSummaryNothingBlocked>Nenhum trabalho é bloqueado para pilotos de carcaças de guerra, então não há nada para ativar aqui.</HPWC_WorkSummaryNothingBlocked>
+
+  <!-- Quest section (Source/1.6/Settings/Settings_QuestPilot.cs, ResearchGateSetting.cs): the sanguophages of Biotech's sanguophage meeting quest and of its crashed sanguophage shuttle quest, and that shuttle's thralls. {0} in every tooltip is the default -->
+  <!-- EN: Sanguophages from quests -->
+  <HPWC_SectionQuestPilot>Sanguófagos de missões</HPWC_SectionQuestPilot>
+  <!-- EN: Sanguophages who come to your colony during a quest can arrive already entombed in a hemophage warcasket. One who joins you will stay in it. The thralls of a crashed shuttle can arrive in lesser warcaskets. -->
+  <HPWC_SectionQuestPilotDesc>Sanguófagos que vêm à sua colônia durante uma missão podem chegar já integrados em uma carcaça de guerra hemófaga. Quem se juntar a você continuará nela. Os servos de um transporte acidentado podem chegar em carcaças de guerra comuns.</HPWC_SectionQuestPilotDesc>
+  <!-- EN: Required research -->
+  <HPWC_QuestResearch>Pesquisa necessária</HPWC_QuestResearch>
+  <!-- EN: The research your colony must finish before any of these sanguophages can arrive in a hemophage warcasket. Default: {0}. -->
+  <HPWC_QuestResearchDesc>A pesquisa que sua colônia precisa concluir antes que qualquer um desses sanguófagos possa chegar em uma carcaça de guerra hemófaga. Padrão: {0}.</HPWC_QuestResearchDesc>
+  <!-- The first stop of the slider, before the research projects' own names -->
+  <!-- EN: None -->
+  <HPWC_QuestResearchNone>Nenhuma</HPWC_QuestResearchNone>
+  <!-- The two quests' subheadings, each over its own rows, and their tooltips -->
+  <!-- EN: Sanguophage meeting -->
+  <HPWC_QuestMeeting>Reunião de sanguófagos</HPWC_QuestMeeting>
+  <!-- EN: A quest where a sanguophage leader asks you to host a meeting. If you accept, the leader and the other guests will arrive at your colony and spend several hours in discussion. -->
+  <HPWC_QuestMeetingDesc>Uma missão em que um líder sanguófago pede para você organizar uma reunião. Se você aceitar, o líder e os outros convidados chegarão à sua colônia e passarão várias horas discutindo.</HPWC_QuestMeetingDesc>
+  <!-- EN: Leader warcasket chance -->
+  <HPWC_QuestMeetingLeader>Chance de carcaça de guerra do líder</HPWC_QuestMeetingLeader>
+  <!-- EN: The chance that the leader of a sanguophage meeting will arrive in a hemophage warcasket. Default: {0}. -->
+  <HPWC_QuestMeetingLeaderDesc>A chance de o líder de uma reunião de sanguófagos chegar em uma carcaça de guerra hemófaga. Padrão: {0}.</HPWC_QuestMeetingLeaderDesc>
+  <!-- EN: Guest warcasket chance -->
+  <HPWC_QuestMeetingGuest>Chance de carcaça de guerra dos convidados</HPWC_QuestMeetingGuest>
+  <!-- EN: The chance that each of the other sanguophages at a meeting will arrive in a hemophage warcasket as well. Default: {0}. -->
+  <HPWC_QuestMeetingGuestDesc>A chance de cada um dos outros sanguófagos da reunião também chegar em uma carcaça de guerra hemófaga. Padrão: {0}.</HPWC_QuestMeetingGuestDesc>
+  <!-- EN: Crashed shuttle -->
+  <HPWC_QuestShip>Transporte acidentado</HPWC_QuestShip>
+  <!-- EN: A quest where you can draw a hostile shuttle down to a crash near your colony. Its sanguophage master and thralls will leave the wreck and fight you. -->
+  <HPWC_QuestShipDesc>Uma missão em que você pode atrair um transporte hostil para que caia perto da sua colônia. O mestre sanguófago e os servos a bordo sairão dos destroços e lutarão contra você.</HPWC_QuestShipDesc>
+  <!-- EN: Master warcasket chance -->
+  <HPWC_QuestShipMaster>Chance de carcaça de guerra do mestre</HPWC_QuestShipMaster>
+  <!-- EN: The chance that the sanguophage master of a crashed shuttle will be entombed in a hemophage warcasket, which will make the master much harder to down and capture. Default: {0}. -->
+  <HPWC_QuestShipMasterDesc>A chance de o mestre sanguófago de um transporte acidentado estar integrado em uma carcaça de guerra hemófaga, o que o tornará muito mais difícil de incapacitar e capturar. Padrão: {0}.</HPWC_QuestShipMasterDesc>
+  <!-- EN: Master warcasket points -->
+  <HPWC_QuestShipMasterPoints>Pontos de carcaça de guerra do mestre</HPWC_QuestShipMasterPoints>
+  <!-- EN: The threat points a crashed shuttle quest must be worth before its sanguophage master can arrive in a hemophage warcasket. The storyteller raises threat points with your colonist count and colony wealth. Default: {0}. -->
+  <HPWC_QuestShipMasterPointsDesc>Os pontos de ameaça que uma missão de transporte acidentado precisa valer para que o mestre sanguófago possa chegar em uma carcaça de guerra hemófaga. O narrador aumenta os pontos de ameaça conforme o número de colonos e a riqueza da colônia. Padrão: {0}.</HPWC_QuestShipMasterPointsDesc>
+  <!-- The slider's value at 0, where there is no floor -->
+  <!-- EN: None -->
+  <HPWC_QuestShipMasterPointsNone>Nenhum</HPWC_QuestShipMasterPointsNone>
+  <!-- 0 is shown as HPWC_Off. The warcaskets are VFE Pirates' own basic sets, each needing its own research -->
+  <!-- EN: Thrall warcaskets -->
+  <HPWC_QuestThrallShare>Carcaças de guerra dos servos</HPWC_QuestThrallShare>
+  <!-- EN: How strong a crashed shuttle quest should be compared to a raid on your colony. If the quest is weaker, some of the master's thralls will arrive in lesser warcaskets you have researched. Default: {0}. -->
+  <HPWC_QuestThrallShareDesc>A força que uma missão de transporte acidentado deve ter em comparação com uma invasão da sua colônia. Se a missão for mais fraca, alguns servos do mestre chegarão em carcaças de guerra comuns que você já pesquisou. Padrão: {0}.</HPWC_QuestThrallShareDesc>
+
+</LanguageData>
