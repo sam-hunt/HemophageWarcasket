@@ -12,12 +12,18 @@
 
     neverShowWeapon: the pilot's hands do the work, so the weapon is holstered for the whole
     job, as for vanilla's touch abilities.
+    suspendable false: a job that suspends this one (a vomit, a wait another pawn's job puts on
+    the pilot) ends it. A suspended job goes back on the queue and starts again from its first
+    toil, and with the strike already made that is a second walk, a second strike and a second
+    charge the player never ordered, past the question a lethal order waits on
+    (Pawn_JobTracker.SuspendCurrentJob, the same on 1.6 and 1.7).
   -->
   <JobDef>
     <defName>HPWC_Dismember</defName>
     <driverClass>HemophageWarcasket.JobDriver_Dismember</driverClass>
     <reportString>tearing a limb off TargetA.</reportString>
     <checkOverrideOnDamage>Never</checkOverrideOnDamage>
+    <suspendable>false</suspendable>
     <neverShowWeapon>true</neverShowWeapon>
   </JobDef>
 </Defs>
