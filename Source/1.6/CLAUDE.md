@@ -89,12 +89,13 @@ rather than restating it.
   def's has the numbers. The Overlord repo's `AncientPilot/` is the sibling, for the dead.
   The shuttle postfix also hands the quest's thralls to `QuestPilot.DressThralls`, which
   dresses as many as the pure `ThrallBudget` answers in the VFEP sets the extension's
-  `thrallTiers` name. Every dressed pawn goes through the one `Dress`, which also paints each
-  piece through vanilla's `PawnApparelGenerator.PostProcessApparel`, so the colors are the
-  pawn kind's own and neither the code nor a def names one, and exchanges the weapon, for a
-  sanguophage by the higher of Shooting and Melee and for a thrall by the kind of weapon held;
-  VFEP's sets and weapons are named in the armor def's XML and nowhere in the C#, and Combat
-  Extended's magazine is reached through `WeaponAmmo` by the names its root's patch fills in.
+  `thrallTiers` name. Every dressed pawn goes through the one `Dress`, which also paints the
+  set in one color drawn through vanilla's `PawnApparelGenerator.PostProcessApparel`, so the
+  color is the pawn kind's own and neither the code nor a def names one, and exchanges the
+  weapon, for a sanguophage by the higher of Shooting and Melee and for a thrall by the kind of
+  weapon held; VFEP's sets and weapons are named in the armor def's XML and nowhere in the C#,
+  and Combat Extended's magazine is reached through `WeaponAmmo` by the names its root's patch
+  fills in.
 - **An apparel ability's `pawn` is null until its first gizmo draw** or until something binds
   it, and VEF fires no apparel ability's autocast, for the player or for raiders.
   `Abilities/Dismember/CLAUDE.md` has how a job binds it.

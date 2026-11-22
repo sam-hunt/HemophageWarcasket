@@ -9,7 +9,7 @@
 - **Optimize images** Run the `../MOD_DOWNLOAD_SIZE_TRIM.md` pass before the first release.
 - **Smoke test on 1.6**
 - **Quest pilots in game** Generate both sanguophage quests at 100% chance (dev quest generation) and check:
-  - the set on arrival, each piece in the kind's dark grey or dark red on its own draw, and how the two read side by side on the masked art and under the rush's glow
+  - the set on arrival, all three pieces in one color, the kind's dark grey or dark red, and how each reads on the masked art and under the rush's glow
   - the join offer and a capture
   - the autorifle or broadsword in hand: by vanilla's weapon kind on a thrall, by the higher of Shooting and Melee on the master and a meeting's sanguophages, broadsword on a tie
   - under Combat Extended, that a dressed pawn's autorifle fires and reloads from the three spare magazines
