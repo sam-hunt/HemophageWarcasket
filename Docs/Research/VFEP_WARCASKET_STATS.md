@@ -13,8 +13,7 @@ files `1.6/Defs/ThingDefs_Misc/Apparel_Various.xml` and
 In-game numbers also depend on VEF/game code that reads these defs (`VFEPirates.Apparel_Warcasket`,
 `VEF.Apparels.ApparelExtension`, the shield-bubble/shield-field comps, `Apparel_Warcasket`'s
 equip/unequip logic, etc.); that code is out of scope here, this doc only covers what the XML
-declares. Per-set mechanics, abilities and the Gravship Expanded comparison live in
-`WARCASKET_ABILITIES.md`.
+declares. Per-set mechanics and abilities live in `WARCASKET_ABILITIES.md`.
 
 This doc is informational only, generated for our own reference while scoping Shipcracker
 Warcasket's tuning. It is not itself mod content.
