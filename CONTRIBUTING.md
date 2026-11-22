@@ -73,10 +73,12 @@ this one.
   there in the same PR.
 - The game counts two nouns in the settings and in Dismember's tooltip, the
   strike and the component a strike is reloaded with ("2 strikes",
-  "1 component"), and forms their plurals itself. Where a language needs
-  help with that, the forms are in `1.6/Languages/<Language>/WordInfo/`;
-  the glossary's "Charge nouns" section says which files a language ships
-  and why.
+  "1 component"). It forms their plurals itself, and where a language needs
+  help with that, the forms are in `1.6/Languages/<Language>/WordInfo/`.
+  The number and the noun are then joined by `HPWC_CountedStrikes` and
+  `HPWC_CountedReloadItem`, `{0} {1}` in English, which is where a language
+  adds a counter word or changes the order. The glossary's "Charge nouns"
+  section says what a language ships and why.
 - The Workshop page text lives in `.steamworkshop/Description/<Language>.txt`
   (see that folder's README for the format); corrections there are welcome
   too.

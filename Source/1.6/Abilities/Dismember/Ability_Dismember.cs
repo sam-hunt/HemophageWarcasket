@@ -74,12 +74,19 @@ public partial class Ability_Dismember : Ability
     // "2 / 2", for the command's corner.
     public string StrikesLabel => Pool?.LabelRemaining;
 
-    // "1 component", "2 components", "2 strikes": a count of something by its label. A count
-    // under two keeps the label as it is here, because not every language's worker does:
+    // "2 strikes", "1 component": a count of the pool's charge noun, or of its reload item, as
+    // the tooltip and the settings' summaries print it. The number and the noun go through a
+    // Keyed string of their own, "{0} {1}" in English, so a language that counts with a counter
+    // word can add it and choose the order (Chinese, Japanese and Korean do). A count under
+    // two keeps the label as it is here, because not every language's worker does:
     // LanguageWorker_French.Pluralize ignores its count and would print "1 composants"
     // (decompiled on 1.7).
-    internal static string Counted(string label, int count) =>
-        count + " " + (count < 2 ? label : Find.ActiveLanguageWorker.Pluralize(label, count));
+    internal static string CountedStrikes(string noun, int count) => Counted("HPWC_CountedStrikes", noun, count);
+
+    internal static string CountedReloadItem(string label, int count) => Counted("HPWC_CountedReloadItem", label, count);
+
+    private static string Counted(string key, string label, int count) =>
+        key.Translate(count, count < 2 ? label : Find.ActiveLanguageWorker.Pluralize(label, count));
 
     // Whether the pilot's rejections go to the player's log; a non-player pilot's are not.
     private bool ReportsToPlayer => pawn?.Faction == Faction.OfPlayer;
@@ -129,7 +136,7 @@ public partial class Ability_Dismember : Ability
         string description = base.GetDescriptionForPawn();
         if (Pool?.Props is not { ammoDef: not null } pool)
             return description;
-        reloadLine ??= "HPWC_DismemberReload".Translate(Counted(pool.ammoDef.label, pool.ammoCountPerCharge));
+        reloadLine ??= "HPWC_DismemberReload".Translate(CountedReloadItem(pool.ammoDef.label, pool.ammoCountPerCharge));
         return description + "\n\n" + reloadLine;
     }
 

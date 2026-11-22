@@ -126,6 +126,8 @@ counted strings take the noun in an agreement-free slot: `вмещают {5}`
 
 No Gender file: Russian's Keyed never switches on `CHARGENOUN_gender`.
 
+The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The read raised no term concerns.

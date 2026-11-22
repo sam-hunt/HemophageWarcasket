@@ -119,6 +119,8 @@ recarga: 1 componentes.`, `Coste de recarga por golpe: 1 componentes.`, as
 Overlord's `OLWC_GaugeReload` does), where it reads as a value rather than a
 broken noun phrase.
 
+The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. `descarga de hemógeno` leans toward an electrical discharge or an unloading, and the reader would have preferred `subidón` or `arrebato`.

@@ -156,8 +156,8 @@ public partial class HemophageWarcasketSettings
         return key.Translate(RealSeconds(dismemberWindup.Value), Period(dismemberCooldown.Value),
             RealSeconds(dismemberDrainTime.Value), Whole(dismemberGain.Value * dismemberPadsGain),
             Percent(dismemberBloodLoss.Value),
-            Ability_Dismember.Counted(dismemberNoun, dismemberStrikes.IntValue),
-            Ability_Dismember.Counted(dismemberAmmo.label, dismemberReloadCost.IntValue));
+            Ability_Dismember.CountedStrikes(dismemberNoun, dismemberStrikes.IntValue),
+            Ability_Dismember.CountedReloadItem(dismemberAmmo.label, dismemberReloadCost.IntValue));
     }
 
     // Strikes over a lowered capacity come off the worn pads at once, before a pilot's next

@@ -95,6 +95,8 @@ in `1.6/Languages/PortugueseBrazilian/WordInfo/plural.txt`. No
 Every counted slot takes the bare noun after `com`, `de` or as a direct
 object, never declined.
 
+The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. `recarga` / `recarregar` carries both the reload paid in components and the cooldown (`Tempo de recarga`), sometimes in one summary sentence. `Um golpe leva {0} de invocação` borrows vanilla's `Tempo de invocação` and reads oddly for a physical strike. `irá apenas ferir` was kept against the reader's `apenas ferirá` because Core's `WillKill` beside it is `irá matar`.

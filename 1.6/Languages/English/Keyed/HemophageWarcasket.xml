@@ -10,8 +10,11 @@
   <!-- The dialog before an order that would kill a target that is not hostile, where the game asks "Bloodfeeding on {PAWN_nameDef} will kill {PAWN_objective}." before a lethal bite: the strike would tear the head off a target with no limbs left, or the drain after it would bleed the target to death. PAWN is the target -->
   <HPWC_DismemberConfirmKill>The strike will tear off {PAWN_nameDef}'s head, which will kill {PAWN_objective}.\n\nAre you sure?</HPWC_DismemberConfirmKill>
   <HPWC_DismemberConfirmDrainKill>Draining hemogen from {PAWN_nameDef} after the strike will kill {PAWN_objective}.\n\nAre you sure?</HPWC_DismemberConfirmDrainKill>
-  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
+  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" (HPWC_CountedReloadItem) -->
   <HPWC_DismemberReload>Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}.</HPWC_DismemberReload>
+  <!-- A count of strikes and a count of the reload item, as the line above and the settings' summaries print them: "2 strikes", "1 component". {0} is the number and {1} the noun, already in the form the language's plural rules give it for that number. A language that counts with a counter word adds it here -->
+  <HPWC_CountedStrikes>{0} {1}</HPWC_CountedStrikes>
+  <HPWC_CountedReloadItem>{0} {1}</HPWC_CountedReloadItem>
 
   <!-- Mod settings (Source/1.6/Settings/) -->
   <HPWC_SettingsCategory>Hemophage Warcasket</HPWC_SettingsCategory>
@@ -88,7 +91,7 @@
   <HPWC_DismemberNonHostile>Allow non-hostile targets</HPWC_DismemberNonHostile>
   <HPWC_DismemberNonHostileDesc>When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}.</HPWC_DismemberNonHostileDesc>
 
-  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" (HPWC_CountedStrikes) and {6} a count of the reload item such as "1 component" (HPWC_CountedReloadItem). One key per combination of a cooldown and a drain -->
   <HPWC_DismemberSummary>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}.</HPWC_DismemberSummary>
   <HPWC_DismemberSummaryNoCooldown>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once.</HPWC_DismemberSummaryNoCooldown>
   <HPWC_DismemberSummaryNoDrain>The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}.</HPWC_DismemberSummaryNoDrain>

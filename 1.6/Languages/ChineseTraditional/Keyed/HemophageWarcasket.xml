@@ -16,9 +16,14 @@
   <HPWC_DismemberConfirmKill>這次打擊會扯下{PAWN_nameDef}的頭，把{PAWN_objective}殺死。\n\n你確定嗎?</HPWC_DismemberConfirmKill>
   <!-- EN: Draining hemogen from {PAWN_nameDef} after the strike will kill {PAWN_objective}.\n\nAre you sure? -->
   <HPWC_DismemberConfirmDrainKill>打擊後若從{PAWN_nameDef}身上汲取血原，會把{PAWN_objective}殺死。\n\n你確定嗎?</HPWC_DismemberConfirmDrainKill>
-  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
+  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" (HPWC_CountedReloadItem) -->
   <!-- EN: Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}. -->
   <HPWC_DismemberReload>每次打擊都會燒壞護肩裡的一個伺服機構，裝填{0}即可換上新的。</HPWC_DismemberReload>
+  <!-- A count of strikes and a count of the reload item, as the line above and the settings' summaries print them: "2 strikes", "1 component". {0} is the number and {1} the noun, already in the form the language's plural rules give it for that number. A language that counts with a counter word adds it here -->
+  <!-- EN: {0} {1} -->
+  <HPWC_CountedStrikes>{0}次{1}</HPWC_CountedStrikes>
+  <!-- EN: {0} {1} -->
+  <HPWC_CountedReloadItem>{0}個{1}</HPWC_CountedReloadItem>
 
   <!-- Mod settings (Source/1.6/Settings/) -->
   <!-- EN: Hemophage Warcasket -->
@@ -139,7 +144,7 @@
   <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
   <HPWC_DismemberNonHostileDesc>啟用時，駕駛員也能肢解非敵對的目標，但這會激怒對方的派系。停用時，只有敵對目標可以被肢解。預設值：{0}。</HPWC_DismemberNonHostileDesc>
 
-  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" (HPWC_CountedStrikes) and {6} a count of the reload item such as "1 component" (HPWC_CountedReloadItem). One key per combination of a cooldown and a drain -->
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->
   <HPWC_DismemberSummary>護肩最多可儲存{5}，每次打擊需裝填{6}。施放打擊需要{0}，之後血原性駕駛員會花{2}從人類目標身上汲取血原，獲得{3}點血原，並造成{4}失血。打擊後的冷卻時間為{1}。</HPWC_DismemberSummary>
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once. -->

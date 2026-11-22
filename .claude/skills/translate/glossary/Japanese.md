@@ -90,26 +90,18 @@ Biotech `Japanese (日本語).tar`.
 | strike (the shoulders' `CompStrikePool`) | 攻撃 | One form. Japanese falls to the base `Pluralize` (lookup, else unchanged) and ja Keyed never switches on `CHARGENOUN_gender`, so no `WordInfo` file is shipped. Reads in every vanilla slot: 攻撃残数, 最大攻撃数, 攻撃回復コスト, 攻撃を1回分回復するために…, 攻撃フル充填コスト, 最後の攻撃を使用すると…, 攻撃が残っていません. Chosen over 一撃 (最大一撃数 and 一撃残数 read badly) and 打撃 (a blunt-damage word). |
 | the reload item (Core `ComponentIndustrial`) | コンポーネント | Core `ComponentIndustrial.label`; unchanged by the base worker, so no line is needed. |
 
-`Ability_Dismember.Counted` prints the number, an ASCII space and the label,
-unchanged at every count. The sentences take it as a quantity:
-`HPWC_DismemberReload` reads …{0}を使用して充填すれば交換できます. ("1 コンポーネントを使用して", "3 コンポーネントを使用して"); the Dismember
-summaries open ショルダーアーマーには{5}分を蓄えられ,1回分ごとに{6}で充填します.
-("2 攻撃分を蓄えられ,1回分ごとに1 コンポーネントで充填します.", "1 攻撃分",
-"3 コンポーネントで"); `HPWC_DismemberReloadCostDesc` gets the bare
-コンポーネント (攻撃1回分の充填に必要なコンポーネントの数です.).
+The counters live in two Keyed strings, `HPWC_CountedStrikes` = `{1}{0}回` and `HPWC_CountedReloadItem` = `{1}{0}個`, where `{0}` is the number and `{1}` the noun. `HPWC_DismemberReload` reads …{0}を使用して充填すれば交換できます. (コンポーネント1個を使用して, コンポーネント3個を使用して). The Dismember summaries open ショルダーアーマーには{5}分を蓄えられ,1回分ごとに{6}で充填します. and the frame's own 分 follows `{5}`. As printed at the defaults: ショルダーアーマーには攻撃2回分を蓄えられ,1回分ごとにコンポーネント1個で充填します. At 1 strike and 3 components: 攻撃1回分 / コンポーネント3個で. `HPWC_DismemberReloadCostDesc` gets the bare コンポーネント (攻撃1回分の充填に必要なコンポーネントの数です.).
 
 ## Pending native review
 
-A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review, and the counted forms below were the main one. The reader proposed recasting `HPWC_QuestThrallShareDesc` as a plain ratio, and it was declined because that dropped the sense of the strength the quest "should" have.
+A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. The reader proposed recasting `HPWC_QuestThrallShareDesc` as a plain ratio, and it was declined because that dropped the sense of the strength the quest "should" have.
 
 Every coinage above: ヘモファージ, ヘモゲンラッシュ, ヘモゲンの温存量, ヘモゲン注入器,
 四肢切断 for both the ability and the damage (切断 says cutting where the act is
 tearing), 攻撃 as the strike noun (it also reads as any attack), 補強されたアーム,
 気密バイザー, 下位のウォーキャスケット, 脅威ポイント, 参加者 and the row labels
 最大攻撃回数, 攻撃のダメージ, 炎の恐れの発生率, 敵対していない対象にも使用,
-マスターのウォーキャスケット脅威ポイント. The counted forms "2 攻撃分" and
-"1 コンポーネントで", which the read also flagged, are the engine's number-space-label shape and read as a stat
-readout rather than natural counting (コンポーネント1個). The two Confirm dialogs
+マスターのウォーキャスケット脅威ポイント. The counters 回 and 個 in `HPWC_CountedStrikes` and `HPWC_CountedReloadItem` are pending native review. The two Confirm dialogs
 say {PAWN_objective}殺すことになります (彼を殺す…), which the checker forces where
 vanilla would say {PAWN_pronoun}は死亡します. All free prose: the three
 descriptions (paragraph 1 after the family opener, paragraphs 2 and 3), the two

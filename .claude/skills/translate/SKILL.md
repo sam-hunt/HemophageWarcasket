@@ -78,7 +78,8 @@ notes for the shim or flow edit this repo owes before continuing.
     `WarningPawnWillDieFromBloodfeeding`, tokens and closing question
     alike, so each language builds them on its own rendering of that key.
     `HPWC_DismemberReload` (the ability tooltip's last line) takes `{0}`, a
-    counted reload item (next bullet).
+    counted reload item, and `HPWC_CountedStrikes` and
+    `HPWC_CountedReloadItem` are the two count formats (next bullet).
   - the mod settings window: `HPWC_SettingsCategory` (its header and the
     Workshop title), `HPWC_SettingsUnavailable`, the value words
     (`HPWC_DefaultSuffix`, which keeps its leading space, `HPWC_Enabled`
@@ -108,15 +109,20 @@ notes for the shim or flow edit this repo owes before continuing.
     `SanguophageThrall` kind and the quest's wording.
   Name the set's things with the same renderings as the DefInjected text
   (hemogen rush, dismember, strike, the injectors, the servos, warcasket).
-- **Counted nouns reach the language worker.** `Ability_Dismember.Counted`
-  prints a number, a space and a label, pluralized by
-  `LanguageWorker.Pluralize(label, count)` from two up: the reload item
-  (Core's `ComponentIndustrial` label, in the game's own translation) in
-  `HPWC_DismemberReload` and as `{6}` of the Dismember summaries, and the
-  charge noun "strike" as their `{5}`. `HPWC_DismemberReloadCostDesc`'s
-  `{1}` is the same item's label pluralized with no count. So each
-  language owes three things, all recorded in its glossary's "Charge
-  nouns" section: a strike noun the worker pluralizes correctly, or a
+- **Counted nouns reach the language worker, then a format of their
+  own.** `Ability_Dismember` prints two counts: of the charge noun
+  "strike" (`HPWC_CountedStrikes`, the Dismember summaries' `{5}`) and of
+  the reload item, Core's `ComponentIndustrial` label in the game's own
+  translation (`HPWC_CountedReloadItem`, the summaries' `{6}` and
+  `HPWC_DismemberReload`'s `{0}`). In both keys `{0}` is the number and
+  `{1}` the noun, pluralized by `LanguageWorker.Pluralize(label, count)`
+  from two up, and the English is `{0} {1}`. A language that counts with a
+  counter word adds it there and chooses the order (Chinese `{0}次{1}`
+  and `{0}个{1}`, Japanese `{1}{0}回`, Korean `{1} {0}회`), and words the
+  frames around the result. `HPWC_DismemberReloadCostDesc`'s `{1}` is the
+  reload item's label pluralized with no count. So each language owes
+  three things, all recorded in its glossary's "Charge nouns" section: a
+  strike noun the worker pluralizes correctly, or a
   `1.6/Languages/<Language>/WordInfo/plural.txt` line for it (and, in
   Russian, `case.txt` rows for both numbers, which the worker reads to
   choose the form after a number); a `plural.txt` line for Core's
@@ -130,9 +136,9 @@ notes for the shim or flow edit this repo owes before continuing.
   files (`l10n/lessons.md` has the decompile-verified worker map; the
   Medic and Toxin Warcasket glossaries are the worked examples). Vanilla
   also prints the charge noun through `{CHARGENOUN_plural}` and
-  `{lookup: ...}` in five Keyed strings of its own, and German and
-  Castilian switch on its gender there, so a feminine or neuter noun adds
-  a `WordInfo/Gender/` line.
+  `{lookup: ...}` in five Keyed strings of its own, and German switches on
+  its gender there, so a feminine or neuter noun adds a `WordInfo/Gender/`
+  line.
 - **Enumerate the key set from `Scripts/expected-injections.json`, never
   from a Languages folder or by scanning `1.6/Defs/`.** The sidecar is a
   dump of what the live game walks; regenerate it (game closed) with

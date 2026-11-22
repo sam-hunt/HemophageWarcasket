@@ -87,20 +87,17 @@ zh-Hans 血原质 and its own sanguophage, bloodfeed and thrall words).
 |---|---|---|
 | strike (the shoulders' `CompStrikePool`, a `CompApparelReloadable`) | 打擊 | One form. Chinese runs the base worker, whose `Pluralize` returns the label unchanged, and the zh-Hant Keyed never switches on `CHARGENOUN_gender`; the zh-Hant tars ship no `WordInfo` folder at all. So no `WordInfo` file is shipped, for the strike noun or for Core's `ComponentIndustrial` label 零件. Chosen over 擊, which reads well counted (一擊) but not in vanilla's bare slots (沒有擊。, 擊剩餘). Read aloud: 沒有打擊。, 打擊剩餘, 這個物體最多能保持的打擊數量。, 每裝填一打擊需要消耗物品的數量。, 每打擊裝填消耗. |
 
-`Ability_Dismember.Counted` prints the number, an ASCII space and the label,
-so the mod's own sentences take the counted noun as a direct object or after
-最多可儲存, where a bare quantity reads as a game tag. At the defaults (2
-strikes, 1 component) and at 1 strike, 3 components:
+The counters live in two Keyed strings, `HPWC_CountedStrikes` = `{0}次{1}` and `HPWC_CountedReloadItem` = `{0}個{1}`, where `{0}` is the number and `{1}` the noun. The mod's own sentences take the counted noun after 最多可儲存 or as a direct object. At the defaults (2 strikes, 1 component) and at 1 strike, 3 components:
 
-- `HPWC_DismemberReload`: 每次打擊都會燒壞護肩裡的一個伺服機構，裝填1 零件即可換上新的。 / …裝填3 零件即可換上新的。
+- `HPWC_DismemberReload`: 每次打擊都會燒壞護肩裡的一個伺服機構，裝填1個零件即可換上新的。 / …裝填3個零件即可換上新的。
 - `HPWC_DismemberReloadCostDesc` (`{1}` = 零件): 裝填一次打擊所需的零件數量。預設值：1。
-- `HPWC_DismemberSummary*`: 護肩最多可儲存2 打擊，每次打擊需裝填1 零件。 / 護肩最多可儲存1 打擊，每次打擊需裝填3 零件。
+- `HPWC_DismemberSummary*`: 護肩最多可儲存2次打擊，每次打擊需裝填1個零件。 / 護肩最多可儲存1次打擊，每次打擊需裝填3個零件。
 
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are listed here as still pending native review.
 
-The reader judged 噬血型 natural for Taiwan and Hong Kong players, since it ties visibly to the official 噬血者, and judged the blood vocabulary natural. A native check is still owed. 注射器 reads as a syringe for something that keeps blood circulating, but the English says "injectors", so it stays. The counted nouns print without a measure word ("2 打擊", "1 零件"). The reader proposed 從事{0} for `HPWC_WorkSummary` and it was declined: `{0}` is the work types' `labelShort`, which are person nouns in this language (研究員), so 擔任{0} stays.
+The reader judged 噬血型 natural for Taiwan and Hong Kong players, since it ties visibly to the official 噬血者, and judged the blood vocabulary natural. A native check is still owed. 注射器 reads as a syringe for something that keeps blood circulating, but the English says "injectors", so it stays. The counters 次 and 個 in `HPWC_CountedStrikes` and `HPWC_CountedReloadItem` are pending native review. The reader proposed 從事{0} for `HPWC_WorkSummary` and it was declined: `{0}` is the work types' `labelShort`, which are person nouns in this language (研究員), so 擔任{0} stays.
 
 Every coinage in "Set-specific rows": 噬血型 (and that it reads as the
 sanguophage's suit rather than a separate coinage), 血原爆發, 肢解 for both

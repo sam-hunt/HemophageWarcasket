@@ -101,14 +101,7 @@ are grounded against the Core and Biotech `Korean (한국어).tar`.
 | strike (the shoulders' `CompStrikePool`) | 일격 | One form. Korean falls to the base `Pluralize` (lookup, else unchanged), Core and Biotech ko ship no `WordInfo` at all, and ko Keyed never switches on `CHARGENOUN_gender`, so no `WordInfo` file is shipped. Reads in every vanilla slot: 잔여 일격, 일격, 이 개체의 최대 일격 수입니다., 일격 재장전 비용, 일격당 재장전 비용, 하나의 일격을 재장전하는 데…, 마지막 일격을 사용하면…, 남은 일격이 없습니다. Consonant-final (격), so markers resolve to 을 / 이. |
 | reload item (Core `ComponentIndustrial`, not this mod's noun) | 부품 | Core `ComponentIndustrial.label`; returned unchanged by `Pluralize`, so `HPWC_DismemberReloadCostDesc`'s `{1}` is 부품. |
 
-`Ability_Dismember.Counted` prints the number, an ASCII space and the label, so
-`{0}` of `HPWC_DismemberReload` and `{5}` / `{6}` of the summaries reach the
-string as "2 일격", "1 부품", "3 부품". The josa resolver looks at the label's
-last syllable, never the digit, so a marker after these arguments resolves
-correctly (2 일격이, 1 부품으로). As printed at the defaults: 어깨에는 2 일격이
-들어가며, 일격 하나는 1 부품으로 재장전합니다. At 1 strike and 3 components:
-어깨에는 1 일격이 들어가며, 일격 하나는 3 부품으로 재장전합니다. The reload line:
-…{0}(으)로 재장전하면 교체할 수 있습니다. → 1 부품으로 / 3 부품으로.
+The counters live in two Keyed strings, `HPWC_CountedStrikes` = `{1} {0}회` and `HPWC_CountedReloadItem` = `{1} {0}개`, where `{0}` is the number and `{1}` the noun. They reach `{0}` of `HPWC_DismemberReload` and `{5}` / `{6}` of the summaries as "일격 2회", "부품 1개", "부품 3개". The summaries' opening frame is 어깨에는 {5}분(이)가 들어가며, so the josa resolver looks at the counter's last syllable, never the digit: 회분 takes 이 and 개 takes 로. As printed at the defaults: 어깨에는 일격 2회분이 들어가며, 일격 하나는 부품 1개로 재장전합니다. At 1 strike and 3 components: 어깨에는 일격 1회분이 들어가며, 일격 하나는 부품 3개로 재장전합니다. The reload line: …{0}(으)로 재장전하면 교체할 수 있습니다. → 부품 1개로 / 부품 3개로.
 
 ## Pending native review
 
@@ -116,8 +109,7 @@ A fresh-reader register read ran on 2026-11-22 after generation, and its rewrite
 
 Every coinage in "Set-specific rows": 헤모파지 as the set name, 혈액정수 쇄도,
 사지 절단 for both the ability and the damage, 뜯어내다 / 잡아 뜯다 / 뽑아 버리다,
-일격 as the charge noun and the number-space-noun shape it prints in ("2 일격",
-"1 부품", which the read also flagged), 추출하다 for drain, 서보 모터, 열기 방어력, 혈액정수 비축량, 기본 혈액정수
+일격 as the charge noun, the counters 회 and 개 in `HPWC_CountedStrikes` and `HPWC_CountedReloadItem` and the frame 회분, 추출하다 for drain, 서보 모터, 열기 방어력, 혈액정수 비축량, 기본 혈액정수
 획득량, 위협 점수, 하급 워캐스킷, 불에서 도망칠 확률 against the official mental break
 label 화재 테러, 부상에 그침 / 부상에 그칠 수 있음, 맥동하는 빛, 피 튀김. All free
 prose: the three descriptions (paragraph 1 after the family opener,

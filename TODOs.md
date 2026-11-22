@@ -10,8 +10,6 @@
 - **Quest pilots in game** Generate both sanguophage quests at 100% chance (dev quest generation) and check:
   - the join offer and a capture
   - under Combat Extended, that a dressed pawn's autorifle fires and reloads from the three spare magazines
-- **Dismember in the nine languages, in game** One strike on a human and one on an animal in German, whose combat log line leans on Core's German helper rules, and a look at the settings summaries in Chinese, Japanese and Korean.
-- **Counted nouns in Chinese, Japanese and Korean** `Ability_Dismember.Counted` prints a number, a space and a label, so these read "2 打击" and "1 零部件" with no measure word. A Keyed format string per counted noun, "{0} {1}" in English, would let each language place the count and add its counter. Worth the code change?
 - **First Workshop publish.** Commit `About/PublishedFileId.txt`, add the Workshop link and the Steam badges to the README
 
 ## Later

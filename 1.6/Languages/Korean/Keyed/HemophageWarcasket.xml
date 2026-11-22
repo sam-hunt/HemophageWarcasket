@@ -16,9 +16,14 @@
   <HPWC_DismemberConfirmKill>일격으로 {PAWN_nameDef}의 머리를 뜯어내면 {PAWN_objective} 죽이게 됩니다.\n\n계속하시겠습니까?</HPWC_DismemberConfirmKill>
   <!-- EN: Draining hemogen from {PAWN_nameDef} after the strike will kill {PAWN_objective}.\n\nAre you sure? -->
   <HPWC_DismemberConfirmDrainKill>일격 후 {PAWN_nameDef}에게서 혈액정수를 추출하면 {PAWN_objective} 죽이게 됩니다.\n\n계속하시겠습니까?</HPWC_DismemberConfirmDrainKill>
-  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
+  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" (HPWC_CountedReloadItem) -->
   <!-- EN: Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}. -->
   <HPWC_DismemberReload>일격마다 어깨의 서보 모터가 하나씩 타 버리며, {0}(으)로 재장전하면 교체할 수 있습니다.</HPWC_DismemberReload>
+  <!-- A count of strikes and a count of the reload item, as the line above and the settings' summaries print them: "2 strikes", "1 component". {0} is the number and {1} the noun, already in the form the language's plural rules give it for that number. A language that counts with a counter word adds it here -->
+  <!-- EN: {0} {1} -->
+  <HPWC_CountedStrikes>{1} {0}회</HPWC_CountedStrikes>
+  <!-- EN: {0} {1} -->
+  <HPWC_CountedReloadItem>{1} {0}개</HPWC_CountedReloadItem>
 
   <!-- Mod settings (Source/1.6/Settings/) -->
   <!-- EN: Hemophage Warcasket -->
@@ -139,15 +144,15 @@
   <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
   <HPWC_DismemberNonHostileDesc>켜면 조종사가 적대적이지 않은 대상의 사지도 절단할 수 있지만, 대상이 속한 세력의 분노를 삽니다. 끄면 적대적인 대상만 절단할 수 있습니다. 기본값: {0}.</HPWC_DismemberNonHostileDesc>
 
-  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" (HPWC_CountedStrikes) and {6} a count of the reload item such as "1 component" (HPWC_CountedReloadItem). One key per combination of a cooldown and a drain -->
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->
-  <HPWC_DismemberSummary>어깨에는 {5}(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸립니다. 흡혈성 조종사는 이어서 인간 대상에게서 {2} 동안 혈액정수를 추출해 혈액정수 {3}만큼을 얻으며, 대상의 혈액 손실은 {4} 늘어납니다. 일격 후 재사용 대기시간은 {1}입니다.</HPWC_DismemberSummary>
+  <HPWC_DismemberSummary>어깨에는 {5}분(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸립니다. 흡혈성 조종사는 이어서 인간 대상에게서 {2} 동안 혈액정수를 추출해 혈액정수 {3}만큼을 얻으며, 대상의 혈액 손실은 {4} 늘어납니다. 일격 후 재사용 대기시간은 {1}입니다.</HPWC_DismemberSummary>
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once. -->
-  <HPWC_DismemberSummaryNoCooldown>어깨에는 {5}(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸립니다. 흡혈성 조종사는 이어서 인간 대상에게서 {2} 동안 혈액정수를 추출해 혈액정수 {3}만큼을 얻으며, 대상의 혈액 손실은 {4} 늘어납니다. 다음 일격은 바로 이어갈 수 있습니다.</HPWC_DismemberSummaryNoCooldown>
+  <HPWC_DismemberSummaryNoCooldown>어깨에는 {5}분(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸립니다. 흡혈성 조종사는 이어서 인간 대상에게서 {2} 동안 혈액정수를 추출해 혈액정수 {3}만큼을 얻으며, 대상의 혈액 손실은 {4} 늘어납니다. 다음 일격은 바로 이어갈 수 있습니다.</HPWC_DismemberSummaryNoCooldown>
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}. -->
-  <HPWC_DismemberSummaryNoDrain>어깨에는 {5}(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸리며, 조종사는 대상에게서 혈액정수를 추출하지 않습니다. 일격 후 재사용 대기시간은 {1}입니다.</HPWC_DismemberSummaryNoDrain>
+  <HPWC_DismemberSummaryNoDrain>어깨에는 {5}분(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸리며, 조종사는 대상에게서 혈액정수를 추출하지 않습니다. 일격 후 재사용 대기시간은 {1}입니다.</HPWC_DismemberSummaryNoDrain>
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once. -->
-  <HPWC_DismemberSummaryNoCooldownNoDrain>어깨에는 {5}(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸리며, 조종사는 대상에게서 혈액정수를 추출하지 않습니다. 다음 일격은 바로 이어갈 수 있습니다.</HPWC_DismemberSummaryNoCooldownNoDrain>
+  <HPWC_DismemberSummaryNoCooldownNoDrain>어깨에는 {5}분(이)가 들어가며, 일격 하나는 {6}(으)로 재장전합니다. 일격을 시전하는 데 {0} 걸리며, 조종사는 대상에게서 혈액정수를 추출하지 않습니다. 다음 일격은 바로 이어갈 수 있습니다.</HPWC_DismemberSummaryNoCooldownNoDrain>
 
   <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in every tooltip is the default -->
   <!-- EN: Helmet -->

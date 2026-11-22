@@ -119,6 +119,8 @@ Schläge` (the `plural_decline` lookup misses harmlessly), `Schlag-Nachladekoste
 `Nachladekosten pro Schlag`, `einen Schlag nachzuladen`, `dessen letzter
 Schlag`, `Keine Schläge mehr.`
 
+The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. `Blutproduktion` in the armor's first paragraph is Core's own label for the blood pumping capacity, and a native reader takes it for "blood production" beside the third paragraph's `Blutkreislauf`.

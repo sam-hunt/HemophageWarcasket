@@ -84,16 +84,16 @@ terms are grounded against the Core and Biotech `ChineseSimplified (简体中文
 |---|---|---|
 | strike (the shoulders' `CompStrikePool`) | 打击 | One form. Chinese falls to the base `Pluralize` (lookup, else unchanged) and the Chinese Keyed never switches on `CHARGENOUN_gender`, so no `WordInfo` file is shipped. A noun rather than a classifier so vanilla's slots read: 剩余打击 (2), 打击剩余, 此物体上剩余的打击数量, 这个物体最多能保持的打击数量, 打击装填消耗, 没有打击。 The two per-charge slots (每打击装填消耗, 每装填一打击) are as stiff as vanilla's own 充能 in them. |
 
-What the counted-noun slots print (`Counted` is the number, an ASCII space and the label; Core's `ComponentIndustrial.label` 零部件 comes back unchanged at any count):
+The counters live in two Keyed strings, `HPWC_CountedStrikes` = `{0}次{1}` and `HPWC_CountedReloadItem` = `{0}个{1}`, where `{0}` is the number and `{1}` the noun (Core's `ComponentIndustrial.label` 零部件 comes back unchanged at any count). What the counted-noun slots print:
 
-- `HPWC_DismemberReload`, 1 component: 每次打击都会烧毁护肩中的一个伺服马达，装填1 零部件即可更换。 At 3: 装填3 零部件即可更换。
-- `HPWC_DismemberSummary*`, defaults: 护肩容量为2 打击，每次打击需用1 零部件装填。 At 1 strike and 3 components: 护肩容量为1 打击，每次打击需用3 零部件装填。 The count sits where a capacity or a cost value goes, so it reads as a value with its unit, as Overlord's shipped 每点充能可用1 零部件装填 does.
+- `HPWC_DismemberReload`, 1 component: 每次打击都会烧毁护肩中的一个伺服马达，装填1个零部件即可更换。 At 3: 装填3个零部件即可更换。
+- `HPWC_DismemberSummary*`, defaults: 护肩可容纳2次打击，每次打击需用1个零部件装填。 At 1 strike and 3 components: 护肩可容纳1次打击，每次打击需用3个零部件装填。
 - `HPWC_DismemberReloadCostDesc`: 装填一次打击所需的零部件数量。默认：1。
 
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are listed here as still pending native review.
 
-The reader judged 噬血型 natural for mainland players, since 噬血 is stock game vocabulary (Code Vein's Chinese title is 噬血代码), and judged the plain blood words (肢解, 失血, 溅血, 抽取血原质) natural and unlikely to offend. A native check of both judgements is still owed, beside the 嗜血 concern below. The counted nouns print without a measure word ("2 打击", "1 零部件") and read as value readouts, where a native writer would say 2次打击 and 1个零部件.
+The reader judged 噬血型 natural for mainland players, since 噬血 is stock game vocabulary (Code Vein's Chinese title is 噬血代码), and judged the plain blood words (肢解, 失血, 溅血, 抽取血原质) natural and unlikely to offend. A native check of both judgements is still owed, beside the 嗜血 concern below. The counters 次 and 个 in `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, and the summaries' reworded frame 护肩可容纳, are pending native review.
 
 Every coinage in "Set-specific rows": 噬血型 above all (噬 shares a sound with 嗜血, the bloodfeeder gene's word, and a reader may hear feeding in it as the English "hemophage" itself allows), 血原奔涌, 肢解 for both the ability and the damage, 打击 as the charge noun, 抽取 for drain, 伺服马达, 强化机械臂, 热能护甲经过强化, 面罩, 溅血, 血原质保留量, 基础血原质获取量, 抽取时间, 宾客, 低阶战棺, 威胁点数, 只会受伤 / 可能只会受伤, and the death message {0}被撕碎了。 All free prose: the three descriptions (paragraph 1 after the family opener, paragraphs 2 and 3, including 差强人意 for "somewhat lackluster"), the two ability descriptions, the hediff description, the six combat log lines, every settings tooltip and summary. The VFEP terms' review is tracked upstream, under the section named above.
