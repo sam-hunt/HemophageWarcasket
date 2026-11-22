@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: dismemberment -->
+  <HPWC_Dismember.label>desmembramiento</HPWC_Dismember.label>
+  <!-- EN: {0} has been torn apart. -->
+  <HPWC_Dismember.deathMessage>{0} ha sido despedazad{0_gender ? o : a}.</HPWC_Dismember.deathMessage>
+
+</LanguageData>

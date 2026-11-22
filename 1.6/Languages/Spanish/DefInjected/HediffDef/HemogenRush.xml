@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>descarga de hemógeno</HPWC_HemogenRush.label>
+  <!-- EN: This person's warcasket is spending their hemogen quickly, allowing them to move faster and hit harder. -->
+  <HPWC_HemogenRush.description>El ataúd de guerra de esta persona está gastando rápidamente su hemógeno, lo que le permite moverse más rápido y golpear con más fuerza.</HPWC_HemogenRush.description>
+
+</LanguageData>
