@@ -17,7 +17,10 @@ namespace HemophageWarcasket;
 //
 // A row laid out as a Tunable row is, its label in the shared label column, but for the value:
 // a project's name is far wider than a number, so the value column is as wide as the widest
-// stop's name with the default suffix, and the slider takes what is left.
+// text any stop can show, in the active language, and the slider takes what is left. Only the
+// default's stop ever shows the default suffix, so only its name is measured with it. The
+// column stops at MaxValueShare of the row, where a longer name is cut short with an ellipsis,
+// so no language's names can squeeze the slider.
 public sealed class ResearchGateSetting
 {
     // Saved in place of a def name for the first stop.
@@ -25,6 +28,9 @@ public sealed class ResearchGateSetting
 
     // The gap either side of the slider, a Tunable row's.
     private const float SliderPad = 10f;
+
+    // With the label column at its own cap, a quarter of the row is left to the slider.
+    private const float MaxValueShare = 0.35f;
 
     private readonly string key;
     private string overrideName;
@@ -70,7 +76,7 @@ public sealed class ResearchGateSetting
         row.xMin += Tunable.RowIndent;
         row.xMax -= Tunable.RowEndPad;
         Rect labelRect = row.LeftPartPixels(Tunable.LabelWidth(row.width));
-        float valueWidth = ValueWidth();
+        float valueWidth = Mathf.Min(WidestValue(), row.width * MaxValueShare);
         var valueRect = new Rect(row.xMax - valueWidth, row.y, valueWidth, row.height);
         var sliderRect = new Rect(labelRect.xMax + SliderPad, row.y,
             valueRect.x - labelRect.xMax - 2f * SliderPad, row.height);
@@ -84,7 +90,7 @@ public sealed class ResearchGateSetting
         TextAnchor anchor = Text.Anchor;
         Text.Anchor = TextAnchor.MiddleLeft;
         Widgets.Label(labelRect, Label());
-        Widgets.Label(valueRect, shown);
+        Widgets.Label(valueRect, shown.Truncate(valueRect.width));
         Text.Anchor = anchor;
 
         int current = Stop(Value);
@@ -106,12 +112,19 @@ public sealed class ResearchGateSetting
     private string Name(ResearchProjectDef project) =>
         project == null ? ("HPWC_" + key + "None").Translate() : project.LabelCap;
 
-    private float ValueWidth()
+    private float WidestValue()
     {
-        string suffix = "HPWC_DefaultSuffix".Translate();
-        float width = Text.CalcSize(Name(null) + suffix).x;
+        float width = StopWidth(null);
         foreach (ResearchProjectDef option in options)
-            width = Mathf.Max(width, Text.CalcSize(Name(option) + suffix).x);
+            width = Mathf.Max(width, StopWidth(option));
         return width;
+    }
+
+    private float StopWidth(ResearchProjectDef project)
+    {
+        string shown = Name(project);
+        if (project == Default)
+            shown += "HPWC_DefaultSuffix".Translate();
+        return Text.CalcSize(shown).x;
     }
 }

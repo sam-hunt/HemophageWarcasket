@@ -12,6 +12,11 @@ namespace HemophageWarcasket;
 // in percent and written onto thrallBudgetShare. QuestPilot reads all six as a quest is
 // generated, so a write reaches the next quest and no pawn already made.
 //
+// The research row comes first, since it gates both quests. The other rows sit under a
+// subheading for the quest each belongs to, indented under it, the subheading's tooltip saying
+// what the quest is. Biotech gives neither quest a fixed name or description to borrow: it
+// generates both from the quest script's rules for every quest it makes.
+//
 // The section needs the armor's extension alone, found afresh by every load and apply since a
 // play-data reload replaces it, and stands while the abilities' defs are missing; without the
 // extension (another mod's patch) it is not drawn and nothing is written.
@@ -21,9 +26,13 @@ namespace HemophageWarcasket;
 // that reload replaces.
 public partial class HemophageWarcasketSettings
 {
-    public readonly Tunable questMeetingLeader = new("QuestMeetingLeader", 0f, 100f, 5f, Percent);
-    public readonly Tunable questMeetingGuest = new("QuestMeetingGuest", 0f, 100f, 5f, Percent);
-    public readonly Tunable questShipMaster = new("QuestShipMaster", 0f, 100f, 5f, Percent);
+    public readonly ResearchGateSetting questResearch = new("QuestResearch");
+    public readonly Tunable questMeetingLeader =
+        new("QuestMeetingLeader", 0f, 100f, 5f, Percent) { Indent = GroupIndent };
+    public readonly Tunable questMeetingGuest =
+        new("QuestMeetingGuest", 0f, 100f, 5f, Percent) { Indent = GroupIndent };
+    public readonly Tunable questShipMaster =
+        new("QuestShipMaster", 0f, 100f, 5f, Percent) { Indent = GroupIndent };
 
     // The floor's range is the storyteller's, whose threat points stop at 10000. Steps of 250
     // to 3000, across the points at which the quest's reinforcements begin, then 500 to 5000
@@ -31,10 +40,11 @@ public partial class HemophageWarcasketSettings
     public readonly Tunable questShipMasterPoints =
         new("QuestShipMasterPoints", 0f, 10000f, 250f, OffOrWhole)
     {
+        Indent = GroupIndent,
         StepBands = [(3000f, 250f), (5000f, 500f), (10000f, 1000f)],
     };
-    public readonly ResearchGateSetting questResearch = new("QuestResearch");
-    public readonly Tunable questThrallShare = new("QuestThrallShare", 0f, 100f, 5f, OffOrPercent);
+    public readonly Tunable questThrallShare =
+        new("QuestThrallShare", 0f, 100f, 5f, OffOrPercent) { Indent = GroupIndent };
 
     private static string OffOrWhole(float v) =>
         v <= 0f ? "HPWC_Off".Translate().ToString() : Whole(v);
@@ -97,11 +107,13 @@ public partial class HemophageWarcasketSettings
             return;
         SectionHeader(listing, "HPWC_SectionQuestPilot", XenotypeDefOf.Sanguophage?.Icon,
             HeaderTip("HPWC_SectionQuestPilot".Translate(), "HPWC_SectionQuestPilotDesc".Translate()));
+        questResearch.DoRow(listing);
+        SubHeader(listing, "HPWC_QuestMeeting");
         questMeetingLeader.DoRow(listing);
         questMeetingGuest.DoRow(listing);
+        SubHeader(listing, "HPWC_QuestShip");
         questShipMaster.DoRow(listing);
         questShipMasterPoints.DoRow(listing);
-        questResearch.DoRow(listing);
         questThrallShare.DoRow(listing);
     }
 }

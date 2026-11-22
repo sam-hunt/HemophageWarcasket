@@ -115,20 +115,25 @@
   <!-- Quest section (Source/1.6/Settings/Settings_QuestPilot.cs, ResearchGateSetting.cs): the sanguophages of Biotech's sanguophage meeting quest and of its crashed sanguophage shuttle quest, and that shuttle's thralls. {0} in every tooltip is the default -->
   <HPWC_SectionQuestPilot>Sanguophages from quests</HPWC_SectionQuestPilot>
   <HPWC_SectionQuestPilotDesc>Sanguophages who come to your colony during a quest can arrive already entombed in a hemophage warcasket. One who joins you will stay in it. The thralls of a crashed shuttle can arrive in lesser warcaskets.</HPWC_SectionQuestPilotDesc>
-  <HPWC_QuestMeetingLeader>Meeting leader</HPWC_QuestMeetingLeader>
-  <HPWC_QuestMeetingLeaderDesc>The chance that the leader of a sanguophage meeting will arrive in a hemophage warcasket. Default: {0}.</HPWC_QuestMeetingLeaderDesc>
-  <HPWC_QuestMeetingGuest>Other meeting guests</HPWC_QuestMeetingGuest>
-  <HPWC_QuestMeetingGuestDesc>The chance that each of the other sanguophages at a meeting will arrive in a hemophage warcasket as well. Default: {0}.</HPWC_QuestMeetingGuestDesc>
-  <HPWC_QuestShipMaster>Shuttle master</HPWC_QuestShipMaster>
-  <HPWC_QuestShipMasterDesc>The chance that the sanguophage master of a crashed shuttle will be entombed in a hemophage warcasket, which will make the master much harder to down and capture. Default: {0}.</HPWC_QuestShipMasterDesc>
-  <HPWC_QuestShipMasterPoints>Shuttle master threat points</HPWC_QuestShipMasterPoints>
-  <HPWC_QuestShipMasterPointsDesc>The threat points a crashed shuttle quest must be worth before its sanguophage master can be in a hemophage warcasket. The game raises threat points with your colony's wealth and number of colonists. Default: {0}.</HPWC_QuestShipMasterPointsDesc>
   <HPWC_QuestResearch>Required research</HPWC_QuestResearch>
   <HPWC_QuestResearchDesc>The research your colony must finish before any of these sanguophages can arrive in a hemophage warcasket. Default: {0}.</HPWC_QuestResearchDesc>
   <!-- The first stop of the slider, before the research projects' own names -->
   <HPWC_QuestResearchNone>None</HPWC_QuestResearchNone>
+  <!-- The two quests' subheadings, each over its own rows, and their tooltips -->
+  <HPWC_QuestMeeting>Sanguophage meeting</HPWC_QuestMeeting>
+  <HPWC_QuestMeetingDesc>A quest where a sanguophage leader asks you to host a meeting. If you accept, the leader and the other guests will arrive at your colony and spend several hours in discussion.</HPWC_QuestMeetingDesc>
+  <HPWC_QuestMeetingLeader>Leader</HPWC_QuestMeetingLeader>
+  <HPWC_QuestMeetingLeaderDesc>The chance that the leader of a sanguophage meeting will arrive in a hemophage warcasket. Default: {0}.</HPWC_QuestMeetingLeaderDesc>
+  <HPWC_QuestMeetingGuest>Other guests</HPWC_QuestMeetingGuest>
+  <HPWC_QuestMeetingGuestDesc>The chance that each of the other sanguophages at a meeting will arrive in a hemophage warcasket as well. Default: {0}.</HPWC_QuestMeetingGuestDesc>
+  <HPWC_QuestShip>Crashed shuttle</HPWC_QuestShip>
+  <HPWC_QuestShipDesc>A quest where you can draw a hostile shuttle down to a crash near your colony. Its sanguophage master and thralls will leave the wreck and fight you.</HPWC_QuestShipDesc>
+  <HPWC_QuestShipMaster>Master</HPWC_QuestShipMaster>
+  <HPWC_QuestShipMasterDesc>The chance that the sanguophage master of a crashed shuttle will be entombed in a hemophage warcasket, which will make the master much harder to down and capture. Default: {0}.</HPWC_QuestShipMasterDesc>
+  <HPWC_QuestShipMasterPoints>Master threat points</HPWC_QuestShipMasterPoints>
+  <HPWC_QuestShipMasterPointsDesc>The threat points a crashed shuttle quest must be worth before its sanguophage master can be in a hemophage warcasket. The game raises threat points with your colony's wealth and number of colonists. Default: {0}.</HPWC_QuestShipMasterPointsDesc>
   <!-- 0 is shown as HPWC_Off. The warcaskets are VFE Pirates' own basic sets, each needing its own research -->
-  <HPWC_QuestThrallShare>Shuttle thrall warcaskets</HPWC_QuestThrallShare>
+  <HPWC_QuestThrallShare>Thrall warcaskets</HPWC_QuestThrallShare>
   <HPWC_QuestThrallShareDesc>How strong a crashed shuttle quest should be compared to a raid on your colony. Some of the master's thralls will arrive entombed in warcaskets you have researched to make up the difference. Default: {0}.</HPWC_QuestThrallShareDesc>
 
 </LanguageData>

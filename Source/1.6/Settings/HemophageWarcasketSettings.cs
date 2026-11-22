@@ -32,6 +32,9 @@ public partial class HemophageWarcasketSettings : ModSettings
     // The whitespace above every section header but the first, and below the last row.
     private const float SectionGap = 28f;
 
+    // How much further in than its subheading a grouped row starts.
+    private const float GroupIndent = Listing.DefaultIndent;
+
     // Hemogen is stored on a 0..1 scale and shown, by the game and by these rows, as 0..100.
     private const float HemogenScale = 100f;
 
@@ -127,8 +130,9 @@ public partial class HemophageWarcasketSettings : ModSettings
         ResetQuestPilotSettings();
     }
 
-    // Each section opens on its summary under its header, then one row per setting, and a reset
-    // button sits below the list. The section is headed by whitespace and a medium-font header
+    // Each section opens on its summary under its header, then one row per setting, some of
+    // them grouped under a subheading, and a reset button sits below the list. The section is
+    // headed by whitespace and a medium-font header
     // rather than a rule, and the rows sit indented under it; it closes on the same gap so the
     // list does not end flush on its last row. The list scrolls once it outgrows the window's
     // height, sized from the previous frame's listing height; the scrollbar only takes its
@@ -216,6 +220,26 @@ public partial class HemophageWarcasketSettings : ModSettings
         Text.Anchor = anchor;
         Text.Font = font;
         listing.Gap(headerGap);
+    }
+
+    // A group's subheading inside a section: its name in the rows' font where a row's label
+    // starts, with the rows it heads one GroupIndent further in (Tunable.Indent). A gap above
+    // sets the group off from the rows before it and none below ties it to its own. The
+    // tooltip, a section header's in shape, is "<key>Desc" and covers the text only.
+    private static void SubHeader(Listing_Standard listing, string key)
+    {
+        const float groupGap = 6f;
+        listing.Gap(groupGap);
+        Rect rect = listing.GetRect(Tunable.RowHeight);
+        rect.xMin += Tunable.RowIndent;
+        rect.xMax -= Tunable.RowEndPad;
+        string label = key.Translate();
+        TextAnchor anchor = Text.Anchor;
+        Text.Anchor = TextAnchor.MiddleLeft;
+        Widgets.Label(rect, label);
+        Text.Anchor = anchor;
+        rect.width = Mathf.Min(rect.width, Text.CalcSize(label).x);
+        TooltipHandler.TipRegion(rect, HeaderTip(label, (key + "Desc").Translate()));
     }
 
     // A section's tooltip as VEF opens an ability's: its name in vanilla's tip title colour over
