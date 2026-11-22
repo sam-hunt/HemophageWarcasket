@@ -2,7 +2,6 @@
 
 ## Pre-release polish
 
-- **Workshop gallery** Add images, Medic/Overlord as precedent
 - **Smoke test on 1.6**
 - **Quest pilots in game** Generate both sanguophage quests at 100% chance (dev quest generation) and check:
   - the join offer and a capture

@@ -39,3 +39,9 @@ the smoke list); the engines live in the `l10n/` submodule. Nothing here ships.
   a new delivery starts from `../PREVIEW_GIF_FROM_MP4.md`'s tests, and a changed number goes
   in the header. A version bump is never a rebuild: the `gif-patch` skill edits the badge in
   place.
+- **`gallery-gif.py`** rebuilds the gallery's `.steamworkshop/Images/3HemogenRush.gif` from the
+  MP4 beside it, deterministically, and refuses to write a file at or over the gallery's 2 MiB.
+  That MP4 is never tracked either and must be put back at
+  `.steamworkshop/Images/3HemogenRush.mp4` first. The script asserts the clip's frame count, so
+  a new capture is re-measured against `Docs/Research/Gallery-GIF-Transcode.md` before its
+  numbers go in the header.

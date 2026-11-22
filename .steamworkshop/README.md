@@ -38,12 +38,12 @@ whenever it changed.
 ## Images/
 
 The page's gallery images, numbered in page order as in the sibling repos, and
-uploaded by hand through the page's images and videos UI. Only
-`1PreviewWorkshop.png` exists so far, the preview art at gallery size; the
-rest arrive with the features they show. Steam rejects gallery images of 2 MB
-or more and takes no video files, so gameplay clips are GIFs cut down to fit
-(lower frame rate, scale and palette) from screen recordings kept outside the
-repo.
+uploaded by hand through the page's images and videos UI.
+`1PreviewWorkshop.png` is the preview art at gallery size. Steam rejects
+gallery images of 2 MB or more and takes no video files, so a gameplay clip is
+a GIF built from a screen recording kept outside the repo:
+`Scripts/gallery-gif.py` builds `3HemogenRush.gif`, and its header has the
+method.
 
 ## Preview.gif
 

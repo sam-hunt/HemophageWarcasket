@@ -138,10 +138,10 @@ About/            Mod metadata, ModIcon.png, Preview.png
 Source/1.6/       C# (net472)
 Textures/         Art, version-independent: pawn art under VFEP's Warcasketlike/ layout
 Tests/1.6/        xUnit net472 suite                        (not shipped)
-Scripts/          l10n shims, the sidecar, the smoke test and the preview GIF build (not shipped)
+Scripts/          l10n shims, the sidecar, the smoke test and the preview and gallery GIF builds (not shipped)
 l10n/             rimworld-l10n toolkit, pinned submodule   (not shipped)
 Docs/Research/    VFEP warcasket stat tables and ability mechanics (copied from the siblings),
-                  and the preview GIF transcode's measurements
+                  and the measurements of the preview and gallery GIF transcodes
 Docs/Specs/       Design specs, one per feature designed before it is built
 .steamworkshop/   Workshop page text and images             (not shipped)
 LoadFolders.xml   Load roots per game version, compat roots gated by package id
