@@ -32,8 +32,9 @@ public partial class HemophageWarcasketSettings : ModSettings
     // The whitespace above every section header but the first, and below the last row.
     private const float SectionGap = 28f;
 
-    // How much further in than its subheading a grouped row starts.
-    private const float GroupIndent = Listing.DefaultIndent;
+    // How much further in than its subheading a grouped row starts: two of the listing's
+    // steps, wide enough to read as a level under the subheading.
+    private const float GroupIndent = 2f * Listing.DefaultIndent;
 
     // Hemogen is stored on a 0..1 scale and shown, by the game and by these rows, as 0..100.
     private const float HemogenScale = 100f;
@@ -223,9 +224,11 @@ public partial class HemophageWarcasketSettings : ModSettings
     }
 
     // A group's subheading inside a section: its name in the rows' font where a row's label
-    // starts, with the rows it heads one GroupIndent further in (Tunable.Indent). A gap above
-    // sets the group off from the rows before it and none below ties it to its own. The
-    // tooltip, a section header's in shape, is "<key>Desc" and covers the text only.
+    // starts, with the rows it heads one GroupIndent further in (Tunable.Indent). It is drawn
+    // in vanilla's pale red for threat text, readable on the window's dark ground, so it does
+    // not read as one more row's label. A gap above sets the group off from the rows before it
+    // and none below ties it to its own. The tooltip, a section header's in shape, is
+    // "<key>Desc" and covers the text only.
     private static void SubHeader(Listing_Standard listing, string key)
     {
         const float groupGap = 6f;
@@ -236,7 +239,9 @@ public partial class HemophageWarcasketSettings : ModSettings
         string label = key.Translate();
         TextAnchor anchor = Text.Anchor;
         Text.Anchor = TextAnchor.MiddleLeft;
+        GUI.color = ColoredText.ThreatColor;
         Widgets.Label(rect, label);
+        GUI.color = Color.white;
         Text.Anchor = anchor;
         rect.width = Mathf.Min(rect.width, Text.CalcSize(label).x);
         TooltipHandler.TipRegion(rect, HeaderTip(label, (key + "Desc").Translate()));
