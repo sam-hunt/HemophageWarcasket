@@ -18,19 +18,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-23
+
 ### Added
 
-- The Hemophage, a spacer-tier warcasket set for VFE Pirates made for sanguophages and other hemogenic pilots
-- Hemogen rush: the armor spends the pilot's hemogen quickly to make them much faster and stronger
+- The Hemophage, a spacer-tier sanguophage warcasket set for VFE Pirates
+- Hemogen rush: the armor spends hemogen to make the pilot much faster and stronger
 - Every worn piece of the set glows while the rush runs
-- Dismember: the shoulders tear a limb off a target, and a hemogenic pilot then drains hemogen from the wound
+- Dismember: the shoulders tear a limb off a target, and a hemogenic pilot drains hemogen from it
 - The shoulders hold a small stock of strikes, reloaded with components
-- The helmet protects a pilot with a UV sensitivity gene from sunlight and steadies one with pyrophobia near fire
+- The helmet shields the pilot from sunlight and steadies them against pyrophobia
 - Every piece has extra heat protection, and the helmet has the set's heaviest plating
-- The pilot can still do research and hacking, and more work types can be enabled in the mod settings
-- The sanguophages of Biotech's quests can arrive in the set, and a crashed shuttle's thralls in VFE Pirates' plain warcaskets
+- The pilot can still research and hack, with more work types in the mod settings
+- Biotech's quest sanguophages can arrive in the set, and their thralls in lesser warcaskets
 - Mod settings for the hemogen rush, Dismember, the helmet, the pilot's work and the quests
 - Combat Extended support
 - Vanilla Gravship Expanded and Save Our Ship 2 support
 - Vanilla Races Expanded - Sanguophage support
 - Machine-assisted translations for nine languages
+
+[Unreleased]: https://github.com/sam-hunt/HemophageWarcasket/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/sam-hunt/HemophageWarcasket/releases/tag/v1.0.0
