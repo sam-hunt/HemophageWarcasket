@@ -2,17 +2,16 @@
 
 ## Pre-release polish
 
-- **Translation guidance** The `/translate` skill and `CONTRIBUTING.md`'s translation section predate the Keyed file, the settings window and every def beyond the three parts, and say none exists. Bring both up to what is built before the first translation pass.
-- **Chinese localizations** How does hemogen sit in vanilla?
+- **Finalize English workshop description** determine whether we could/should fit/add any text to our workshop description regarding the scaling settings we offer for biotech's sanguophage quests. once I've approved it, we'll move to translation.
+- **Workshop descriptions in the nine languages** Owed once the English page is approved; the checker warns on each until then, and `--strict` fails on the warnings.
 - **Workshop gallery** Add images, Medic/Overlord as precedent
 - **Optimize images** Run the `../MOD_DOWNLOAD_SIZE_TRIM.md` pass before the first release.
 - **Smoke test on 1.6**
 - **Quest pilots in game** Generate both sanguophage quests at 100% chance (dev quest generation) and check:
-  - the set on arrival, all three pieces in one color, the kind's dark grey or dark red, and how each reads on the masked art and under the rush's glow
   - the join offer and a capture
-  - the autorifle or broadsword in hand: by vanilla's weapon kind on a thrall, by the higher of Shooting and Melee on the master and a meeting's sanguophages, broadsword on a tie
   - under Combat Extended, that a dressed pawn's autorifle fires and reloads from the three spare magazines
-- **Initial translation pass** of all 9 planned languages
+- **Dismember in the nine languages, in game** One strike on a human and one on an animal in German, whose combat log line leans on Core's German helper rules, and a look at the settings summaries in Chinese, Japanese and Korean.
+- **Counted nouns in Chinese, Japanese and Korean** `Ability_Dismember.Counted` prints a number, a space and a label, so these read "2 打击" and "1 零部件" with no measure word. A Keyed format string per counted noun, "{0} {1}" in English, would let each language place the count and add its counter. Worth the code change?
 - **First Workshop publish.** Commit `About/PublishedFileId.txt`, add the Workshop link and the Steam badges to the README
 
 ## Later
