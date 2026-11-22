@@ -16,7 +16,7 @@ Armor, shoulder pads and helmet, each with extra protection against heat damage 
 [/list]
 
 [h2]Sanguophages from quests[/h2]
-Biotech's sanguophage quests can now scale to include warcaskets: both the hemophage itself, as well as lesser marine/warcasket sets on accompanying thralls can show up. Tunable in mod settings.
+Biotech's sanguophage quests can now scale to include warcaskets: both the Hemophage itself, as well as lesser marine/warcasket sets on accompanying thralls can show up. Tunable in mod settings.
 
 [h2]Enabled work types[/h2]
 The pilot can still research and hack, which VFE Pirates' warcaskets otherwise block. This can be widened or narrowed in mod settings too.
