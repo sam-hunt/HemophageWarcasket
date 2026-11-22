@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
@@ -15,7 +16,8 @@ namespace HemophageWarcasket.Patches;
 // meeting's chances ignore the quest's threat points, so the calls pass 0.
 //
 // This runs once for each such quest generated, not when the sanguophages walk in: they wait in
-// the quest wearing the set.
+// the quest wearing the set. An exception here would cost the player the quest, so the read of
+// the quest is guarded as QuestPilot guards the dressing.
 //
 // RunInt is protected, so it is bound by name, and as this type declares it, since the abstract
 // QuestNode.RunInt would answer an inherited lookup: should it move, this patch stands down with
@@ -39,12 +41,19 @@ public static class QuestNode_Root_SanguophageMeetingHost_RunInt
 
     public static void Postfix()
     {
-        List<Pawn> sanguophages = QuestGen.slate?.Get<List<Pawn>>("sanguophages");
-        if (sanguophages == null)
-            return;
-        Pawn leader = QuestGen.slate.Get<Pawn>("asker");
-        foreach (Pawn pawn in sanguophages)
-            QuestPilot.TryDress(
-                pawn, pawn == leader ? QuestPilotSource.MeetingLeader : QuestPilotSource.MeetingGuest, 0f);
+        try
+        {
+            List<Pawn> sanguophages = QuestGen.slate?.Get<List<Pawn>>("sanguophages");
+            if (sanguophages == null)
+                return;
+            Pawn leader = QuestGen.slate.Get<Pawn>("asker");
+            foreach (Pawn pawn in sanguophages)
+                QuestPilot.TryDress(
+                    pawn, pawn == leader ? QuestPilotSource.MeetingLeader : QuestPilotSource.MeetingGuest, 0f);
+        }
+        catch (Exception exception)
+        {
+            Log.Error($"[Hemophage Warcasket] Could not read the sanguophage meeting quest's pawns: {exception}");
+        }
     }
 }
