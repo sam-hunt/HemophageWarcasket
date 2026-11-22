@@ -94,7 +94,7 @@ reinforcements" is what the number means in play.
 - **The default chance stays 0.** The floor fixes the budget, not the capture: a master in the
   set still has no pain shock, no psychic opening and the capacity floors, at any points.
 
-Files: `QuestPilot/QuestPilotExtension.cs`, `QuestPilot/QuestPilot.cs`, the two patches,
+Files: `Quests/QuestPilotExtension.cs`, `Quests/QuestPilot.cs`, the two patches,
 `Settings/Settings_QuestPilot.cs`, the armor def and its header, the Keyed file,
 `Tests/1.6/QuestPilotTests.cs` (the `ChanceFor` theory gains points either side of the floor;
 the floor parses within 0 to 10000), `Tests/1.6/SettingsTargetTests.cs` (the new field), the

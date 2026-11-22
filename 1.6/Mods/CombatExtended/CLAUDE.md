@@ -30,7 +30,7 @@ Sanguophage/`).
   generated pawn's as its weapon is generated. The quests' dressed pawns are handed a warcasket
   gun after that, so `Patches/QuestPilot.xml` names CE's ammo comp, the method that fills its
   magazine and the two properties the spare ammunition is read from; the code that calls them
-  (`Source/1.6/QuestPilot/WeaponAmmo.cs`) names nothing of CE's. A renamed class or member is
+  (`Source/1.6/Quests/WeaponAmmo.cs`) names nothing of CE's. A renamed class or member is
   one warning in the log and a gun that never fires, so check the four names after a CE update.
 
 ## Looked at and left alone

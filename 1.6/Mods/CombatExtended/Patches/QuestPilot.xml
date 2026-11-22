@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
   Combat Extended and the gun a dressed quest pawn is handed (CE 16.7.4). The fields are
-  QuestPilotExtension's, their rule in the header of Source/1.6/QuestPilot/WeaponAmmo.cs.
+  QuestPilotExtension's, their rule in the header of Source/1.6/Quests/WeaponAmmo.cs.
 
   CE gives VFEP's warcasket autorifle a CompAmmoUser with a 30 round magazine of 20x82mm
   (its ModPatches for VFEP, Ranged_Warcaskets.xml) and makes every gun empty: a generated

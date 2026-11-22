@@ -129,7 +129,7 @@ public class CompatPatchTests
     public void QuestPilotExtensionPatches_NameOnlyDeclaredFields()
     {
         const string extensionXPath = "li[@Class=\"HemophageWarcasket.QuestPilotExtension\"]";
-        var fields = PublicFieldsAt("Source/1.6/QuestPilot/QuestPilotExtension.cs");
+        var fields = PublicFieldsAt("Source/1.6/Quests/QuestPilotExtension.cs");
         Assert.Contains("rangedWeapon", fields);
 
         var values = PatchFiles().Select(row => XDocument.Load(Path.Combine(RepoRoot, (string)row[0])))

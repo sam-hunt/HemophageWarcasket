@@ -6,7 +6,7 @@ at 25% and not off; from 2500 threat points one thrall is dressed whatever the s
 the sets go to the two groups in turn, reinforcements first, and not to the shuttle's thralls
 first; the Marine set is priced at 250; and every dressed pawn of either quest, the
 sanguophages included, has its weapon exchanged for VFEP's warcasket autorifle or broadsword,
-which section 4 had left. Section 5's decisions are settled as built. A companion to the quest pilots (`Source/1.6/QuestPilot/`) and to
+which section 4 had left. Section 5's decisions are settled as built. A companion to the quest pilots (`Source/1.6/Quests/`) and to
 `Shuttle-Master-Points-Floor.md`, whose section 2 has the crashed shuttle quest's curves and
 section 3 the price of a suited pawn; neither is restated here. Build the floor first: this spec
 reuses its `points` plumbing and its price for the master. Vanilla facts were read on RimWorld
@@ -97,7 +97,7 @@ basic at 8000, 7 Marine at 10000, out of eleven thralls.
   steps the master takes. `TryDress` splits into the hemophage-specific checks (gene, chance,
   research) and a shared `Dress(pawn, set)`.
 
-Files: `QuestPilot/` (extension fields, the budget rule, the shared dress), the ship patch,
+Files: `Quests/` (extension fields, the budget rule, the shared dress), the ship patch,
 `Settings/Settings_QuestPilot.cs`, the armor def and header, the Keyed file,
 `Tests/1.6/QuestPilotTests.cs` and `SettingsTargetTests.cs`, the guides' one-line mentions.
 Roughly the size of the quest pilots themselves.

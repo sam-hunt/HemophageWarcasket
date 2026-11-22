@@ -26,12 +26,12 @@
     rate.
 
     Sunlight: the SunlightShieldExtension keeps a sunlight sensitivity gene's effects off the
-    pilot (Source/1.6/Sunlight/SunlightShield.cs has which, and the patches that do it). It
+    pilot (Source/1.6/Apparel/SunlightShield.cs has which, and the patches that do it). It
     is all or nothing because the genes' effects are: a factor and a thought that are either
     on or off. blocksSunlight is the settings' switch.
 
     Pyrophobia: the PyrophobiaReliefExtension lets half of the fire terror breaks of
-    Biotech's FireTerror gene through (Source/1.6/Fire/PyrophobiaRelief.cs has the
+    Biotech's FireTerror gene through (Source/1.6/Apparel/PyrophobiaRelief.cs has the
     mechanic), which doubles the gene's mean time near a fire from 0.1 days to 0.2, about
     100 seconds at normal speed to about 200. The pilot is as afraid as ever and slower to
     bolt, for being harder to burn. It sits on the helmet as the set's most fireproof piece

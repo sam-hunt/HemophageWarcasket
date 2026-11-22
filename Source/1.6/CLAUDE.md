@@ -12,20 +12,26 @@ Where each mechanic lives:
   with its patch).
 - **The pads' Dismember**: `Abilities/Dismember/`, which has a guide of its own (which file
   answers what, the walk-up job, the strike pool), and the pool itself (`Comps/`).
-- **The helmet**: sunlight protection (`Sunlight/`, with its three patches) and pyrophobia
-  relief (`Fire/`, with its one).
-- **The pilot's work**: the trait's rule (`WorkProfile.cs`) and the startup that mirrors it
-  (`Startup.cs`).
+- **The helmet**: sunlight protection (`Apparel/SunlightShield.cs`, with its three patches)
+  and pyrophobia relief (`Apparel/PyrophobiaRelief.cs`, with its one).
+- **The pilot's work**: the trait's rule (`Traits/WorkProfile.cs`) and the startup that mirrors
+  it (`Startup.cs`).
 - **The settings window** (`Settings/`): a section for each piece's mechanic, one for the work
   and one for the quests' sanguophages.
-- **The mask that keeps the set off generated pawns**: `ListMask.cs`, with its patch.
+- **The mask that keeps the set off generated pawns**: `Utilities/ListMask.cs`, with its patch.
 - **The quests' sanguophages who arrive in the set, and the crashed shuttle's thralls who
-  arrive in a lesser one**: the rules (`QuestPilot/`) and their two patches.
+  arrive in a lesser one**: the rules (`Quests/`) and their two patches.
 
 Several rules below are the family's, written down before the code they govern so
 the next ability or comp lands in the right shape; each names the sibling file to copy from
 rather than restating it.
 
+- **A folder is named for the kind of thing in it, never for a feature**: the game type its
+  classes extend (`Abilities/`, `Comps/`, `Hediffs/`, `Patches/`) or the part of the game they
+  act on (`Apparel/`, `Quests/`, `Traits/`, `Rendering/`), with `Utilities/` for code that
+  names no game type. A feature with files enough for a folder of its own nests inside one
+  (`Abilities/Dismember/`), and a def extension or a helper sits beside the code that reads
+  it. The root holds `ModInit.cs`, `Startup.cs` and `HPWC_DefOf.cs` alone.
 - **Patch classes live in `Patches/`** under the `.Patches` namespace suffix, to avoid RimWorld
   type-name conflicts. Log with the `[Hemophage Warcasket]` prefix.
 - **Patch timing is the load-bearing hazard.** `PatchAll()` runs from the
@@ -77,7 +83,7 @@ rather than restating it.
   from `VFEP_WarcasketTrait` by `WorkProfile.Mirror` in `Startup.Run` so the mods that reshape
   VFEP's work profile reshape ours. Nothing else writes the trait's work fields, and nothing
   tests a pawn for `VFEP_WarcasketTrait`: a hemophage pilot does not carry it.
-- **The quest pilots are one rule and two postfixes.** `QuestPilot/QuestPilot.TryDress` puts
+- **The quest pilots are one rule and two postfixes.** `Quests/QuestPilot.TryDress` puts
   the whole set on a living, hemogenic pawn by the chances, the research and, for the shuttle
   master, the floor on the quest's threat points, all on the armor's
   `QuestPilotExtension`, and is called only from the postfixes on the two vanilla quest roots
@@ -86,7 +92,7 @@ rather than restating it.
   stand-down. Never dress a pawn from a `PawnGenerator` patch: the pawn must have left
   generation, past VFEP's slot fill, which the mask answers only for a pawn wearing no part of
   ours. `QuestPilot`'s header has the order of events and what the pawn is left as; the armor
-  def's has the numbers. The Overlord repo's `AncientPilot/` is the sibling, for the dead.
+  def's has the numbers. The Overlord repo's `Quests/AncientPilot.cs` is the sibling, for the dead.
   The shuttle postfix also hands the quest's thralls to `QuestPilot.DressThralls`, which
   dresses as many as the pure `ThrallBudget` answers in the VFEP sets the extension's
   `thrallTiers` name. Every dressed pawn goes through the one `Dress`, which also paints the

@@ -6,10 +6,11 @@
     a child apparel extension can only add to what a granted trait blocks, never subtract. The
     Medic and Overlord repos' traits are the precedent.
 
-    Mirrored at startup, do not tune here. WorkProfile.Mirror (Source/1.6/WorkProfile.cs, run
-    first in Startup.Run on every play-data load) overwrites this def from VFEP_WarcasketTrait
-    as the full mod list leaves it, so the mods that reshape VFEP's work profile reshape the
-    pilot's without knowing we exist. The contract:
+    Mirrored at startup, do not tune here. WorkProfile.Mirror
+    (Source/1.6/Traits/WorkProfile.cs, run first in Startup.Run on every play-data load)
+    overwrites this def from VFEP_WarcasketTrait as the full mod list leaves it, so the mods
+    that reshape VFEP's work profile reshape the pilot's without knowing we exist. The
+    contract:
       - Every work type VFEP's trait blocks is a checkbox in the mod settings. The Intellectual
         ones (Research, Dark study under Anomaly, a modded one) default to open, the rest to
         blocked.

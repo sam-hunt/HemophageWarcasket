@@ -58,7 +58,7 @@
 
     Quest pilots: QuestPilotExtension, the set on the sanguophages Biotech's two sanguophage
     quests generate, hemogenic by their pawn kind and so the pilots the set is built for.
-    Source/1.6/QuestPilot/QuestPilot.cs has how a pawn is dressed. A set that arrives this
+    Source/1.6/Quests/QuestPilot.cs has how a pawn is dressed. A set that arrives this
     way cannot be taken off and reused (VFEP blocks the strip and the drop), so what the
     player can gain from it is the pilot inside. The three chances, shipMasterMinPoints and
     requiredResearch are mod settings defaulting to the values here:
@@ -101,7 +101,7 @@
       the kind of weapon they held. A meeting's leader who joins brings the weapon along.
 
     The crashed shuttle's thralls, on the same extension: some of them arrive in one of VFEP's
-    two plain sets, which have no module for the AI to leave unused. Source/1.6/QuestPilot/
+    two plain sets, which have no module for the AI to leave unused. Source/1.6/Quests/
     ThrallBudget.cs has the rule and QuestPilot.cs the order they are dressed in.
     - thrallBudgetShare 0.25, a mod setting: the dressed quest is worth a quarter of a raid at
       the same threat points, where vanilla's is 32% of one at 2500 points and 12% at 10000.
