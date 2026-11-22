@@ -103,6 +103,25 @@ are grounded against the Core and Biotech `Korean (한국어).tar`.
 
 The counters live in two Keyed strings, `HPWC_CountedStrikes` = `{1} {0}회` and `HPWC_CountedReloadItem` = `{1} {0}개`, where `{0}` is the number and `{1}` the noun. They reach `{0}` of `HPWC_DismemberReload` and `{5}` / `{6}` of the summaries as "일격 2회", "부품 1개", "부품 3개". The summaries' opening frame is 어깨에는 {5}분(이)가 들어가며, so the josa resolver looks at the counter's last syllable, never the digit: 회분 takes 이 and 개 takes 로. As printed at the defaults: 어깨에는 일격 2회분이 들어가며, 일격 하나는 부품 1개로 재장전합니다. At 1 strike and 3 components: 어깨에는 일격 1회분이 들어가며, 일격 하나는 부품 3개로 재장전합니다. The reload line: …{0}(으)로 재장전하면 교체할 수 있습니다. → 부품 1개로 / 부품 3개로.
 
+## Workshop page
+
+| English | Korean | Grounding |
+|---|---|---|
+| Biotech (DLC name) | 바이오테크 | Core `ExpansionDef` `Biotech.label`; Toxin's Workshop page. |
+| dangerous UV sensitivity / animalfeeder / sanguofeeder (VRE Sanguophage genes) | 위험한 자외선 민감도 / 동물 흡혈인자 / 생귀오파지 흡혈인자 | RMK pack, VRE Sanguophage `GeneDef` (`VRE_Sensitivity_Dangerous.label`, `VRE_AnimalFeeder.label`, `VRE_SanguoFeeder.label`); the mod ships no Korean. |
+| marine warcasket (VFEP plain set) | 해병대 워캐스킷 | RMK VFEP `VFEP_Warcasket_Marine.label`. Not used: the page says only 하급 워캐스킷, as the in-game tooltip does. |
+| hemogen metabolism | 혈액정수 대사 | Biotech gene descriptions (대사 에너지, 신진대사). |
+| filters (helmet) | 필터 | Biotech `DetoxifierKidney.description`, `ToxResist_Partial.description`. |
+| brain | 뇌 | Core `Brain.label`; Biotech `Deathless.customEffectDescriptions` (뇌의 파괴로만 죽을 수 있습니다). |
+| rumor | 소문 | Core book rulepacks (…에 대한 소문). |
+| off-record | 어디에도 기록이 남지 않은 | Coined, after the descriptions' 사업단의 기록에는 … 없습니다. |
+| an inside job all the way to the top | 맨 윗선의 생귀오파지가 꾸민 내부 소행 | Coined; told as hearsay (…다는 말도 있습니다). |
+| burnout servos | 쓰고 나면 타 버리는 강력한 서보 모터 | Coined on the glossary's 서보 모터 and the shoulders' 강력한 서보 모터. |
+| aim height (CE) | 조준 높이 | Coined on CE ko `CE_ToggleAimModeDesc` (조준 방식) and `CE_TargetHeight` (목표물 높이); CE ko has no melee-targeting keys. |
+| shield (CE line) | 보호막 | Upstream "shield bubble" row. |
+| accompanying thralls | 함께 온 흡혈종복 | Glossary 흡혈종복. |
+| the helmet joke | 두꺼운 장갑이 생귀오파지 최대의 약점을 막아 줍니다. 바로 뇌가 날아가는 거죠. | Coined. |
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. 하급 워캐스킷 reads as "low-grade". 시전 is the spell-casting verb and sounds magical for a servo strike, though vanilla's abilities use it.
@@ -119,3 +138,5 @@ quirk that `LetterHour` is 시, so a cooldown in hours prints as "12시 동안",
 which can read as a clock time; the summary says 동안 to keep it a duration.
 The family frames still open upstream (켜면 / 끄면, 켜짐 / 꺼짐) are left as the
 siblings ship them. The VFEP terms' review is tracked upstream.
+
+Workshop page coinages: 어디에도 기록이 남지 않은, 맨 윗선의 생귀오파지가 꾸민 내부 소행, 쓰고 나면 타 버리는 강력한 서보 모터, 조준 높이, the helmet joke, and all of the page's free prose outside the lines taken from the siblings.

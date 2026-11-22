@@ -1,0 +1,50 @@
+Warcasket hémophage
+
+Un nouveau warcasket de niveau spatial pour [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url], pensé pour les sanguophages.
+
+[h1]À propos[/h1]
+
+L'Hémophage est un warcasket clandestin de 10e génération qui renforce les pilotes hémogéniques. Toutes les rumeurs accusent les sanguophages. Certains disent qu'ils en ont volé les plans pour les adapter, d'autres que tout s'est fait de l'intérieur, jusqu'au plus haut niveau.
+
+[hr][/hr]
+[h2]L'ensemble[/h2]
+Torse, épaulières et casque, chacun doté d'une protection thermique supérieure à la norme du niveau spatial. Ces pièces se combinent librement avec celles d'autres warcaskets.
+[list]
+[*][b]Torse :[/b] donne la capacité « poussée d'hémogène ». Le pilote accélère pour un temps son métabolisme d'hémogène et devient bien plus rapide et plus fort.
+[*][b]Épaulières :[/b] donnent la capacité « démembrement ». De lourds servomoteurs, qui grillent à l'usage, arrachent net un membre à la plupart des ennemis. Un pilote hémogénique peut ainsi extraire de l'hémogène de cibles même récalcitrantes.
+[*][b]Casque :[/b] protège du soleil les pilotes sensibles aux UV, et ses filtres apaisent la pyrophobie. Un épais blindage protège le sanguophage de la seule chose qu'il ne supporte pas : se faire sauter la cervelle.
+[/list]
+
+[h2]Sanguophages des quêtes[/h2]
+Les quêtes de Biotech qui mettent en scène des sanguophages peuvent désormais, selon leur ampleur, faire intervenir des warcaskets. Le warcasket hémophage lui-même peut apparaître, tout comme des warcaskets plus modestes sur les serviteurs qui accompagnent les sanguophages. Le tout se règle dans les paramètres du mod.
+
+[h2]Tâches activées[/h2]
+Le pilote peut toujours faire de la recherche et pirater, ce que les warcaskets de VFE Pirates interdisent normalement. Les paramètres du mod permettent aussi d'ajouter d'autres tâches ou d'en retirer.
+
+[hr][/hr]
+[h1]Compatibilité des mods[/h1]
+[list]
+[*]Peut être ajouté sans risque à une partie en cours.
+[*]Ne peut pas être retiré sans risque tant qu'un colon est soudé dans l'ensemble.
+[*]Biotech : requis.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url] : requis.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2[/url] : apte aux sorties extravéhiculaires, selon les mêmes règles que les ensembles de VFE Pirates.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609835606]Vanilla Gravship Expanded[/url] : suit ses règles de résistance au vide pour les warcaskets.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2963116383]Vanilla Races Expanded - Sanguophage[/url] : prise en charge intégrée de ses gènes « sensibilité dangereuse aux UV », « suceur d'animaux » et « suceur de sanguophages ».
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730151836]Warcaskets can work![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730543694]Warcaskets can haul![/url] et [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535194807]VFE Pirates - Hardworking Warcaskets[/url] : compatibles.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044]Combat Extended[/url] : patch intégré, avec des valeurs d'armure, de masse, de capacité de transport et de bouclier au niveau des ensembles spatiaux de VFE Pirates. Le démembrement respecte la hauteur de visée.
+[/list]
+
+[hr][/hr]
+[h1]FAQ[/h1]
+
+[b]Q : Comment l'obtenir ?[/b]
+R : Recherchez « spacer warcaskets » (warcaskets spatiaux), puis soudez l'ensemble sur un colon à la fonderie de warcaskets, comme n'importe quel autre.
+
+[b]Q : Le pilote doit-il être un sanguophage ?[/b]
+R : Non. N'importe quel pilote porteur du gène hémogénique peut profiter de toutes les fonctions de l'ensemble. Sans ce gène, le pilote ne peut ni utiliser la poussée d'hémogène ni extraire de l'hémogène lors d'un démembrement.
+
+[hr][/hr]
+[h1]Liens[/h1]
+Code source, téléchargements manuels et suivi des problèmes : [url=https://github.com/sam-hunt/HemophageWarcasket]GitHub[/url]
+Illustrations par [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]

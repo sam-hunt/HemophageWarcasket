@@ -1,0 +1,50 @@
+Ataúd de guerra hemófago
+
+Un nuevo ataúd de guerra de la era espacial para [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url], pensado para sanguífagos.
+
+[h1]Acerca de[/h1]
+
+El Hemófago es un ataúd de guerra extraoficial de 10.ª generación que potencia a los pilotos hemogénicos. Todos los rumores señalan a los sanguífagos. Unos dicen que robaron los diseños y los adaptaron, y otros, que todo se tramó desde dentro, en las más altas esferas.
+
+[hr][/hr]
+[h2]El conjunto[/h2]
+Consta de torso, hombreras y casco, y cada pieza lleva más protección contra el calor de lo habitual en la era espacial. Combina sus piezas con las de otros ataúdes de guerra como quieras.
+[list]
+[*][b]Torso:[/b] incluye la habilidad descarga de hemógeno, que acelera por un tiempo el metabolismo de hemógeno y vuelve al piloto mucho más rápido y fuerte.
+[*][b]Hombreras:[/b] incluyen la habilidad desmembrar. Sus servos pesados, que se funden con el uso, le arrancan de cuajo una extremidad a la mayoría de los enemigos. Así, un piloto hemogénico puede extraer hemógeno incluso de quien se resiste.
+[*][b]Casco:[/b] protege a los pilotos sensibles a la luz solar y lleva filtros que aplacan la pirofobia. Su blindaje pesado protege de lo único que un sanguífago no aguanta: que le vuelen la tapa de los sesos.
+[/list]
+
+[h2]Sanguífagos de misiones[/h2]
+Cuando son lo bastante difíciles, las misiones de sanguífagos de Biotech ahora pueden incluir ataúdes de guerra: un sanguífago puede llegar sepultado en el propio Hemófago, y los sanguiesclavos que lo acompañan, en ataúdes de guerra menores. Puedes ajustarlo en las opciones del mod.
+
+[h2]Tipos de trabajo activados[/h2]
+El piloto puede seguir investigando y hackeando, algo que los ataúdes de guerra de VFE Pirates no permiten. En las opciones del mod también puedes ampliar o reducir la lista de trabajos.
+
+[hr][/hr]
+[h1]Compatibilidad con mods[/h1]
+[list]
+[*]Se puede añadir sin riesgo a partidas existentes.
+[*]No es seguro quitarlo mientras haya alguien sepultado en el conjunto.
+[*]Biotech: obligatorio.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]: obligatorio.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2[/url]: apto para EVA con las mismas reglas que las series propias de VFE Pirates.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609835606]Vanilla Gravship Expanded[/url]: sigue sus reglas de vacío para ataúdes de guerra.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2963116383]Vanilla Races Expanded - Sanguophage[/url]: compatibilidad integrada con sus genes "sensibilidad peligrosa a rayos UV", "chupasangre de animales" y "chupasangre de sanguífagos".
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730151836]Warcaskets can work![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730543694]Warcaskets can haul![/url] y [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535194807]VFE Pirates - Hardworking Warcaskets[/url]: compatibles.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044]Combat Extended[/url]: parche integrado, con valores de armadura y de escudo, volumen equipado y capacidades de masa y de volumen a la par de las series de la era espacial de VFE Pirates. La habilidad desmembrar golpea a la altura que elijas al apuntar.
+[/list]
+
+[hr][/hr]
+[h1]Preguntas frecuentes[/h1]
+
+[b]P: ¿Cómo lo consigo?[/b]
+R: Investiga el proyecto "ataúdes de guerra de la era espacial" y monta el conjunto en la forja de ataúd de guerra, como cualquier otro.
+
+[b]P: ¿El piloto tiene que ser sanguífago?[/b]
+R: No. Cualquier piloto con el gen hemogénico puede usar todo lo que ofrece el conjunto. Sin él, el piloto no puede usar la descarga de hemógeno ni extraer hemógeno al desmembrar.
+
+[hr][/hr]
+[h1]Enlaces[/h1]
+Código fuente, descargas manuales y seguimiento de incidencias: [url=https://github.com/sam-hunt/HemophageWarcasket]GitHub[/url]
+Arte de [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]

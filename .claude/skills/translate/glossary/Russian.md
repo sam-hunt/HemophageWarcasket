@@ -128,6 +128,23 @@ No Gender file: Russian's Keyed never switches on `CHARGENOUN_gender`.
 
 The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
 
+## Workshop page
+
+| English | Russian | Grounding |
+|---|---|---|
+| hemogenic gene | ген гемогеничности | Biotech `Hemogenic.label` `гемогеничность`. |
+| marine (VFEP's marine warcasket) | not named; `более простая броня мертвеца` covers both plain sets | Core `Apparel_PowerArmor.label` `пехотная броня` would give `пехотная броня мертвеца`; the page says only "lesser", as the game's own tooltip does. |
+| heat damage (the set's extra protection) | защита от нагрева | Core `ArmorRating_Heat.label` `Броня: Нагрев`, as the shipped descriptions. |
+| plating (the helmet's) | бронеплиты | Coined, to keep `броня` for the set. |
+| off-record | нигде официально не числится | Coined, from the descriptions' `не значится`. |
+| rumor / inside job all the way to the top | слухи / серию тайно одобрили гемофаги, стоявшие во главе программы | Coined, on the descriptions' `Одни считают ... Другие же верят` frame. |
+| burnout servos | сервоприводы работают на износ | Coined, the idiom for running a machine until it burns out. |
+| from unwilling targets | даже из тех, кто вовсе не собирался им делиться | Coined; `вытянуть` per the drain row. |
+| dangerous UV sensitivity / animalfeeder / sanguofeeder (VRE Sanguophage genes) | опасная чувствительность к солнцу / кровоедство за счёт животных / кровоедство за счёт гемофагов | **Coined**: VRE Sanguophage ships English only. From Biotech `UVSensitivity_Mild.label` `чувствительность к солнцу` and `Bloodfeeder.label` `кровоедство`; gene names only, never the drain verb. |
+| shield (CE line) | силовой щит | Upstream VFEP table's shield bubble row. |
+| aim height (CE) | высота прицеливания | Coined: CE ru has `CE_TargetHeight` `Высота цели` and `режим прицеливания`, no label for the aimed height. |
+| intro, headings, compat, FAQ and Links lines shared with the siblings | as Overlord's page; the FAQ answer as Medic's | Sibling pages, verbatim. |
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The read raised no term concerns.
@@ -151,3 +168,4 @@ A fresh-reader register read ran on 2026-11-22 after generation, and its rewrite
 - `HPWC_HelmetPyrophobiaDesc` says what 100% means (`При 100% это случается
   так же часто, как обычно`), which the English carries as "compared to
   normal".
+- Workshop page coinages: `бронеплиты`, `нигде официально не числится`, `серию тайно одобрили гемофаги, стоявшие во главе программы`, `работают на износ`, `кто вовсе не собирался им делиться`, the three VRE gene names, `высота прицеливания`.

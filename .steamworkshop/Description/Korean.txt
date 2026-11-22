@@ -1,0 +1,50 @@
+헤모파지 워캐스킷
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]에 생귀오파지를 위한 새로운 우주시대 워캐스킷을 추가합니다.
+
+[h1]소개[/h1]
+
+헤모파지 워캐스킷은 어디에도 기록이 남지 않은 10세대 워캐스킷으로, 흡혈성 조종사를 강화해 줍니다. 어느 소문에서든 생귀오파지가 빠지지 않습니다. 생귀오파지가 설계를 훔쳐 개조했다는 말도 있고, 맨 윗선의 생귀오파지가 꾸민 내부 소행이었다는 말도 있습니다.
+
+[hr][/hr]
+[h2]세트 구성[/h2]
+몸통, 어깨, 헬멧으로 이루어져 있으며, 세 부위 모두 다른 우주시대 워캐스킷보다 열기 방어력이 높습니다. 다른 워캐스킷의 부위와 마음대로 섞어 써도 됩니다.
+[list]
+[*][b]몸통:[/b] 혈액정수 쇄도 능력을 부여합니다. 조종사가 잠시 혈액정수 대사를 끌어올려 훨씬 빠르고 강해집니다.
+[*][b]어깨:[/b] 사지 절단 능력을 부여합니다. 쓰고 나면 타 버리는 강력한 서보 모터로 대부분의 적에게서 사지 하나를 깔끔하게 뜯어냅니다. 흡혈성 조종사라면 이렇게 저항하는 상대에게서도 혈액정수를 추출할 수 있습니다.
+[*][b]헬멧:[/b] 자외선 민감성이 있는 조종사를 햇빛으로부터 지켜 주며, 불 공포증을 누그러뜨리는 필터도 들어 있습니다. 두꺼운 장갑이 생귀오파지 최대의 약점을 막아 줍니다. 바로 뇌가 날아가는 거죠.
+[/list]
+
+[h2]임무로 오는 생귀오파지[/h2]
+바이오테크의 생귀오파지 임무는 규모가 커지면 워캐스킷이 등장하기도 합니다. 생귀오파지가 직접 헤모파지 워캐스킷을 입고 오기도 하고, 함께 온 흡혈종복이 하급 워캐스킷을 입고 나타나기도 합니다. 모드 설정에서 조정할 수 있습니다.
+
+[h2]활성화된 작업 유형[/h2]
+VFE Pirates의 워캐스킷을 입으면 원래 연구와 해킹을 할 수 없지만, 이 세트의 조종사는 계속할 수 있습니다. 할 수 있는 작업도 모드 설정에서 늘리거나 줄일 수 있습니다.
+
+[hr][/hr]
+[h1]모드 호환성[/h1]
+[list]
+[*]기존 세이브에 추가해도 안전합니다.
+[*]정착민이 세트에 안치된 동안에는 제거하면 안 됩니다.
+[*]바이오테크: 필수입니다.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]: 필수입니다.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2[/url]: VFE Pirates의 기본 세트와 같은 규칙으로 선외활동(EVA) 등급을 받습니다.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609835606]Vanilla Gravship Expanded[/url]: 워캐스킷용 진공 저항 규칙을 따릅니다.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2963116383]Vanilla Races Expanded - Sanguophage[/url]: 위험한 자외선 민감도, 동물 흡혈인자, 생귀오파지 흡혈인자 유전자를 지원합니다.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730151836]Warcaskets can work![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730543694]Warcaskets can haul![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535194807]VFE Pirates - Hardworking Warcaskets[/url]: 호환됩니다.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044]Combat Extended[/url]: 패치가 내장되어 있으며, 방어도, 부피, 허용 부피, 보호막이 다른 우주시대 워캐스킷과 비슷한 수준입니다. 사지 절단이 노리는 부위는 조준 높이에 따라 정해집니다.
+[/list]
+
+[hr][/hr]
+[h1]자주 묻는 질문[/h1]
+
+[b]Q: 어떻게 얻나요?[/b]
+A: '우주시대 워캐스킷' 연구를 완료한 뒤, 다른 세트처럼 워캐스킷 주조대에서 안치하면 됩니다.
+
+[b]Q: 조종사가 생귀오파지여야 하나요?[/b]
+A: 아니요. 흡혈성 유전자가 있는 조종사라면 누구나 모든 기능을 쓸 수 있습니다. 이 유전자가 없으면 혈액정수 쇄도를 쓸 수 없고, 사지를 절단할 때 혈액정수를 추출할 수도 없습니다.
+
+[hr][/hr]
+[h1]링크[/h1]
+소스 코드, 수동 다운로드, 이슈 트래커: [url=https://github.com/sam-hunt/HemophageWarcasket]GitHub[/url]
+아트: [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]

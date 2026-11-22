@@ -1,0 +1,50 @@
+Carcaça de Guerra Hemófaga
+
+Uma nova carcaça de guerra de nível espacial para o [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url], feita para sanguófagos.
+
+[h1]Sobre[/h1]
+
+A Hemófaga é uma carcaça de guerra de 10ª geração que potencializa pilotos hemogênicos e não consta em nenhum registro oficial. Os rumores culpam os sanguófagos de um jeito ou de outro. Uns dizem que roubaram os designs e os adaptaram. Outros, que foi trabalho interno, com aval da própria cúpula do programa.
+
+[hr][/hr]
+[h2]O conjunto[/h2]
+O conjunto tem tronco, ombreiras e capacete, e cada peça protege mais contra o calor do que o padrão do nível espacial. Combine as peças com as de outras carcaças de guerra como quiser.
+[list]
+[*][b]Tronco:[/b] concede o ímpeto de hemogênio, que acelera o metabolismo de hemogênio do piloto por um tempo e o deixa muito mais rápido e forte.
+[*][b]Ombreiras:[/b] concedem a habilidade desmembrar, com servomotores pesados que queimam com o uso e arrancam de vez um membro da maioria dos inimigos. Com isso, um piloto hemogênico pode drenar hemogênio até de quem não quer.
+[*][b]Capacete:[/b] protege da luz solar o piloto com sensibilidade UV e traz filtros que acalmam a pirofobia. A blindagem pesada protege contra a única coisa que um sanguófago não aguenta: ter os miolos estourados.
+[/list]
+
+[h2]Sanguófagos de missões[/h2]
+As missões de sanguófagos da Biotech agora podem trazer carcaças de guerra quando ficam mais perigosas. Pode aparecer a própria Hemófaga, e os servos que acompanham o sanguófago podem vir em carcaças de guerra comuns. Dá para ajustar isso nas configurações do mod.
+
+[h2]Tipos de trabalho ativados[/h2]
+O piloto ainda pode pesquisar e hackear, trabalhos que as carcaças de guerra do VFE Pirates normalmente bloqueiam. Nas configurações do mod, também dá para liberar outros ou bloquear esses.
+
+[hr][/hr]
+[h1]Compatibilidade[/h1]
+[list]
+[*]Seguro para adicionar a jogos salvos existentes.
+[*]Não é seguro remover enquanto houver um colono integrado ao conjunto.
+[*]Biotech: obrigatória.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]: obrigatório.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2[/url]: vale como traje de EVA pelas mesmas regras dos conjuntos do próprio VFE Pirates.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609835606]Vanilla Gravship Expanded[/url]: segue as regras de resistência ao vácuo que esse mod define para carcaças de guerra.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2963116383]Vanilla Races Expanded - Sanguophage[/url]: suporte embutido aos genes "sensibilidade UV perigosa", "vampiro de animais" e "vampiro de sanguófagos" desse mod.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730151836]Warcaskets can work![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730543694]Warcaskets can haul![/url] e [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535194807]VFE Pirates - Hardworking Warcaskets[/url]: sim.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044]Combat Extended[/url]: patch embutido, com valores de armadura, volume, capacidade de carga e escudo equivalentes aos dos conjuntos espaciais do VFE Pirates. A habilidade desmembrar respeita a área de ataque corpo a corpo.
+[/list]
+
+[hr][/hr]
+[h1]Perguntas frequentes[/h1]
+
+[b]P: Como faço para conseguir uma?[/b]
+R: Pesquise "carcaças de guerra espaciais" e depois integre o conjunto na fundição de carcaças de guerra, como qualquer outro.
+
+[b]P: O piloto precisa ser sanguófago?[/b]
+R: Não. Qualquer piloto com o gene hemogênico pode usar tudo o que o conjunto oferece. Sem o gene, o piloto fica sem o ímpeto de hemogênio e não drena hemogênio ao desmembrar.
+
+[hr][/hr]
+[h1]Links[/h1]
+Código-fonte, downloads manuais e rastreador de problemas: [url=https://github.com/sam-hunt/HemophageWarcasket]GitHub[/url]
+Arte por [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]

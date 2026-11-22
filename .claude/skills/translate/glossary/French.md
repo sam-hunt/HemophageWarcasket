@@ -99,6 +99,24 @@ restants`); `chacun` in the summaries agrees with `coup` too. As printed:
 
 The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
 
+## Workshop page
+
+| English | French | Grounding |
+|---|---|---|
+| off-record (warcasket) | clandestin | **Coined**, plain French; the in-game lore's `Ses archives ne mentionnent aucune série Hémophage` is too long for the intro line. |
+| Rumor blames sanguophages either way / inside job all the way to the top | Toutes les rumeurs accusent les sanguophages. / tout s'est fait de l'intérieur, jusqu'au plus haut niveau | **Coined** around the rumor frame's `Certains ... d'autres ...` (Biotech `Sanguophage.description`) and the lore's `au plus haut niveau`. |
+| heat damage protection | protection thermique | Core `StatDef ArmorRating_Heat.label` `Armure - Protection thermique`. |
+| burnout servos | servomoteurs qui grillent à l'usage | **Coined**, plain French for parts that burn out with use. |
+| unwilling targets | cibles même récalcitrantes | **Coined**, plain French. |
+| brains blown out | se faire sauter la cervelle | The French idiom for "blow one's brains out". |
+| sunlight sensitivity / filters steady against pyrophobia | pilotes sensibles aux UV / ses filtres apaisent la pyrophobie | Biotech `UVSensitivity_*.label` (`sensibilité ... aux UV`), `FireTerror.label` `pyrophobie`. |
+| lesser marine/warcasket sets | warcaskets plus modestes | The set-specific row; Core's marine word is `armure de commando` (`Apparel_PowerArmor.label`), so the marine set is not named. |
+| scale (of a quest) | selon leur ampleur | **Coined**, plain French. |
+| mod settings | paramètres du mod | Overlord, Medic, Toxin, Shipcracker pages. |
+| dangerous UV sensitivity / animalfeeder / sanguofeeder (VRE Sanguophage genes) | sensibilité dangereuse aux UV / suceur d'animaux / suceur de sanguophages | **Coined**: VRE Sanguophage ships no French (English only). Shaped on Biotech `UVSensitivity_Intense.label` `sensibilité intense aux UV` and `Bloodfeeder.label` `suceur de sang`. Gene names only, never the drain's verb. |
+| shield (CE compat line) | bouclier | Core `Apparel_ShieldBelt.label` `bouclier d'énergie`. |
+| aim height (CE) | hauteur de visée | **Coined**: CE fr has `Taille cible` (`CE_TargetHeight`) and `mode d'objectif` (`CE_ToggleAimModeDesc`) but no aim height string. |
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. The lore capitalizes `série Hémophage` while the settings write `warcasket hémophage`, as the English does. `HPWC_WorkSummary`'s `travailler comme {0}` relies on the work types' `labelShort` being person nouns, which Core's `art`, `manutention` and `repos` are not, and the siblings ship the same frame.
@@ -115,3 +133,5 @@ l'entailler`, `lui a lacéré`, `rien n'a cédé`). All free prose: the three
 descriptions (paragraph 1 per part, the shared paragraphs 2 and 3), both
 ability descriptions, the hediff description, and the settings tooltips and
 summaries.
+
+Workshop page coinages: `clandestin`, the rumor lines, `servomoteurs qui grillent à l'usage`, `cibles récalcitrantes`, `selon leur ampleur`, the three VRE Sanguophage gene labels, `hauteur de visée`.

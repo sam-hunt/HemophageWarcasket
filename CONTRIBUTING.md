@@ -19,15 +19,15 @@ welcome too.
 | Language             | Status           | Credit    |
 | -------------------- | ---------------- | --------- |
 | English              | Source           | -         |
-| Simplified Chinese   | Machine-assisted | -         |
-| Russian              | Machine-assisted | -         |
-| Korean               | Machine-assisted | -         |
-| German               | Machine-assisted | -         |
-| Spanish              | Machine-assisted | -         |
-| French               | Machine-assisted | -         |
-| Brazilian Portuguese | Machine-assisted | -         |
-| Japanese             | Machine-assisted | -         |
-| Traditional Chinese  | Machine-assisted | -         |
+| Simplified Chinese   | Machine-assisted | Fable 5.2 |
+| Russian              | Machine-assisted | Fable 5.2 |
+| Korean               | Machine-assisted | Fable 5.2 |
+| German               | Machine-assisted | Fable 5.2 |
+| Spanish              | Machine-assisted | Fable 5.2 |
+| French               | Machine-assisted | Fable 5.2 |
+| Brazilian Portuguese | Machine-assisted | Fable 5.2 |
+| Japanese             | Machine-assisted | Fable 5.2 |
+| Traditional Chinese  | Machine-assisted | Fable 5.2 |
 
 Statuses: **Source** (the authoritative English strings), **Machine-assisted**
 (generated with terminology grounded against the official RimWorld

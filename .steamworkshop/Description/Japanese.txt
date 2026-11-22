@@ -1,0 +1,50 @@
+ヘモファージ・ウォーキャスケット
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]に,サングオファージのために作られた宇宙世紀の新型ウォーキャスケットを追加します.
+
+[h1]概要[/h1]
+
+ヘモファージは公式の記録にない第10世代のウォーキャスケットで,ヘモゲニックのパイロットを強化します.サングオファージが設計図を盗んで改造したという説もあれば,開発計画の上層部まで絡んだ内部の犯行だという説もあります.どちらの噂でも,裏にいるのはサングオファージです.
+
+[hr][/hr]
+[h2]セット構成[/h2]
+胴体,ショルダーアーマー,ヘルメットの3部位で,どれも宇宙世紀の標準より熱への防護性能が高くなっています.ほかのウォーキャスケットの部位とも自由に組み合わせられます.
+[list]
+[*][b]胴体:[/b] ヘモゲンラッシュを使えます.パイロットのヘモゲン代謝を一時的に高め,動きも力も大きく引き上げます.
+[*][b]ショルダーアーマー:[/b] 四肢切断を使えます.焼き切れ覚悟の強力なサーボモーターで,ほとんどの敵の手足を1本,根元から引きちぎります.パイロットがヘモゲニックなら,引きちぎった相手からヘモゲンを抽出することもできます.相手が抵抗しても関係ありません.
+[*][b]ヘルメット:[/b] 紫外線アレルギーのパイロットを日光から守り,フィルターで炎恐怖症を和らげます.サングオファージ最大の弱点は,脳みそを吹っ飛ばされることです.分厚い装甲がそこをしっかり守ります.
+[/list]
+
+[h2]クエストで現れるサングオファージ[/h2]
+Biotechのサングオファージのクエストに,規模に応じてウォーキャスケットが登場するようになります.サングオファージがヘモファージを着て現れることもあれば,付き従うしもべが下位のウォーキャスケットを装着していることもあります.Mod 設定で調整できます.
+
+[h2]有効な作業[/h2]
+パイロットは研究とハッキングを続けられます.VFE Piratesのウォーキャスケットでは,通常どちらもできなくなります.行える作業の範囲も,Mod 設定で広げたり狭めたりできます.
+
+[hr][/hr]
+[h1]互換性[/h1]
+[list]
+[*]既存のセーブデータに追加しても安全です.
+[*]ポーンがセットに溶接されている間は,MODを削除しないでください.
+[*]Biotech: 必須です.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]: 必須です.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2[/url]: VFE Pirates本体のセットと同じ条件でEVA対応になります.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609835606]Vanilla Gravship Expanded[/url]: ウォーキャスケット向けの真空耐性のルールに従います.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2963116383]Vanilla Races Expanded - Sanguophage[/url]: 危険な紫外線アレルギー,動物吸血者,サングオファージ吸血者の各遺伝子に標準で対応しています.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730151836]Warcaskets can work![/url],[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730543694]Warcaskets can haul![/url],[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535194807]VFE Pirates - Hardworking Warcaskets[/url]: 対応しています.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044]Combat Extended[/url]: パッチを内蔵しており,アーマー値,かさ,積載量,シールドが他の宇宙世紀のウォーキャスケットと同水準に調整されます.四肢切断はCEの照準の高さに従います.
+[/list]
+
+[hr][/hr]
+[h1]よくある質問[/h1]
+
+[b]Q: どうやって入手しますか?[/b]
+A: 研究「宇宙世紀のウォーキャスケット」を完了したら,ほかのセットと同じくウォーキャスケット鋳造台で溶接します.
+
+[b]Q: パイロットはサングオファージでなければいけませんか?[/b]
+A: いいえ.ヘモゲニック遺伝子を持つパイロットなら,すべての機能を使えます.遺伝子がないと,ヘモゲンラッシュは使えず,四肢切断でヘモゲンを抽出することもできません.
+
+[hr][/hr]
+[h1]リンク[/h1]
+ソースコード,手動ダウンロード,不具合報告: [url=https://github.com/sam-hunt/HemophageWarcasket]GitHub[/url]
+アートは [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url] 氏による

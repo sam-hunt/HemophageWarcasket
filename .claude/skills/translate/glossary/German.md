@@ -121,6 +121,27 @@ Schlag`, `Keine Schläge mehr.`
 
 The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
 
+## Workshop page
+
+| English | German | Grounding |
+|---|---|---|
+| off-record | `den es offiziell nicht gibt` | Coined phrasing. |
+| rumor ... some say ... others ... | `Was man sich darüber erzählt, läuft immer auf die Sanguophagen hinaus: Manche vermuten, sie hätten ..., andere glauben, das Ganze sei ...` | The rumor frame above, subjunctive kept. |
+| an inside job all the way to the top | `das Ganze sei heimlich von ganz oben abgesegnet worden` | Coined: the second rumor, sanctioned in secret from the top. |
+| heat damage protection (beyond the spacer-tier baseline) | `mehr Hitzeschutz, als bei Kriegssärgen der Techstufe Raumfahrt üblich ist` | Hitzeschutz as in the shipped descriptions (Core `ArmorRating_Heat.label` = Rüstung - Hitze); Techstufe Raumfahrt per the siblings' intro line. |
+| hemogen metabolism | Hämogenstoffwechsel | Coined closed compound on Biotech's Stoffwechsel (`DeathrestExhaustion.description`). |
+| heavy burnout servos | `Schwere Servos arbeiten dabei bis zum Durchbrennen` | durchbrennen per the set-specific rows. |
+| even from unwilling targets | `entzieht ... dem Ziel Hämogen, ob es will oder nicht` | Coined. |
+| sunlight sensitivity / plating / filters | `bei UV-Anfälligkeit vor Sonnenlicht` / Panzerung / Filter | Biotech `UVSensitivity_*` labels; Panzerung per the upstream VFEP table. |
+| brains blown out (the joke) | `eine Kugel ins Hirn` | Coined idiom; Core `Brain.label` is Gehirn, Hirn is the colloquial form. |
+| sanguophage quests (scaling) | `Je stärker die Sanguophagen-Quests aus Biotech ausfallen, desto eher ...` | Coined. |
+| lesser marine/warcasket sets on accompanying thralls | `begleitende Diener ... in einfacheren Kriegssärgen` | The lesser warcaskets row; marine left out, as the in-game tooltip does (Core `Apparel_PowerArmor.label` Marinerüstung would give a coined Marine-Kriegssarg). |
+| mod settings | Mod-Einstellungen | Overlord, Medic, Toxin, Shipcracker pages. |
+| dangerous UV sensitivity / animalfeeder / sanguofeeder (VRE Sanguophage genes) | 'gefährliche UV-Anfälligkeit' / 'Tiersauger' / 'Sanguosauger' | **Coined**: the mod ships English only. From Biotech `UVSensitivity_Mild.label` leichte UV-Anfälligkeit and `Bloodfeeder.label` Blutsauger; the gene labels only, never the drain verb. |
+| aim height (CE) | Zielhöhe | **Coined**: CE ships no German (its German Keyed is a stray Achtung! file). |
+| the hemogenic gene | das Gen 'hämogenisch' | Biotech `Hemogenic.label`; quoted per Toxin's `das Gen 'Giftgasabsorption'`. |
+| How do I get it? answer | `Erforsche das Projekt 'Raumfahrt-Kriegssärge' und baue das Set dann wie jedes andere in der Kriegssarg-Gießerei.` | Overlord's page (Toxin and Shipcracker render "weld it on" as `schweiße ... einen Kolonisten ... ein`). |
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. `Blutproduktion` in the armor's first paragraph is Core's own label for the blood pumping capacity, and a native reader takes it for "blood production" beside the third paragraph's `Blutkreislauf`.
@@ -137,6 +158,7 @@ A fresh-reader register read ran on 2026-11-22 after generation, and its rewrite
   a human and on an animal confirms them.
 - The two confirm dialogs' clause order, and `HPWC_DismemberReload`'s
   rewording (`Ein neuer Servo kostet beim Nachladen {0}.`).
+- Workshop page coinages: `Hämogenstoffwechsel`, `von ganz oben abgesegnet`, `ob es will oder nicht`, `eine Kugel ins Hirn`, the VRE Sanguophage gene labels `gefährliche UV-Anfälligkeit`, `Tiersauger`, `Sanguosauger`, and CE's `Zielhöhe`.
 - All free prose: the three first paragraphs and the shared paragraphs 2
   and 3, both ability descriptions, the hediff and trait descriptions, every
   settings tooltip and summary.

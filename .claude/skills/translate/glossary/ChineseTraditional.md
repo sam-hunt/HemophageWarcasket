@@ -93,6 +93,31 @@ The counters live in two Keyed strings, `HPWC_CountedStrikes` = `{0}次{1}` and 
 - `HPWC_DismemberReloadCostDesc` (`{1}` = 零件): 裝填一次打擊所需的零件數量。預設值：1。
 - `HPWC_DismemberSummary*`: 護肩最多可儲存2次打擊，每次打擊需裝填1個零件。 / 護肩最多可儲存1次打擊，每次打擊需裝填3個零件。
 
+## Workshop page
+
+| English | Traditional Chinese | Grounding |
+|---|---|---|
+| heat damage (protection against) | 熱防禦 | Core `ArmorRating_Heat.label` 防禦 - 熱, its two words set as prose so no spaced hyphen enters the page. |
+| off-record | 沒有登記在案 | **Coined**, plain idiom for "not on the program's records". |
+| rumor blames sanguophages / some say … others … | 各種傳聞的矛頭都指向噬血者。有人說…，也有人說… | **Coined**, hearsay frame looser than the descriptions' 有些人認為 / 也有人認為, as the English page is looser. |
+| inside job all the way to the top | 內部的人幹的，而且一路牽扯到最高層 | **Coined**. |
+| hemogen metabolism | 血原代謝 | **Coined** on 代謝 (Core 新陳代謝, Biotech `ArchiteMetabolism` 遠古分子代謝). |
+| heavy burnout servos | 重型伺服機構，不惜燒壞也要… | **Coined**; 燒壞 as the shipped `HPWC_DismemberReload`. |
+| unwilling targets | 就算目標不情願 | **Coined**. |
+| sunlight sensitivity (pilot) | 對陽光敏感的駕駛員 | Shipped `HPWC_SectionHelmetDesc`. |
+| filters (helmet) | 濾鏡 | **Coined**, read as visual filters on the visor. |
+| plating | 裝甲 | Toxin's zh-Hant page (它的裝甲達到空襲型的水準). |
+| the hemogenic gene / pyrophobia gene | 「血原性」基因 / 「畏火」基因 | Biotech `Hemogenic.label`, `FireTerror.label`, cited in 「」 as shipped `HPWC_HelmetPyrophobiaDesc`. |
+| sanguophages from quests (heading) / sanguophage quests | 任務中的噬血者 / 噬血者任務 | Shipped `HPWC_SectionQuestPilot`. |
+| scale (of a quest) | 依任務強度 | Shipped `HPWC_QuestThrallShareDesc` (任務應有的強度). |
+| lesser marine/warcasket sets | 低階戰棺 | The glossary's lesser-warcaskets row alone; the marine set is not named. |
+| accompanying thralls | 隨行的血奴 | Biotech `SanguophageThrall.label` 血奴; 隨行 coined. |
+| dangerous UV sensitivity (VRE gene) | 危險紫外光敏感 | **Coined**: the mod ships no zh-Hant; built on Biotech `UVSensitivity_Mild.label` 紫外光敏感 / `UVSensitivity_Intense.label` 極端紫外光敏感. |
+| animalfeeder / sanguofeeder (VRE genes) | 動物吸血者 / 噬血者吸血者 | **Coined**: the mod ships no zh-Hant; Biotech `Bloodfeeder.label` 吸血者 with the source prefixed, as the English labels are built. Gene names only, never the drain verb. |
+| aim height (CE) | 近戰攻擊部位 | CE ships no zh-Hant for it; zh-Hant form of CE zh-Hans `CE_MeleeTargetting_CurHeight` 近战攻击部位. |
+| shield (CE line) | 護盾 | Core `ShieldBelt.label` per the upstream row. |
+| Biotech: required. | 必須安裝Biotech。 | Overlord's 必須安裝[VFEP]。 frame. |
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are listed here as still pending native review.
@@ -108,3 +133,5 @@ paragraphs 2 and 3), the two ability descriptions, the hediff description,
 the six combat log lines, every settings tooltip and summary. The Confirm
 dialogs keep vanilla's ASCII `?` (你確定嗎?) on purpose. The VFEP terms'
 review is tracked upstream, under the section named above.
+
+Workshop page coinages: 沒有登記在案, the rumor frame, 一路牽扯到最高層, 血原代謝, 不惜燒壞, 就算目標不情願, 濾鏡, 隨行的血奴, 危險紫外光敏感, 動物吸血者 / 噬血者吸血者, 近戰攻擊部位, and the helmet joke's shape (噬血者最大的弱點就是腦袋被轟爛，所以頭盔用上了厚重的裝甲。).

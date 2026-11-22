@@ -21,7 +21,7 @@ Biotech `Japanese (日本語).tar`.
 |---|---|---|
 | hemophage (the set name, the bare label prefix) | ヘモファージ | Coined from Biotech's two official renderings: ヘモ, the prefix Biotech's own Hemogenic and Bloodfeeder genes generate names from (`Hemogenic.symbolPack.prefixSymbols.0.symbol`, from ヘモゲン), plus ファージ, the tail of `Sanguophage.label` サングオファージ. A player reads the kinship with both. Rejected: ヘモフェイジ (English pronunciation, breaks the サングオ**ファージ** rhyme), ヘマトファージ (the real biology word, loses the ヘモゲン link), a kanji coinage such as 血食者 (sits beside Biotech's `Bloodfeeder.label` 吸血者 and reads as the feeding gene). Labels ヘモファージ・ウォーキャスケット / ヘモファージ・ウォーキャスケットショルダーアーマー / ヘモファージ・ウォーキャスケットヘルメット on the upstream pattern. |
 | the Hemophage series (prose) | ヘモファージ・シリーズ | Overlord's shipped オーバーロード・シリーズ. |
-| Workshop title / `HPWC_SettingsCategory` | ヘモファージ・ウォーキャスケット | Equal to the armor label and to each other (title coupling); contains the anchor ウォーキャスケット. The Workshop description itself is still owed. |
+| Workshop title / `HPWC_SettingsCategory` | ヘモファージ・ウォーキャスケット | Equal to the armor label and to each other (title coupling); contains the anchor ウォーキャスケット. |
 | hemogen / hemogenic / non-hemogenic | ヘモゲン / ヘモゲニック / 非ヘモゲニック | Biotech `Hemogenic.resourceLabel`, `Hemogenic.label`, Keyed `AbilityDisabledNoHemogenGene` (ヘモゲニック遺伝子), `Bloodfeed.description` (非ヘモゲニック人間). |
 | sanguophage | サングオファージ | Biotech `Sanguophage.label`; one word for the xenotype and the people. |
 | spend hemogen | ヘモゲンを消費 | Biotech `HemogenCraving.description` (ヘモゲン備蓄を消費), `Sanguophage` quest info (ヘモゲンを消費しなければならず). |
@@ -92,6 +92,30 @@ Biotech `Japanese (日本語).tar`.
 
 The counters live in two Keyed strings, `HPWC_CountedStrikes` = `{1}{0}回` and `HPWC_CountedReloadItem` = `{1}{0}個`, where `{0}` is the number and `{1}` the noun. `HPWC_DismemberReload` reads …{0}を使用して充填すれば交換できます. (コンポーネント1個を使用して, コンポーネント3個を使用して). The Dismember summaries open ショルダーアーマーには{5}分を蓄えられ,1回分ごとに{6}で充填します. and the frame's own 分 follows `{5}`. As printed at the defaults: ショルダーアーマーには攻撃2回分を蓄えられ,1回分ごとにコンポーネント1個で充填します. At 1 strike and 3 components: 攻撃1回分 / コンポーネント3個で. `HPWC_DismemberReloadCostDesc` gets the bare コンポーネント (攻撃1回分の充填に必要なコンポーネントの数です.).
 
+## Workshop page
+
+| English | Japanese | Grounding |
+|---|---|---|
+| off-record | 公式の記録にない | **Coined**; the descriptions' この計画の記録に…名はありません says the same thing. |
+| rumor (the two-rumor frame) | …という説もあれば,…という説もあります.どちらの噂でも,裏にいるのはサングオファージです | 噂 per Core `RulePacks_Book_Descriptions` (…と噂される); the 説 pair is **coined** looser marketing hearsay beside the descriptions' と考える人もいます. |
+| an inside job all the way to the top | 開発計画の上層部まで絡んだ内部の犯行 | **Coined**. |
+| heat damage protection | 熱への防護性能 | Set-specific row above (Core `ArmorRating_Heat`). |
+| sunlight sensitivity / dangerous UV sensitivity | 紫外線アレルギー / 危険な紫外線アレルギー | Biotech `UVSensitivity_Mild/Intense.label`; VRE Sanguophage ships no Japanese, so the dangerous one is **coined** on Biotech's 軽度の / 重度の pattern and `UVSensitivity_Intense.description` (危険なほど反応). |
+| animalfeeder / sanguofeeder genes | 動物吸血者 / サングオファージ吸血者 | **Coined** on Biotech `Bloodfeeder.label` 吸血者; VRE Sanguophage ships English only. Gene names only, never the set's own drain. |
+| filters / plating | フィルター / 装甲 | Plain words; 装甲 as Toxin's and Shipcracker's pages. |
+| brains blown out | 脳みそを吹っ飛ばされる | **Coined** for the joke's bluntness; Core `Brain.label` is 脳, Biotech `Deathless` 脳の破壊でのみ死亡. |
+| hemogen metabolism | ヘモゲン代謝 | 代謝 per Biotech `ArchiteMetabolism.label` (アルカイト代謝). |
+| heavy burnout servos / clean off | 焼き切れ覚悟の強力なサーボモーター / 根元から | **Coined**; サーボモーター per the set-specific row. |
+| unwilling targets | 相手が抵抗しても関係ありません | Shaped against Biotech `Bloodfeeder.description` 無抵抗の人. |
+| scale (a quest's) | 規模に応じて | Core Keyed `Difficulty_ThreatScale_Label` 脅威の規模. |
+| accompanying thralls | 付き従うしもべ | しもべ per the set-specific row; 付き従う **coined**. |
+| lesser marine/warcasket sets | 下位のウォーキャスケット | The set-specific row; "marine" (Core `Apparel_PowerArmor.label` マリーンアーマー) dropped as clumsy. |
+| the hemophage itself (worn by the sanguophage) | ヘモファージを着て | Plain verb. |
+| shield (CE line) | シールド | Core `Apparel_ShieldBelt.label`. |
+| aim height (CE) | 照準の高さ | **Coined**; CE ships no Japanese. |
+| hemogenic gene | ヘモゲニック遺伝子 | Biotech Keyed `AbilityDisabledNoHemogenGene`. |
+| sibling lines | verbatim | Section headings, intro frame, save-safety lines, SOS2, VGE, Warcaskets can work!, CE frame (シールド added), FAQ question and frame, Links and Art lines: Overlord's Japanese page. |
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. The reader proposed recasting `HPWC_QuestThrallShareDesc` as a plain ratio, and it was declined because that dropped the sense of the strength the quest "should" have.
@@ -101,7 +125,7 @@ Every coinage above: ヘモファージ, ヘモゲンラッシュ, ヘモゲン�
 tearing), 攻撃 as the strike noun (it also reads as any attack), 補強されたアーム,
 気密バイザー, 下位のウォーキャスケット, 脅威ポイント, 参加者 and the row labels
 最大攻撃回数, 攻撃のダメージ, 炎の恐れの発生率, 敵対していない対象にも使用,
-マスターのウォーキャスケット脅威ポイント. The counters 回 and 個 in `HPWC_CountedStrikes` and `HPWC_CountedReloadItem` are pending native review. The two Confirm dialogs
+マスターのウォーキャスケット脅威ポイント. The Workshop page's coinages: 公式の記録にない, the 噂/説 frame, 開発計画の上層部まで絡んだ内部の犯行, 危険な紫外線アレルギー, 動物吸血者, サングオファージ吸血者, 脳みそを吹っ飛ばされる, 焼き切れ覚悟の, 付き従うしもべ and 照準の高さ. The counters 回 and 個 in `HPWC_CountedStrikes` and `HPWC_CountedReloadItem` are pending native review. The two Confirm dialogs
 say {PAWN_objective}殺すことになります (彼を殺す…), which the checker forces where
 vanilla would say {PAWN_pronoun}は死亡します. All free prose: the three
 descriptions (paragraph 1 after the family opener, paragraphs 2 and 3), the two

@@ -1,0 +1,50 @@
+噬血型戰棺
+
+為[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]新增一套專為噬血者打造的太空級戰棺。
+
+[h1]關於[/h1]
+
+噬血型是一款沒有登記在案的第十代戰棺，能強化血原性駕駛員。各種傳聞的矛頭都指向噬血者。有人說是噬血者偷走設計後改裝而成，也有人說這根本是內部的人幹的，而且一路牽扯到最高層。
+
+[hr][/hr]
+[h2]套裝[/h2]
+裝甲主體、護肩與頭盔，每件的熱防禦都比太空級的基準更高。各部件也能和其他戰棺自由混搭。
+[list]
+[*][b]裝甲主體：[/b]提供「血原爆發」能力，可暫時加快駕駛員的血原代謝，大幅提升速度和力量。
+[*][b]護肩：[/b]提供「肢解」能力，啟動重型伺服機構，不惜燒壞也要把大多數敵人的肢體整條扯下。就算目標不情願，血原性駕駛員也能藉此從對方身上汲取血原。
+[*][b]頭盔：[/b]替對陽光敏感的駕駛員擋住陽光，內建的濾鏡也能讓帶有「畏火」基因的駕駛員穩住心神。噬血者最大的弱點就是腦袋被轟爛，所以頭盔用上了厚重的裝甲。
+[/list]
+
+[h2]任務中的噬血者[/h2]
+在Biotech的噬血者任務中，戰棺會依任務強度登場。噬血者本身可能穿著噬血型戰棺登場，隨行的血奴也可能穿著低階戰棺。這些都可以在模組設定中調整。
+
+[h2]已啟用的工作類型[/h2]
+VFE Pirates的戰棺原本會禁止研究和破解，這套戰棺的駕駛員仍然可以從事這兩項工作。可從事的工作同樣能在模組設定中增減。
+
+[hr][/hr]
+[h1]模組相容性[/h1]
+[list]
+[*]可安全加入現有的存檔。
+[*]有殖民者封在這套戰棺內時，請勿移除本模組。
+[*]必須安裝Biotech。
+[*]必須安裝[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]。
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2[/url]：與VFE Pirates原有的套裝採用相同規則，具備EVA能力。
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609835606]Vanilla Gravship Expanded[/url]：遵循其戰棺的真空抵抗力規則。
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2963116383]Vanilla Races Expanded - Sanguophage[/url]：內建支援其「危險紫外光敏感」、「動物吸血者」與「噬血者吸血者」基因。
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730151836]Warcaskets can work![/url]、[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730543694]Warcaskets can haul![/url]與[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535194807]VFE Pirates - Hardworking Warcaskets[/url]：相容。
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044]Combat Extended[/url]：內建補丁，護甲數值、穿著體積、體積攜帶能力與護盾比照VFE Pirates的太空級戰棺。肢解的命中部位依CE的近戰攻擊部位設定而定。
+[/list]
+
+[hr][/hr]
+[h1]常見問題[/h1]
+
+[b]問：要怎麼取得？[/b]
+答：完成「太空戰棺」研究後，和其他套裝一樣到戰棺鑄造廠組裝即可。
+
+[b]問：駕駛員一定要是噬血者嗎？[/b]
+答：不需要。任何帶有「血原性」基因的駕駛員都能使用全部功能。沒有這個基因的駕駛員無法使用血原爆發，肢解時也無法汲取血原。
+
+[hr][/hr]
+[h1]連結[/h1]
+原始碼、手動下載與問題回報：[url=https://github.com/sam-hunt/HemophageWarcasket]GitHub[/url]
+美術由[url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]繪製

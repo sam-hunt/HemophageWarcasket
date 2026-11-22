@@ -90,6 +90,34 @@ The counters live in two Keyed strings, `HPWC_CountedStrikes` = `{0}次{1}` and 
 - `HPWC_DismemberSummary*`, defaults: 护肩可容纳2次打击，每次打击需用1个零部件装填。 At 1 strike and 3 components: 护肩可容纳1次打击，每次打击需用3个零部件装填。
 - `HPWC_DismemberReloadCostDesc`: 装填一次打击所需的零部件数量。默认：1。
 
+## Workshop page
+
+| English | ChineseSimplified | Grounding |
+|---|---|---|
+| intro line "made for sanguophages" | 新增一套专为血族打造的太空时代战棺 | Overlord's frame with Toxin's 专为……打造. |
+| off-record | 没有任何档案记录的 | Coined, on the shipped 项目档案中没有任何关于噬血型的记录. |
+| Rumor blames sanguophages either way | 传言说法不一，矛头却都指向血族 | Coined; the two rumors take the glossary's 有些人认为…… 也有人猜测…… frame. |
+| an inside job all the way to the top | 身居高层的血族监守自盗 | Coined (监守自盗, the stock idiom for an inside job). |
+| heat damage protection | 热能护甲 | Shipped row (Core `ArmorRating_Heat.label` 护甲 - 热能). |
+| hemogen metabolism | 血原质代谢 | Coined. |
+| heavy burnout servos | 重型伺服马达会全力运转……马达也随之烧毁 | Coined on the shipped 伺服马达 and `HPWC_DismemberReload` (烧毁). |
+| unwilling targets | 不管对方情不情愿 | Coined. |
+| sunlight sensitivity (generic) | 对日光敏感 | Shipped `HPWC_SectionHelmetDesc`. |
+| filters | 过滤器 | Coined, plain word. |
+| getting their brains blown out | 就怕被人一枪爆头 | Coined, the common gamer word, kept blunt. |
+| scale (of a quest) | 任务强度 | Shipped `HPWC_QuestThrallShareDesc`. |
+| lesser marine/warcasket sets | 低阶战棺 | The glossary row alone: Core's marine is 海军装甲 (`Apparel_PowerArmor.label`), but 海军型战棺 reads clumsily and the in-game tooltip says only 低阶战棺. |
+| accompanying thralls | 随行血仆 | 血仆 per the glossary; 随行 coined. |
+| mod settings | Mod 设置 | Overlord, Medic and Shipcracker pages verbatim (Toxin writes 模组设置). |
+| Biotech (DLC name) | 生物技术 | Core `ExpansionDefs`, as Overlord's page writes it (Toxin's page leaves it English). |
+| research and hack | 研究和骇入 | Overlord's page. |
+| dangerous UV sensitivity / animalfeeder / sanguofeeder (VRE Sanguophage genes) | 危险日光过敏 / 动物汲血 / 血族汲血 | Coined: VRE Sanguophage ships no Chinese. Built on Biotech `UVSensitivity_Intense.label` 日光过敏 and `Bloodfeeder.label` 汲血 (another mod's gene names, not this mod's drain). |
+| shield (CE line) | 护盾 | The spacer tier's 能量护盾 (upstream table). |
+| Dismember respects aim height | 肢解会按CE设定的近战攻击部位选择目标部位 | CE zh-Hans Keyed `CE_MeleeTargetting_CurHeight` 近战攻击部位. |
+| Does the pilot have to be a sanguophage? / No. | 驾驶员必须是血族吗？ / 不必。 | Overlord's 驾驶员必须是机械师吗？ frame; answer coined. |
+
+Pending native review from this page: 没有任何档案记录的, 传言说法不一，矛头却都指向血族, 监守自盗, 血原质代谢, 马达也随之烧毁, 不管对方情不情愿, 过滤器, 被人一枪爆头, 随行血仆, 危险日光过敏, 动物汲血, 血族汲血.
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are listed here as still pending native review.

@@ -97,6 +97,32 @@ object, never declined.
 
 The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
 
+## Workshop page
+
+| English | Brazilian Portuguese | Grounding |
+|---|---|---|
+| The Hemophage (the set in page prose) | a Hemófaga | Siblings' pages: `A Médica`, `A Toxina`, `O Suserano`. |
+| off-record | não consta em nenhum registro oficial | Coined, after the shipped series paragraph "O programa não tem registro de nenhuma série Hemófaga". |
+| rumor | rumores | Core `GameplayTips` "Siga mapas e rumores". |
+| inside job all the way to the top | trabalho interno, com aval da própria cúpula do programa | Coined, on the glossary's `a cúpula do programa`. |
+| heat damage (extra protection against) | protege mais contra o calor | Core `ArmorRating_Heat.label` "Resistência - Calor"; shipped `proteção contra calor aprimorada`. |
+| sunlight sensitivity | sensibilidade UV (`protege da luz solar o piloto com sensibilidade UV`) | Biotech `UVSensitivity_Mild.label` "sensibilidade UV leve", `UVSensitivity_Intense.label` "sensibilidade UV intensa". |
+| filters (helmet) | filtros | Coined, plain noun. |
+| plating | blindagem | Siblings' pages and the upstream "blindagem de nível espacial". |
+| getting their brains blown out | ter os miolos estourados | Coined, the pt-BR idiom `estourar os miolos`. |
+| heavy burnout servos | servomotores pesados que queimam com o uso | Coined on the `servomotores` row, after the shipped `HPWC_DismemberReload` "Cada golpe queimará um dos servomotores". |
+| unwilling targets | até de quem não quer | Coined. |
+| hemogen metabolism | metabolismo de hemogênio | Coined. |
+| scale to include (quests) | podem trazer ... quando ficam mais perigosas | Coined. |
+| lesser marine/warcasket sets | carcaças de guerra comuns | The `lesser warcaskets` row; the marine set is left unnamed, as the in-game tooltip does. Core `Apparel_PowerArmor.label` "armadura de fuzileiro" would give `carcaça de guerra de fuzileiro` if a page needs it. |
+| accompanying thralls | os servos que acompanham o sanguófago | The `master / thralls` row. |
+| mod settings | configurações do mod | Overlord's and Medic's pages. |
+| Biotech: required. | Biotech: obrigatória. | Siblings treat the DLC as feminine (`da Biotech`); Toxin's `DLC Biotech obrigatórios`. |
+| dangerous UV sensitivity (VRE Sanguophage gene) | sensibilidade UV perigosa | Coined: the mod ships no pt-BR, built on Biotech `UVSensitivity_Intense.label`. |
+| animalfeeder / sanguofeeder (VRE Sanguophage genes) | vampiro de animais / vampiro de sanguófagos | Coined: the mod ships no pt-BR, built on Biotech `Bloodfeeder.label` "vampiro". |
+| aim height (Combat Extended) | área de ataque corpo a corpo | CE pt-BR `CE_MeleeTargetting_CurHeight` "Área de ataque corpo a corpo", the melee aim gizmo Dismember reads. |
+| Grants dismember (ability in running text) | concedem a habilidade desmembrar | Medic's page `trazem a habilidade injeção de adrenalina`; the bare infinitive after a verb reads as a verb. |
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. `recarga` / `recarregar` carries both the reload paid in components and the cooldown (`Tempo de recarga`), sometimes in one summary sentence. `Um golpe leva {0} de invocação` borrows vanilla's `Tempo de invocação` and reads oddly for a physical strike. `irá apenas ferir` was kept against the reader's `apenas ferirá` because Core's `WillKill` beside it is `irá matar`.
@@ -111,3 +137,5 @@ the hedged `o(a)`, `no(a)`, `pelo(a)` before a part label and `feri-lo(a)`,
 `{PAWN_objective}` prints `ele(a)`, as in every pt-BR use of the token), and
 all free prose: the three descriptions, the two ability descriptions, the
 hediff description and the settings tooltips and summaries.
+
+The Workshop page's coinages: `não consta em nenhum registro oficial`, `trabalho interno, com aval da própria cúpula do programa`, `ter os miolos estourados`, `que queimam com o uso`, `até de quem não quer`, `metabolismo de hemogênio`, `quando ficam mais perigosas`, `sensibilidade UV perigosa`, `vampiro de animais`, `vampiro de sanguófagos`.

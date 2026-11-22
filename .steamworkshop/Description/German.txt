@@ -1,0 +1,50 @@
+Hämophagen-Kriegssarg
+
+Ein neuer Kriegssarg der Techstufe Raumfahrt für [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url], gebaut für Sanguophagen.
+
+[h1]Überblick[/h1]
+
+Der Hämophage ist ein Kriegssarg der 10. Generation, den es offiziell nicht gibt. Er macht hämogenische Piloten stärker. Was man sich darüber erzählt, läuft immer auf die Sanguophagen hinaus: Manche vermuten, sie hätten die Entwürfe gestohlen und umgebaut, andere glauben, das Ganze sei heimlich von ganz oben abgesegnet worden.
+
+[hr][/hr]
+[h2]Das Set[/h2]
+Rüstung, Schulterpanzer und Helm haben jeweils mehr Hitzeschutz, als bei Kriegssärgen der Techstufe Raumfahrt üblich ist. Die Teile lassen sich nach Belieben mit denen anderer Kriegssärge kombinieren.
+[list]
+[*][b]Torso:[/b] Bringt die Fähigkeit 'Hämogenschub' mit. Der Pilot beschleunigt damit vorübergehend seinen Hämogenstoffwechsel und wird deutlich schneller und stärker.
+[*][b]Schulterpanzer:[/b] Bringen die Fähigkeit 'Zerstückeln' mit. Schwere Servos arbeiten dabei bis zum Durchbrennen und reißen den meisten Feinden eine Gliedmaße glatt ab. So entzieht ein hämogenischer Pilot dem Ziel Hämogen, ob es will oder nicht.
+[*][b]Helm:[/b] Schützt bei UV-Anfälligkeit vor Sonnenlicht und enthält Filter, die bei Pyrophobie die Nerven beruhigen. Dazu schwere Panzerung gegen das Einzige, was einem Sanguophagen wirklich Angst machen sollte: eine Kugel ins Hirn.
+[/list]
+
+[h2]Sanguophagen aus Quests[/h2]
+Je stärker die Sanguophagen-Quests aus Biotech ausfallen, desto eher bringen sie jetzt auch Kriegssärge mit. Der Hämophagen-Kriegssarg selbst kann auftauchen, und begleitende Diener können in einfacheren Kriegssärgen eintreffen. Das lässt sich in den Mod-Einstellungen anpassen.
+
+[h2]Aktivierte Arbeitstypen[/h2]
+Der Pilot kann weiterhin forschen und hacken, was die Kriegssärge aus VFE Pirates sonst sperren. Auch das lässt sich in den Mod-Einstellungen erweitern oder einschränken.
+
+[hr][/hr]
+[h1]Mod-Kompatibilität[/h1]
+[list]
+[*]Kann gefahrlos zu bestehenden Spielständen hinzugefügt werden.
+[*]Kann nicht gefahrlos entfernt werden, solange jemand in das Set eingeschweißt ist.
+[*]Biotech: erforderlich.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948]Vanilla Factions Expanded - Pirates[/url]: erforderlich.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]Save Our Ship 2[/url]: EVA-tauglich nach denselben Regeln wie die Sets aus VFE Pirates.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609835606]Vanilla Gravship Expanded[/url]: Es gelten dessen Vakuumregeln für Kriegssärge.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2963116383]Vanilla Races Expanded - Sanguophage[/url]: Eingebaute Unterstützung für die Gene 'gefährliche UV-Anfälligkeit', 'Tiersauger' und 'Sanguosauger' aus dieser Mod.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730151836]Warcaskets can work![/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2730543694]Warcaskets can haul![/url] und [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535194807]VFE Pirates - Hardworking Warcaskets[/url]: kompatibel.
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2890901044]Combat Extended[/url]: Eingebauter Patch. Rüstungswerte, Bulk, Bulk-Kapazität und Schild liegen auf dem Niveau der Raumfahrt-Sets aus VFE Pirates. Zerstückeln berücksichtigt die Zielhöhe.
+[/list]
+
+[hr][/hr]
+[h1]FAQ[/h1]
+
+[b]F: Wie bekomme ich es?[/b]
+A: Erforsche das Projekt 'Raumfahrt-Kriegssärge' und baue das Set dann wie jedes andere in der Kriegssarg-Gießerei.
+
+[b]F: Muss der Pilot ein Sanguophage sein?[/b]
+A: Nein. Jeder Pilot mit dem Gen 'hämogenisch' kann alles nutzen, was das Set bietet. Ein Pilot ohne dieses Gen kann weder den Hämogenschub einsetzen noch beim Zerstückeln Hämogen entziehen.
+
+[hr][/hr]
+[h1]Links[/h1]
+Quellcode, manuelle Downloads und Fehler-Tracker: [url=https://github.com/sam-hunt/HemophageWarcasket]GitHub[/url]
+Grafik von [url=https://steamcommunity.com/profiles/76561198094174176/myworkshopfiles/?appid=294100]IcingWithCheeseCake[/url]

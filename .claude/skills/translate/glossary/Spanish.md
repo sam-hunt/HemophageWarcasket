@@ -121,6 +121,30 @@ broken noun phrase.
 
 The two count formats, `HPWC_CountedStrikes` and `HPWC_CountedReloadItem`, are `{0} {1}` as in English, so the printed examples in this section are unchanged.
 
+## Workshop page
+
+| English | Spanish | Grounding |
+|---|---|---|
+| off-record (warcasket) | extraoficial | Coined: plain Castilian, the in-game descriptions' `no consta en sus archivos` said in one word. |
+| Rumor blames ... some say ..., others that ... | `Todos los rumores señalan a los sanguífagos. Unos dicen que ..., y otros, que ...` | Coined, hearsay frame beside the descriptions' `Algunos creen que`. |
+| an inside job all the way to the top | `todo se tramó desde dentro, en las más altas esferas` | Coined: `la cúpula` is the descriptions' word and is not repeated. |
+| heat damage (protection against) | protección contra el calor | Core `ArmorRating_Heat.label` Armadura - Calor; the set descriptions' `protección contra el calor mejorada`. |
+| beyond the spacer-tier baseline | más ... de lo habitual en la era espacial | Coined; `era espacial` per Core `TechLevel_Spacer`. |
+| Mix and match with other warcaskets' pieces | `Combina sus piezas con las de otros ataúdes de guerra como quieras.` | The siblings' `Combina las piezas con ... como quieras`, reshaped for this page's object. |
+| hemogen metabolism | metabolismo de hemógeno | Biotech prose `metabolismo` (deathrest, `GeneticallyUnstable` texts). |
+| burnout servos / tear clean off / unwilling targets | servos ... que se funden con el uso / arrancar de cuajo / incluso de quien se resiste | `fundir` from the set rows; `de cuajo` plain Castilian; coined. |
+| sunlight sensitivity (shields against) | protege a los pilotos sensibles a la luz solar | Biotech `UVSensitivity_Mild.description` "sensibles a la luz solar". |
+| filters that steady against pyrophobia | filtros que aplacan la pirofobia | Biotech `FireTerror.label`; `aplacar` coined so the descriptions' `no perder los nervios` is not repeated. |
+| getting their brains blown out | que le vuelen la tapa de los sesos | Coined: the Castilian idiom, blunt as the English. |
+| can now scale to include / the hemophage itself / accompanying thralls | `Cuando son lo bastante difíciles, ... pueden incluir` / el propio Hemófago / los sanguiesclavos que lo acompañan | Coined; series name capitalized in prose per the row above. |
+| lesser marine/warcasket sets | ataúdes de guerra menores | The settled `lesser warcaskets` row; Core es has no `marine` word (`Apparel_PowerArmor.label` servoarmadura), so the marine set is not named. |
+| hemogenic gene | el gen hemogénico | Biotech `Hemogenic.label`; `gen chupasangre` (`Bloodfeeders_Reviled` precept) shows the `gen` + label shape. |
+| dangerous UV sensitivity / animalfeeder / sanguofeeder (VRE Sanguophage genes, quoted) | "sensibilidad peligrosa a rayos UV" / "chupasangre de animales" / "chupasangre de sanguífagos" | Coined: VRE Sanguophage ships English only. From Biotech `UVSensitivity_Mild.label` sensibilidad leve a rayos UV and `Bloodfeeder.label` chupasangre. |
+| built-in support | compatibilidad integrada | Coined after the siblings' `parche integrado`. |
+| shield (CE line) | valores de armadura y de escudo | Overlord's CE line with shield added. |
+| Dismember respects aim height | `La habilidad desmembrar golpea a la altura que elijas al apuntar.` | Plain Castilian for CE es `CE_TargettedModesMelee.helpText` "la zona de altura seleccionada", `CE_MeleeTargetting_CurHeight` Zona atacada. |
+| Research spacer warcaskets (FAQ) | `Investiga el proyecto "ataúdes de guerra de la era espacial" y monta el conjunto en ...` | Medic's line without its `de VFE Pirates`, which this English lacks. |
+
 ## Pending native review
 
 A fresh-reader register read ran on 2026-11-22 after generation, and its rewrites are in the shipped files. The term concerns it left open are still pending native review. `descarga de hemógeno` leans toward an electrical discharge or an unloading, and the reader would have preferred `subidón` or `arrebato`.
@@ -142,3 +166,4 @@ A fresh-reader register read ran on 2026-11-22 after generation, and its rewrite
   Biotech `Sanguophage.description`'s "Algunos creen que"), both ability
   descriptions, the hediff and trait descriptions, every settings tooltip and
   summary.
+- The Workshop page's coinages: `extraoficial`, the rumor frame, `se tramó desde dentro, en las más altas esferas`, `aplacan la pirofobia`, `que le vuelen la tapa de los sesos`, `de quien se resiste`, the three VRE Sanguophage gene labels and `compatibilidad integrada`.

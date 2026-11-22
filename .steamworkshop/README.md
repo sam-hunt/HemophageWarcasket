@@ -6,19 +6,13 @@ RimWorld.
 
 ## Description/
 
-One file per language, named after the RimWorld language folders. English is
-the source of truth and the only file so far; the others follow once the
-English page is final, as machine-assisted first passes pending native
-review. Format:
+One file per language, named after the RimWorld language folders in
+`1.6/Languages/`. English is the source of truth; the others are
+machine-assisted first passes pending native review. Format:
 
 - Line 1: the Workshop title for that language
 - Line 2: blank
 - Rest: the BBCode description
-
-`English.txt` is a draft until the first release. It was written to the
-design ahead of the code, and the page describes only what a release ships
-(`CLAUDE.md` beside this file), so it is checked against what is built
-before the first upload (`TODOs.md`).
 
 Title convention: the English title leans on VFE Pirates' own vocabulary
 ("warcasket") so players browsing for more sets find the mod; every localized
