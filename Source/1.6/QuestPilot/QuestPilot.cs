@@ -30,9 +30,15 @@ namespace HemophageWarcasket;
 // - The set's trait, through VEF's hook on Pawn_ApparelTracker.Notify_ApparelAdded
 //   (ApparelExtensionUtilities.EquipGear, the armor's traitsOnEquip): ours for the hemophage
 //   set, VFEP_WarcasketTrait for a thrall's.
-// - One colour across the three pieces, the armor's draw from the def's colorGenerator
-//   (CompColorable.Initialize draws one for each piece as it is made), since a set built for
-//   one pilot is painted as one.
+// - Each piece painted as the pawn's kind paints its clothes: once worn it goes through
+//   vanilla's PawnApparelGenerator.PostProcessApparel, which generation runs on everything a
+//   pawn wears and which draws a colour for each piece separately. Biotech's Sanguophage kind
+//   names a dark grey and a dark red for any apparel (its specificApparelRequirements), so a
+//   sanguophage's set arrives in those, most often in both, as the foundry paints a set
+//   piece by piece (WarcasketProject's three colours). The kind's colours are read there and
+//   named nowhere here. A kind that names none, the thrall's, leaves the set the one colour it
+//   was made in, the armor's draw from the def's colorGenerator (CompColorable.Initialize
+//   draws one for each piece as it is made).
 // - A warcasket weapon in place of the one the pawn kind gave, and nothing for a pawn
 //   generated unarmed. A sanguophage takes the one their skills fit, the extension's
 //   rangedWeapon when Shooting is the higher level and its meleeWeapon otherwise
@@ -168,7 +174,10 @@ public static class QuestPilot
         ThingWithComps weapon = WeaponInPlaceOf(pawn, held, extension, weaponBySkill);
         pawn.apparel.DestroyAll();
         foreach (Apparel apparel in pieces)
+        {
             pawn.apparel.Wear(apparel, dropReplacedApparel: false, locked: true);
+            PawnApparelGenerator.PostProcessApparel(apparel, pawn);
+        }
         if (weapon != null)
         {
             pawn.equipment.DestroyEquipment(held);
