@@ -3,7 +3,6 @@
 ## Pre-release polish
 
 - **Translation guidance** The `/translate` skill and `CONTRIBUTING.md`'s translation section predate the Keyed file, the settings window and every def beyond the three parts, and say none exists. Bring both up to what is built before the first translation pass.
-- **Full review of player-facing English text** Final read pass against `l10n/languages/English.md`. Workshop description and About.xml are already green.
 - **Chinese localizations** How does hemogen sit in vanilla?
 - **Workshop gallery** Add images, Medic/Overlord as precedent
 - **Optimize images** Run the `../MOD_DOWNLOAD_SIZE_TRIM.md` pass before the first release.

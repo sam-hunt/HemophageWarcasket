@@ -131,9 +131,11 @@
   <HPWC_QuestShipMaster>Master warcasket chance</HPWC_QuestShipMaster>
   <HPWC_QuestShipMasterDesc>The chance that the sanguophage master of a crashed shuttle will be entombed in a hemophage warcasket, which will make the master much harder to down and capture. Default: {0}.</HPWC_QuestShipMasterDesc>
   <HPWC_QuestShipMasterPoints>Master warcasket points</HPWC_QuestShipMasterPoints>
-  <HPWC_QuestShipMasterPointsDesc>The threat points a crashed shuttle quest must be worth before its sanguophage master can be in a hemophage warcasket. The game raises threat points with your colony's wealth and number of colonists. Default: {0}.</HPWC_QuestShipMasterPointsDesc>
+  <HPWC_QuestShipMasterPointsDesc>The threat points a crashed shuttle quest must be worth before its sanguophage master can arrive in a hemophage warcasket. The storyteller raises threat points with your colonist count and colony wealth. Default: {0}.</HPWC_QuestShipMasterPointsDesc>
+  <!-- The slider's value at 0, where there is no floor -->
+  <HPWC_QuestShipMasterPointsNone>None</HPWC_QuestShipMasterPointsNone>
   <!-- 0 is shown as HPWC_Off. The warcaskets are VFE Pirates' own basic sets, each needing its own research -->
   <HPWC_QuestThrallShare>Thrall warcaskets</HPWC_QuestThrallShare>
-  <HPWC_QuestThrallShareDesc>How strong a crashed shuttle quest should be compared to a raid on your colony. Some of the master's thralls will arrive entombed in warcaskets you have researched to make up the difference. Default: {0}.</HPWC_QuestThrallShareDesc>
+  <HPWC_QuestThrallShareDesc>How strong a crashed shuttle quest should be compared to a raid on your colony. If the quest is weaker, some of the master's thralls will arrive in lesser warcaskets you have researched. Default: {0}.</HPWC_QuestThrallShareDesc>
 
 </LanguageData>

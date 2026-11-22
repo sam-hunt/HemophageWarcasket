@@ -6,7 +6,7 @@ namespace HemophageWarcasket;
 // Quest section: the chance that each sanguophage Biotech's two sanguophage quests generate
 // wears the set, three sliders stored and shown in percent and written onto the chances of the
 // armor def's QuestPilotExtension, the shuttle master's threat-point floor, stored and shown in
-// threat points on a banded slider with 0 shown as off and written onto shipMasterMinPoints,
+// threat points on a banded slider with 0 shown as none and written onto shipMasterMinPoints,
 // the research the player must have finished first, written onto its requiredResearch, and the
 // share of the crashed shuttle quest's threat points that dresses its thralls, stored and shown
 // in percent and written onto thrallBudgetShare. QuestPilot reads all six as a quest is
@@ -38,7 +38,7 @@ public partial class HemophageWarcasketSettings
     // to 3000, across the points at which the quest's reinforcements begin, then 500 to 5000
     // and 1000 beyond.
     public readonly Tunable questShipMasterPoints =
-        new("QuestShipMasterPoints", 0f, 10000f, 250f, OffOrWhole)
+        new("QuestShipMasterPoints", 0f, 10000f, 250f, NoneOrWhole)
     {
         Indent = GroupIndent,
         StepBands = [(3000f, 250f), (5000f, 500f), (10000f, 1000f)],
@@ -46,8 +46,10 @@ public partial class HemophageWarcasketSettings
     public readonly Tunable questThrallShare =
         new("QuestThrallShare", 0f, 100f, 5f, OffOrPercent) { Indent = GroupIndent };
 
-    private static string OffOrWhole(float v) =>
-        v <= 0f ? "HPWC_Off".Translate().ToString() : Whole(v);
+    // No floor reads "None", as the research row's first stop does: "Off" beside the master's
+    // points would read as the warcasket being off.
+    private static string NoneOrWhole(float v) =>
+        v <= 0f ? "HPWC_QuestShipMasterPointsNone".Translate().ToString() : Whole(v);
 
     private static string OffOrPercent(float v) =>
         v <= 0f ? "HPWC_Off".Translate().ToString() : Percent(v);

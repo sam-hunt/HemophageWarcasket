@@ -52,7 +52,7 @@ warcaskets research. Mix and match with other warcaskets' pieces as you please.
 
 ### Enabled work types
 
-The pilot can still research and hack, which VFE Pirates' warcaskets otherwise block. These can
+The pilot can still research and hack, which VFE Pirates' warcaskets otherwise block. This can
 be widened or narrowed in mod settings.
 
 ## Requirements

@@ -16,7 +16,7 @@ Armor, shoulder pads and helmet, each with extra protection against heat damage 
 [/list]
 
 [h2]Enabled work types[/h2]
-The pilot can still research and hack, which VFE Pirates' warcaskets otherwise block. These can be widened or narrowed in mod settings.
+The pilot can still research and hack, which VFE Pirates' warcaskets otherwise block. This can be widened or narrowed in mod settings.
 
 [hr][/hr]
 [h1]Mod Compatibility[/h1]
