@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Dismember (Source/1.6/Abilities/Dismember/). {0} is the target -->
+  <!-- EN: {0} has no limbs to tear off. -->
+  <HPWC_DismemberNoLimbs>{0}には引きちぎれる手足がありません.</HPWC_DismemberNoLimbs>
+  <!-- EN: {0} is not hostile. -->
+  <HPWC_DismemberNotHostile>{0}は敵対していません.</HPWC_DismemberNotHostile>
+  <!-- Beside the cursor over a target, where the game's own "Will kill" goes: the strike would tear off none of the limbs it could take hold of, or only some of them -->
+  <!-- EN: Will only wound -->
+  <HPWC_DismemberWillWound>負傷させるだけ</HPWC_DismemberWillWound>
+  <!-- EN: May only wound -->
+  <HPWC_DismemberMayWound>負傷させるだけかもしれない</HPWC_DismemberMayWound>
+  <!-- The dialog before an order that would kill a target that is not hostile, where the game asks "Bloodfeeding on {PAWN_nameDef} will kill {PAWN_objective}." before a lethal bite: the strike would tear the head off a target with no limbs left, or the drain after it would bleed the target to death. PAWN is the target -->
+  <!-- EN: The strike will tear off {PAWN_nameDef}'s head, which will kill {PAWN_objective}.\n\nAre you sure? -->
+  <HPWC_DismemberConfirmKill>攻撃で{PAWN_nameDef}の頭を引きちぎると{PAWN_objective}殺すことになります.\n\nよろしいですか?</HPWC_DismemberConfirmKill>
+  <!-- EN: Draining hemogen from {PAWN_nameDef} after the strike will kill {PAWN_objective}.\n\nAre you sure? -->
+  <HPWC_DismemberConfirmDrainKill>攻撃の後に{PAWN_nameDef}からヘモゲンを抽出すると{PAWN_objective}殺すことになります.\n\nよろしいですか?</HPWC_DismemberConfirmDrainKill>
+  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
+  <!-- EN: Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}. -->
+  <HPWC_DismemberReload>攻撃のたびにショルダーアーマーのサーボモーターが1つ焼き切れますが,{0}を使用して充填すれば交換できます.</HPWC_DismemberReload>
+
+  <!-- Mod settings (Source/1.6/Settings/) -->
+  <!-- EN: Hemophage Warcasket -->
+  <HPWC_SettingsCategory>ヘモファージ・ウォーキャスケット</HPWC_SettingsCategory>
+  <!-- Shown in place of the ability and helmet sections (HemophageWarcasketSettings.TryGetDefs) -->
+  <!-- EN: The ability and helmet settings are unavailable. Another mod has changed the hemophage warcasket, so they will keep their built-in values. -->
+  <HPWC_SettingsUnavailable>能力とヘルメットの設定は使用できません.別のMODがヘモファージ・ウォーキャスケットを変更しているため,能力とヘルメットには本来の値が使われます.</HPWC_SettingsUnavailable>
+
+  <!-- After a slider's value while it is unset -->
+  <!-- EN:  (default) -->
+  <HPWC_DefaultSuffix> (デフォルト)</HPWC_DefaultSuffix>
+  <!-- A checkbox's default in its tooltip -->
+  <!-- EN: enabled -->
+  <HPWC_Enabled>有効</HPWC_Enabled>
+  <!-- EN: disabled -->
+  <HPWC_Disabled>無効</HPWC_Disabled>
+  <!-- A slider's value at its off end -->
+  <!-- EN: Off -->
+  <HPWC_Off>Off</HPWC_Off>
+
+  <!-- Hemogen rush section (Source/1.6/Settings/Settings_Rush.cs). {0} in every tooltip is the default -->
+  <!-- EN: Hemogen rush -->
+  <HPWC_SectionRush>ヘモゲンラッシュ</HPWC_SectionRush>
+
+  <!-- EN: Hemogen cost to start -->
+  <HPWC_RushStartCost>開始時のヘモゲン消費量</HPWC_RushStartCost>
+  <!-- EN: The amount of hemogen the pilot spends each time a rush starts. Default: {0}. -->
+  <HPWC_RushStartCostDesc>ラッシュを始めるたびにパイロットが消費するヘモゲンの量です.デフォルト: {0}.</HPWC_RushStartCostDesc>
+
+  <!-- EN: Hemogen per second -->
+  <HPWC_RushDrain>毎秒のヘモゲン消費量</HPWC_RushDrain>
+  <!-- EN: The amount of hemogen the pilot spends each second while the rush is running. Default: {0}. -->
+  <HPWC_RushDrainDesc>ラッシュが続いている間,パイロットが1秒ごとに消費するヘモゲンの量です.デフォルト: {0}.</HPWC_RushDrainDesc>
+
+  <!-- EN: Hemogen reserve -->
+  <HPWC_RushReserve>ヘモゲンの温存量</HPWC_RushReserve>
+  <!-- EN: The hemogen level at which the rush will stop on its own. At zero, it will run until the pilot has no hemogen left and develops a hemogen craving. Default: {0}. -->
+  <HPWC_RushReserveDesc>ヘモゲンがこの量まで減ると,ラッシュは自動的に止まります.0にすると,パイロットのヘモゲンが尽きてヘモゲンの渇望が起きるまで続きます.デフォルト: {0}.</HPWC_RushReserveDesc>
+
+  <!-- EN: Move speed -->
+  <HPWC_RushMoveSpeed>移動速度</HPWC_RushMoveSpeed>
+  <!-- EN: The pilot's move speed during a hemogen rush, compared to normal. Default: {0}. -->
+  <HPWC_RushMoveSpeedDesc>ヘモゲンラッシュ中のパイロットの移動速度で,通常時に対する割合です.デフォルト: {0}.</HPWC_RushMoveSpeedDesc>
+
+  <!-- EN: Melee damage -->
+  <HPWC_RushMeleeDamage>近接ダメージ</HPWC_RushMeleeDamage>
+  <!-- EN: How much damage the pilot's melee attacks will do during a hemogen rush, compared to normal. Default: {0}. -->
+  <HPWC_RushMeleeDamageDesc>ヘモゲンラッシュ中にパイロットの近接攻撃が与えるダメージで,通常時に対する割合です.デフォルト: {0}.</HPWC_RushMeleeDamageDesc>
+
+  <!-- EN: Pulsing glow -->
+  <HPWC_RushGlowPulse>脈打つ発光</HPWC_RushGlowPulse>
+  <!-- EN: When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}. -->
+  <HPWC_RushGlowPulseDesc>有効にすると,ヘモゲンラッシュ中にウォーキャスケットの発光が心臓の鼓動のように脈打ちます.無効にすると,発光は最大の明るさのままになります.デフォルト: {0}.</HPWC_RushGlowPulseDesc>
+
+  <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages, {5} the cost to start. One key per combination of a start cost and a drain -->
+  <!-- EN: A hemogen rush costs {5} hemogen to start, then spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
+  <HPWC_RushSummaryStartCost>ヘモゲンラッシュは開始時に{5}のヘモゲンを消費し,その後は毎秒{0}を消費して,残りが{1}になると止まります.ヘモゲンが100の状態で始めたラッシュは{2}続きます.パイロットの移動速度は{3},近接ダメージは{4}になります.</HPWC_RushSummaryStartCost>
+  <!-- EN: A hemogen rush spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
+  <HPWC_RushSummary>ヘモゲンラッシュは毎秒{0}のヘモゲンを消費し,残りが{1}になると止まります.ヘモゲンが100の状態で始めたラッシュは{2}続きます.パイロットの移動速度は{3},近接ダメージは{4}になります.</HPWC_RushSummary>
+  <!-- {0} and {1} are the percentages, {2} the cost to start -->
+  <!-- EN: A hemogen rush costs {2} hemogen to start and spends none after that, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage. -->
+  <HPWC_RushSummaryStartCostNoDrain>ヘモゲンラッシュは開始時に{2}のヘモゲンを消費しますが,その後は消費しないため,パイロットが止めるまで続きます.パイロットの移動速度は{0},近接ダメージは{1}になります.</HPWC_RushSummaryStartCostNoDrain>
+  <!-- EN: A hemogen rush spends no hemogen, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage. -->
+  <HPWC_RushSummaryFree>ヘモゲンラッシュはヘモゲンを消費しないため,パイロットが止めるまで続きます.パイロットの移動速度は{0},近接ダメージは{1}になります.</HPWC_RushSummaryFree>
+
+  <!-- Dismember section (Source/1.6/Settings/Settings_Dismember.cs) -->
+  <!-- EN: Dismember -->
+  <HPWC_SectionDismember>四肢切断</HPWC_SectionDismember>
+
+  <!-- EN: Strike capacity -->
+  <HPWC_DismemberStrikes>最大攻撃回数</HPWC_DismemberStrikes>
+  <!-- EN: The number of strikes the shoulders hold when full. Default: {0}. -->
+  <HPWC_DismemberStrikesDesc>満タン時にショルダーアーマーに蓄えられる攻撃の回数です.デフォルト: {0}.</HPWC_DismemberStrikesDesc>
+
+  <!-- {1} is the reload item in the plural, such as "components" -->
+  <!-- EN: Reload cost per strike -->
+  <HPWC_DismemberReloadCost>攻撃1回分の充填コスト</HPWC_DismemberReloadCost>
+  <!-- EN: The number of {1} it takes to reload one strike. Default: {0}. -->
+  <HPWC_DismemberReloadCostDesc>攻撃1回分の充填に必要な{1}の数です.デフォルト: {0}.</HPWC_DismemberReloadCostDesc>
+
+  <!-- EN: Casting time -->
+  <HPWC_DismemberWindup>詠唱時間</HPWC_DismemberWindup>
+  <!-- EN: How long the pilot holds the target still before tearing off an arm or a leg. Default: {0}. -->
+  <HPWC_DismemberWindupDesc>腕か脚を引きちぎる前に,パイロットが対象を押さえつけておく時間です.デフォルト: {0}.</HPWC_DismemberWindupDesc>
+
+  <!-- EN: Cooldown -->
+  <HPWC_DismemberCooldown>クールダウン</HPWC_DismemberCooldown>
+  <!-- EN: The time the pilot must wait between strikes. Default: {0}. -->
+  <HPWC_DismemberCooldownDesc>攻撃した後,パイロットが次の攻撃を行えるようになるまでの待ち時間です.デフォルト: {0}.</HPWC_DismemberCooldownDesc>
+
+  <!-- EN: Strike damage -->
+  <HPWC_DismemberDamage>攻撃のダメージ</HPWC_DismemberDamage>
+  <!-- EN: The damage a strike does to the limb it takes hold of, before the pilot's melee damage factor. A limb with more health than that will be wounded instead of torn off. Default: {0}. -->
+  <HPWC_DismemberDamageDesc>攻撃でつかんだ手足に与えるダメージで,パイロットの近接ダメージ掛け率が掛かる前の値です.HPがこれより多い手足は,引きちぎれずに傷を負うだけになります.デフォルト: {0}.</HPWC_DismemberDamageDesc>
+
+  <!-- EN: Drain time -->
+  <HPWC_DismemberDrainTime>抽出時間</HPWC_DismemberDrainTime>
+  <!-- EN: How long a hemogenic pilot spends draining hemogen from a human target. A full drain will give the same amount of hemogen however long it takes. Default: {0}. -->
+  <HPWC_DismemberDrainTimeDesc>ヘモゲニックのパイロットが人間の対象からヘモゲンを抽出するのにかかる時間です.かかる時間が長くても短くても,最後まで抽出すれば得られるヘモゲンの量は変わりません.デフォルト: {0}.</HPWC_DismemberDrainTimeDesc>
+
+  <!-- EN: Base hemogen gain -->
+  <HPWC_DismemberGain>基本ヘモゲン取得量</HPWC_DismemberGain>
+  <!-- EN: The amount of hemogen the pilot gains from a full drain, which is affected by the target's body size. At zero, the pilot will not drain the target. Default: {0}. -->
+  <HPWC_DismemberGainDesc>最後まで抽出したときにパイロットが得るヘモゲンの量で,対象の体の大きさに影響されます.0にすると,パイロットは対象からヘモゲンを抽出しません.デフォルト: {0}.</HPWC_DismemberGainDesc>
+
+  <!-- EN: Blood loss -->
+  <HPWC_DismemberBloodLoss>失血</HPWC_DismemberBloodLoss>
+  <!-- EN: The blood loss a full drain causes in the target, on top of the bleeding from the lost limb. Default: {0}. -->
+  <HPWC_DismemberBloodLossDesc>最後まで抽出したときに対象に生じる失血の量です.失った手足からの出血は,これとは別に加わります.デフォルト: {0}.</HPWC_DismemberBloodLossDesc>
+
+  <!-- EN: Blood spatter -->
+  <HPWC_DismemberSpatter>血しぶき</HPWC_DismemberSpatter>
+  <!-- EN: The number of blood spatters a strike will leave on the ground around the target. Default: {0}. -->
+  <HPWC_DismemberSpatterDesc>攻撃のたびに対象の周りの地面に飛び散る血のりの数です.デフォルト: {0}.</HPWC_DismemberSpatterDesc>
+
+  <!-- EN: Allow non-hostile targets -->
+  <HPWC_DismemberNonHostile>敵対していない対象にも使用</HPWC_DismemberNonHostile>
+  <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
+  <HPWC_DismemberNonHostileDesc>有効にすると,敵対していない対象にもパイロットが四肢切断を使えるようになりますが,その対象の勢力を怒らせます.無効にすると,四肢切断を使えるのは敵対している対象だけになります.デフォルト: {0}.</HPWC_DismemberNonHostileDesc>
+
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->
+  <HPWC_DismemberSummary>ショルダーアーマーには{5}分を蓄えられ,1回分ごとに{6}で充填します.攻撃の詠唱時間は{0}です.その後,ヘモゲニックのパイロットは人間の対象から{2}かけてヘモゲンを抽出します.得られるヘモゲンは{3}で,対象には{4}の失血が生じます.攻撃後のクールダウンは{1}です.</HPWC_DismemberSummary>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once. -->
+  <HPWC_DismemberSummaryNoCooldown>ショルダーアーマーには{5}分を蓄えられ,1回分ごとに{6}で充填します.攻撃の詠唱時間は{0}です.その後,ヘモゲニックのパイロットは人間の対象から{2}かけてヘモゲンを抽出します.得られるヘモゲンは{3}で,対象には{4}の失血が生じます.次の攻撃はすぐに行えます.</HPWC_DismemberSummaryNoCooldown>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}. -->
+  <HPWC_DismemberSummaryNoDrain>ショルダーアーマーには{5}分を蓄えられ,1回分ごとに{6}で充填します.攻撃の詠唱時間は{0}です.パイロットは対象からヘモゲンを抽出しません.攻撃後のクールダウンは{1}です.</HPWC_DismemberSummaryNoDrain>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once. -->
+  <HPWC_DismemberSummaryNoCooldownNoDrain>ショルダーアーマーには{5}分を蓄えられ,1回分ごとに{6}で充填します.攻撃の詠唱時間は{0}です.パイロットは対象からヘモゲンを抽出しません.次の攻撃はすぐに行えます.</HPWC_DismemberSummaryNoCooldownNoDrain>
+
+  <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in every tooltip is the default -->
+  <!-- EN: Helmet -->
+  <HPWC_SectionHelmet>ヘルメット</HPWC_SectionHelmet>
+  <!-- EN: The sealed visor of the hemophage warcasket helmet keeps sunlight off a pilot who is sensitive to it and steadies a pilot who is afraid of fire. -->
+  <HPWC_SectionHelmetDesc>ヘモファージ・ウォーキャスケットヘルメットの気密バイザーは,日光に敏感なパイロットを日差しから守り,炎を恐れるパイロットを落ち着かせます.</HPWC_SectionHelmetDesc>
+  <!-- EN: Sunlight protection -->
+  <HPWC_HelmetSunlight>日光からの保護</HPWC_HelmetSunlight>
+  <!-- EN: When enabled, the helmet will protect a pilot with a UV sensitivity gene from the effects of sunlight. When disabled, sunlight will slow such a pilot and lower their mood as usual. Default: {0}. -->
+  <HPWC_HelmetSunlightDesc>有効にすると,ヘルメットが紫外線アレルギーの遺伝子を持つパイロットを日光の影響から守ります.無効にすると,そうしたパイロットは通常どおり日光で動きが遅くなり,心情も下がります.デフォルト: {0}.</HPWC_HelmetSunlightDesc>
+  <!-- EN: Fire terror chance -->
+  <HPWC_HelmetPyrophobia>炎の恐れの発生率</HPWC_HelmetPyrophobia>
+  <!-- EN: How often a pilot with the pyrophobia gene will flee in terror from a nearby fire, compared to normal. At 0%, the pilot will never flee from fire. Default: {0}. -->
+  <HPWC_HelmetPyrophobiaDesc>炎恐怖症の遺伝子を持つパイロットが,近くの炎からパニックになって逃げ出す頻度で,通常時に対する割合です.0%にすると,パイロットは炎から逃げ出さなくなります.デフォルト: {0}.</HPWC_HelmetPyrophobiaDesc>
+
+  <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
+  <!-- EN: Enabled work types -->
+  <HPWC_SectionWork>有効な作業</HPWC_SectionWork>
+  <!-- EN: The work types a pilot of the hemophage warcasket can do, out of those that warcasket pilots normally cannot. Work that another mod enables for all warcasket pilots will stay enabled. -->
+  <HPWC_SectionWorkDesc>ウォーキャスケットのパイロットが通常は行えない作業のうち,ヘモファージ・ウォーキャスケットのパイロットが行える作業の種類です.ほかのMODがすべてのウォーキャスケットのパイロットに許可した作業は,有効のままになります.</HPWC_SectionWorkDesc>
+  <!-- {0} is HPWC_Enabled or HPWC_Disabled -->
+  <!-- EN: When enabled, pilots of the hemophage warcasket can do this work, though you will need to assign it in the work tab. When disabled, they cannot. Default: {0}. -->
+  <HPWC_WorkDesc>有効にすると,ヘモファージ・ウォーキャスケットのパイロットがこの作業を行えるようになります.ただし,「優先順位」タブで割り当てる必要があります.無効にすると,この作業は行えません.デフォルト: {0}.</HPWC_WorkDesc>
+  <!-- {0} is a list of work types as the work tab names them -->
+  <!-- EN: The pilot can do {0} work, as well as the work that all warcasket pilots can do. -->
+  <HPWC_WorkSummary>パイロットは,すべてのウォーキャスケットのパイロットが行える作業に加えて,{0}の作業を行えます.</HPWC_WorkSummary>
+  <!-- EN: The pilot can only do the work that all warcasket pilots can do. -->
+  <HPWC_WorkSummaryNone>パイロットが行えるのは,すべてのウォーキャスケットのパイロットが行える作業だけです.</HPWC_WorkSummaryNone>
+  <!-- EN: No work is blocked for warcasket pilots, so there is nothing to enable here. -->
+  <HPWC_WorkSummaryNothingBlocked>ウォーキャスケットのパイロットに禁止されている作業はないため,ここで有効にできるものはありません.</HPWC_WorkSummaryNothingBlocked>
+
+  <!-- Quest section (Source/1.6/Settings/Settings_QuestPilot.cs, ResearchGateSetting.cs): the sanguophages of Biotech's sanguophage meeting quest and of its crashed sanguophage shuttle quest, and that shuttle's thralls. {0} in every tooltip is the default -->
+  <!-- EN: Sanguophages from quests -->
+  <HPWC_SectionQuestPilot>クエストで現れるサングオファージ</HPWC_SectionQuestPilot>
+  <!-- EN: Sanguophages who come to your colony during a quest can arrive already entombed in a hemophage warcasket. One who joins you will stay in it. The thralls of a crashed shuttle can arrive in lesser warcaskets. -->
+  <HPWC_SectionQuestPilotDesc>クエスト中にコロニーへやって来るサングオファージは,ヘモファージ・ウォーキャスケットに封入された姿で現れることがあります.仲間に加わった場合も,そのまま封入されています.墜落したシャトルのしもべは,下位のウォーキャスケットを装着して現れることがあります.</HPWC_SectionQuestPilotDesc>
+  <!-- EN: Required research -->
+  <HPWC_QuestResearch>必要な研究</HPWC_QuestResearch>
+  <!-- EN: The research your colony must finish before any of these sanguophages can arrive in a hemophage warcasket. Default: {0}. -->
+  <HPWC_QuestResearchDesc>これらのサングオファージがヘモファージ・ウォーキャスケットを装着して現れるには,コロニーがこの研究を完了している必要があります.デフォルト: {0}.</HPWC_QuestResearchDesc>
+  <!-- The first stop of the slider, before the research projects' own names -->
+  <!-- EN: None -->
+  <HPWC_QuestResearchNone>なし</HPWC_QuestResearchNone>
+  <!-- The two quests' subheadings, each over its own rows, and their tooltips -->
+  <!-- EN: Sanguophage meeting -->
+  <HPWC_QuestMeeting>サングオファージの会議</HPWC_QuestMeeting>
+  <!-- EN: A quest where a sanguophage leader asks you to host a meeting. If you accept, the leader and the other guests will arrive at your colony and spend several hours in discussion. -->
+  <HPWC_QuestMeetingDesc>サングオファージのリーダーから,会議の場を提供してほしいと依頼されるクエストです.受け入れると,リーダーとほかの参加者がコロニーにやって来て,数時間にわたって話し合います.</HPWC_QuestMeetingDesc>
+  <!-- EN: Leader warcasket chance -->
+  <HPWC_QuestMeetingLeader>リーダーのウォーキャスケット確率</HPWC_QuestMeetingLeader>
+  <!-- EN: The chance that the leader of a sanguophage meeting will arrive in a hemophage warcasket. Default: {0}. -->
+  <HPWC_QuestMeetingLeaderDesc>サングオファージの会議のリーダーが,ヘモファージ・ウォーキャスケットを装着して現れる確率です.デフォルト: {0}.</HPWC_QuestMeetingLeaderDesc>
+  <!-- EN: Guest warcasket chance -->
+  <HPWC_QuestMeetingGuest>参加者のウォーキャスケット確率</HPWC_QuestMeetingGuest>
+  <!-- EN: The chance that each of the other sanguophages at a meeting will arrive in a hemophage warcasket as well. Default: {0}. -->
+  <HPWC_QuestMeetingGuestDesc>会議に来るほかのサングオファージも,それぞれヘモファージ・ウォーキャスケットを装着して現れる確率です.デフォルト: {0}.</HPWC_QuestMeetingGuestDesc>
+  <!-- EN: Crashed shuttle -->
+  <HPWC_QuestShip>墜落したシャトル</HPWC_QuestShip>
+  <!-- EN: A quest where you can draw a hostile shuttle down to a crash near your colony. Its sanguophage master and thralls will leave the wreck and fight you. -->
+  <HPWC_QuestShipDesc>敵対的なシャトルをコロニーの近くに引き寄せて墜落させられるクエストです.乗っていたサングオファージのマスターとしもべは,残骸から出てきてコロニーと戦います.</HPWC_QuestShipDesc>
+  <!-- EN: Master warcasket chance -->
+  <HPWC_QuestShipMaster>マスターのウォーキャスケット確率</HPWC_QuestShipMaster>
+  <!-- EN: The chance that the sanguophage master of a crashed shuttle will be entombed in a hemophage warcasket, which will make the master much harder to down and capture. Default: {0}. -->
+  <HPWC_QuestShipMasterDesc>墜落したシャトルのサングオファージのマスターが,ヘモファージ・ウォーキャスケットに封入されている確率です.封入されていると,マスターを倒して捕らえるのがはるかに難しくなります.デフォルト: {0}.</HPWC_QuestShipMasterDesc>
+  <!-- EN: Master warcasket points -->
+  <HPWC_QuestShipMasterPoints>マスターのウォーキャスケット脅威ポイント</HPWC_QuestShipMasterPoints>
+  <!-- EN: The threat points a crashed shuttle quest must be worth before its sanguophage master can arrive in a hemophage warcasket. The storyteller raises threat points with your colonist count and colony wealth. Default: {0}. -->
+  <HPWC_QuestShipMasterPointsDesc>墜落したシャトルのクエストで,サングオファージのマスターがヘモファージ・ウォーキャスケットを装着して現れるのに必要な脅威ポイントです.ストーリーテラーは,入植者の人数とコロニーの資産に応じて脅威ポイントを引き上げます.デフォルト: {0}.</HPWC_QuestShipMasterPointsDesc>
+  <!-- The slider's value at 0, where there is no floor -->
+  <!-- EN: None -->
+  <HPWC_QuestShipMasterPointsNone>なし</HPWC_QuestShipMasterPointsNone>
+  <!-- 0 is shown as HPWC_Off. The warcaskets are VFE Pirates' own basic sets, each needing its own research -->
+  <!-- EN: Thrall warcaskets -->
+  <HPWC_QuestThrallShare>しもべのウォーキャスケット</HPWC_QuestThrallShare>
+  <!-- EN: How strong a crashed shuttle quest should be compared to a raid on your colony. If the quest is weaker, some of the master's thralls will arrive in lesser warcaskets you have researched. Default: {0}. -->
+  <HPWC_QuestThrallShareDesc>コロニーへの襲撃と比べて,墜落したシャトルのクエストに求める強さです.クエストのほうが弱い場合,マスターのしもべの一部が,研究済みの下位のウォーキャスケットを装着して現れます.デフォルト: {0}.</HPWC_QuestThrallShareDesc>
+
+</LanguageData>

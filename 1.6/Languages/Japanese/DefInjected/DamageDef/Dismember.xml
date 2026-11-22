@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: {0} has been torn apart. -->
+  <HPWC_Dismember.deathMessage>{0}は 引き裂かれて死亡しました.</HPWC_Dismember.deathMessage>
+  <!-- EN: dismemberment -->
+  <HPWC_Dismember.label>四肢切断</HPWC_Dismember.label>
+
+</LanguageData>

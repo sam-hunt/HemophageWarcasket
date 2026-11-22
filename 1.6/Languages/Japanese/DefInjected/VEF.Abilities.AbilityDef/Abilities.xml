@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>近くの対象の腕か脚を引きちぎります.アーマーを着ていても防げません.頑丈すぎて引きちぎれない手足は,傷を負うだけです.手足が残っていない対象は,代わりに頭を失います.パイロットがヘモゲニックで対象が人間なら,その後で傷口からヘモゲンを抽出し,対象を失血させます.</HPWC_Dismember.description>
+  <!-- EN: Tearing off a limb. -->
+  <HPWC_Dismember.jobReportString>手足を引きちぎっている</HPWC_Dismember.jobReportString>
+  <!-- EN: dismember -->
+  <HPWC_Dismember.label>四肢切断</HPWC_Dismember.label>
+  <!-- EN: dismember -->
+  <HPWC_Dismember.verbProperties.label>四肢切断</HPWC_Dismember.verbProperties.label>
+
+  <!-- EN: Run the warcasket's injectors, which will spend the pilot's hemogen quickly. The pilot will move faster and hit harder for as long as the injectors are running. Toggle again to stop the injectors. They will also stop when the pilot runs out of hemogen. -->
+  <HPWC_HemogenRush.description>ウォーキャスケットの注入器を作動させ,パイロットのヘモゲンを一気に消費します.注入器が作動している間,パイロットは移動が速くなり,攻撃も強くなります.もう一度切り替えると注入器が止まります.パイロットのヘモゲンが尽きたときにも止まります.</HPWC_HemogenRush.description>
+  <!-- EN: Using ability: {0} -->
+  <HPWC_HemogenRush.jobReportString>能力を使用中: {0}</HPWC_HemogenRush.jobReportString>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>ヘモゲンラッシュ</HPWC_HemogenRush.label>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.verbProperties.label>ヘモゲンラッシュ</HPWC_HemogenRush.verbProperties.label>
+
+</LanguageData>
