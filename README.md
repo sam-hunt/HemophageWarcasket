@@ -4,13 +4,10 @@
 
 [![RimWorld](https://img.shields.io/badge/RimWorld-1.6%20%7C%201.7-blue.svg)](https://rimworldgame.com/)
 [![Biotech DLC](https://img.shields.io/badge/DLC-Biotech-red.svg)](https://store.steampowered.com/app/1826140/RimWorld__Biotech/)
-
-<!-- Steam badges, added on first Workshop publish with WORKSHOP_ID from About/PublishedFileId.txt:
-[![Subscribers](https://img.shields.io/steam/subscriptions/WORKSHOP_ID?logo=steam&label=subscribers)](https://steamcommunity.com/sharedfiles/filedetails/?id=WORKSHOP_ID)
-[![Downloads](https://img.shields.io/steam/downloads/WORKSHOP_ID?logo=steam&label=downloads)](https://steamcommunity.com/sharedfiles/filedetails/?id=WORKSHOP_ID)
-[![Favorites](https://img.shields.io/steam/favorites/WORKSHOP_ID?logo=steam&label=favorites)](https://steamcommunity.com/sharedfiles/filedetails/?id=WORKSHOP_ID)
-[![Views](https://img.shields.io/steam/views/WORKSHOP_ID?logo=steam&label=views)](https://steamcommunity.com/sharedfiles/filedetails/?id=WORKSHOP_ID)
--->
+[![Subscribers](https://img.shields.io/steam/subscriptions/3844425399?logo=steam&label=subscribers)](https://steamcommunity.com/sharedfiles/filedetails/?id=3844425399)
+[![Downloads](https://img.shields.io/steam/downloads/3844425399?logo=steam&label=downloads)](https://steamcommunity.com/sharedfiles/filedetails/?id=3844425399)
+[![Favorites](https://img.shields.io/steam/favorites/3844425399?logo=steam&label=favorites)](https://steamcommunity.com/sharedfiles/filedetails/?id=3844425399)
+[![Views](https://img.shields.io/steam/views/3844425399?logo=steam&label=views)](https://steamcommunity.com/sharedfiles/filedetails/?id=3844425399)
 
 ![Preview](.steamworkshop/Preview.gif)
 
@@ -72,7 +69,7 @@ be widened or narrowed in mod settings.
 
 ### Steam Workshop (Recommended)
 
-Coming with the first release.
+Subscribe on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3844425399) and it will auto-download.
 
 ### Manual Installation
 
