@@ -25,8 +25,10 @@ namespace HemophageWarcasket;
 //
 // The walk is VEF's JobDriver_GotoTargetAndCastAbilityOnce without its order for a pawn target
 // to stand and face the caster: the target is left to whatever it was doing, and the ability's
-// stun holds a conscious one. The pilot stops as soon as it stands within the def's
-// distanceToTarget with line of sight and is not mid-door; a target it cannot reach ends the job.
+// stun holds a conscious one. The pilot stops as soon as it stands in reach of the target
+// (Ability_Dismember.InReach, the rule the warmup and the drain hold it by) and is not mid-door;
+// a target it cannot reach ends the job. The rule is asked of the def, not of the bound ability,
+// so the walk ends whatever has become of the binding, and the check toil answers for that.
 //
 // The drain toil re-asserts playerForced, which VEF's cast toil drops for a drafted pilot, so the
 // melee-threat and hostility-response constant jobs stand down for it too. It counts its own
@@ -102,8 +104,7 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
             IntVec3 cell = target.Cell;
             Map map = pawn.Map;
             pawn.rotationTracker.FaceTarget(cell);
-            if (pawn.Position.DistanceTo(cell) <= (Def?.distanceToTarget ?? 0f)
-                && GenSight.LineOfSight(pawn.Position, cell, map, skipFirstCell: true)
+            if (Ability_Dismember.InReach(pawn, Target, Def?.distanceToTarget ?? 0f)
                 && (!pawn.pather.Moving || pawn.pather.nextCell.GetDoor(map) == null))
             {
                 pawn.pather.StopDead();

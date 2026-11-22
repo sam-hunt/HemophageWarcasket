@@ -253,11 +253,21 @@ public partial class Ability_Dismember : Ability
         return base.MouseAttachment(target);
     }
 
-    // Within the def's distanceToTarget with a clear line, the walk's own stopping rule.
-    public bool InReach(Pawn target) =>
-        pawn != null && pawn.Spawned && target.Spawned && target.Map == pawn.Map
-        && pawn.Position.DistanceTo(target.Position) <= def.distanceToTarget
-        && GenSight.LineOfSight(pawn.Position, target.Position, pawn.Map, skipFirstCell: true);
+    // The one reach rule, for the walk's stop, the warmup's hold and the drain's: touching the
+    // target as vanilla melee counts it, or within the def's distanceToTarget with a clear line.
+    // Touch is the rule the walk's path ends by, so it has to count here. On a diagonal past the
+    // end of a wall it asks that either cell beside the diagonal be walkable, where
+    // GenSight.LineOfSight looks at one of the two: a pilot the pather has brought to its
+    // destination can have no line, and with the line alone would stand there with nowhere left
+    // to walk (ReachabilityImmediate, TouchPathEndModeUtility and GenSight, the same on 1.6 and
+    // 1.7).
+    public static bool InReach(Pawn pilot, Pawn target, float distance) =>
+        pilot != null && target != null && pilot.Spawned && target.Spawned && target.Map == pilot.Map
+        && (pilot.CanReachImmediate(target, PathEndMode.Touch)
+            || (pilot.Position.DistanceTo(target.Position) <= distance
+                && GenSight.LineOfSight(pilot.Position, target.Position, pilot.Map, skipFirstCell: true)));
+
+    public bool InReach(Pawn target) => InReach(pawn, target, def.distanceToTarget);
 
     // The warmup holds a conscious target; one carried out of reach ends the job with no
     // cooldown (the cast toil never ran). The targets are read off the pilot's own comp, not
