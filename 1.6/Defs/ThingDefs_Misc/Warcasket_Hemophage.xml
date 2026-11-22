@@ -62,7 +62,7 @@
     way cannot be taken off and reused (VFEP blocks the strip and the drop), so what the
     player can gain from it is the pilot inside. The three chances, shipMasterMinPoints and
     requiredResearch are mod settings defaulting to the values here:
-    - meetingLeaderChance 0.6, the sanguophage who asks for the meeting and leads it: a
+    - meetingLeaderChance 0.7, the sanguophage who asks for the meeting and leads it: a
       neutral guest, so most meetings show the set without setting it against the colony.
       The leader is also the one who may offer to join, one of the two or three turns the
       quest draws from mid-meeting, and then brings the set along.
@@ -297,7 +297,7 @@
       <li Class="HemophageWarcasket.QuestPilotExtension">
         <shipMasterChance>0</shipMasterChance>
         <shipMasterMinPoints>2500</shipMasterMinPoints>
-        <meetingLeaderChance>0.6</meetingLeaderChance>
+        <meetingLeaderChance>0.7</meetingLeaderChance>
         <meetingGuestChance>0.1</meetingGuestChance>
         <requiredResearch>VFEP_Warcaskets</requiredResearch>
         <researchOptions>
