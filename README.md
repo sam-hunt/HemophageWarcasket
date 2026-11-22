@@ -50,6 +50,12 @@ warcaskets research. Mix and match with other warcaskets' pieces as you please.
 - **Built on VFE Pirates** rather than beside it: the foundry, entombing, customization and
   removal surgery all apply unchanged
 
+### Sanguophages from quests
+
+Biotech's sanguophage quests can now scale to include warcaskets: both the Hemophage itself, as
+well as lesser marine/warcasket sets on accompanying thralls can show up. Tunable in mod
+settings.
+
 ### Enabled work types
 
 The pilot can still research and hack, which VFE Pirates' warcaskets otherwise block. This can
@@ -89,7 +95,8 @@ Coming with the first release.
   sensitivity. An animalfeeder pilot drains hemogen from animals and a sanguofeeder pilot from
   other sanguophages, each with that mod's own effects on the pilot.
 - **Combat Extended**: built-in patch. CE armor values, bulk, carry capacity and shield in line
-  with VFE Pirates' spacer sets and a helmet sealed against CE smoke.
+  with VFE Pirates' spacer sets and a helmet sealed against CE smoke. Dismember respects aim
+  height.
 - **Warcaskets can work!, Warcaskets can haul!, Hardworking Warcaskets**: compatible. Whatever
   these open for VFE Pirates' warcaskets they open here too.
 

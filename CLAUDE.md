@@ -40,30 +40,20 @@ The in-game descriptions say "drains hemogen from the wound", words that say whe
 from and not how; `About.xml`, the Workshop page and the README may say whom it is drained
 from instead ("from unwilling targets").
 
-**State: all three mechanics in, not yet released.** The three pieces are in on the tier's
-baseline stats and costs with their commissioned art, but for the heat plating and the
-devilstrand that pays for it, the armor's blood pumping floor and hemogen packs, the pads'
-hemogen gain and their cost, which pays for Dismember, and the helmet's blunt plating and
-cost, and the SOS2, VGE and CE patches mirror them; the CE root also carries
-Dismember's CE numbers. The armor's hemogen rush is
-built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
-protection and pyrophobia relief, the pilot's own work trait, the sanguophages of Biotech's two
-quests who may arrive in the set, the crashed shuttle quest's thralls, some of whom arrive in
-VFEP's two plain sets, and the settings
-window, with a section for each piece's mechanic, one for the pilot's work and one for those
-quests. The descriptions
-and the player-facing pages are first cuts still owed a full review. `TODOs.md` is the ledger.
-The sibling repos (same author, same VFEP base) are the worked precedents for everything not
-here yet: `../ToxinWarcasket/` for a toggled ability, a gauge and the Biotech dependency,
-`../ShipcrackerWarcasket/` for render-tree graphics and a gated art root, `../MedicWarcasket/`
-and `../OverlordWarcasket/` for the settings' sliders and switches, `../LegionWarcasket/` for a
-multi-world sidecar.
+**Precedents: the sibling repos** (same author, same VFEP base) are the worked examples for
+anything this repo has no instance of: `../ToxinWarcasket/` for a toggled ability, a gauge and
+the Biotech dependency, `../ShipcrackerWarcasket/` for render-tree graphics and a gated art
+root, `../MedicWarcasket/` and `../OverlordWarcasket/` for the settings' sliders and switches,
+`../LegionWarcasket/` for a multi-world sidecar.
 
 ## Documentation rules
 
 - **The file's header is the record.** Per-item values, tuning numbers and decompile-verified
   call paths live in the header comment of the file they describe, with the _why_. No guide
   restates a def value or call path; a line joins a guide only when it constrains other files.
+- **A guide holds rules, never the project's status.** What is built is in the code and in
+  git, and what is open is in `TODOs.md`; no guide narrates either, since both change faster
+  than a guide is read.
 - **Comments describe the present, git describes the past.** No dates, previous values, dropped
   attempts or "seen in game" notes in comments; that history goes in the commit message.
   Nor an open question, an undecided point or work still owed: those are tracked in

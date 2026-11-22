@@ -187,6 +187,9 @@ python3 Scripts/integration-smoke-test.py
     root opens and its vacuum-resistance patch runs.
   - **Combat Extended**, so the `1.6/Mods/CombatExtended` root opens and its
     stat patch runs.
+  - **Vanilla Races Expanded - Sanguophage**, so the
+    `1.6/Mods/VanillaRacesExpandedSanguophage` root opens and its patch
+    resolves that mod's genes and hediffs on Dismember's extension.
   - Biotech is on the list as a hard dependency: the set is built around
     its Hemogenic gene and the sanguophage xenotype.
   - Odyssey is on the list only because Vanilla Gravship Expanded requires
