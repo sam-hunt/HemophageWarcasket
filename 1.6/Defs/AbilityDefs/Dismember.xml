@@ -19,7 +19,7 @@
     more health left than that is wounded and stays on. 60 is set for a pilot with no
     melee gene: twice a human limb's 30, so a Tough target, who takes
     half damage, still loses it, and only one who stacks the robust gene on that (22.5) keeps
-    the limb. It is about two blows of a zeushammer (31), from a strike that takes a second
+    the limb. It is about two blows of a zeushammer (31), from a strike that takes half a second
     to wind up and a component to reload. A limb's health is its part's hitPoints times the
     race's health scale, so of the big bodies a megaspider's leg (50) and a muffalo's (53)
     come off, a centipede's last ring (87) only at a melee damage factor of 1.5 (90), and a
@@ -38,7 +38,7 @@
     distanceToTarget 1.9, touching with diagonals. Who is a valid target is decided in
     ValidateTarget, not here.
 
-    castTime 60 (1 s) is the windup, half of Bloodfeed's, since this is used mid-fight; the
+    castTime 30 (0.5 s) is the windup, a quarter of Bloodfeed's, since this is used mid-fight; the
     target is held for it, as vanilla's touch abilities hold theirs.
 
     The limit is the pads' strikes, not a timer: each cast spends one of the two the pads'
@@ -50,7 +50,7 @@
     The rest of DismemberExtension is the drain, which follows the strike when the pilot is
     hemogenic and the target is humanlike and bleeding, as one whose limb came off is and one
     whose limb held mostly is, with the target held throughout. It is Bloodfeed
-    spread over drainTicks 240 (4 s): hemogenGain 0.2 is Bloodfeed's 20 hemogen, scaled by
+    spread over drainTicks 120 (2 s): hemogenGain 0.2 is Bloodfeed's 20 hemogen, scaled by
     the target's body size and the pilot's HemogenGainFactor as a bite is, which the pads'
     own offset makes 25, and targetBloodLoss 0.4499 is the blood loss a bite
     causes, on top of the stump's own bleeding. A drain cut short keeps what it collected,
@@ -94,13 +94,13 @@
     </targetingParametersList>
     <distanceToTarget>1.9</distanceToTarget>
     <requireLineOfSight>false</requireLineOfSight>
-    <castTime>60</castTime>
+    <castTime>30</castTime>
     <cooldownTime>0</cooldownTime>
     <showUndrafted>true</showUndrafted>
     <modExtensions>
       <li Class="HemophageWarcasket.DismemberExtension">
         <damage>60</damage>
-        <drainTicks>240</drainTicks>
+        <drainTicks>120</drainTicks>
         <hemogenGain>0.2</hemogenGain>
         <targetBloodLoss>0.4499</targetBloodLoss>
         <bloodFilthCount>10</bloodFilthCount>
