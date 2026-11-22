@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>血原爆發</HPWC_HemogenRush.label>
+  <!-- EN: Run the warcasket's injectors, which will spend the pilot's hemogen quickly. The pilot will move faster and hit harder for as long as the injectors are running. Toggle again to stop the injectors. They will also stop when the pilot runs out of hemogen. -->
+  <HPWC_HemogenRush.description>啟動戰棺的注射器，快速消耗駕駛員的血原。注射器運作期間，駕駛員會移動得更快，攻擊也更有力。再次切換即可關閉注射器。駕駛員的血原耗盡時，注射器也會自動關閉。</HPWC_HemogenRush.description>
+  <!-- EN: Using ability: {0} -->
+  <HPWC_HemogenRush.jobReportString>使用能力：{0}</HPWC_HemogenRush.jobReportString>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.verbProperties.label>血原爆發</HPWC_HemogenRush.verbProperties.label>
+
+  <!-- EN: dismember -->
+  <HPWC_Dismember.label>肢解</HPWC_Dismember.label>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>扯下附近目標的一條手臂或腿，無視其穿戴的任何護甲。太過結實而扯不下的肢體只會受傷，目標若沒有肢體可扯，則會改為扯下頭部。如果駕駛員具有血原性，而目標是人類，駕駛員接著會從傷口汲取血原，目標也會因此失血。</HPWC_Dismember.description>
+  <!-- EN: Tearing off a limb. -->
+  <HPWC_Dismember.jobReportString>扯下肢體</HPWC_Dismember.jobReportString>
+  <!-- EN: dismember -->
+  <HPWC_Dismember.verbProperties.label>肢解</HPWC_Dismember.verbProperties.label>
+</LanguageData>
