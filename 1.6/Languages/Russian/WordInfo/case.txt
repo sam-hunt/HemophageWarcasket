@@ -1,0 +1,5 @@
+// Hemophage Warcasket: case forms (nominative;genitive;dative;accusative;instrumental;prepositional)
+// the chargeNoun in both numbers, and the plural of Core's ComponentIndustrial label, which Core's Case.txt lacks
+удар;удара;удару;удар;ударом;ударе
+удары;ударов;ударам;удары;ударами;ударах
+компоненты;компонентов;компонентам;компоненты;компонентами;компонентах

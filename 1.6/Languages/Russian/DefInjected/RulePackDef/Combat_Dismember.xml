@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN:
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tried to tear off [RECIPIENT_definite]'s [recipient_part0_label], but only wounded it.</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tore at [RECIPIENT_definite]'s [recipient_part0_label], wounding it.</li>
+    <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] tried to rip off [RECIPIENT_definite]'s [recipient_part0_label], but it held.</li>
+  -->
+  <HPWC_Combat_Dismember.rulePack.rulesStrings>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] отрывает у [RECIPIENT_definite] {lookup: [recipient_part0_label]; Case; 3}.</li>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] выдирает у [RECIPIENT_definite] {lookup: [recipient_part0_label]; Case; 3}.</li>
+    <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] хватает [RECIPIENT_definite] и отрывает [RECIPIENT_objective] {lookup: [recipient_part0_label]; Case; 3}.</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] пытается оторвать у [RECIPIENT_definite] {lookup: [recipient_part0_label]; Case; 3}, но только ранит [RECIPIENT_possessive].</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] тянет [RECIPIENT_definite] за {lookup: [recipient_part0_label]; Case; 3} и наносит рану.</li>
+    <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] изо всех сил дёргает [RECIPIENT_definite] за {lookup: [recipient_part0_label]; Case; 3}, но оторвать не может.</li>
+  </HPWC_Combat_Dismember.rulePack.rulesStrings>
+</LanguageData>

@@ -20,7 +20,7 @@ welcome too.
 | -------------------- | ---------------- | --------- |
 | English              | Source           | -         |
 | Simplified Chinese   | Machine-assisted | -         |
-| Russian              | Planned          | -         |
+| Russian              | Machine-assisted | -         |
 | Korean               | Planned          | -         |
 | German               | Planned          | -         |
 | Spanish              | Planned          | -         |

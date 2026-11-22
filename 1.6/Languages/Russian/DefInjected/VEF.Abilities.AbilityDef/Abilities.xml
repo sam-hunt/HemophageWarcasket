@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>гемогенный форсаж</HPWC_HemogenRush.label>
+  <!-- EN: Run the warcasket's injectors, which will spend the pilot's hemogen quickly. The pilot will move faster and hit harder for as long as the injectors are running. Toggle again to stop the injectors. They will also stop when the pilot runs out of hemogen. -->
+  <HPWC_HemogenRush.description>Запускает инъекторы брони, которые быстро расходуют гемоген пилота. Пока инъекторы работают, пилот двигается быстрее и бьёт сильнее. Повторное нажатие останавливает инъекторы. Они остановятся и сами, когда у пилота закончится гемоген.</HPWC_HemogenRush.description>
+  <!-- EN: Using ability: {0} -->
+  <HPWC_HemogenRush.jobReportString>применяет способность «{0}»</HPWC_HemogenRush.jobReportString>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.verbProperties.label>гемогенный форсаж</HPWC_HemogenRush.verbProperties.label>
+  <!-- EN: dismember -->
+  <HPWC_Dismember.label>отрыв конечности</HPWC_Dismember.label>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>Отрывает руку или ногу цели поблизости, какая бы броня на ней ни была. Слишком крепкую конечность удар только ранит, а цель, у которой не осталось конечностей, вместо этого лишится головы. Гемогеничный пилот после удара по человеку вытянет гемоген из раны, а цель потеряет кровь.</HPWC_Dismember.description>
+  <!-- EN: Tearing off a limb. -->
+  <HPWC_Dismember.jobReportString>отрывает конечность</HPWC_Dismember.jobReportString>
+  <!-- EN: dismember -->
+  <HPWC_Dismember.verbProperties.label>отрыв конечности</HPWC_Dismember.verbProperties.label>
+</LanguageData>
