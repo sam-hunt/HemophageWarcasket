@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN:
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] tore off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] ripped off [RECIPIENT_definite]'s [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] took hold of [RECIPIENT_definite] and tore off [RECIPIENT_possessive] [recipient_part0_label].</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tried to tear off [RECIPIENT_definite]'s [recipient_part0_label], but only wounded it.</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] tore at [RECIPIENT_definite]'s [recipient_part0_label], wounding it.</li>
+    <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] tried to rip off [RECIPIENT_definite]'s [recipient_part0_label], but it held.</li>
+  -->
+  <!-- French builds the part and its owner as Core's combat packs do: [recipient_part0_definite]
+       (the entry supplies it, PlayLogEntryUtility.RulesForDamagedParts) and the owner as a dative,
+       "à [RECIPIENT_definite]" or "lui", since "de [RECIPIENT_definite]" turns "de le" into "de".
+       No line needs a gender split: every participle is conjugated with avoir and no direct
+       object pronoun precedes one. -->
+  <HPWC_Combat_Dismember.rulePack.rulesStrings>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] a arraché [recipient_part0_definite] à [RECIPIENT_definite].</li>
+    <li>r_logentry(recipient_part0_destroyed==True)->[INITIATOR_definite] a arraché net [recipient_part0_definite] à [RECIPIENT_definite].</li>
+    <li>r_logentry(recipient_part0_destroyed==True,p=0.5)->[INITIATOR_definite] a saisi [RECIPIENT_definite] et lui a arraché [recipient_part0_definite].</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] a tenté d'arracher [recipient_part0_definite] à [RECIPIENT_definite], mais n'a fait que l'entailler.</li>
+    <li>r_logentry(recipient_part0_destroyed==False)->[INITIATOR_definite] a empoigné [RECIPIENT_definite] et lui a lacéré [recipient_part0_definite] sans l'arracher.</li>
+    <li>r_logentry(recipient_part0_destroyed==False,p=0.5)->[INITIATOR_definite] a voulu arracher [recipient_part0_definite] à [RECIPIENT_definite], mais rien n'a cédé.</li>
+  </HPWC_Combat_Dismember.rulePack.rulesStrings>
+
+</LanguageData>

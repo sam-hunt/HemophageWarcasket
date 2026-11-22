@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>poussée d'hémogène</HPWC_HemogenRush.label>
+  <!-- EN: Run the warcasket's injectors, which will spend the pilot's hemogen quickly. The pilot will move faster and hit harder for as long as the injectors are running. Toggle again to stop the injectors. They will also stop when the pilot runs out of hemogen. -->
+  <HPWC_HemogenRush.description>Active les injecteurs du warcasket, qui dépensent rapidement l'hémogène du pilote. Tant qu'ils fonctionnent, le pilote se déplace plus vite et frappe plus fort. Une nouvelle activation les arrête. Ils s'arrêtent aussi quand le pilote n'a plus d'hémogène.</HPWC_HemogenRush.description>
+  <!-- EN: Using ability: {0} -->
+  <HPWC_HemogenRush.jobReportString>utilise la capacité : {0}.</HPWC_HemogenRush.jobReportString>
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.verbProperties.label>poussée d'hémogène</HPWC_HemogenRush.verbProperties.label>
+
+  <!-- EN: dismember -->
+  <HPWC_Dismember.label>démembrement</HPWC_Dismember.label>
+  <!-- EN: Tear an arm or a leg off a nearby target, whatever armor it wears. A limb too sturdy to tear off will only be wounded, and a target with no limbs left will lose its head instead. If the pilot is hemogenic and the target is human, the pilot will then drain hemogen from the wound, and the target will lose blood. -->
+  <HPWC_Dismember.description>Arrache un bras ou une jambe à une cible proche, quelle que soit son armure. Un membre trop robuste pour être arraché est seulement blessé, et une cible qui n'a plus aucun membre se fait arracher la tête à la place. Si le pilote est hémogénique et que la cible est humaine, il extrait ensuite de l'hémogène de la plaie, et la cible perd du sang.</HPWC_Dismember.description>
+  <!-- EN: Tearing off a limb. -->
+  <HPWC_Dismember.jobReportString>arrache un membre.</HPWC_Dismember.jobReportString>
+  <!-- EN: dismember -->
+  <HPWC_Dismember.verbProperties.label>démembrement</HPWC_Dismember.verbProperties.label>
+
+</LanguageData>

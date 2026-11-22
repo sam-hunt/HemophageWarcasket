@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Dismember (Source/1.6/Abilities/Dismember/). {0} is the target -->
+  <!-- EN: {0} has no limbs to tear off. -->
+  <HPWC_DismemberNoLimbs>{0} n'a aucun membre à arracher.</HPWC_DismemberNoLimbs>
+  <!-- EN: {0} is not hostile. -->
+  <HPWC_DismemberNotHostile>{0} n'est pas hostile.</HPWC_DismemberNotHostile>
+  <!-- Beside the cursor over a target, where the game's own "Will kill" goes: the strike would tear off none of the limbs it could take hold of, or only some of them -->
+  <!-- EN: Will only wound -->
+  <HPWC_DismemberWillWound>Ne fera que blesser</HPWC_DismemberWillWound>
+  <!-- EN: May only wound -->
+  <HPWC_DismemberMayWound>Pourrait ne faire que blesser</HPWC_DismemberMayWound>
+  <!-- The dialog before an order that would kill a target that is not hostile, where the game asks "Bloodfeeding on {PAWN_nameDef} will kill {PAWN_objective}." before a lethal bite: the strike would tear the head off a target with no limbs left, or the drain after it would bleed the target to death. PAWN is the target -->
+  <!-- EN: The strike will tear off {PAWN_nameDef}'s head, which will kill {PAWN_objective}.\n\nAre you sure? -->
+  <HPWC_DismemberConfirmKill>Le coup arrachera la tête à {PAWN_nameDef}, ce qui sera fatal pour {PAWN_objective}.\n\nÊtes-vous sûr ?</HPWC_DismemberConfirmKill>
+  <!-- EN: Draining hemogen from {PAWN_nameDef} after the strike will kill {PAWN_objective}.\n\nAre you sure? -->
+  <HPWC_DismemberConfirmDrainKill>Extraire de l'hémogène de {PAWN_nameDef} après le coup sera fatal pour {PAWN_objective}.\n\nÊtes-vous sûr ?</HPWC_DismemberConfirmDrainKill>
+  <!-- The last line of the ability's tooltip. {0} is a count of the reload item, such as "1 component" -->
+  <!-- EN: Each strike will burn out one of the servos in the shoulders, which can be replaced by reloading with {0}. -->
+  <HPWC_DismemberReload>Chaque coup grille l'un des servomoteurs des épaulières, qu'on peut remplacer en les rechargeant avec {0}.</HPWC_DismemberReload>
+
+  <!-- Mod settings (Source/1.6/Settings/) -->
+  <!-- EN: Hemophage Warcasket -->
+  <HPWC_SettingsCategory>Warcasket hémophage</HPWC_SettingsCategory>
+  <!-- Shown in place of the ability and helmet sections (HemophageWarcasketSettings.TryGetDefs) -->
+  <!-- EN: The ability and helmet settings are unavailable. Another mod has changed the hemophage warcasket, so they will keep their built-in values. -->
+  <HPWC_SettingsUnavailable>Les paramètres des capacités et du casque sont indisponibles, car un autre mod a modifié le warcasket hémophage. Ils conserveront donc leurs valeurs d'origine.</HPWC_SettingsUnavailable>
+
+  <!-- After a slider's value while it is unset -->
+  <!-- EN:  (default) -->
+  <HPWC_DefaultSuffix> (par défaut)</HPWC_DefaultSuffix>
+  <!-- A checkbox's default in its tooltip -->
+  <!-- EN: enabled -->
+  <HPWC_Enabled>activé</HPWC_Enabled>
+  <!-- EN: disabled -->
+  <HPWC_Disabled>désactivé</HPWC_Disabled>
+  <!-- A slider's value at its off end -->
+  <!-- EN: Off -->
+  <HPWC_Off>Désactivé</HPWC_Off>
+
+  <!-- Hemogen rush section (Source/1.6/Settings/Settings_Rush.cs). {0} in every tooltip is the default -->
+  <!-- EN: Hemogen rush -->
+  <HPWC_SectionRush>Poussée d'hémogène</HPWC_SectionRush>
+
+  <!-- EN: Hemogen cost to start -->
+  <HPWC_RushStartCost>Coût de démarrage en hémogène</HPWC_RushStartCost>
+  <!-- EN: The amount of hemogen the pilot spends each time a rush starts. Default: {0}. -->
+  <HPWC_RushStartCostDesc>La quantité d'hémogène que le pilote dépense chaque fois qu'une poussée démarre. Par défaut : {0}.</HPWC_RushStartCostDesc>
+
+  <!-- EN: Hemogen per second -->
+  <HPWC_RushDrain>Hémogène par seconde</HPWC_RushDrain>
+  <!-- EN: The amount of hemogen the pilot spends each second while the rush is running. Default: {0}. -->
+  <HPWC_RushDrainDesc>La quantité d'hémogène que le pilote dépense chaque seconde pendant la poussée. Par défaut : {0}.</HPWC_RushDrainDesc>
+
+  <!-- EN: Hemogen reserve -->
+  <HPWC_RushReserve>Réserve d'hémogène</HPWC_RushReserve>
+  <!-- EN: The hemogen level at which the rush will stop on its own. At zero, it will run until the pilot has no hemogen left and develops a hemogen craving. Default: {0}. -->
+  <HPWC_RushReserveDesc>Le niveau d'hémogène auquel la poussée s'arrête d'elle-même. À zéro, elle continue jusqu'à épuisement de l'hémogène du pilote, qui développe alors un besoin d'hémogène. Par défaut : {0}.</HPWC_RushReserveDesc>
+
+  <!-- EN: Move speed -->
+  <HPWC_RushMoveSpeed>Vitesse de déplacement</HPWC_RushMoveSpeed>
+  <!-- EN: The pilot's move speed during a hemogen rush, compared to normal. Default: {0}. -->
+  <HPWC_RushMoveSpeedDesc>La vitesse de déplacement du pilote pendant une poussée d'hémogène, par rapport à la normale. Par défaut : {0}.</HPWC_RushMoveSpeedDesc>
+
+  <!-- EN: Melee damage -->
+  <HPWC_RushMeleeDamage>Dégâts de mêlée</HPWC_RushMeleeDamage>
+  <!-- EN: How much damage the pilot's melee attacks will do during a hemogen rush, compared to normal. Default: {0}. -->
+  <HPWC_RushMeleeDamageDesc>Les dégâts qu'infligent les attaques de mêlée du pilote pendant une poussée d'hémogène, par rapport à la normale. Par défaut : {0}.</HPWC_RushMeleeDamageDesc>
+
+  <!-- EN: Pulsing glow -->
+  <HPWC_RushGlowPulse>Lueur palpitante</HPWC_RushGlowPulse>
+  <!-- EN: When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}. -->
+  <HPWC_RushGlowPulseDesc>Si cette option est activée, la lueur du warcasket palpite au rythme d'un cœur pendant une poussée d'hémogène. Si elle est désactivée, la lueur reste à pleine intensité. Par défaut : {0}.</HPWC_RushGlowPulseDesc>
+
+  <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages, {5} the cost to start. One key per combination of a start cost and a drain -->
+  <!-- EN: A hemogen rush costs {5} hemogen to start, then spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
+  <HPWC_RushSummaryStartCost>Une poussée d'hémogène coûte {5} hémogène au démarrage, puis dépense {0} hémogène par seconde et s'arrête à {1}. Une poussée lancée à 100 hémogène dure donc {2}. Le pilote se déplace à {3} de sa vitesse normale et inflige {4} de ses dégâts de mêlée normaux.</HPWC_RushSummaryStartCost>
+  <!-- EN: A hemogen rush spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
+  <HPWC_RushSummary>Une poussée d'hémogène dépense {0} hémogène par seconde et s'arrête à {1}. Une poussée lancée à 100 hémogène dure donc {2}. Le pilote se déplace à {3} de sa vitesse normale et inflige {4} de ses dégâts de mêlée normaux.</HPWC_RushSummary>
+  <!-- {0} and {1} are the percentages, {2} the cost to start -->
+  <!-- EN: A hemogen rush costs {2} hemogen to start and spends none after that, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage. -->
+  <HPWC_RushSummaryStartCostNoDrain>Une poussée d'hémogène coûte {2} hémogène au démarrage, puis plus rien. Elle dure donc jusqu'à ce que le pilote l'arrête. Le pilote se déplace à {0} de sa vitesse normale et inflige {1} de ses dégâts de mêlée normaux.</HPWC_RushSummaryStartCostNoDrain>
+  <!-- EN: A hemogen rush spends no hemogen, so it runs until the pilot stops it. The pilot moves at {0} speed and does {1} melee damage. -->
+  <HPWC_RushSummaryFree>Une poussée d'hémogène ne dépense pas d'hémogène. Elle dure donc jusqu'à ce que le pilote l'arrête. Le pilote se déplace à {0} de sa vitesse normale et inflige {1} de ses dégâts de mêlée normaux.</HPWC_RushSummaryFree>
+
+  <!-- Dismember section (Source/1.6/Settings/Settings_Dismember.cs) -->
+  <!-- EN: Dismember -->
+  <HPWC_SectionDismember>Démembrement</HPWC_SectionDismember>
+
+  <!-- EN: Strike capacity -->
+  <HPWC_DismemberStrikes>Capacité en coups</HPWC_DismemberStrikes>
+  <!-- EN: The number of strikes the shoulders hold when full. Default: {0}. -->
+  <HPWC_DismemberStrikesDesc>Le nombre de coups que contiennent les épaulières à pleine charge. Par défaut : {0}.</HPWC_DismemberStrikesDesc>
+
+  <!-- {1} is the reload item in the plural, such as "components" -->
+  <!-- EN: Reload cost per strike -->
+  <HPWC_DismemberReloadCost>Coût de rechargement par coup</HPWC_DismemberReloadCost>
+  <!-- EN: The number of {1} it takes to reload one strike. Default: {0}. -->
+  <HPWC_DismemberReloadCostDesc>Le nombre de {1} nécessaires pour recharger un coup. Par défaut : {0}.</HPWC_DismemberReloadCostDesc>
+
+  <!-- EN: Casting time -->
+  <HPWC_DismemberWindup>Temps de réalisation</HPWC_DismemberWindup>
+  <!-- EN: How long the pilot holds the target still before tearing off an arm or a leg. Default: {0}. -->
+  <HPWC_DismemberWindupDesc>Le temps pendant lequel le pilote maintient la cible immobile avant de lui arracher un bras ou une jambe. Par défaut : {0}.</HPWC_DismemberWindupDesc>
+
+  <!-- EN: Cooldown -->
+  <HPWC_DismemberCooldown>Temps de recharge</HPWC_DismemberCooldown>
+  <!-- EN: The time the pilot must wait between strikes. Default: {0}. -->
+  <HPWC_DismemberCooldownDesc>Le temps que le pilote doit attendre entre deux coups. Par défaut : {0}.</HPWC_DismemberCooldownDesc>
+
+  <!-- EN: Strike damage -->
+  <HPWC_DismemberDamage>Dégâts du coup</HPWC_DismemberDamage>
+  <!-- EN: The damage a strike does to the limb it takes hold of, before the pilot's melee damage factor. A limb with more health than that will be wounded instead of torn off. Default: {0}. -->
+  <HPWC_DismemberDamageDesc>Les dégâts qu'un coup inflige au membre saisi, avant application du facteur de dégâts de mêlée du pilote. Un membre dont les points de vie dépassent cette valeur est blessé au lieu d'être arraché. Par défaut : {0}.</HPWC_DismemberDamageDesc>
+
+  <!-- EN: Drain time -->
+  <HPWC_DismemberDrainTime>Durée d'extraction</HPWC_DismemberDrainTime>
+  <!-- EN: How long a hemogenic pilot spends draining hemogen from a human target. A full drain will give the same amount of hemogen however long it takes. Default: {0}. -->
+  <HPWC_DismemberDrainTimeDesc>Le temps que met un pilote hémogénique à extraire de l'hémogène d'une cible humaine. Une extraction complète donne la même quantité d'hémogène, quelle que soit sa durée. Par défaut : {0}.</HPWC_DismemberDrainTimeDesc>
+
+  <!-- EN: Base hemogen gain -->
+  <HPWC_DismemberGain>Gain d'hémogène de base</HPWC_DismemberGain>
+  <!-- EN: The amount of hemogen the pilot gains from a full drain, which is affected by the target's body size. At zero, the pilot will not drain the target. Default: {0}. -->
+  <HPWC_DismemberGainDesc>La quantité d'hémogène que rapporte au pilote une extraction complète. Elle dépend de la taille corporelle de la cible. À zéro, le pilote n'extrait pas d'hémogène de la cible. Par défaut : {0}.</HPWC_DismemberGainDesc>
+
+  <!-- EN: Blood loss -->
+  <HPWC_DismemberBloodLoss>Perte de sang</HPWC_DismemberBloodLoss>
+  <!-- EN: The blood loss a full drain causes in the target, on top of the bleeding from the lost limb. Default: {0}. -->
+  <HPWC_DismemberBloodLossDesc>La perte de sang qu'une extraction complète provoque chez la cible, en plus du saignement dû au membre perdu. Par défaut : {0}.</HPWC_DismemberBloodLossDesc>
+
+  <!-- EN: Blood spatter -->
+  <HPWC_DismemberSpatter>Éclaboussures de sang</HPWC_DismemberSpatter>
+  <!-- EN: The number of blood spatters a strike will leave on the ground around the target. Default: {0}. -->
+  <HPWC_DismemberSpatterDesc>Le nombre d'éclaboussures de sang qu'un coup laisse au sol autour de la cible. Par défaut : {0}.</HPWC_DismemberSpatterDesc>
+
+  <!-- EN: Allow non-hostile targets -->
+  <HPWC_DismemberNonHostile>Autoriser les cibles non hostiles</HPWC_DismemberNonHostile>
+  <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
+  <HPWC_DismemberNonHostileDesc>Si cette option est activée, le pilote peut démembrer des cibles qui ne sont pas hostiles, mais cela met leur faction en colère. Si elle est désactivée, seules les cibles hostiles peuvent être démembrées. Par défaut : {0}.</HPWC_DismemberNonHostileDesc>
+
+  <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" and {6} a count of the reload item such as "1 component". One key per combination of a cooldown and a drain -->
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->
+  <HPWC_DismemberSummary>Les épaulières contiennent {5}, et chacun se recharge avec {6}. Un coup se lance en {0}. Un pilote hémogénique extrait ensuite de l'hémogène d'une cible humaine pendant {2}, ce qui lui rapporte {3} hémogène et cause chez la cible {4} de perte de sang. Le temps de recharge après un coup est de {1}.</HPWC_DismemberSummary>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The next strike can follow at once. -->
+  <HPWC_DismemberSummaryNoCooldown>Les épaulières contiennent {5}, et chacun se recharge avec {6}. Un coup se lance en {0}. Un pilote hémogénique extrait ensuite de l'hémogène d'une cible humaine pendant {2}, ce qui lui rapporte {3} hémogène et cause chez la cible {4} de perte de sang. Le coup suivant peut partir aussitôt.</HPWC_DismemberSummaryNoCooldown>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The cooldown after a strike is {1}. -->
+  <HPWC_DismemberSummaryNoDrain>Les épaulières contiennent {5}, et chacun se recharge avec {6}. Un coup se lance en {0}, et le pilote n'extrait pas d'hémogène de la cible. Le temps de recharge après un coup est de {1}.</HPWC_DismemberSummaryNoDrain>
+  <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and the pilot does not drain the target. The next strike can follow at once. -->
+  <HPWC_DismemberSummaryNoCooldownNoDrain>Les épaulières contiennent {5}, et chacun se recharge avec {6}. Un coup se lance en {0}, et le pilote n'extrait pas d'hémogène de la cible. Le coup suivant peut partir aussitôt.</HPWC_DismemberSummaryNoCooldownNoDrain>
+
+  <!-- Helmet section (Source/1.6/Settings/Settings_Helmet.cs). {0} in every tooltip is the default -->
+  <!-- EN: Helmet -->
+  <HPWC_SectionHelmet>Casque</HPWC_SectionHelmet>
+  <!-- EN: The sealed visor of the hemophage warcasket helmet keeps sunlight off a pilot who is sensitive to it and steadies a pilot who is afraid of fire. -->
+  <HPWC_SectionHelmetDesc>La visière étanche du casque de warcasket hémophage protège du soleil un pilote qui y est sensible, et rassure un pilote qui a peur du feu.</HPWC_SectionHelmetDesc>
+  <!-- EN: Sunlight protection -->
+  <HPWC_HelmetSunlight>Protection contre le soleil</HPWC_HelmetSunlight>
+  <!-- EN: When enabled, the helmet will protect a pilot with a UV sensitivity gene from the effects of sunlight. When disabled, sunlight will slow such a pilot and lower their mood as usual. Default: {0}. -->
+  <HPWC_HelmetSunlightDesc>Si cette option est activée, le casque protège des effets du soleil un pilote porteur d'un gène de sensibilité aux UV. Si elle est désactivée, le soleil ralentit normalement ce pilote et fait baisser son humeur. Par défaut : {0}.</HPWC_HelmetSunlightDesc>
+  <!-- EN: Fire terror chance -->
+  <HPWC_HelmetPyrophobia>Chance de panique face au feu</HPWC_HelmetPyrophobia>
+  <!-- EN: How often a pilot with the pyrophobia gene will flee in terror from a nearby fire, compared to normal. At 0%, the pilot will never flee from fire. Default: {0}. -->
+  <HPWC_HelmetPyrophobiaDesc>La fréquence à laquelle un pilote porteur du gène de pyrophobie fuit de terreur un feu proche, par rapport à la normale. À 0%, le pilote ne fuit jamais le feu. Par défaut : {0}.</HPWC_HelmetPyrophobiaDesc>
+
+  <!-- Work section (Source/1.6/Settings/Settings_Work.cs, WorkSetting.cs). The boxes are the game's own work types -->
+  <!-- EN: Enabled work types -->
+  <HPWC_SectionWork>Tâches activées</HPWC_SectionWork>
+  <!-- EN: The work types a pilot of the hemophage warcasket can do, out of those that warcasket pilots normally cannot. Work that another mod enables for all warcasket pilots will stay enabled. -->
+  <HPWC_SectionWorkDesc>Les tâches que peut effectuer le pilote d'un warcasket hémophage, parmi celles que les pilotes de warcasket ne peuvent normalement pas faire. Les tâches qu'un autre mod active pour tous les pilotes de warcasket restent activées.</HPWC_SectionWorkDesc>
+  <!-- {0} is HPWC_Enabled or HPWC_Disabled -->
+  <!-- EN: When enabled, pilots of the hemophage warcasket can do this work, though you will need to assign it in the work tab. When disabled, they cannot. Default: {0}. -->
+  <HPWC_WorkDesc>Si cette option est activée, les pilotes de warcasket hémophage peuvent effectuer cette tâche, mais vous devrez l'assigner dans l'onglet « Travail ». Si elle est désactivée, ils ne le peuvent pas. Par défaut : {0}.</HPWC_WorkDesc>
+  <!-- {0} is a list of work types as the work tab names them -->
+  <!-- EN: The pilot can do {0} work, as well as the work that all warcasket pilots can do. -->
+  <HPWC_WorkSummary>Le pilote peut travailler comme {0}, en plus des tâches permises à tous les pilotes de warcasket.</HPWC_WorkSummary>
+  <!-- EN: The pilot can only do the work that all warcasket pilots can do. -->
+  <HPWC_WorkSummaryNone>Le pilote peut seulement effectuer les tâches permises à tous les pilotes de warcasket.</HPWC_WorkSummaryNone>
+  <!-- EN: No work is blocked for warcasket pilots, so there is nothing to enable here. -->
+  <HPWC_WorkSummaryNothingBlocked>Aucune tâche n'est interdite aux pilotes de warcasket. Il n'y a donc rien à activer ici.</HPWC_WorkSummaryNothingBlocked>
+
+  <!-- Quest section (Source/1.6/Settings/Settings_QuestPilot.cs, ResearchGateSetting.cs): the sanguophages of Biotech's sanguophage meeting quest and of its crashed sanguophage shuttle quest, and that shuttle's thralls. {0} in every tooltip is the default -->
+  <!-- EN: Sanguophages from quests -->
+  <HPWC_SectionQuestPilot>Sanguophages des quêtes</HPWC_SectionQuestPilot>
+  <!-- EN: Sanguophages who come to your colony during a quest can arrive already entombed in a hemophage warcasket. One who joins you will stay in it. The thralls of a crashed shuttle can arrive in lesser warcaskets. -->
+  <HPWC_SectionQuestPilotDesc>Les sanguophages qui viennent dans votre colonie au cours d'une quête peuvent arriver déjà soudés dans un warcasket hémophage. Celui qui vous rejoint y reste. Les serviteurs d'une navette écrasée peuvent arriver dans des warcaskets plus modestes.</HPWC_SectionQuestPilotDesc>
+  <!-- EN: Required research -->
+  <HPWC_QuestResearch>Recherche requise</HPWC_QuestResearch>
+  <!-- EN: The research your colony must finish before any of these sanguophages can arrive in a hemophage warcasket. Default: {0}. -->
+  <HPWC_QuestResearchDesc>La recherche que votre colonie doit terminer avant que l'un de ces sanguophages puisse arriver dans un warcasket hémophage. Par défaut : {0}.</HPWC_QuestResearchDesc>
+  <!-- The first stop of the slider, before the research projects' own names -->
+  <!-- EN: None -->
+  <HPWC_QuestResearchNone>Aucune</HPWC_QuestResearchNone>
+  <!-- The two quests' subheadings, each over its own rows, and their tooltips -->
+  <!-- EN: Sanguophage meeting -->
+  <HPWC_QuestMeeting>Réunion de sanguophages</HPWC_QuestMeeting>
+  <!-- EN: A quest where a sanguophage leader asks you to host a meeting. If you accept, the leader and the other guests will arrive at your colony and spend several hours in discussion. -->
+  <HPWC_QuestMeetingDesc>Une quête où un chef sanguophage vous demande d'héberger une réunion. Si vous acceptez, le chef et les autres invités arrivent dans votre colonie et passent plusieurs heures à discuter.</HPWC_QuestMeetingDesc>
+  <!-- EN: Leader warcasket chance -->
+  <HPWC_QuestMeetingLeader>Chance de warcasket pour le chef</HPWC_QuestMeetingLeader>
+  <!-- EN: The chance that the leader of a sanguophage meeting will arrive in a hemophage warcasket. Default: {0}. -->
+  <HPWC_QuestMeetingLeaderDesc>La probabilité que le chef d'une réunion de sanguophages arrive dans un warcasket hémophage. Par défaut : {0}.</HPWC_QuestMeetingLeaderDesc>
+  <!-- EN: Guest warcasket chance -->
+  <HPWC_QuestMeetingGuest>Chance de warcasket pour les invités</HPWC_QuestMeetingGuest>
+  <!-- EN: The chance that each of the other sanguophages at a meeting will arrive in a hemophage warcasket as well. Default: {0}. -->
+  <HPWC_QuestMeetingGuestDesc>La probabilité que chacun des autres sanguophages de la réunion arrive lui aussi dans un warcasket hémophage. Par défaut : {0}.</HPWC_QuestMeetingGuestDesc>
+  <!-- EN: Crashed shuttle -->
+  <HPWC_QuestShip>Navette écrasée</HPWC_QuestShip>
+  <!-- EN: A quest where you can draw a hostile shuttle down to a crash near your colony. Its sanguophage master and thralls will leave the wreck and fight you. -->
+  <HPWC_QuestShipDesc>Une quête où vous pouvez faire s'écraser une navette hostile près de votre colonie. Son maître sanguophage et ses serviteurs sortent de l'épave et vous combattent.</HPWC_QuestShipDesc>
+  <!-- EN: Master warcasket chance -->
+  <HPWC_QuestShipMaster>Chance de warcasket pour le maître</HPWC_QuestShipMaster>
+  <!-- EN: The chance that the sanguophage master of a crashed shuttle will be entombed in a hemophage warcasket, which will make the master much harder to down and capture. Default: {0}. -->
+  <HPWC_QuestShipMasterDesc>La probabilité que le maître sanguophage d'une navette écrasée soit soudé dans un warcasket hémophage, ce qui le rend bien plus difficile à mettre à terre et à capturer. Par défaut : {0}.</HPWC_QuestShipMasterDesc>
+  <!-- EN: Master warcasket points -->
+  <HPWC_QuestShipMasterPoints>Points requis pour le warcasket du maître</HPWC_QuestShipMasterPoints>
+  <!-- EN: The threat points a crashed shuttle quest must be worth before its sanguophage master can arrive in a hemophage warcasket. The storyteller raises threat points with your colonist count and colony wealth. Default: {0}. -->
+  <HPWC_QuestShipMasterPointsDesc>Les points de menace qu'une quête de navette écrasée doit atteindre pour que son maître sanguophage puisse arriver dans un warcasket hémophage. Le narrateur augmente les points de menace selon le nombre de vos colons et la richesse de votre colonie. Par défaut : {0}.</HPWC_QuestShipMasterPointsDesc>
+  <!-- The slider's value at 0, where there is no floor -->
+  <!-- EN: None -->
+  <HPWC_QuestShipMasterPointsNone>Aucun</HPWC_QuestShipMasterPointsNone>
+  <!-- 0 is shown as HPWC_Off. The warcaskets are VFE Pirates' own basic sets, each needing its own research -->
+  <!-- EN: Thrall warcaskets -->
+  <HPWC_QuestThrallShare>Warcaskets des serviteurs</HPWC_QuestThrallShare>
+  <!-- EN: How strong a crashed shuttle quest should be compared to a raid on your colony. If the quest is weaker, some of the master's thralls will arrive in lesser warcaskets you have researched. Default: {0}. -->
+  <HPWC_QuestThrallShareDesc>La force qu'une quête de navette écrasée devrait avoir par rapport à un raid sur votre colonie. Si la quête est plus faible, certains serviteurs du maître arrivent dans des warcaskets plus modestes que vous avez recherchés. Par défaut : {0}.</HPWC_QuestThrallShareDesc>
+
+</LanguageData>

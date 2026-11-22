@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- EN: hemogen rush -->
+  <HPWC_HemogenRush.label>poussée d'hémogène</HPWC_HemogenRush.label>
+  <!-- EN: This person's warcasket is spending their hemogen quickly, allowing them to move faster and hit harder. -->
+  <HPWC_HemogenRush.description>Le warcasket de cette personne dépense rapidement son hémogène, ce qui lui permet de se déplacer plus vite et de frapper plus fort.</HPWC_HemogenRush.description>
+
+</LanguageData>
