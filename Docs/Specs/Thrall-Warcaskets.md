@@ -1,6 +1,12 @@
 # SPEC: Thralls in lesser warcaskets
 
-Status: PROPOSED, not built. A companion to the quest pilots (`Source/1.6/QuestPilot/`) and to
+Status: BUILT, with the changes below; the code and the armor def's header paragraph on the
+crashed shuttle's thralls supersede this file. Against section 3: the share is on by default
+at 25% and not off; from 2500 threat points one thrall is dressed whatever the share leaves;
+the sets go to the two groups in turn, reinforcements first, and not to the shuttle's thralls
+first; the Marine set is priced at 250; and every dressed pawn of either quest, the
+sanguophages included, has its weapon exchanged for VFEP's warcasket autorifle or broadsword,
+which section 4 had left. Section 5's decisions are settled as built. A companion to the quest pilots (`Source/1.6/QuestPilot/`) and to
 `Shuttle-Master-Points-Floor.md`, whose section 2 has the crashed shuttle quest's curves and
 section 3 the price of a suited pawn; neither is restated here. Build the floor first: this spec
 reuses its `points` plumbing and its price for the master. Vanilla facts were read on RimWorld

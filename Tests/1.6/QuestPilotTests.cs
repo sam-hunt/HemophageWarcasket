@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -16,9 +17,10 @@ namespace HemophageWarcasket.Tests;
 // def wiring, checked off the XML since the WarcasketDef type pulls in VFEP, which the test
 // output never carries: the armor declares the extension once, with chances in range and the
 // floor within 0 to 10000, names the set's other two pieces, each a def of this mod, and offers
-// research options that end on the set's own research. Last, the two vanilla methods the
-// patches bind by name, on the game's 1.6 assembly: a rename there would otherwise only show as
-// a warning in a player's log.
+// research options that end on the set's own research, the two weapons it hands a dressed pawn,
+// and the thrall budget's numbers in range with its tiers listed cheapest first, each one VFEP
+// set by name. Last, the two vanilla methods the patches bind by name, on the game's 1.6
+// assembly: a rename there would otherwise only show as a warning in a player's log.
 public class QuestPilotTests
 {
     private const string DefsFolder = "1.6/Defs/ThingDefs_Misc";
@@ -145,6 +147,94 @@ public class QuestPilotTests
         string[] own = Names(ArmorDef().Element("researchPrerequisites")!);
 
         Assert.Contains(last, own);
+    }
+
+    [Theory]
+    [InlineData("thrallBudgetShare", 0f, 1f)]
+    [InlineData("thrallMinPoints", 0f, 10000f)]
+    public void Armor_ThrallBudgetNumbersAreInRange(string field, float min, float max)
+    {
+        XElement? element = ExtensionEntry().Element(field);
+
+        Assert.NotNull(element);
+        Assert.InRange(float.Parse(element!.Value, CultureInfo.InvariantCulture), min, max);
+    }
+
+    [Fact]
+    public void Armor_ThrallMinDressedIsAWholeNumberFromZero()
+    {
+        XElement? element = ExtensionEntry().Element("thrallMinDressed");
+
+        Assert.NotNull(element);
+        Assert.True(int.TryParse(element!.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int count));
+        Assert.True(count >= 0);
+    }
+
+    [Fact]
+    public void Armor_ShipMasterPriceIsPositive()
+    {
+        XElement? element = ExtensionEntry().Element("shipMasterPrice");
+
+        Assert.NotNull(element);
+        Assert.True(float.Parse(element!.Value, CultureInfo.InvariantCulture) > 0f);
+    }
+
+    [Theory]
+    [InlineData("rangedWeapon")]
+    [InlineData("meleeWeapon")]
+    public void Armor_NamesTheWeaponsItHandsOut(string field)
+    {
+        XElement? element = ExtensionEntry().Element(field);
+
+        Assert.NotNull(element);
+        Assert.NotEmpty(element!.Value.Trim());
+    }
+
+    private static List<XElement> Tiers()
+    {
+        List<XElement> tiers = ExtensionEntry().Element("thrallTiers")!.Elements("li").ToList();
+        Assert.NotEmpty(tiers);
+        return tiers;
+    }
+
+    [Fact]
+    public void ThrallTiers_EachHaveAnArmorAPriceAndTwoOtherPieces_AndNoArmorRepeats()
+    {
+        List<XElement> tiers = Tiers();
+
+        foreach (XElement tier in tiers)
+        {
+            Assert.NotEmpty(((string?)tier.Element("armor"))?.Trim() ?? "");
+            Assert.True(float.Parse(tier.Element("price")!.Value, CultureInfo.InvariantCulture) > 0f);
+            Assert.Equal(2, Names(tier.Element("otherPieces")!).Length);
+        }
+        string[] armors = tiers.Select(t => t.Element("armor")!.Value.Trim()).ToArray();
+        Assert.Equal(armors.Length, armors.Distinct().Count());
+    }
+
+    [Fact]
+    public void ThrallTiers_EachNameOneVfepSet()
+    {
+        foreach (XElement tier in Tiers())
+        {
+            string armor = tier.Element("armor")!.Value.Trim();
+            Assert.StartsWith("VFEP_Warcasket_", armor);
+            string set = armor.Substring("VFEP_Warcasket_".Length);
+            Assert.NotEmpty(set);
+
+            Assert.Equal(
+                new[] { "VFEP_WarcasketShoulders_" + set, "VFEP_WarcasketHelmet_" + set }.OrderBy(n => n),
+                Names(tier.Element("otherPieces")!).OrderBy(n => n));
+        }
+    }
+
+    [Fact]
+    public void ThrallTiers_AreListedCheapestFirst()
+    {
+        float[] prices = Tiers()
+            .Select(t => float.Parse(t.Element("price")!.Value, CultureInfo.InvariantCulture)).ToArray();
+
+        Assert.Equal(prices.OrderBy(p => p), prices);
     }
 
     // Patches/QuestNode_Root_SanguophageShip_RunInt and

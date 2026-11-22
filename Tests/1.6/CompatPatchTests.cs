@@ -28,7 +28,9 @@ namespace HemophageWarcasket.Tests;
 // declares, read off the source so the test needs no game type: the game reports an unknown
 // field as an error at load, which again only that mod's players would see. A drain source on
 // the hemogenic is also held to a floor on its target's hemogen, without which an empty target
-// fills the pilot all the same.
+// fills the pilot all the same. The same holds for a patch that adds fields to the quest
+// pilot's extension (Combat Extended's ammunition names), against QuestPilotExtension.cs, and
+// at least one such patch exists.
 public class CompatPatchTests
 {
     private static readonly string RepoRoot = FindRepoRoot();
@@ -81,7 +83,10 @@ public class CompatPatchTests
     }
 
     private static string[] PublicFields(string sourceFile) =>
-        Regex.Matches(File.ReadAllText(Path.Combine(RepoRoot, "Source/1.6/Abilities/Dismember", sourceFile)),
+        PublicFieldsAt("Source/1.6/Abilities/Dismember/" + sourceFile);
+
+    private static string[] PublicFieldsAt(string repoRelativePath) =>
+        Regex.Matches(File.ReadAllText(Path.Combine(RepoRoot, repoRelativePath)),
                 @"^\s*public\s+[\w<>\[\], ]+?\s+(\w+)\s*(?:=[^;]*)?;", RegexOptions.Multiline)
             .Cast<Match>().Select(m => m.Groups[1].Value).ToArray();
 
@@ -117,6 +122,23 @@ public class CompatPatchTests
                 Assert.True(sourceFields.Contains(field.Name.LocalName), $"DismemberDrainSource has no field {field.Name.LocalName}");
             Assert.Contains((string?)source.Element("target"), targetKinds);
         }
+    }
+
+    // QuestPilotExtension.cs also declares the ThrallTier class, whose fields join the list.
+    [Fact]
+    public void QuestPilotExtensionPatches_NameOnlyDeclaredFields()
+    {
+        const string extensionXPath = "li[@Class=\"HemophageWarcasket.QuestPilotExtension\"]";
+        var fields = PublicFieldsAt("Source/1.6/QuestPilot/QuestPilotExtension.cs");
+        Assert.Contains("rangedWeapon", fields);
+
+        var values = PatchFiles().Select(row => XDocument.Load(Path.Combine(RepoRoot, (string)row[0])))
+            .SelectMany(patch => patch.Descendants().Where(e => e.Element("xpath")?.Value.EndsWith(extensionXPath, StringComparison.Ordinal) == true))
+            .Select(op => op.Element("value")!)
+            .ToList();
+        Assert.NotEmpty(values);
+        foreach (var field in values.Elements())
+            Assert.True(fields.Contains(field.Name.LocalName), $"QuestPilotExtension has no field {field.Name.LocalName}");
     }
 
     [Fact]

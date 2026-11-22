@@ -48,7 +48,8 @@ cost, and the SOS2, VGE and CE patches mirror them; the CE root also carries
 Dismember's CE numbers. The armor's hemogen rush is
 built, with its glow on all three pieces, and so are the pads' Dismember, the helmet's sunlight
 protection and pyrophobia relief, the pilot's own work trait, the sanguophages of Biotech's two
-quests who may arrive in the set, and the settings
+quests who may arrive in the set, the crashed shuttle quest's thralls, some of whom arrive in
+VFEP's two plain sets, and the settings
 window, with a section for each piece's mechanic, one for the pilot's work and one for those
 quests. The descriptions
 and the player-facing pages are first cuts still owed a full review. `TODOs.md` is the ledger.
@@ -95,7 +96,7 @@ failing build back to the agent. **Warnings are build errors** (`TreatWarningsAs
 severities pinned in `.editorconfig`): fix the code, not the severity.
 
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
-Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Five
+Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Six
 files touch no game type, so they run anywhere; `WorkProfileTests`,
 `DismemberTargetTests`, `DismemberDrainTests`, `TunableTests` and `QuestPilotTests` run game code and so need the
 game's real 1.6 runtime DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
@@ -107,7 +108,8 @@ third which blood loss the cursor's drain warning calls serious or fatal, the fo
 settings sliders' arithmetic.
 `CompatPatchTests` resolves every xpath in `1.6/Mods/*/Patches/` and the SOS2 patch against the
 main-tree defs, the only check a gated root gets short of a boot with that mod active, holds
-a patch on Dismember's extension to the fields the C# declares and a drain source on the
+a patch on Dismember's extension or on the armor's quest extension to the fields the C#
+declares and a drain source on the
 hemogenic to a floor on its target's hemogen, and fails on two load roots
 sharing a patch or def path;
 `SetShapeTests` holds each piece's declared graphics to files that exist under `Textures/` (a
@@ -122,8 +124,10 @@ with one warning). `ListMaskTests` holds the two halves of keeping the set off g
 pawns: the mask that hides the parts from VFEP's slot fill, and the parts' absent apparel tags.
 `QuestPilotTests`, the fifth to run game code, holds the exception, the quests' sanguophages:
 each source's own chance, the shuttle master's floor on the quest's threat points, the armor's
-extension to the set's own pieces and research, and the
-two vanilla quest roots the patches bind by name to the game's 1.6 assembly.
+extension to the set's own pieces and research and to whole VFEP sets for the thralls, and the
+two vanilla quest roots the patches bind by name to the game's 1.6 assembly. `ThrallBudgetTests`
+holds how many of the crashed shuttle's thralls a quest dresses and in which set, by its threat
+points, and the order the two groups of thralls are offered them in.
 
 ## Layout
 

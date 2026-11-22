@@ -7,9 +7,10 @@ namespace HemophageWarcasket;
 // wears the set, three sliders stored and shown in percent and written onto the chances of the
 // armor def's QuestPilotExtension, the shuttle master's threat-point floor, stored and shown in
 // threat points on a banded slider with 0 shown as off and written onto shipMasterMinPoints,
-// and the research the player must have finished first, written onto its requiredResearch.
-// QuestPilot reads all five as a quest is generated, so a write reaches the next quest and no
-// pawn already made.
+// the research the player must have finished first, written onto its requiredResearch, and the
+// share of the crashed shuttle quest's threat points that dresses its thralls, stored and shown
+// in percent and written onto thrallBudgetShare. QuestPilot reads all six as a quest is
+// generated, so a write reaches the next quest and no pawn already made.
 //
 // The section needs the armor's extension alone, found afresh by every load and apply since a
 // play-data reload replaces it, and stands while the abilities' defs are missing; without the
@@ -33,9 +34,13 @@ public partial class HemophageWarcasketSettings
         StepBands = [(3000f, 250f), (5000f, 500f), (10000f, 1000f)],
     };
     public readonly ResearchGateSetting questResearch = new("QuestResearch");
+    public readonly Tunable questThrallShare = new("QuestThrallShare", 0f, 100f, 5f, OffOrPercent);
 
     private static string OffOrWhole(float v) =>
         v <= 0f ? "HPWC_Off".Translate().ToString() : Whole(v);
+
+    private static string OffOrPercent(float v) =>
+        v <= 0f ? "HPWC_Off".Translate().ToString() : Percent(v);
 
     private bool questPilotLoaded;
 
@@ -46,6 +51,7 @@ public partial class HemophageWarcasketSettings
         questShipMaster.ExposeData();
         questShipMasterPoints.ExposeData();
         questResearch.ExposeData();
+        questThrallShare.ExposeData();
     }
 
     private void LoadQuestPilotDefaults()
@@ -59,6 +65,7 @@ public partial class HemophageWarcasketSettings
         questShipMaster.DefaultValue = extension.shipMasterChance * PercentScale;
         questShipMasterPoints.DefaultValue = extension.shipMasterMinPoints;
         questResearch.LoadDefaults(extension.requiredResearch, extension.researchOptions);
+        questThrallShare.DefaultValue = extension.thrallBudgetShare * PercentScale;
     }
 
     private void ApplyQuestPilotToDefs()
@@ -71,6 +78,7 @@ public partial class HemophageWarcasketSettings
         extension.shipMasterChance = questShipMaster.Value / PercentScale;
         extension.shipMasterMinPoints = questShipMasterPoints.Value;
         extension.requiredResearch = questResearch.Value;
+        extension.thrallBudgetShare = questThrallShare.Value / PercentScale;
     }
 
     private void ResetQuestPilotSettings()
@@ -80,6 +88,7 @@ public partial class HemophageWarcasketSettings
         questShipMaster.Reset();
         questShipMasterPoints.Reset();
         questResearch.Reset();
+        questThrallShare.Reset();
     }
 
     private void DrawQuestPilotSection(Listing_Standard listing)
@@ -93,5 +102,6 @@ public partial class HemophageWarcasketSettings
         questShipMaster.DoRow(listing);
         questShipMasterPoints.DoRow(listing);
         questResearch.DoRow(listing);
+        questThrallShare.DoRow(listing);
     }
 }

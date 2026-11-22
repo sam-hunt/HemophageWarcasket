@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Combat Extended and the gun a dressed quest pawn is handed (CE 16.7.4). The fields are
+  QuestPilotExtension's, their rule in the header of Source/1.6/QuestPilot/WeaponAmmo.cs.
+
+  CE gives VFEP's warcasket autorifle a CompAmmoUser with a 30 round magazine of 20x82mm
+  (its ModPatches for VFEP, Ranged_Warcaskets.xml) and makes every gun empty: a generated
+  pawn's is filled and its spare ammunition put in the inventory by
+  LoadoutPropertiesExtension.GenerateLoadoutFor, from CE's postfix on
+  PawnWeaponGenerator.TryGenerateWeaponFor, for the gun the pawn holds then. QuestPilot
+  exchanges the gun after that, so without these names a dressed pawn's autorifle never fires
+  and CE's AI puts it away for fists (CompReload.StartCastChecks).
+
+  ammoComp and ammoLoadMethod: CompAmmoUser.ResetAmmoCount(AmmoDef newAmmo = null), which fills
+  the magazine with the gun's first ammunition type, the plain round, when called with null.
+  ammoDefProperty and ammoMagazineProperty: CurrentAmmo, an AmmoDef and so a ThingDef, and
+  MagSize, an int, for the spare ammunition.
+  ammoSpareMagazines 3, the low end of what CE has VFEP's own junkers carry
+  (primaryMagazineCount, 3 to 5 for the kinds its PawnKinds_Junkers.xml patches).
+
+  Tests/1.6/CompatPatchTests.cs holds the fields named here to the ones the C# declares.
+-->
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/VFEPirates.WarcasketDef[defName="HPWC_Warcasket_Hemophage"]/modExtensions/li[@Class="HemophageWarcasket.QuestPilotExtension"]</xpath>
+    <value>
+      <ammoComp>CombatExtended.CompAmmoUser</ammoComp>
+      <ammoLoadMethod>ResetAmmoCount</ammoLoadMethod>
+      <ammoDefProperty>CurrentAmmo</ammoDefProperty>
+      <ammoMagazineProperty>MagSize</ammoMagazineProperty>
+      <ammoSpareMagazines>3</ammoSpareMagazines>
+    </value>
+  </Operation>
+</Patch>

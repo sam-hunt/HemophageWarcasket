@@ -19,8 +19,8 @@ Where each mechanic lives:
 - **The settings window** (`Settings/`): a section for each piece's mechanic, one for the work
   and one for the quests' sanguophages.
 - **The mask that keeps the set off generated pawns**: `ListMask.cs`, with its patch.
-- **The quests' sanguophages who arrive in the set**: the rule (`QuestPilot/`) and its two
-  patches.
+- **The quests' sanguophages who arrive in the set, and the crashed shuttle's thralls who
+  arrive in a lesser one**: the rules (`QuestPilot/`) and their two patches.
 
 Several rules below are the family's, written down before the code they govern so
 the next ability or comp lands in the right shape; each names the sibling file to copy from
@@ -87,6 +87,12 @@ rather than restating it.
   generation, past VFEP's slot fill, which the mask answers only for a pawn wearing no part of
   ours. `QuestPilot`'s header has the order of events and what the pawn is left as; the armor
   def's has the numbers. The Overlord repo's `AncientPilot/` is the sibling, for the dead.
+  The shuttle postfix also hands the quest's thralls to `QuestPilot.DressThralls`, which
+  dresses as many as the pure `ThrallBudget` answers in the VFEP sets the extension's
+  `thrallTiers` name. Every dressed pawn goes through the one `Dress`, which also exchanges
+  the weapon; VFEP's sets and weapons are named in the armor def's XML and nowhere in the C#,
+  and Combat Extended's magazine is reached through `WeaponAmmo` by the names its root's patch
+  fills in.
 - **An apparel ability's `pawn` is null until its first gizmo draw** or until something binds
   it, and VEF fires no apparel ability's autocast, for the player or for raiders.
   `Abilities/Dismember/CLAUDE.md` has how a job binds it.

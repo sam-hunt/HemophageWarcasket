@@ -112,6 +112,6 @@ public class SettingsTargetTests
         XElement pilot = armor.Element("modExtensions")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.QuestPilotExtension");
         AssertHas(pilot, "shipMasterChance", "shipMasterMinPoints", "meetingLeaderChance", "meetingGuestChance",
-            "researchOptions");
+            "thrallBudgetShare", "researchOptions");
     }
 }

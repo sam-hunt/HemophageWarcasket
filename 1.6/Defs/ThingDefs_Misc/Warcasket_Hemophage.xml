@@ -92,6 +92,35 @@
       warcasket line in the order its prerequisites chain them, ending on the set's own
       VFEP_SpacerWarcaskets.
     - otherPieces, with this def the set a pilot is dressed in, all of it or none.
+    - rangedWeapon VFEP_WarcasketGun_Autorifle and meleeWeapon
+      VFEP_WarcasketMeleeWeapon_Broadsword, what a dressed pawn's own gun or melee weapon is
+      exchanged for, in either quest and in any set: the two plain weapons of VFEP's line (the
+      autorifle is the one its footsoldiers carry), so a pawn in a warcasket fights as VFEP's
+      own pilots do and the prices below, which are VFEP's for armed pilots, hold. A meeting's
+      leader who joins brings the weapon along.
+
+    The crashed shuttle's thralls, on the same extension: some of them arrive in one of VFEP's
+    two plain sets, which have no module for the AI to leave unused. Source/1.6/QuestPilot/
+    ThrallBudget.cs has the rule and QuestPilot.cs the order they are dressed in.
+    - thrallBudgetShare 0.25, a mod setting: the dressed quest is worth a quarter of a raid at
+      the same threat points, where vanilla's is 32% of one at 2500 points and 12% at 10000.
+      With the master undressed the share alone dresses one thrall from 5000 points, two
+      from 7000, three of the eleven at 8000 and five at 10000, so the master's escort stays
+      a mix and the quest stays a chance to capture the master and never a raid. On by default where the master's own chance is
+      off: dressed thralls leave the master as easy to down as vanilla does.
+    - thrallMinPoints 2500 and thrallMinDressed 1: from 2500 points one thrall is dressed
+      whatever the share leaves, since a flat share shows no warcasket before 5000. At 2500 the
+      quest is then 1000 combat power, 40% of a raid, under the half a raid the master's own
+      floor allows at the same points, and it is where the quest first has reinforcements for
+      the set to arrive with.
+    - shipMasterPrice 450, the estimate above, which the budget pays before any thrall while
+      the master is dressed.
+    - thrallTiers, each set with its price in combat power over a thrall's own 100:
+      VFEP_Warcasket at 200, VFEP's own VFEP_Footsoldier (combatPower 300, this set and a
+      WarcasketBasic weapon) less the thrall, and Marine at 250. VFEP prices no pawn for the
+      Marine set alone (VFEP_Veteran, 400, draws either set and dearer weapons), and it is the
+      same shell with about an eighth more armor, so it is priced a quarter over the basic set
+      and not at the Veteran's 300. Each set needs its own armor's research of the player.
 
     Hemogen rush: the armor's module, a toggled ability granted by the CompAbilitiesApparel
     below. AbilityDefs/HemogenRush.xml and HediffDefs/HemogenRush.xml have it.
@@ -280,6 +309,30 @@
           <li>HPWC_WarcasketShoulders_Hemophage</li>
           <li>HPWC_WarcasketHelmet_Hemophage</li>
         </otherPieces>
+        <rangedWeapon>VFEP_WarcasketGun_Autorifle</rangedWeapon>
+        <meleeWeapon>VFEP_WarcasketMeleeWeapon_Broadsword</meleeWeapon>
+        <thrallBudgetShare>0.25</thrallBudgetShare>
+        <thrallMinPoints>2500</thrallMinPoints>
+        <thrallMinDressed>1</thrallMinDressed>
+        <shipMasterPrice>450</shipMasterPrice>
+        <thrallTiers>
+          <li>
+            <armor>VFEP_Warcasket_Warcasket</armor>
+            <otherPieces>
+              <li>VFEP_WarcasketShoulders_Warcasket</li>
+              <li>VFEP_WarcasketHelmet_Warcasket</li>
+            </otherPieces>
+            <price>200</price>
+          </li>
+          <li>
+            <armor>VFEP_Warcasket_Marine</armor>
+            <otherPieces>
+              <li>VFEP_WarcasketShoulders_Marine</li>
+              <li>VFEP_WarcasketHelmet_Marine</li>
+            </otherPieces>
+            <price>250</price>
+          </li>
+        </thrallTiers>
       </li>
     </modExtensions>
   </VFEPirates.WarcasketDef>

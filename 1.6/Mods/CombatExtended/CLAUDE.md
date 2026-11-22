@@ -26,6 +26,13 @@ Sanguophage/`).
   reads it (`Source/1.6/Abilities/Dismember/MeleeAim.cs`) names nothing of CE's. A renamed class
   or field is one warning in the log and a random limb, so check both names after a CE update.
 
+- **A gun's magazine and a generated pawn's ammunition**: CE makes every gun empty and loads a
+  generated pawn's as its weapon is generated. The quests' dressed pawns are handed a warcasket
+  gun after that, so `Patches/QuestPilot.xml` names CE's ammo comp, the method that fills its
+  magazine and the two properties the spare ammunition is read from; the code that calls them
+  (`Source/1.6/QuestPilot/WeaponAmmo.cs`) names nothing of CE's. A renamed class or member is
+  one warning in the log and a gun that never fires, so check the four names after a CE update.
+
 ## Looked at and left alone
 
 - **The strike's damage path.** CE's armor replaces vanilla's inside the branch a hit that
