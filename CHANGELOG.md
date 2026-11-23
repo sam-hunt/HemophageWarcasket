@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-24
+
 ### Added
 
 - Enemy and allied pilots now start a hemogen rush as they close in to fight, and save hemogen for it
@@ -44,5 +46,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Vanilla Races Expanded - Sanguophage support
 - Machine-assisted translations for nine languages
 
-[Unreleased]: https://github.com/sam-hunt/HemophageWarcasket/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/sam-hunt/HemophageWarcasket/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/sam-hunt/HemophageWarcasket/releases/tag/v1.1.0
 [1.0.0]: https://github.com/sam-hunt/HemophageWarcasket/releases/tag/v1.0.0

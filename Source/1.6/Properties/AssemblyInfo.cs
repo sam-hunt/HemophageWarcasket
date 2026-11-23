@@ -10,8 +10,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © 2026")]
 [assembly: ComVisible(false)]
 [assembly: Guid("3ba538af-71e1-4f31-b4f8-ea7bdfdb6f85")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
 // Mirrors About.xml <modVersion> verbatim, including any SemVer prerelease suffix
 // (1.4.0-rc.1); the two numeric attributes above can't hold one and stay X.Y.Z.0.
-[assembly: AssemblyInformationalVersion("1.0.0")]
+[assembly: AssemblyInformationalVersion("1.1.0")]
