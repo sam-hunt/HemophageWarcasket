@@ -78,6 +78,11 @@
   <!-- EN: When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}. -->
   <HPWC_RushGlowPulseDesc>Quando ativado, o brilho da carcaça de guerra pulsará como um batimento cardíaco durante um ímpeto de hemogênio. Quando desativado, o brilho ficará sempre na intensidade máxima. Padrão: {0}.</HPWC_RushGlowPulseDesc>
 
+  <!-- EN: Enemy pilots use the rush -->
+  <HPWC_RushAiUse>Pilotos inimigos usam o ímpeto</HPWC_RushAiUse>
+  <!-- EN: When enabled, enemy and allied pilots will start a hemogen rush as they close in to fight, and will save hemogen for it. When disabled, only your pilots will use it. Default: {0}. -->
+  <HPWC_RushAiUseDesc>Quando ativado, pilotos inimigos e aliados iniciarão um ímpeto de hemogênio ao avançar para o combate e guardarão hemogênio para isso. Quando desativado, só os seus pilotos usam a habilidade. Padrão: {0}.</HPWC_RushAiUseDesc>
+
   <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages, {5} the cost to start. One key per combination of a start cost and a drain -->
   <!-- EN: A hemogen rush costs {5} hemogen to start, then spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
   <HPWC_RushSummaryStartCost>Um ímpeto de hemogênio custa {5} de hemogênio para começar e depois gasta {0} de hemogênio por segundo até o piloto ficar com {1}, então um ímpeto iniciado com 100 de hemogênio dura {2}. O piloto se move a {3} da velocidade normal e causa {4} do dano corpo a corpo.</HPWC_RushSummaryStartCost>
@@ -143,6 +148,11 @@
   <HPWC_DismemberNonHostile>Permitir alvos não hostis</HPWC_DismemberNonHostile>
   <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
   <HPWC_DismemberNonHostileDesc>Quando ativado, o piloto poderá desmembrar alvos que não são hostis, mas a facção do alvo ficará irritada. Quando desativado, só alvos hostis poderão ser desmembrados. Padrão: {0}.</HPWC_DismemberNonHostileDesc>
+
+  <!-- EN: Enemy pilots dismember -->
+  <HPWC_DismemberAiUse>Pilotos inimigos desmembram</HPWC_DismemberAiUse>
+  <!-- EN: When enabled, enemy and allied pilots will dismember the humans they fight until the strikes in their shoulders run out. When disabled, only your pilots will use it. Default: {0}. -->
+  <HPWC_DismemberAiUseDesc>Quando ativado, pilotos inimigos e aliados desmembrarão os humanos que enfrentarem até acabarem os golpes das ombreiras. Quando desativado, só os seus pilotos usam a habilidade. Padrão: {0}.</HPWC_DismemberAiUseDesc>
 
   <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" (HPWC_CountedStrikes) and {6} a count of the reload item such as "1 component" (HPWC_CountedReloadItem). One key per combination of a cooldown and a drain -->
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->

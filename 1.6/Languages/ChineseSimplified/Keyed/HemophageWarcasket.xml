@@ -78,6 +78,11 @@
   <!-- EN: When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}. -->
   <HPWC_RushGlowPulseDesc>启用后，血原奔涌期间战棺的光芒会像心跳一样脉动。禁用后，光芒会始终保持最大亮度。默认：{0}。</HPWC_RushGlowPulseDesc>
 
+  <!-- EN: Enemy pilots use the rush -->
+  <HPWC_RushAiUse>敌方驾驶员使用血原奔涌</HPWC_RushAiUse>
+  <!-- EN: When enabled, enemy and allied pilots will start a hemogen rush as they close in to fight, and will save hemogen for it. When disabled, only your pilots will use it. Default: {0}. -->
+  <HPWC_RushAiUseDesc>启用后，敌方和盟友的驾驶员会在逼近交战时发动血原奔涌，并为此留存血原质。禁用后，只有你的驾驶员会使用这项能力。默认：{0}。</HPWC_RushAiUseDesc>
+
   <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages, {5} the cost to start. One key per combination of a start cost and a drain -->
   <!-- EN: A hemogen rush costs {5} hemogen to start, then spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
   <HPWC_RushSummaryStartCost>启动血原奔涌需消耗{5}血原质，之后每秒消耗{0}血原质，降至{1}时停止。若从100血原质开始，可以持续{2}。驾驶员的移动速度为平时的{3}，近战伤害为平时的{4}。</HPWC_RushSummaryStartCost>
@@ -143,6 +148,11 @@
   <HPWC_DismemberNonHostile>允许非敌对目标</HPWC_DismemberNonHostile>
   <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
   <HPWC_DismemberNonHostileDesc>启用后，驾驶员可以肢解非敌对目标，但这会激怒对方所属的派系。禁用后，只能肢解敌对目标。默认：{0}。</HPWC_DismemberNonHostileDesc>
+
+  <!-- EN: Enemy pilots dismember -->
+  <HPWC_DismemberAiUse>敌方驾驶员使用肢解</HPWC_DismemberAiUse>
+  <!-- EN: When enabled, enemy and allied pilots will dismember the humans they fight until the strikes in their shoulders run out. When disabled, only your pilots will use it. Default: {0}. -->
+  <HPWC_DismemberAiUseDesc>启用后，敌方和盟友的驾驶员会肢解与之交战的人类，直到护肩中的打击次数耗尽。禁用后，只有你的驾驶员会使用这项能力。默认：{0}。</HPWC_DismemberAiUseDesc>
 
   <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" (HPWC_CountedStrikes) and {6} a count of the reload item such as "1 component" (HPWC_CountedReloadItem). One key per combination of a cooldown and a drain -->
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->

@@ -78,6 +78,11 @@
   <!-- EN: When enabled, the warcasket's glow will pulse like a heartbeat during a hemogen rush. When disabled, the glow will stay at full brightness. Default: {0}. -->
   <HPWC_RushGlowPulseDesc>有効にすると,ヘモゲンラッシュ中にウォーキャスケットの発光が心臓の鼓動のように脈打ちます.無効にすると,発光は最大の明るさのままになります.デフォルト: {0}.</HPWC_RushGlowPulseDesc>
 
+  <!-- EN: Enemy pilots use the rush -->
+  <HPWC_RushAiUse>敵のパイロットがヘモゲンラッシュを使用</HPWC_RushAiUse>
+  <!-- EN: When enabled, enemy and allied pilots will start a hemogen rush as they close in to fight, and will save hemogen for it. When disabled, only your pilots will use it. Default: {0}. -->
+  <HPWC_RushAiUseDesc>有効にすると,敵や友軍のパイロットが,戦闘に向けて接近する際にヘモゲンラッシュを発動し,そのためにヘモゲンを温存するようになります.無効にすると,この能力を使うのはあなたのパイロットだけになります.デフォルト: {0}.</HPWC_RushAiUseDesc>
+
   <!-- {0} hemogen per second, {1} the reserve, {2} how long the rush lasts, {3} and {4} percentages, {5} the cost to start. One key per combination of a start cost and a drain -->
   <!-- EN: A hemogen rush costs {5} hemogen to start, then spends {0} hemogen per second and stops at {1}, so a rush started at 100 hemogen lasts {2}. The pilot moves at {3} speed and does {4} melee damage. -->
   <HPWC_RushSummaryStartCost>ヘモゲンラッシュは開始時に{5}のヘモゲンを消費し,その後は毎秒{0}を消費して,残りが{1}になると止まります.ヘモゲンが100の状態で始めたラッシュは{2}続きます.パイロットの移動速度は{3},近接ダメージは{4}になります.</HPWC_RushSummaryStartCost>
@@ -143,6 +148,11 @@
   <HPWC_DismemberNonHostile>敵対していない対象にも使用</HPWC_DismemberNonHostile>
   <!-- EN: When enabled, the pilot will be able to dismember targets that are not hostile, but this will anger their faction. When disabled, only hostile targets can be dismembered. Default: {0}. -->
   <HPWC_DismemberNonHostileDesc>有効にすると,敵対していない対象にもパイロットが四肢切断を使えるようになりますが,その対象の勢力を怒らせます.無効にすると,四肢切断を使えるのは敵対している対象だけになります.デフォルト: {0}.</HPWC_DismemberNonHostileDesc>
+
+  <!-- EN: Enemy pilots dismember -->
+  <HPWC_DismemberAiUse>敵のパイロットが四肢切断を使用</HPWC_DismemberAiUse>
+  <!-- EN: When enabled, enemy and allied pilots will dismember the humans they fight until the strikes in their shoulders run out. When disabled, only your pilots will use it. Default: {0}. -->
+  <HPWC_DismemberAiUseDesc>有効にすると,敵や友軍のパイロットが,ショルダーアーマーの攻撃回数が尽きるまで,戦う相手の人間に四肢切断を使うようになります.無効にすると,この能力を使うのはあなたのパイロットだけになります.デフォルト: {0}.</HPWC_DismemberAiUseDesc>
 
   <!-- {0} the casting time, {1} the cooldown, then the drain's {2} time, {3} hemogen and {4} blood loss percentage, then {5} a count of strikes such as "2 strikes" (HPWC_CountedStrikes) and {6} a count of the reload item such as "1 component" (HPWC_CountedReloadItem). One key per combination of a cooldown and a drain -->
   <!-- EN: The shoulders hold {5}, and each one is reloaded with {6}. A strike takes {0} to cast, and a hemogenic pilot then drains a human target for {2}, which gives {3} hemogen and causes {4} blood loss. The cooldown after a strike is {1}. -->
