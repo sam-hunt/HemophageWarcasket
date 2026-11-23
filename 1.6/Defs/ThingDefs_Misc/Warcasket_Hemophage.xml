@@ -49,9 +49,8 @@
     No apparel tags, so no pawnkind's gear roll picks the set (PawnApparelGenerator matches a
     kind's apparelTags against them), where the tier's WarcasketVeteran and WarcasketAll
     would put it on VFEP's veteran raiders and hired veterans: a generated pilot is rarely
-    hemogenic, and VEF fires no apparel ability's autocast, so a raider casts neither the
-    rush nor Dismember and the set arrives as a plain spacer warcasket. VFEP's slot fill
-    reads no tags; Source/1.6/Patches/PawnGenerator_GeneratePawn_Patch_Postfix.cs keeps the
+    hemogenic, and without the gene the rush never starts and the set is a plain spacer
+    warcasket whose shoulders tear two limbs. VFEP's slot fill reads no tags; Source/1.6/Patches/PawnGenerator_GeneratePawn_Patch_Postfix.cs keeps the
     set out of it. Save Our Ship 2's EVA tag (1.6/Patches/SOS2Patch.xml) is then the only one
     a part has. The generated pawns that may wear the set are dressed after generation
     (Quest pilots, below).

@@ -47,4 +47,14 @@ public class DismemberExtension : DefModExtension
     // Hediffs that mark what a pilot last fed on. A drain takes every one off the pilot but
     // its own source's. None here either.
     public List<HediffDef> feedingHediffs;
+
+    // A pilot the player does not control (Ability_Dismember.Ai.cs). With aiUses on, such a
+    // pilot strikes the humanlike it is fighting once that is within aiStrikeDistance cells,
+    // gives the walk up at twice that, and waits aiStrikeSpacingTicks after a strike before
+    // the next, where a player's pilot waits the def's cooldownTime.
+    public bool aiUses;
+
+    public float aiStrikeDistance;
+
+    public int aiStrikeSpacingTicks;
 }

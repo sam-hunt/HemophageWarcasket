@@ -48,7 +48,7 @@ public class SettingsTargetTests
         XElement def = Def("HediffDefs", "HemogenRush.xml", "HPWC_HemogenRush");
         XElement comp = def.Element("comps")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.HediffCompProperties_HemogenRush");
-        AssertHas(comp, "hemogenStartCost", "hemogenPerSecond", "hemogenReserve", "glowPulses");
+        AssertHas(comp, "hemogenStartCost", "hemogenPerSecond", "hemogenReserve", "glowPulses", "aiUses");
         XElement stage = def.Element("stages")!.Elements("li").Single();
         AssertHas(stage, "statFactors");
         AssertHas(stage.Element("statFactors")!, "MoveSpeed", "MeleeDamageFactor");
@@ -72,7 +72,20 @@ public class SettingsTargetTests
         XElement extension = def.Element("modExtensions")!.Elements("li")
             .Single(li => (string?)li.Attribute("Class") == "HemophageWarcasket.DismemberExtension");
         AssertHas(extension, "damage", "drainTicks", "hemogenGain", "targetBloodLoss", "bloodFilthCount",
-            "canTargetNonHostile");
+            "canTargetNonHostile", "aiUses");
+    }
+
+    // The two aiUses boxes switch on what runs from VEF's interval tick, which reaches an
+    // ability only when its def asks for it and its piece is ticked at all: the armor's base
+    // ticks, the shoulder pad base does not. Without either, a pilot the player does not
+    // control casts nothing and no error says so.
+    [Fact]
+    public void AiUse_HasItsAbilitiesTicked()
+    {
+        Assert.True((bool)Def("AbilityDefs", "HemogenRush.xml", "HPWC_HemogenRush").Element("needsTickingInterval")!);
+        Assert.True((bool)Def("AbilityDefs", "Dismember.xml", "HPWC_Dismember").Element("needsTickingInterval")!);
+        XElement pads = Def("ThingDefs_Misc", "WarcasketShoulders_Hemophage.xml", "HPWC_WarcasketShoulders_Hemophage");
+        Assert.Equal("Normal", (string?)pads.Element("tickerType"));
     }
 
     // The settings write the pool in per-charge mode, so the def must declare that mode, on

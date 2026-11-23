@@ -1,6 +1,6 @@
 # SPEC: The hemogen rush and Dismember for a pilot the player does not control
 
-Status: DECIDED, not built. Section 6 has the author's answers. Every engine fact below was read,
+Status: BUILT, not run in game (section 3.7). Section 6 has the author's answers. Every engine fact below was read,
 not run: VEF at checkout `fa069a72` (`../VanillaExpanded/VanillaExpandedFramework/Source/VEF/Abilities/`,
 paths below relative to it), VFEP at `be4040e`, vanilla by decompile of 1.7.5014 and the frozen
 1.6 assembly, the same on both for every method named. Each fact names where it was read so the
@@ -42,9 +42,10 @@ pilot in a prison break and any pawn another mod dresses in the set.
 - A worn piece ticks through its wearer: `Thing.DoTick` ticks a `tickerType` Normal thing, then
   the directly held things of every holder under it, and `ThingWithComps.TickInterval` calls
   each comp's `CompTickInterval`. A piece whose def is `tickerType` Never gets nothing.
-- A worn piece's interval comes every 15 ticks with a delta of 15, on screen or off: its rate is
-  its own (`GenTicks.GetCameraUpdateRate`), and a worn piece has no position for the camera to
-  see. The wearer's own rate, 1 to 5 on screen, is what a hediff comp's interval gets.
+- A worn piece's interval comes at the piece's own rate (`GenTicks.GetCameraUpdateRate`, asked
+  of the piece), every 15 ticks at the slowest and for a piece that was never spawned, with the
+  ticks since the last as its delta. The wearer's own rate, 1 to 5 on screen, is what a hediff
+  comp's interval gets.
 - VFEP's armor base is Normal and its part base is Never
   (`1.6/Defs/ThingDefs_Misc/Apparel_Various.xml:70` and `:29`), so our armor ticks and our pads
   do not. VFEP's own Barrage pads set Normal on the def (`:828`).
@@ -120,8 +121,8 @@ ability.
   pawn being finished off are fight targets and not threats.
 
 Each ability finds its wearer as `(holder as Apparel)?.Wearer`, never through `pawn`, and asks
-once every 30 ticks (`wearer.IsHashIntervalTick(30, delta)`, which one of a worn piece's two
-intervals in 30 ticks passes).
+once every 30 ticks (`wearer.IsHashIntervalTick(30, delta)`, which passes once in 30 ticks
+whatever the piece's rate).
 
 `Abilities/PilotTactics.cs` holds the decisions as plain arithmetic on numbers, booleans and our
 own enums, naming no game type, as `Quests/ThrallBudget.cs` does, so its tests run anywhere.

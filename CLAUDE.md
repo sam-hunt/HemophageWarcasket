@@ -86,7 +86,7 @@ failing build back to the agent. **Warnings are build errors** (`TreatWarningsAs
 severities pinned in `.editorconfig`): fix the code, not the severity.
 
 `Tests/1.6/` is a headless xUnit (net472) suite, never shipped: `dotnet test
-Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Six
+Tests/1.6/HemophageWarcasket.Tests.csproj` (vstest hosts it through mono on Linux/WSL). Seven
 files touch no game type, so they run anywhere; `WorkProfileTests`,
 `DismemberTargetTests`, `DismemberDrainTests`, `TunableTests` and `QuestPilotTests` run game code and so need the
 game's real 1.6 runtime DLLs (`RIMWORLD_MANAGED_1_6`, a 1.6 install, or the frozen copy at
@@ -110,7 +110,7 @@ supplies (an unknown one is an error only when the line is first written in game
 Dismember line to one of the strike's two outcomes;
 `SettingsTargetTests` holds the ability defs, the pads' strike pool, the helmet's two
 extensions and the armor's quest extension to the fields the settings write (a missing one drops those sections from the window
-with one warning). `ListMaskTests` holds the two halves of keeping the set off generated
+with one warning), and the two abilities and the pads to the ticking an AI pilot's use runs on. `ListMaskTests` holds the two halves of keeping the set off generated
 pawns: the mask that hides the parts from VFEP's slot fill, and the parts' absent apparel tags.
 `QuestPilotTests`, the fifth to run game code, holds the exception, the quests' sanguophages:
 each source's own chance, the shuttle master's floor on the quest's threat points, the weapon
@@ -118,7 +118,9 @@ a sanguophage's skills take, the armor's
 extension to the set's own pieces and research and to whole VFEP sets for the thralls, and the
 two vanilla quest roots the patches bind by name to the game's 1.6 assembly. `ThrallBudgetTests`
 holds how many of the crashed shuttle's thralls a quest dresses and in which set, by its threat
-points, and the order the two groups of thralls are offered them in.
+points, and the order the two groups of thralls are offered them in. `PilotTacticsTests` holds
+what a pilot the player does not control decides: when the rush runs, which strike is worth one
+of the pads' few and what hemogen the AI may spend on an ability.
 
 ## Layout
 

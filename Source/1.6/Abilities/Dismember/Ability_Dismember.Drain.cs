@@ -104,5 +104,15 @@ public partial class Ability_Dismember
         return Extension.targetBloodLoss * bySize;
     }
 
+    // What a drain run to its end would do to this target's blood, from where it stands now:
+    // the sum the cursor warns by (Ability_Dismember.Foresight.cs has it) and an AI pilot
+    // spares a life by.
+    private DrainOutlook FullDrainOutlook(Pawn target)
+    {
+        float lost = target.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss)?.Severity ?? 0f;
+        return DismemberDrain.Outlook(HediffDefOf.BloodLoss, lost + FullBloodLoss(target),
+            deathless: target.genes?.HasActiveGene(GeneDefOf.Deathless) == true);
+    }
+
     public int DrainTicks => Extension.drainTicks;
 }

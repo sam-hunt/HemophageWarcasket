@@ -45,6 +45,9 @@
     No verbs, so the comp draws no gizmo of its own; the ability's command shows the count.
     A colonist reloads on their own when undrafted, and a drafted pilot when ordered onto the
     components (vanilla's float menu). maxCharges and ammoCountPerCharge are mod settings.
+    tickerType Normal, over the shoulder pad base's Never, as VFEP's Barrage shoulders set it:
+    a worn piece is ticked only when its def says so, and the ability's use by a pilot the
+    player does not control runs on that tick (AbilityDefs/Dismember.xml).
 
     Art: the north facing is the south facing's silhouette shaded for the back, so the two
     share one mask and one glow sprite, shipped under both names because Graphic_Multi
@@ -71,6 +74,7 @@
   <VFEPirates.WarcasketDef ParentName="VFEP_WarcasketShoulderPadBase">
     <defName>HPWC_WarcasketShoulders_Hemophage</defName>
     <label>hemophage warcasket shoulders</label>
+    <tickerType>Normal</tickerType>
     <shortDescription>Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy.</shortDescription>
     <description>Specialized spacer-tech warcasket pauldrons with improved heat protection, equipped with powerful servos and reinforced arms that can tear a limb off an enemy.\n\nThe 10th generation came out of a government program that rebuilt captured pirate rigs around its own power armor and gave them to veterans who could no longer serve any other way. The program has no record of a Hemophage series. Some think the designs were stolen and refitted by sanguophages. Some believe the series was sanctioned in secret from the top of the program, which sanguophages had directed all along.\n\nThe Hemophage series runs on its pilot's hemogen. Injectors in the shell keep the pilot's blood pumping even without a heart, and can spend hemogen quickly to make the pilot much faster and stronger. Servos in the pauldrons can tear a limb off an enemy so the pilot can drain hemogen from the wound, and the helmet keeps out sunlight and helps the pilot hold their nerve near fire. For a non-hemogenic pilot this series is somewhat lackluster, but it suits a sanguophage who prefers to fight up close.</description>
     <graphicData>

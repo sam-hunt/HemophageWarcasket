@@ -64,6 +64,18 @@
     repeat on a cell thickening it. The filth is the target's own blood, so a mechanoid
     throws machine bits and a bloodless race nothing.
 
+    A pilot the player does not control (aiUses; the hemogen rush's hediff has who that is)
+    strikes on its own, from the ability's TickInterval, which needsTickingInterval has VEF
+    call while the pads are worn (Ability_Dismember.Ai.cs has the rule): the humanlike it is
+    fighting, never an animal or a mechanoid, and never a target with no limb left, whose
+    head the strike would take. Its drain is skipped where it would bleed the target to
+    death.
+    - aiStrikeDistance 5: the pilot goes for a target this near, a second's walk in the
+      rush, and gives the walk up at twice that.
+    - aiStrikeSpacingTicks 600: ten seconds from one strike to the next, in place of
+      cooldownTime, time for the player to pull a colonist back. The pads' two strikes are
+      the limit either way, since such a pilot never reloads.
+
     The mod settings override castTime, cooldownTime, the pads' pool and the
     DismemberExtension fields that Source/1.6/Settings/Settings_Dismember.cs lists, damage
     among them.
@@ -97,6 +109,7 @@
     <castTime>30</castTime>
     <cooldownTime>0</cooldownTime>
     <showUndrafted>true</showUndrafted>
+    <needsTickingInterval>true</needsTickingInterval>
     <modExtensions>
       <li Class="HemophageWarcasket.DismemberExtension">
         <damage>60</damage>
@@ -106,6 +119,9 @@
         <bloodFilthCount>10</bloodFilthCount>
         <bloodFilthRadius>2</bloodFilthRadius>
         <canTargetNonHostile>true</canTargetNonHostile>
+        <aiUses>true</aiUses>
+        <aiStrikeDistance>5</aiStrikeDistance>
+        <aiStrikeSpacingTicks>600</aiStrikeSpacingTicks>
       </li>
     </modExtensions>
   </VEF.Abilities.AbilityDef>

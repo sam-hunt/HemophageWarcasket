@@ -12,7 +12,8 @@ namespace HemophageWarcasket;
 // seconds, ticks on the def). On its DismemberExtension the strike damage overrides damage, the
 // drain time drainTicks (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the
 // game shows), the blood loss targetBloodLoss (percent), the spatter bloodFilthCount, and the
-// box canTargetNonHostile. bloodFilthRadius has no setting. The header carries the ability's
+// boxes canTargetNonHostile and, for the other pilots' one, aiUses. bloodFilthRadius and the
+// two other AI fields have no setting. The header carries the ability's
 // icon and tooltip. The summary quotes the gain as the pilot gets it, times the
 // HemogenGainFactor the pads themselves give their wearer.
 //
@@ -52,6 +53,9 @@ public partial class HemophageWarcasketSettings
 
     public readonly ToggleSetting dismemberNonHostile = new("DismemberNonHostile");
 
+    // The strike for a pilot the player does not control.
+    public readonly ToggleSetting dismemberAiUse = new("DismemberAiUse");
+
     // The ability def, for its header icon, and the header's tooltip.
     private AbilityDef dismemberDef;
     private string dismemberTip;
@@ -74,6 +78,7 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.ExposeData();
         dismemberSpatter.ExposeData();
         dismemberNonHostile.ExposeData();
+        dismemberAiUse.ExposeData();
     }
 
     private void LoadDismemberDefaults(Defs defs)
@@ -92,6 +97,7 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.DefaultValue = ext.targetBloodLoss * PercentScale;
         dismemberSpatter.DefaultValue = ext.bloodFilthCount;
         dismemberNonHostile.DefaultValue = ext.canTargetNonHostile;
+        dismemberAiUse.DefaultValue = ext.aiUses;
         dismemberPadsGain = defs.padsHemogenGain;
         dismemberDef = defs.dismember;
         dismemberTip = HeaderTip(dismemberDef.LabelCap, dismemberDef.description);
@@ -110,6 +116,7 @@ public partial class HemophageWarcasketSettings
         ext.targetBloodLoss = dismemberBloodLoss.Value / PercentScale;
         ext.bloodFilthCount = dismemberSpatter.IntValue;
         ext.canTargetNonHostile = dismemberNonHostile.Value;
+        ext.aiUses = dismemberAiUse.Value;
     }
 
     private void ResetDismemberSettings()
@@ -124,6 +131,7 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.Reset();
         dismemberSpatter.Reset();
         dismemberNonHostile.Reset();
+        dismemberAiUse.Reset();
     }
 
     private void DrawDismemberSection(Listing_Standard listing)
@@ -140,6 +148,7 @@ public partial class HemophageWarcasketSettings
         dismemberBloodLoss.DoRow(listing);
         dismemberSpatter.DoRow(listing);
         dismemberNonHostile.DoRow(listing);
+        dismemberAiUse.DoRow(listing);
     }
 
     // What the section's rows amount to: a sentence for the strikes held and what each costs to

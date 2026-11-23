@@ -7,7 +7,8 @@ namespace HemophageWarcasket;
 // Rush section: the armor's hemogen rush, all of it on the HPWC_HemogenRush hediff. On its
 // HediffCompProperties_HemogenRush the start cost overrides hemogenStartCost, the drain
 // hemogenPerSecond and the reserve hemogenReserve, all stored and shown on the 0..100 scale
-// the game shows hemogen on, and the pulse box overrides glowPulses. On its one stage the
+// the game shows hemogen on, the pulse box overrides glowPulses and the other pilots' box
+// aiUses, which carries the rush's four other AI fields with it. On its one stage the
 // melee damage overrides the MeleeDamageFactor statFactor and the move speed the MoveSpeed
 // one, both stored and shown in percent. The move speed row is the rush's whole gain, so what
 // it writes is that over the share the stage's BloodPumping offset already gives
@@ -42,6 +43,9 @@ public partial class HemophageWarcasketSettings
 
     public readonly ToggleSetting rushGlowPulse = new("RushGlowPulse");
 
+    // The rush for a pilot the player does not control, and the hemogen kept back for it.
+    public readonly ToggleSetting rushAiUse = new("RushAiUse");
+
     // The ability def, for its header icon (the class header of HemophageWarcasketSettings),
     // and the header's tooltip.
     private AbilityDef rushDef;
@@ -64,6 +68,7 @@ public partial class HemophageWarcasketSettings
         rushMoveSpeed.ExposeData();
         rushMeleeDamage.ExposeData();
         rushGlowPulse.ExposeData();
+        rushAiUse.ExposeData();
     }
 
     private void LoadRushDefaults(Defs defs)
@@ -74,6 +79,7 @@ public partial class HemophageWarcasketSettings
         rushMoveSpeed.DefaultValue = defs.rushMoveSpeed.value * RushPumpingSpeed(defs) * PercentScale;
         rushMeleeDamage.DefaultValue = defs.rushMeleeDamage.value * PercentScale;
         rushGlowPulse.DefaultValue = defs.rush.glowPulses;
+        rushAiUse.DefaultValue = defs.rush.aiUses;
         rushDef = defs.rushAbility;
         rushTip = HeaderTip(rushDef.LabelCap, rushDef.description);
     }
@@ -86,6 +92,7 @@ public partial class HemophageWarcasketSettings
         defs.rushMoveSpeed.value = rushMoveSpeed.Value / PercentScale / RushPumpingSpeed(defs);
         defs.rushMeleeDamage.value = rushMeleeDamage.Value / PercentScale;
         defs.rush.glowPulses = rushGlowPulse.Value;
+        defs.rush.aiUses = rushAiUse.Value;
     }
 
     private void ResetRushSettings()
@@ -96,6 +103,7 @@ public partial class HemophageWarcasketSettings
         rushMoveSpeed.Reset();
         rushMeleeDamage.Reset();
         rushGlowPulse.Reset();
+        rushAiUse.Reset();
     }
 
     private void DrawRushSection(Listing_Standard listing, bool first = false)
@@ -108,6 +116,7 @@ public partial class HemophageWarcasketSettings
         rushMoveSpeed.DoRow(listing);
         rushMeleeDamage.DoRow(listing);
         rushGlowPulse.DoRow(listing);
+        rushAiUse.DoRow(listing);
     }
 
     // What the section's rows amount to: the start cost, if any, the drain and how long a rush

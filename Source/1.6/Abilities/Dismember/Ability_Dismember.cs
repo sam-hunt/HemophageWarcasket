@@ -14,15 +14,17 @@ namespace HemophageWarcasket;
 // pawn may be targeted, hostile or not unless the def's extension refuses the latter;
 // vanilla's damage bookkeeping carries the consequences.
 //
-// The class is in four files. This one has the button, the targeting, the order and the hold on
-// the target. The strike, the cursor's foresight and the drain each have a file and a header of
-// their own: Ability_Dismember.Strike.cs, Ability_Dismember.Foresight.cs and
-// Ability_Dismember.Drain.cs.
+// The class is in five files. This one has the button, the targeting, the order and the hold on
+// the target. The strike, the cursor's foresight, the drain and the use a pilot the player does
+// not control makes of it each have a file and a header of their own:
+// Ability_Dismember.Strike.cs, Ability_Dismember.Foresight.cs, Ability_Dismember.Drain.cs and
+// Ability_Dismember.Ai.cs.
 //
 // The job is ordered through Pawn_JobTracker.TryTakeOrderedJob, not VEF's StartAbilityJob, so a
 // click interrupts like a vanilla order and the queue key appends (1.6); the driver binds
 // CompAbilities.currentlyCasting when the job starts. The click is not range limited, since the
-// job walks, and autocast is pinned off, since VEF never fires an apparel ability's. The stun
+// job walks, and autocast is pinned off, since VEF never fires an apparel ability's: a pilot
+// the player does not control is served by Ability_Dismember.Ai.cs. The stun
 // (StunHandler.StunFor without battle log or mote) is refreshed each tick the target is held, so
 // it lapses on its own on any exit; a downed target is skipped, as StunHandlerTick zeroes its
 // stun every tick.

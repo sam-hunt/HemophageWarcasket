@@ -6,6 +6,9 @@
     buff, the start cost, the drain and what ends it. Instant and no cooldown: the pilot's
     hemogen is the limiter. showUndrafted because a rush is as much use to an undrafted pilot
     fighting on their own threat response as to a drafted one.
+    needsTickingInterval has VEF call the ability's TickInterval while the armor is worn,
+    where it starts the rush of a pilot the player does not control: VEF offers an apparel
+    ability to no AI. The hediff's header has when, under its aiUses.
   -->
   <VEF.Abilities.AbilityDef>
     <defName>HPWC_HemogenRush</defName>
@@ -14,6 +17,7 @@
     <abilityClass>HemophageWarcasket.Ability_HemogenRush</abilityClass>
     <targetMode>Self</targetMode>
     <showUndrafted>true</showUndrafted>
+    <needsTickingInterval>true</needsTickingInterval>
     <iconPath>UI/Abilities/WarcasketHemophage/HemogenRush</iconPath>
   </VEF.Abilities.AbilityDef>
 </Defs>

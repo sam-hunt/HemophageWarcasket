@@ -14,6 +14,11 @@ namespace HemophageWarcasket;
 // refreshed. The tooltip's last line is the start cost, as Biotech's abilities show theirs
 // (CompProperties_AbilityHemogenCost.ExtraStatSummary, 1.6), which the def's text cannot
 // carry, the cost being a mod setting: the tooltip is rebuilt after a settings write.
+//
+// A pilot the player does not control has no toggle to click, and VEF offers an apparel
+// ability to no AI, so the ability starts that pilot's rush itself, on VEF's interval tick
+// (the def's needsTickingInterval): when the pilot is engaged, as AiPilot and PilotTactics
+// have it. The rush's comp ends it once the fight has moved on.
 public class Ability_HemogenRush : Ability
 {
     private Command_Toggle gizmo;
@@ -97,6 +102,23 @@ public class Ability_HemogenRush : Ability
             return false;
         }
         return IsEnabledForPawn(out reason);
+    }
+
+    // The start an AI pilot has in place of the toggle (see the header): the same hediff, on
+    // the same hemogen test, and never through pawn, which nothing has bound on a pilot nobody
+    // has selected.
+    public override void TickInterval(int delta)
+    {
+        if ((holder as Apparel)?.Wearer is not { } wearer || !wearer.IsHashIntervalTick(AiPilot.AskTicks, delta))
+            return;
+        HediffCompProperties_HemogenRush rush = Rush;
+        if (!rush.aiUses || !AiPilot.Acts(wearer) || wearer.health.hediffSet.HasHediff(HPWC_DefOf.HPWC_HemogenRush))
+            return;
+        Gene_Hemogen hemogen = wearer.genes?.GetFirstGeneOfType<Gene_Hemogen>();
+        if (hemogen?.CanOffset != true || !rush.Affords(hemogen.Value))
+            return;
+        if (AiPilot.RushEngaged(wearer, rush))
+            wearer.health.AddHediff(HPWC_DefOf.HPWC_HemogenRush);
     }
 
     private void Toggle()

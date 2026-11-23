@@ -29,6 +29,9 @@ namespace HemophageWarcasket;
 // (Ability_Dismember.InReach, the rule the warmup and the drain hold it by) and is not mid-door;
 // a target it cannot reach ends the job. The rule is asked of the def, not of the bound ability,
 // so the walk ends whatever has become of the binding, and the check toil answers for that.
+// A pilot the player does not control started the job itself (Ability_Dismember.Ai.cs) and
+// gives the walk up, with nothing spent, once the target is twice as far off as it would
+// start one from; a player's pilot follows its order as far as the target goes.
 //
 // The drain toil re-asserts playerForced, which VEF's cast toil drops for a drafted pilot, so the
 // melee-threat and hostility-response constant jobs stand down for it too. It counts its own
@@ -104,6 +107,11 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
             IntVec3 cell = target.Cell;
             Map map = pawn.Map;
             pawn.rotationTracker.FaceTarget(cell);
+            if (AiGivesUp())
+            {
+                EndJobWith(JobCondition.Incompletable);
+                return;
+            }
             if (Ability_Dismember.InReach(pawn, Target, Def?.distanceToTarget ?? 0f)
                 && (!pawn.pather.Moving || pawn.pather.nextCell.GetDoor(map) == null))
             {
@@ -127,6 +135,15 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
         return toil;
     }
 
+    // Whether an AI pilot's walk has gone on too far (see the header).
+    private bool AiGivesUp()
+    {
+        if (!AiPilot.Is(pawn) || Target is not { Spawned: true } target)
+            return false;
+        DismemberExtension ext = Def?.GetModExtension<DismemberExtension>();
+        return ext != null && pawn.Position.DistanceTo(target.Position) > 2f * ext.aiStrikeDistance;
+    }
+
     private Toil Check()
     {
         Toil toil = ToilMaker.MakeToil();
@@ -140,7 +157,8 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
     }
 
     // Passes straight through unless the pilot can drain the target, which is bleeding whether
-    // or not the strike took its limb off (Ability_Dismember.CanDrain). A save and load
+    // or not the strike took its limb off (Ability_Dismember.CanDrain), and through for an AI
+    // pilot whose drain would kill it (Ability_Dismember.SparesDrain). A save and load
     // mid-drain resumes on the saved ticksLeftThisToil and the tick's own checks.
     private Toil Drain()
     {
@@ -150,7 +168,7 @@ public class JobDriver_Dismember : JobDriver_CastAbilityOnce
             job.playerForced = true;
             Ability_Dismember ability = Casting;
             Pawn target = Target;
-            if (ability == null || target == null || !ability.CanDrain(target))
+            if (ability == null || target == null || !ability.CanDrain(target) || ability.SparesDrain(target))
             {
                 ReadyForNextToil();
                 return;

@@ -88,9 +88,7 @@ public partial class Ability_Dismember
         HediffSet hediffs = victim.health.hediffSet;
         if (hediffs.BleedRateTotal <= 0f && (victim.Deathresting || !DismemberTarget.CouldBleed(victim, aim)))
             return DrainOutlook.Harmless;
-        float lost = hediffs.GetFirstHediffOfDef(HediffDefOf.BloodLoss)?.Severity ?? 0f;
-        return DismemberDrain.Outlook(HediffDefOf.BloodLoss, lost + FullBloodLoss(victim),
-            deathless: victim.genes?.HasActiveGene(GeneDefOf.Deathless) == true);
+        return FullDrainOutlook(victim);
     }
 
     // What of it would reach a part of this pawn's: the factors a gene or a hediff sets on

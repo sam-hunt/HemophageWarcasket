@@ -39,6 +39,24 @@
     break, leaving the map), all in HediffComp_HemogenRush, on death and at the start of a
     deathrest. Drafting and undrafting leave it running.
 
+    A pilot the player does not control (aiUses; any pawn not of the player's faction, a
+    quest's sanguophage or a captured pilot in a prison break) starts the rush on its own and
+    has it ended for it (Ability_HemogenRush, HediffComp_HemogenRush, on PilotTactics' rule):
+    - aiStartDistance 25: the rush starts when the threat the pilot is on its way to hit is
+      this near. About a rifle's reach, so a melee pilot crosses a firing line in the rush,
+      for about 12 hemogen: 5 to start, then 3.5 seconds at 7.2 cells a second.
+    - aiCloseDistance 5: it starts, and stays on, with the threat this near whatever the
+      pilot is doing, which covers a pilot with a gun that something has reached and a melee
+      pilot between two blows. One more than the reach of Biotech's piercing spine.
+    - aiStopAfterTicks 300: it ends after five seconds of neither. The grace costs 10
+      hemogen, two restarts, so a rush is not dropped and bought again across a lull.
+    - aiHemogenKept 0.5: the AI pays for no ability that would take the pilot under 50
+      hemogen (Patches/CompAbilityEffect_HemogenCost_AICanTargetNow). A sanguophage's own AI
+      casts piercing spine, 20 hemogen, about every 8 seconds of a melee, as much as the
+      rush drains, so left alone the two empty the pilot in under half a minute. Half kept
+      is 25 seconds of rush and leaves a full pilot two spines. 0 keeps nothing, 1 all of it.
+    A threat is what the game counts as fighting back: not a door being broken down, nor a
+    downed pawn.
     Glow: every worn piece of the set draws its glow sprite while the pilot has this hediff
     and has not switched it off (the pieces' renderNodeProperties). forceRenderTreeRecache
     makes the game rebuild the pilot's graphics when it is added or removed. glowPulse is a
@@ -50,8 +68,8 @@
     Sparks: the pilot gives off EffecterDefs/HemogenRush.xml for as long as the hediff
     is on them, through the game's own HediffCompProperties_Effecter.
 
-    The mod settings override hemogenStartCost, hemogenPerSecond, hemogenReserve, glowPulses
-    and the two statFactors (Source/1.6/Settings/Settings_Rush.cs). Their move speed is the
+    The mod settings override hemogenStartCost, hemogenPerSecond, hemogenReserve, glowPulses,
+    aiUses and the two statFactors (Source/1.6/Settings/Settings_Rush.cs). Their move speed is the
     1.5 in all, written as the MoveSpeed factor that reaches it beside the blood pumping.
 
     defaultLabelColor is the drug highs'.
@@ -71,6 +89,11 @@
         <hemogenPerSecond>0.02</hemogenPerSecond>
         <hemogenReserve>0</hemogenReserve>
         <armor>HPWC_Warcasket_Hemophage</armor>
+        <aiUses>true</aiUses>
+        <aiStartDistance>25</aiStartDistance>
+        <aiCloseDistance>5</aiCloseDistance>
+        <aiStopAfterTicks>300</aiStopAfterTicks>
+        <aiHemogenKept>0.5</aiHemogenKept>
         <glowPulses>true</glowPulses>
         <glowPulseTicks>60</glowPulseTicks>
         <glowPulse>

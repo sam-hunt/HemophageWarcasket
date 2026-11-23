@@ -23,6 +23,17 @@ public class HediffCompProperties_HemogenRush : HediffCompProperties
     // The apparel whose injectors run the rush, which ends once the pawn no longer wears it.
     public ThingDef armor;
 
+    // A pilot the player does not control (AiPilot, PilotTactics). With aiUses on, such a pilot
+    // starts the rush on its own once the threat it is fighting is within aiStartDistance cells
+    // and it is on its way to hit it, or within aiCloseDistance whatever it is doing, and the
+    // rush ends after aiStopAfterTicks of neither. Until then the AI pays for no ability that
+    // would take the pilot's hemogen under aiHemogenKept, on the scale above.
+    public bool aiUses;
+    public float aiStartDistance;
+    public float aiCloseDistance;
+    public int aiStopAfterTicks;
+    public float aiHemogenKept;
+
     // The glow's alpha over one beat (0..1 across glowPulseTicks game ticks), drawn by
     // PawnRenderNodeWorker_HemogenGlow. With glowPulses off, or without a curve, the glow is
     // steady at full strength.
@@ -50,6 +61,10 @@ public class HediffCompProperties_HemogenRush : HediffCompProperties
 // Deathrest and death end it through the def (removeOnDeathrestStart,
 // HediffComp_DisappearsOnDeath).
 //
+// A pilot the player does not control has nobody to switch the rush off, so the comp ends it
+// once the pilot has gone the def's aiStopAfterTicks without being engaged, the test
+// Ability_HemogenRush starts it on. The count is not saved: a load restarts the grace.
+//
 // The pilot's switch settles on the next tick, so clicks made in a pause net out to the last
 // one and a rush pays its start cost once:
 //  - The hediff is added at the click, which lights the glow at once, and owes the start cost
@@ -71,6 +86,7 @@ public class HediffComp_HemogenRush : HediffComp
     private bool ended;
     private bool startCostDue;
     private bool stopRequested;
+    private int aiIdleTicks;
 
     public HediffCompProperties_HemogenRush Props => (HediffCompProperties_HemogenRush)props;
 
@@ -144,7 +160,8 @@ public class HediffComp_HemogenRush : HediffComp
         // must not outlast that: it would drain through a mental break or a caravan trip with
         // no way to switch it off. Undrafting is not among them.
         bool uncontrolled = pawn.Faction?.IsPlayer == true && !pawn.IsColonistPlayerControlled;
-        if (stopRequested || hemogen?.CanOffset != true || pawn.Downed || !pawn.Awake() || uncontrolled || !WearsArmor(pawn))
+        if (stopRequested || hemogen?.CanOffset != true || pawn.Downed || !pawn.Awake() || uncontrolled
+            || !Wears(pawn, Props.armor) || (AiPilot.Is(pawn) && AiIdle(pawn, delta)))
         {
             ended = true;
             return;
@@ -168,14 +185,27 @@ public class HediffComp_HemogenRush : HediffComp
         Scribe_Values.Look(ref stopRequested, "stopRequested");
     }
 
-    private bool WearsArmor(Pawn pawn)
+    // Whether an AI pilot's rush has outlasted its fight (see the header). With aiUses off no
+    // tick counts as engaged, so a rush the AI started before the switch runs out its grace.
+    private bool AiIdle(Pawn pawn, int delta)
+    {
+        if (Props.aiUses && AiPilot.RushEngaged(pawn, Props))
+        {
+            aiIdleTicks = 0;
+            return false;
+        }
+        aiIdleTicks += delta;
+        return aiIdleTicks >= Props.aiStopAfterTicks;
+    }
+
+    public static bool Wears(Pawn pawn, ThingDef armor)
     {
         var worn = pawn.apparel?.WornApparel;
         if (worn == null)
             return false;
         for (int i = 0; i < worn.Count; i++)
         {
-            if (worn[i].def == Props.armor)
+            if (worn[i].def == armor)
                 return true;
         }
         return false;

@@ -7,7 +7,7 @@ rationale, with `DamageDefs/`, `JobDefs/` and `RulePackDefs/` beside it), the
 strike pool (`Comps/CompStrikePool.cs`) and its settings section
 (`Settings/Settings_Dismember.cs`).
 
-`Ability_Dismember` is one class in four files, each named for what it answers:
+`Ability_Dismember` is one class in five files, each named for what it answers:
 
 - **`Ability_Dismember.cs`**: the button and when it is enabled, who can be targeted, how a
   click becomes a job, the question before a lethal order, the hold on the target, the strike
@@ -18,6 +18,8 @@ strike pool (`Comps/CompStrikePool.cs`) and its settings section
   drain would do, and how long an answer is kept.
 - **`Ability_Dismember.Drain.cs`**: who is drained and through which source, when a drain runs
   and stops.
+- **`Ability_Dismember.Ai.cs`**: when a pilot the player does not control strikes on its own,
+  how its strikes are spaced and which drain it passes over.
 
 Around it:
 

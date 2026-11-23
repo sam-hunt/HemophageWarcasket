@@ -12,6 +12,9 @@ Where each mechanic lives:
   with its patch).
 - **The pads' Dismember**: `Abilities/Dismember/`, which has a guide of its own (which file
   answers what, the walk-up job, the strike pool), and the pool itself (`Comps/`).
+- **Both abilities for a pilot the player does not control**: who that is and what it is
+  fighting (`Abilities/AiPilot.cs`), the decisions (`Abilities/PilotTactics.cs`, pure) and
+  the patch that keeps hemogen back for the rush.
 - **The helmet**: sunlight protection (`Apparel/SunlightShield.cs`, with its three patches)
   and pyrophobia relief (`Apparel/PyrophobiaRelief.cs`, with its one).
 - **The pilot's work**: the trait's rule (`Traits/WorkProfile.cs`) and the startup that mirrors
@@ -109,6 +112,12 @@ rather than restating it.
 - **An apparel ability's `pawn` is null until its first gizmo draw** or until something binds
   it, and VEF fires no apparel ability's autocast, for the player or for raiders.
   `Abilities/Dismember/CLAUDE.md` has how a job binds it.
+- **An ability serves a pilot the player does not control from its own `TickInterval`**, which
+  VEF calls only for a def with `needsTickingInterval` on a piece whose def ticks. It finds the
+  wearer through `holder`, asks `AiPilot` who and what, takes the decision from `PilotTactics`
+  and then goes the way a player's click does. A new decision is arithmetic in `PilotTactics`,
+  where the tests reach it, on numbers the def holds; `AiPilot.Is` is the one test of whose
+  pilot it is.
 - **A type of another mod's is named by a def field, never in the code**, as a def of another
   mod's is: the main tree leaves the field empty, that mod's compat root fills it in, and the
   code resolves the name by reflection, once, with a warning and a fallback when it is not there
