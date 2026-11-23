@@ -20,10 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Pilots you do not control now use the hemogen rush when a fight gets close, and hold back hemogen for it
-- Pilots you do not control now tear limbs off human enemies with the strikes loaded in their shoulders
-- A sanguophage leader betrayed at a meeting will fight this way while leaving, and can cost a colony two limbs
-- Two settings to turn either off
+- Enemy and allied pilots now start a hemogen rush as they close in to fight, and save hemogen for it
+- Enemy and allied pilots now dismember the humans they fight until the strikes in their shoulders run out
+- A sanguophage leader you betray at a meeting will now fight this way while leaving
+- Each of the two can be turned off in the mod settings
 
 ## [1.0.0] - 2026-11-23
 

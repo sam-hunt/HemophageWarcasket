@@ -12,7 +12,7 @@ namespace HemophageWarcasket;
 // seconds, ticks on the def). On its DismemberExtension the strike damage overrides damage, the
 // drain time drainTicks (real seconds), the hemogen gain hemogenGain (on the 0..100 scale the
 // game shows), the blood loss targetBloodLoss (percent), the spatter bloodFilthCount, and the
-// boxes canTargetNonHostile and, for the other pilots' one, aiUses. bloodFilthRadius and the
+// boxes canTargetNonHostile and, for the enemy pilots' one, aiUses. bloodFilthRadius and the
 // two other AI fields have no setting. The header carries the ability's
 // icon and tooltip. The summary quotes the gain as the pilot gets it, times the
 // HemogenGainFactor the pads themselves give their wearer.

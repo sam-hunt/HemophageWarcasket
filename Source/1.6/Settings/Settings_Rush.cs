@@ -7,7 +7,7 @@ namespace HemophageWarcasket;
 // Rush section: the armor's hemogen rush, all of it on the HPWC_HemogenRush hediff. On its
 // HediffCompProperties_HemogenRush the start cost overrides hemogenStartCost, the drain
 // hemogenPerSecond and the reserve hemogenReserve, all stored and shown on the 0..100 scale
-// the game shows hemogen on, the pulse box overrides glowPulses and the other pilots' box
+// the game shows hemogen on, the pulse box overrides glowPulses and the enemy pilots' box
 // aiUses, which carries the rush's four other AI fields with it. On its one stage the
 // melee damage overrides the MeleeDamageFactor statFactor and the move speed the MoveSpeed
 // one, both stored and shown in percent. The move speed row is the rush's whole gain, so what
